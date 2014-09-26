@@ -75,20 +75,22 @@ if ($pid1){
 }elsif ($pid1 == 0) {
     while (my $line = <$socket>) {
         my $command_file_input = play_gemstoneiv_data::Main::read_command_file($current_dir_name,%GLOBALS);
-        if($command_file_input) { 
+        if($command_file_input) {
+            my $look_output = "";
             if($command_file_input eq "dir"){
-                my $look_output = play_gemstoneiv_data::Main::run_command_grab_lines("look",3,$socket);
+                $look_output = play_gemstoneiv_data::Main::run_command_grab_lines("look",3,$socket);
                 $line .= $look_output;
-                ## dir_process($look_output);  ##  see if in hot spot if not echo Not in Hot Spot
             }
+            play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,%GLOBALS);
             my $pid2 = fork();
             if($pid2){
-                play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,%GLOBALS);
                 if($SCRIPTS{$command_file_input} ){
                     foreach my $run_command (@{$SCRIPTS{$command_file_input}} ){
                         $socket->send($run_command . "\n");
                         sleep(0.75);
                     }
+                }elsif($command_file_input eq "dir"){
+                    ## dir_process($look_output);  ##  see if in hot spot if not echo Not in Hot Spot 
                 }
                 exit;
             }
