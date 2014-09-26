@@ -13,7 +13,7 @@ use File::Basename;
 use play_gemstoneiv_data::Main;
 use play_gemstoneiv_data::Highlights;
 use play_gemstoneiv_data::Scripts;
-use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %HIGHLIGHT_TEXT0 %SCRIPTS/;
+use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %HIGHLIGHT_TEXT0 %SCRIPTS %TRAVEL %CURRENTLOC/;
 $| = 1;
 %COLORS = (%play_gemstoneiv_data::Main::COLORS);
 

@@ -3,11 +3,11 @@ package play_gemstoneiv_data::Users::Oguo;
 use Data::Dumper;
 use strict;
 
-use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %HIGHLIGHT_TEXT0 %SCRIPTS/;
+use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %HIGHLIGHT_TEXT0 %SCRIPTS %TRAVEL %CURRENTLOC/;
 
 %GLOBALS = (
     charecter			=> 'Oguo',
-    account_username		=> 'LOGIN_USERNAME_GOES_HERE',
+    account_username		=> 'KRISRMGUA',
     player_id			=> 'W_KRISRMGUA_W000',
     player_weapon1		=> 'runestaff',
     player_weapon2		=> 'rune wristlet',

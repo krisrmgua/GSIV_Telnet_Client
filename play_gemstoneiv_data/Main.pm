@@ -3,7 +3,7 @@ package play_gemstoneiv_data::Main;
 use Data::Dumper;
 use strict;
 
-use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %HIGHLIGHT_TEXT0/;
+use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %HIGHLIGHT_TEXT0 %TRAVEL %CURRENTLOC/;
 
 %GLOBALS = (
     server_address => 'prime.gs4.game.play.net',
