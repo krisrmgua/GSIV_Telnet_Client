@@ -60,6 +60,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Bethlynne' => "color_pink",
         'Alyssea' => "color_pink",
         'Patecatl' => "color_pink",
+        'Bristles' => "color_pink",
         },
     CLERICS => {
         'Krisalan' => "color_dark_purple",

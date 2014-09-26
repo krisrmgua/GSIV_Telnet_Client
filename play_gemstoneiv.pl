@@ -65,8 +65,11 @@ my $pid1 = fork();
 if ($pid1){
     while (1){
         my $send_data = <STDIN>;
-        if($send_data =~ "^\\.(.*)"){ play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,%GLOBALS) }
-        $socket->send($send_data);
+        if($send_data =~ "^\\.(.*)"){ 
+            play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,%GLOBALS);
+        }else{
+            $socket->send($send_data);
+        }
     }
     exit;
 }elsif ($pid1 == 0) {
@@ -75,6 +78,7 @@ if ($pid1){
         if($command_file_input) { 
             if($command_file_input eq "dir"){
                 my $look_output = play_gemstoneiv_data::Main::run_command_grab_lines("look",3,$socket);
+                $line .= $look_output;
                 ## dir_process($look_output);  ##  see if in hot spot if not echo Not in Hot Spot
             }
             my $pid2 = fork();
@@ -88,16 +92,15 @@ if ($pid1){
                 }
                 exit;
             }
-        }else{
-            my $line_unprocessed = $line;
-            ($line) = play_gemstoneiv_data::Main::process_line($line);
-            ($line) = play_gemstoneiv_data::Highlights::color_names($line,\%HIGHLIGHT_NAMES,\%COLORS);
-            ($line) = play_gemstoneiv_data::Highlights::color_items($line,\%HIGHLIGHT_ITEMS,\%COLORS);
-            ($line) = play_gemstoneiv_data::Highlights::color_text_pre($line,\%HIGHLIGHT_TEXT0,\%COLORS);
-            ($line) = play_gemstoneiv_data::Highlights::color_text($line,\%HIGHLIGHT_TEXT,\%COLORS);
-            #$line = color_text($line);
-            print "$line";
         }
+        my $line_unprocessed = $line;
+        ($line) = play_gemstoneiv_data::Main::process_line($line);
+        ($line) = play_gemstoneiv_data::Highlights::color_names($line,\%HIGHLIGHT_NAMES,\%COLORS);
+        ($line) = play_gemstoneiv_data::Highlights::color_items($line,\%HIGHLIGHT_ITEMS,\%COLORS);
+        ($line) = play_gemstoneiv_data::Highlights::color_text_pre($line,\%HIGHLIGHT_TEXT0,\%COLORS);
+        ($line) = play_gemstoneiv_data::Highlights::color_text($line,\%HIGHLIGHT_TEXT,\%COLORS);
+        #$line = color_text($line);
+        print "$line";
     }
 }else{
     die "could not fork: $!\n";
