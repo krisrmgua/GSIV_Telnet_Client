@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use lib '/home/kris/bin/';
+use lib '/home/ubuntu/workspace/perl/GSIV_Telnet_Client/';
 use Data::Dumper;
 use LWP::UserAgent;
 use HTTP::Cookies;
