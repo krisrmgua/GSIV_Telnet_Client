@@ -13,6 +13,7 @@ use File::Basename;
 use play_gemstoneiv_data::Main;
 use play_gemstoneiv_data::Highlights;
 use play_gemstoneiv_data::Scripts;
+use play_gemstoneiv_data::Travel;
 use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %HIGHLIGHT_TEXT0 %SCRIPTS %TRAVEL %CURRENTLOC/;
 $| = 1;
 %COLORS = (%play_gemstoneiv_data::Main::COLORS);
@@ -90,6 +91,8 @@ if ($pid1){
                         sleep(0.75);
                     }
                 }elsif($command_file_input eq "dir"){
+                    my $cur_loc = play_gemstoneiv_data::Travel::get_current_loc($look_output);
+                    print "\nYOUR ARE AT $cur_loc\n";
                     ## dir_process($look_output);  ##  see if in hot spot if not echo Not in Hot Spot 
                 }
                 exit;
