@@ -109,4 +109,16 @@ sub read_command_file {
     return $command;
 }
 
+sub run_command_grab_lines {
+    my ($command,$passes,$socket) = @_;
+    my $output_data;
+    $socket->send("$command\n");
+    my $pass = 1;
+    while ($pass < $passes){
+        $output_data .= $socket->getline();
+        $pass++;
+    }
+    return $output_data;
+}
+
 1;

@@ -65,7 +65,6 @@ my $pid1 = fork();
 if ($pid1){
     while (1){
         my $send_data = <STDIN>;
-        ## HERE FIGURE OUT IF COMMAND
         if($send_data =~ "^\\.(.*)"){ play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,%GLOBALS) }
         $socket->send($send_data);
     }
@@ -74,6 +73,10 @@ if ($pid1){
     while (my $line = <$socket>) {
         my $command_file_input = play_gemstoneiv_data::Main::read_command_file($current_dir_name,%GLOBALS);
         if($command_file_input) { 
+            if($command_file_input eq "dir"){
+                my $look_output = play_gemstoneiv_data::Main::run_command_grab_lines("look",3,$socket);
+                ## dir_process($look_output);  ##  see if in hot spot if not echo Not in Hot Spot
+            }
             my $pid2 = fork();
             if($pid2){
                 play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,%GLOBALS);
