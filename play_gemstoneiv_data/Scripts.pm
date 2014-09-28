@@ -6,6 +6,7 @@ use strict;
 use vars qw/%SCRIPTS/;
 
 %SCRIPTS = (
+        'web' => [ "sign of thought", "sign of thought", "sign of thought", "sign of thought", "sign of thought", "sign of thought" ],
     );
 
 1;

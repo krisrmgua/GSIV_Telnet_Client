@@ -25,6 +25,8 @@ my $user_module_globals = "$user_module"."::GLOBALS";
 my $user_module_highlight_names = "$user_module"."::HIGHLIGHT_NAMES";
 my $user_module_highlight_items = "$user_module"."::HIGHLIGHT_ITEMS";
 my $user_module_highlight_text = "$user_module"."::HIGHLIGHT_TEXT";
+my $user_module_travel = "$user_module"."::TRAVEL";
+my $user_module_currentloc = "$user_module"."::CURRENTLOC";
 my $user_module_scripts = "$user_module"."::SCRIPTS";
 eval "require $user_module";
 if($charecter){
@@ -53,12 +55,20 @@ if($charecter){
         %play_gemstoneiv_data::Scripts::SCRIPTS,
         %$user_module_scripts,
         );
+    %CURRENTLOC = (
+        %play_gemstoneiv_data::Travel::CURRENTLOC,
+        %$user_module_currentloc,
+        );
+    %TRAVEL = (
+        %play_gemstoneiv_data::Travel::TRAVEL,
+        %$user_module_travel,
+        );
 }
 #print Dumper(%HIGHLIGHT_ITEMS);
 $GLOBALS{'password'} = prompt_for_password();
-my $session_key = play_gemstoneiv_data::Main::get_session_key(%GLOBALS);
+my $session_key = play_gemstoneiv_data::Main::get_session_key(\%GLOBALS);
 my $current_dir_name = dirname(__FILE__);
-play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,%GLOBALS);
+play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,\%GLOBALS);
 my $socket = new IO::Socket::INET ( PeerAddr => "$GLOBALS{'server_address'}:$GLOBALS{'server_port'}", Proto => "tcp" ) or die "ERROR in Socket Creation : $!\n";sleep 2;
 $socket->send($session_key);sleep 2;
 $socket->send("/FE:JAVA\n");
@@ -67,7 +77,7 @@ if ($pid1){
     while (1){
         my $send_data = <STDIN>;
         if($send_data =~ "^\\.(.*)"){ 
-            play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,%GLOBALS);
+            play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,\%GLOBALS);
         }else{
             $socket->send($send_data);
         }
@@ -75,14 +85,14 @@ if ($pid1){
     exit;
 }elsif ($pid1 == 0) {
     while (my $line = <$socket>) {
-        my $command_file_input = play_gemstoneiv_data::Main::read_command_file($current_dir_name,%GLOBALS);
+        my $command_file_input = play_gemstoneiv_data::Main::read_command_file($current_dir_name,\%GLOBALS);
         if($command_file_input) {
             my $look_output = "";
             if($command_file_input eq "dir"){
                 $look_output = play_gemstoneiv_data::Main::run_command_grab_lines("look",3,$socket);
                 $line .= $look_output;
             }
-            play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,%GLOBALS);
+            play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,\%GLOBALS);
             my $pid2 = fork();
             if($pid2){
                 if($SCRIPTS{$command_file_input} ){
@@ -91,9 +101,12 @@ if ($pid1){
                         sleep(0.75);
                     }
                 }elsif($command_file_input eq "dir"){
-                    my $cur_loc = play_gemstoneiv_data::Travel::get_current_loc($look_output);
-                    print "\nYOUR ARE AT $cur_loc\n";
-                    ## dir_process($look_output);  ##  see if in hot spot if not echo Not in Hot Spot 
+                    my $cur_loc = play_gemstoneiv_data::Travel::get_current_loc($look_output,\%CURRENTLOC);
+                    if($cur_loc){
+                        play_gemstoneiv_data::Travel::print_travel_list($cur_loc,\%TRAVEL,\%COLORS);
+                    }else{
+                        print $COLORS{'color_red'} . "Not a Hot Spot!" . $COLORS{'color_normal'};
+                    }
                 }
                 exit;
             }

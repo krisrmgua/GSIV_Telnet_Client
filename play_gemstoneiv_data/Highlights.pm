@@ -61,6 +61,9 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Alyssea' => "color_pink",
         'Patecatl' => "color_pink",
         'Bristles' => "color_pink",
+        'Aeavenne' => "color_pink",
+        'Scarletowl' => "color_pink",
+        'Solstys' => "color_pink",
         },
     CLERICS => {
         'Krisalan' => "color_dark_purple",
@@ -126,7 +129,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'accept' => { '(.*Type ACCEPT to accept the offer.*)' => "color_white_on_red" },
         'coin' => { '(.*coins which you quickly pocket\.)' => "color_red" },
         'weapon_falls' => { '(The death dirge focuses its voice on your .* falls to the ground\.|\w+ falls to the ground\.)' => "color_white_on_red" },
-        'weapon_unbless' => { '(\w+ returns to normal\.)' => "color_white_on_blue" },
+        'weapon_unbless' => { '(Your \w*\s*\w*\s*\w*\s*\w+ returns to normal\.)' => "color_white_on_blue" },
         'weapon_bless' => { '(A searing white light enfolds your.*)' => "color_white_on_blue" },
         ##Dies
         'dead_dies' => { '(body as it rises, disappearing into the heavens.|falls to the ground motionless|.*to the ground and dies|lets out a final scream and goes still.|screams evilly one last time and goes still.)' => "color_yellow" },
@@ -136,12 +139,13 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'asks' => { '(.* asks, \".*\"|.* ask, \".*\")' => "color_yellow" },
         'whispers' => { '(.* whispers, ".*")' => "color_white_on_blue" },
         'exclaims' => { '(.* exclaims, \".*\"|.* exclaim, \".*\")' => "color_yellow" },
-        'thoughts' => { '(^\w+:\s*\".*\"|\w+\s+!bb!quiet\]:|\w+\s+!bb!pounding\]:|.*The Symbol of Thought begins to burn in your mind and you hear.*)' => "color_bold" },
+        'thoughts' => { '(^\w+ !bb!\w+\]: \".*\"|.*The Symbol of Thought begins to burn in your mind and you hear.*)' => "color_yellow" },
         #HEALING
         'heals_you' => { '(\w+ meditates over you)' => "color_bold" },
         'goodshape' => { '(is in good shape|.* and find that .* has no apparent wounds\.|.* find that .* has no apparent injuries\.)' => "color_green" },
         'trollheal' => { '(.* your .*close and the bruises fade.|You begin to feel better as the bruises around your .* fade.|The bruises around your .* fade.)' => "color_green" },
         'trollhealscar' => { '(.* your .*glows faintly white before fading altogether\.)' => "color_green" },
+        'badcut' => { '(deep lacerations across your back)' => "color_red" },
          ##Waiting for Gate to Open or Boat ect
         'gate_opens' => { '(.*The bronze gate pops open, leaving.*|The gate shudders violently, and then, with a protesting screech.*|The huge gate shudders violently!  Dark red flakes.*|The ancient hinges of the gate creak loudly as they give way.  A chain halts.*)' => "color_white_on_blue" },
         'gate_budge' => { '(The gate budges a little more\.)' => "color_bold" },

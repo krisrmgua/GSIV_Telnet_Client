@@ -41,33 +41,34 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     );
 
 sub get_session_key {
-    my %GLOBALS = @_;
+    my ($GLOBALS_FUNC) = @_;
+    my %GLOBALS_FUNC_HASH = %$GLOBALS_FUNC;
     my $cj = HTTP::Cookies->new( autosave => 1, ignore_discard => 1 );
     my $mech = WWW::Mechanize->new( cookie_jar => $cj );
-    $mech->get( $GLOBALS{'sign_in_url'} );
+    $mech->get( $GLOBALS_FUNC_HASH{'sign_in_url'} );
     $mech->submit_form( form_name => 'signin', fields => {
-        return_okay_page => $GLOBALS{'return_ok_page'},
-        return_error_page => $GLOBALS{'return_error_page'},
+        return_okay_page => $GLOBALS_FUNC_HASH{'return_ok_page'},
+        return_error_page => $GLOBALS_FUNC_HASH{'return_error_page'},
         remember_account => '1',
         remember_password => '1',
-        account_name => $GLOBALS{'account_username'},
-        account_password => $GLOBALS{'password'},
+        account_name => $GLOBALS_FUNC_HASH{'account_username'},
+        account_password => $GLOBALS_FUNC_HASH{'password'},
         submit => 'CONTINUE',
     });
     #print $mech->content();
-    $mech->get( $GLOBALS{'sign_in_url_home'} );
+    $mech->get( $GLOBALS_FUNC_HASH{'sign_in_url_home'} );
     $mech->submit_form( form_name => 'form1', fields => {
         managesub => '0',
         gameName => '0',
         instanceID => '0',
-        game => $GLOBALS{'sign_in_game'},
-        charID => $GLOBALS{'player_id'},
+        game => $GLOBALS_FUNC_HASH{'sign_in_game'},
+        charID => $GLOBALS_FUNC_HASH{'player_id'},
         frontend => 'wizard',
         goplaybutton => 'GO PLAY!',
     });
     #print $mech->content();
-    $mech->get( $GLOBALS{'sign_in_url_playing_wiz'} );
-    $mech->get( $GLOBALS{'sign_in_url_goplay_wiz'} );
+    $mech->get( $GLOBALS_FUNC_HASH{'sign_in_url_playing_wiz'} );
+    $mech->get( $GLOBALS_FUNC_HASH{'sign_in_url_goplay_wiz'} );
     my $key = $mech->content();
     $key =~ m/KEY=(.*)/;
     my $rec_key = $1;
@@ -90,17 +91,19 @@ sub process_line {
 }
 
 sub save_command_file {
-    my ($command,$path,%GLOBALS) = @_;
+    my ($command,$path,$GLOBALS_FUNC) = @_;
+    my %GLOBALS_FUNC_HASH = %$GLOBALS_FUNC;
     chomp($command);
-    my $filename = $path . "/play_gemstoneiv_data/input_" . $GLOBALS{'charecter'} . ".dat";
+    my $filename = $path . "/play_gemstoneiv_data/input_" . $GLOBALS_FUNC_HASH{'charecter'} . ".dat";
     open(my $fh,'>'.$filename) or die "Could not open file '$filename' $!";
     print $fh "$command";
     close $fh;
 }
 
 sub read_command_file {
-    my ($path,%GLOBALS) = @_;
-    my $filename = $path . "/play_gemstoneiv_data/input_" . $GLOBALS{'charecter'} . ".dat";
+    my ($path,$GLOBALS_FUNC) = @_;
+    my %GLOBALS_FUNC_HASH = %$GLOBALS_FUNC;
+    my $filename = $path . "/play_gemstoneiv_data/input_" . $GLOBALS_FUNC_HASH{'charecter'} . ".dat";
     open (my $fh, $filename) or die "Could not open file '$filename' $!";
     my $command = <$fh>;
     close $fh;
@@ -111,9 +114,9 @@ sub read_command_file {
 
 sub run_command_grab_lines {
     my ($command,$passes,$socket) = @_;
-    my $output_data;
+    my $output_data = "";
     $socket->send("$command\n");
-    my $pass = 1;
+    my $pass = 0;
     while ($pass < $passes){
         $output_data .= $socket->getline();
         $pass++;
