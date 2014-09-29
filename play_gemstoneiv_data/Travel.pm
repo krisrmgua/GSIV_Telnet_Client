@@ -10,10 +10,16 @@ use vars qw/%TRAVEL %CURRENTLOC/;
     );
 
 %TRAVEL = (
-        'bank' => { 
+        'bank' => {
             'wl_tc' => {
                 'move' => [ "w", "go bank", "go arch", "deposit all", "check bal", "go arch", "out", "e" ], 
                 'discription' => 'Go to bank and deposit all your coins', 
+            },
+        },
+        'ice' => {
+            'wl_tc' => {
+                'move' => [ "nw","n","n","e","n","go gate","sw","s","s","s","s","s","sw","s","se","s","se","s","s","s","sw","s","s","se","se","se","se","se","e","e","ne","e","e","e","go trail","n","ne","e","se","e","ne","n","ne","n","n","n","go trunk","nw","ne","up","n","up","up","sleep 1","e","ne","ne","go glac","ne","n","e","ne","ne","e","ne","se","e","se","e","se","go chasm","down","e","d","n","n","ne","n","n","n","ne","sleep 8","ne","ne","sleep 8","n","n","ne","n","ne","n","go bridge","ne","e","sleep 8","e","sleep 8","se","sleep 8","se","e","e","e","ne","ne","e","e","sleep 8","e","sleep 8","ne","climb rock","e","sleep 8","ne","sleep 8","ne","ne","e","sleep 8","ne","n","sleep 8","n","ne","n","sleep 8","nw","w","go river","climb bank","ne","ne","go trail","sleep 8","n","climb tree","e","down","sleep 8","n","n","sleep 8","ne","ne","ne","sleep 8","w","ne","n","n","n","e","n","se","e","e","{give guard 5 silver}","go gate","n","n","n","n","n","n" ], 
+                'discription' => 'Travel to Icemule', 
             },
         },
     );

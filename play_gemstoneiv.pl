@@ -105,8 +105,12 @@ if ($pid1){
                     $line .= $look_output;
                     my $cur_loc = play_gemstoneiv_data::Travel::get_current_loc($look_output,\%CURRENTLOC);
                     foreach my $run_command (@{$TRAVEL{$command_file_input}{$cur_loc}{'move'}}){
-                        $socket->send($run_command . "\n");
-                        sleep(0.75);
+                        if($run_command =~ /sleep (\d+)/i){
+                            sleep($1);
+                        }else{
+                            $socket->send($run_command . "\n");
+                            sleep(0.75);
+                        }
                     }
                 }elsif($command_file_input eq "dir"){
                     my $cur_loc = play_gemstoneiv_data::Travel::get_current_loc($look_output,\%CURRENTLOC);
