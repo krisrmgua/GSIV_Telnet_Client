@@ -172,15 +172,18 @@ sub color_names {
             if($line =~ /$player_name_key/){
                 my $highlight_line = $COLORS_FUNC->{$HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key}{$player_name_key}} . $player_name_key;
                 my $tmp_norm = $COLORS_FUNC->{'color_normal'};
-                print "!!!! YES $highlight_line $tmp_norm !!!!!\n";
-                $line =~ s/$player_name_key\'s/$highlight_line\'s!!NORMAL!!/g;
-                $line =~ s/$player_name_key\./$highlight_line!!NORMAL!!\./g;
-                $line =~ s/$player_name_key\,/$highlight_line!!NORMAL!!,/g;
-                $line =~ s/$player_name_key\n/$highlight_line!!NORMAL!!\n/g;
-                $line =~ s/$player_name_key\r/$highlight_line!!NORMAL!!\r/g;
-                $line =~ s/ $player_name_key/ $highlight_line!!NORMAL!!/g;
-                $line =~ s/ $player_name_key / $highlight_line!!NORMAL!! /g;
-                $line =~ s/$player_name_key /$highlight_line!!NORMAL!! /g;
+                if($player_type_key eq "MONSTERS"){
+                    $line =~ s/$player_name_key/$highlight_line!!NORMAL!!/g; 
+                }else{
+                    $line =~ s/$player_name_key\'s/$highlight_line\'s!!NORMAL!!/g;
+                    $line =~ s/$player_name_key\./$highlight_line!!NORMAL!!\./g;
+                    $line =~ s/$player_name_key\,/$highlight_line!!NORMAL!!,/g;
+                    $line =~ s/$player_name_key\n/$highlight_line!!NORMAL!!\n/g;
+                    $line =~ s/$player_name_key\r/$highlight_line!!NORMAL!!\r/g;
+                    $line =~ s/ $player_name_key/ $highlight_line!!NORMAL!!/g;
+                    $line =~ s/ $player_name_key / $highlight_line!!NORMAL!! /g;
+                    $line =~ s/$player_name_key /$highlight_line!!NORMAL!! /g;
+                }
                 $line =~ s/!!NORMAL!!/$tmp_norm/g;
             }
         }
