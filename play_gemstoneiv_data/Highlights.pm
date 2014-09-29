@@ -145,7 +145,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'goodshape' => { '(is in good shape|.* and find that .* has no apparent wounds\.|.* find that .* has no apparent injuries\.)' => "color_green" },
         'trollheal' => { '(.* your .*close and the bruises fade.|You begin to feel better as the bruises around your .* fade.|The bruises around your .* fade.)' => "color_green" },
         'trollhealscar' => { '(.* your .*glows faintly white before fading altogether\.)' => "color_green" },
-        'badcut' => { '(deep lacerations across your back)' => "color_red" },
+        'badcut' => { '(deep lacerations across your back|deep lacerations across your chest)' => "color_red" },
          ##Waiting for Gate to Open or Boat ect
         'gate_opens' => { '(.*The bronze gate pops open, leaving.*|The gate shudders violently, and then, with a protesting screech.*|The huge gate shudders violently!  Dark red flakes.*|The ancient hinges of the gate creak loudly as they give way.  A chain halts.*)' => "color_white_on_blue" },
         'gate_budge' => { '(The gate budges a little more\.)' => "color_bold" },

@@ -23,6 +23,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
 %SCRIPTS = (
         'rem' => [ "tap my $GLOBALS{'player_weapon2'}" ],
         'wear' => [ "clench my $GLOBALS{'player_weapon1'}" ],
+        'trolls' => [ "incant 1125" ],
     );
 
 1;

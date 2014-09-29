@@ -12,7 +12,7 @@ use vars qw/%TRAVEL %CURRENTLOC/;
 %TRAVEL = (
         'bank' => { 
             'wl_tc' => {
-                'move' => [ "w", "go bank", "go arch", "deposit all", "go arch", "out", "e" ], 
+                'move' => [ "w", "go bank", "go arch", "deposit all", "check bal", "go arch", "out", "e" ], 
                 'discription' => 'Go to bank and deposit all your coins', 
             },
         },
