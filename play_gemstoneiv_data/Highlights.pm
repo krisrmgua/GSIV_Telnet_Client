@@ -64,6 +64,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Aeavenne' => "color_pink",
         'Scarletowl' => "color_pink",
         'Solstys' => "color_pink",
+        'Tayre' => "color_pink",
         },
     CLERICS => {
         'Krisalan' => "color_dark_purple",
@@ -92,6 +93,8 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'a greater spider' => "color_red",
         'an arctic titan' => "color_red",
         'a frost giant' => "color_red",
+        'a ghost wolf' => "color_red",
+        'a rolton' => "color_red",
         },
     );
 
