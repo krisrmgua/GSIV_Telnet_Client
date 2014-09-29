@@ -7,6 +7,7 @@ use vars qw/%TRAVEL %CURRENTLOC/;
 
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
+        ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
     );
 
 %TRAVEL = (
@@ -15,11 +16,21 @@ use vars qw/%TRAVEL %CURRENTLOC/;
                 'move' => [ "w", "go bank", "go arch", "deposit all", "check bal", "go arch", "out", "e" ], 
                 'discription' => 'Go to bank and deposit all your coins', 
             },
+            'ice_tc' => {
+                'move' => [ "e", "go bank", "deposit all", "check bal", "out", "w" ], 
+                'discription' => 'Go to bank and deposit all your coins', 
+            },
         },
         'ice' => {
             'wl_tc' => {
                 'move' => [ "nw","n","n","e","n","go gate","sw","s","s","s","s","s","sw","s","se","s","se","s","s","s","sw","s","s","se","se","se","se","se","e","e","ne","e","e","e","go trail","n","ne","e","se","e","ne","n","ne","n","n","n","go trunk","nw","ne","up","n","up","up","sleep 1","e","ne","ne","go glac","ne","n","e","ne","ne","e","ne","se","e","se","e","se","go chasm","down","e","d","n","n","ne","n","n","n","ne","sleep 8","ne","ne","sleep 8","n","n","ne","n","ne","n","go bridge","ne","e","sleep 8","e","sleep 8","se","sleep 8","se","e","e","e","ne","ne","e","e","sleep 8","e","sleep 8","ne","climb rock","e","sleep 8","ne","sleep 8","ne","ne","e","sleep 8","ne","n","sleep 8","n","ne","n","sleep 8","nw","w","go river","climb bank","ne","ne","go trail","sleep 8","n","climb tree","e","down","sleep 8","n","n","sleep 8","ne","ne","ne","sleep 8","w","ne","n","n","n","e","n","se","e","e","{give guard 5 silver}","go gate","n","n","n","n","n","n" ], 
                 'discription' => 'Travel to Icemule', 
+            },
+        },
+        'landing' => {
+            'ice_tc' => {
+                'move' => [ "s","s","s","s","s","go gate","s","w","w","nw","s","w","s","s","s","sw","e","sleep 8","sw","sw","sw","sleep 8","s","s","climb branch","w","down","s","go trail","sleep 8","sw","sw","climb bank","s","e","se","sleep 8","s","sw","s","sleep 8","s","sw","sleep 8","w","sleep 8","sw","sw","sleep 8","sw","sleep 8","w","climb rockslide","sleep 8","sw","sleep 8","w","sleep 8","w","w","sw","sw","w","w","w","nw","sleep 8","nw","sleep 8","w","sleep 8","w","sw","go bridge","s","sw","s","sw","s","s","sleep 8","sw","sw","sleep 8","sw","s","s","s","sw","s","s","up","w","up","up","sw","w","n","nw","w","n","w","sw","sw","w","s","sw","sw","sw","sw","w","down","down","s","down","sw","se","go trunk","s","s","s","sw","s","sw","w","nw","w","sw","s","go trail","w","w","w","sw","w","w","nw","nw","nw","nw","nw","n","go path","ne","n","n","n","nw","n","nw","n","ne","n","n","n","n","n","ne","go gate","s","w","s","s","se" ], 
+                'discription' => 'Travel to Wehnimer\'s Landing', 
             },
         },
     );
