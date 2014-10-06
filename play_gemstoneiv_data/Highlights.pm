@@ -130,6 +130,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
 #gestures at you||{bold}gestures at you{normal}
         ##SYSTEM
         'room name' => { '^\!bb!(.*?)\]' => "color_bold" },
+        'moves' => { '(A .* scampers \w+!|A .* trots \w+!)' => "color_yellow" },
         'death' => { '(.*just bit the dust!|The death cry of \w+ echoes in your mind!)' => "color_bold" },
         'accept' => { '(.*Type ACCEPT to accept the offer.*)' => "color_white_on_red" },
         'coin' => { '(.*coins which you quickly pocket\.)' => "color_red" },
