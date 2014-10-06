@@ -171,20 +171,20 @@ sub color_names {
     my %HIGHLIGHT_NAMES_FUNC_HASH = %$HIGHLIGHT_NAMES_FUNC;
     for my $player_type_key ( sort keys %HIGHLIGHT_NAMES_FUNC_HASH ) {
         for my $player_name_key ( keys %{ $HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key} } ) {
-            if($line =~ /$player_name_key/i){
+            if($line =~ /$player_name_key/){
                 my $highlight_line = $COLORS_FUNC->{$HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key}{$player_name_key}} . $player_name_key;
                 my $tmp_norm = $COLORS_FUNC->{'color_normal'};
                 if($player_type_key eq "MONSTERS"){
-                    $line =~ s/$player_name_key/$highlight_line!!NORMAL!!/gi; 
+                    $line =~ s/$player_name_key/$highlight_line!!NORMAL!!/g; 
                 }else{
-                    $line =~ s/$player_name_key\'s/$highlight_line\'s!!NORMAL!!/gi;
-                    $line =~ s/$player_name_key\./$highlight_line!!NORMAL!!\./gi;
-                    $line =~ s/$player_name_key\,/$highlight_line!!NORMAL!!,/gi;
-                    $line =~ s/$player_name_key\n/$highlight_line!!NORMAL!!\n/gi;
-                    $line =~ s/$player_name_key\r/$highlight_line!!NORMAL!!\r/gi;
-                    $line =~ s/ $player_name_key/ $highlight_line!!NORMAL!!/gi;
-                    $line =~ s/ $player_name_key / $highlight_line!!NORMAL!! /gi;
-                    $line =~ s/$player_name_key /$highlight_line!!NORMAL!! /gi;
+                    $line =~ s/$player_name_key\'s/$highlight_line\'s!!NORMAL!!/g;
+                    $line =~ s/$player_name_key\./$highlight_line!!NORMAL!!\./g;
+                    $line =~ s/$player_name_key\,/$highlight_line!!NORMAL!!,/g;
+                    $line =~ s/$player_name_key\n/$highlight_line!!NORMAL!!\n/g;
+                    $line =~ s/$player_name_key\r/$highlight_line!!NORMAL!!\r/g;
+                    $line =~ s/ $player_name_key/ $highlight_line!!NORMAL!!/g;
+                    $line =~ s/ $player_name_key / $highlight_line!!NORMAL!! /g;
+                    $line =~ s/$player_name_key /$highlight_line!!NORMAL!! /g;
                 }
                 $line =~ s/!!NORMAL!!/$tmp_norm/gi;
             }
