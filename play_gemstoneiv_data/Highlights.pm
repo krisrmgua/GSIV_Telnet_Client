@@ -95,18 +95,20 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'a frost giant' => "color_red",
         'a ghost wolf' => "color_red",
         'a rolton' => "color_red",
+        'a rabid squirrel' => "color_red",
+        'a kobold' => "color_red",
         },
     );
 
 %HIGHLIGHT_ITEMS = (
         ##Valuable Items
         'white flasks' => { '(a white flask|a white lily-etched flask)' => "color_gold" }, 
-        'gems' => { '(a piece of \w+ jasper|a \w*\s*\w*\s*\w+ amber|a \w+ topaz|an? \w+ crystal|a \w+ tourmaline|a \w+ zircon|a \w+ spinel|a \w+ sapphire|some \w+ \w+ coral|a \w*\s*\w+ wand|a \w+ amulet|ayanad crystal|a \w+ opal|a \w+ lockpick|a heavy quartz orb|a small statue|a white flask|a \w*\s*\w+ stone|an? \w*\s*\w+ gem|a \w*\s*\w*\s*\w*\s*\w+ quartz|a \w*\s*\w*\s*\w*\s*\w+ stickpin|a\s*\w*\s*\w+ cube|a piece of \w+ paper|a \w+ scroll|a \w*\s*\w*\s*\w+ talisman|a \w*\s*\w+ amethyst|a \w+ garnet|a \w*\s*\w*\s*\w+ earring|a \w*\s*\w*\s*\w*\s*\w+ statuette|a \w*\s*\w+ pendant|some \w+ lapis lazuli|a \w+ cordierite|a \w+ \w+ pitcher)' => "color_gold" }, 
+        'gems' => { '(a piece of \w+ jasper|a \w*\s*\w*\s*\w+ amber|a \w+ topaz|an? \w+ crystal|a \w+ tourmaline|a \w+ zircon|a \w+ spinel|a \w+ sapphire|some \w+ \w+ coral|a \w*\s*\w+ wand|a \w+ amulet|ayanad crystal|a \w+ opal|a \w+ lockpick|a heavy quartz orb|a small statue|a white flask|a \w*\s*\w+ stone|an? \w*\s*\w+ gem|a \w*\s*\w*\s*\w*\s*\w+ quartz|a \w*\s*\w*\s*\w*\s*\w+ stickpin|a\s*\w*\s*\w+ cube|a piece of \w+ paper|a \w+ scroll|a \w*\s*\w*\s*\w+ talisman|a \w*\s*\w+ amethyst|a \w+ garnet|a \w*\s*\w*\s*\w+ earring|a \w*\s*\w*\s*\w*\s*\w+ statuette|a \w*\s*\w+ pendant|some \w+ lapis lazuli|a \w+ cordierite|a \w+ \w+ pitcher|a star ruby|a rough slab of silver| a \w+ \w+ pearl)' => "color_gold" }, 
         'gems2' => { '(an uncut diamond|an uncut emerald|an uncut ruby)' => "color_pink_on_yellow" }, 
         'gold rings' => { '(a \w+ gold ring|gold ring)' => "color_red" }, 
         'boxes' => { '(an?\s\w*\s*\w+\s\w+\sbox|an?\s\w*\s*\w+\s\w+\schest|an?\s\w*\s*\w+\s\w+\strunk|an?\s\w*\s*\w+\s\w+\scoffer|an?\s\w*\s*\w+\s\w+\sstrongbox)' => "color_red" }, 
         ##Skins
-        'skins' => { '(a spider leg|a cobra skin)' => "color_gold" }, 
+        'skins' => { '(a spider leg|a cobra skin|a squirrel tail|a rolton pelt)' => "color_gold" }, 
         ##Herbs
         'herb_heal_1' => { '(some acantha leaf)' => "color_green" }, 
         'herb_wound_1' => { '(a rose-marrow potion|some ambrominas leaf|some basal moss|some wolifrew lichen)' => "color_blue" }, 
@@ -169,22 +171,22 @@ sub color_names {
     my %HIGHLIGHT_NAMES_FUNC_HASH = %$HIGHLIGHT_NAMES_FUNC;
     for my $player_type_key ( sort keys %HIGHLIGHT_NAMES_FUNC_HASH ) {
         for my $player_name_key ( keys %{ $HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key} } ) {
-            if($line =~ /$player_name_key/){
+            if($line =~ /$player_name_key/i){
                 my $highlight_line = $COLORS_FUNC->{$HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key}{$player_name_key}} . $player_name_key;
                 my $tmp_norm = $COLORS_FUNC->{'color_normal'};
                 if($player_type_key eq "MONSTERS"){
-                    $line =~ s/$player_name_key/$highlight_line!!NORMAL!!/g; 
+                    $line =~ s/$player_name_key/$highlight_line!!NORMAL!!/gi; 
                 }else{
-                    $line =~ s/$player_name_key\'s/$highlight_line\'s!!NORMAL!!/g;
-                    $line =~ s/$player_name_key\./$highlight_line!!NORMAL!!\./g;
-                    $line =~ s/$player_name_key\,/$highlight_line!!NORMAL!!,/g;
-                    $line =~ s/$player_name_key\n/$highlight_line!!NORMAL!!\n/g;
-                    $line =~ s/$player_name_key\r/$highlight_line!!NORMAL!!\r/g;
-                    $line =~ s/ $player_name_key/ $highlight_line!!NORMAL!!/g;
-                    $line =~ s/ $player_name_key / $highlight_line!!NORMAL!! /g;
-                    $line =~ s/$player_name_key /$highlight_line!!NORMAL!! /g;
+                    $line =~ s/$player_name_key\'s/$highlight_line\'s!!NORMAL!!/gi;
+                    $line =~ s/$player_name_key\./$highlight_line!!NORMAL!!\./gi;
+                    $line =~ s/$player_name_key\,/$highlight_line!!NORMAL!!,/gi;
+                    $line =~ s/$player_name_key\n/$highlight_line!!NORMAL!!\n/gi;
+                    $line =~ s/$player_name_key\r/$highlight_line!!NORMAL!!\r/gi;
+                    $line =~ s/ $player_name_key/ $highlight_line!!NORMAL!!/gi;
+                    $line =~ s/ $player_name_key / $highlight_line!!NORMAL!! /gi;
+                    $line =~ s/$player_name_key /$highlight_line!!NORMAL!! /gi;
                 }
-                $line =~ s/!!NORMAL!!/$tmp_norm/g;
+                $line =~ s/!!NORMAL!!/$tmp_norm/gi;
             }
         }
     }
