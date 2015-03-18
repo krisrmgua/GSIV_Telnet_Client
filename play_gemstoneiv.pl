@@ -78,7 +78,7 @@ if ($pid1){
         my $send_data = <STDIN>;
         if($send_data =~ "^\\.(.*)"){ 
             play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,\%GLOBALS);
-            $socket->send("lean\n");
+            $socket->send("con\n");
         }else{
             $socket->send($send_data);
         }
@@ -101,8 +101,12 @@ if ($pid1){
                 ### s/{pv$zero}/$split[$zero]/
                 if($SCRIPTS{$command_file_input} ){
                     foreach my $run_command (@{$SCRIPTS{$command_file_input}} ){
-                        $socket->send($run_command . "\n");
-                        sleep(0.75);
+                        if($run_command =~ /sleep (\d+)/i){
+                            sleep($1);
+                        }else{
+                            $socket->send($run_command . "\n");
+                            sleep(0.75);
+                        }
                     }
                 }elsif($TRAVEL{$command_file_input} ){
                     $look_output = play_gemstoneiv_data::Main::run_command_grab_lines("look",3,$socket);
