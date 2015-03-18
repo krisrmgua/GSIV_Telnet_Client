@@ -26,4 +26,23 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'trolls' => [ "incant 1125" ],
     );
 
+%CURRENTLOC = (
+        ice_emp_gld => "Intricate marquetry of naturally hued woods, incorporating palest pine",
+    );
+
+%TRAVEL = (
+        'empath' => {
+            'ice_tc' => {
+                'move' => [ "n", "e", "ne", "se", "e", "go guild", "go iron door", "go glass door", "go arch", "ask henna about checkin", "go arch", "n", "n", "e", "go annex" ],
+                'discription' => 'Go to Empath Guild',
+            },
+        },
+        'tc' => {
+            'ice_emp_gld' => {
+                'move' => [ "out", "w", "s", "s", "go glass door", "go iron door", "go street", "w", "nw", "sw", "w", "s" ],
+                'discription' => 'Go to TC',
+            },
+        },
+ );
+
 1;
