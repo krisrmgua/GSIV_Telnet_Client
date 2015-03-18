@@ -38,10 +38,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
                 'discription' => 'Go to Empath Guild',
             },
         },
-        'tc' => {
+        '2tc' => {
             'ice_emp_gld' => {
                 'move' => [ "out", "w", "s", "s", "go glass door", "go iron door", "go street", "w", "nw", "sw", "w", "s" ],
-                'discription' => 'Go to TC',
+                'discription' => 'Go to Icemule TC',
             },
         },
  );

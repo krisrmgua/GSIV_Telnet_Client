@@ -22,6 +22,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Adynai' => "color_pink",
         'Failith' => "color_pink",
         'Illane' => "color_pink",
+        'Chemaine' => "color_pink",
         'Kahlay' => "color_pink",
         'Ayi' => "color_pink",
         'Concise' => "color_pink",

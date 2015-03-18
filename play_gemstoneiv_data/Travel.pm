@@ -8,9 +8,22 @@ use vars qw/%TRAVEL %CURRENTLOC/;
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
+        ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
     );
 
 %TRAVEL = (
+        'tc' => {
+            'ice_gem' => {
+                'move' => [ "o", "n", "n", "w" ], 
+                'discription' => 'Go to Icemule TC', 
+            },
+        },
+        'gem' => {
+            'ice_tc' => {
+                'move' => [ "e", "s", "s", "go gem" ], 
+                'discription' => 'Go to Gemshop', 
+            },
+        },
         'bank' => {
             'wl_tc' => {
                 'move' => [ "w", "go bank", "go arch", "deposit all", "check bal", "go arch", "out", "e" ], 
