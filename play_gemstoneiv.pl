@@ -96,14 +96,17 @@ if ($pid1){
             play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,\%GLOBALS);
             my $pid2 = fork();
             if($pid2){
-                ### split command and figure out number of vars
-                ### foreach or while $zero is less than nymber of vars
-                ### s/{pv$zero}/$split[$zero]/
-                if($SCRIPTS{$command_file_input} ){
-                    foreach my $run_command (@{$SCRIPTS{$command_file_input}} ){
+                my @p_split = split(/ /, $command_file_input);
+                if($SCRIPTS{$p_split[0]}){
+                    foreach my $run_command (@{$SCRIPTS{$p_split[0]}} ){
                         if($run_command =~ /sleep (\d+)/i){
                             sleep($1);
                         }else{
+                            $run_command =~ s/{pv1}/$p_split[1]/g;
+                            $run_command =~ s/{pv2}/$p_split[2]/g;
+                            $run_command =~ s/{pv3}/$p_split[3]/g;
+                            $run_command =~ s/{pv4}/$p_split[4]/g;
+                            $run_command =~ s/{pv5}/$p_split[5]/g;
                             $socket->send($run_command . "\n");
                             sleep(0.75);
                         }
