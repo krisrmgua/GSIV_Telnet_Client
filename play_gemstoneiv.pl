@@ -78,6 +78,7 @@ if ($pid1){
         my $send_data = <STDIN>;
         if($send_data =~ "^\\.(.*)"){ 
             play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,\%GLOBALS);
+            $socket->send("lean\n");
         }else{
             $socket->send($send_data);
         }
