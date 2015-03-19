@@ -101,12 +101,14 @@ if ($pid1){
                     foreach my $run_command (@{$SCRIPTS{$p_split[0]}} ){
                         if($run_command =~ /sleep (\d+)/i){
                             sleep($1);
+                        }elsif ($run_command =~ /{print}(.*)/){
+                            print "$1\n";
                         }else{
-                            $run_command =~ s/{pv1}/$p_split[1]/g;
-                            $run_command =~ s/{pv2}/$p_split[2]/g;
-                            $run_command =~ s/{pv3}/$p_split[3]/g;
-                            $run_command =~ s/{pv4}/$p_split[4]/g;
-                            $run_command =~ s/{pv5}/$p_split[5]/g;
+                            my $counter = 0;
+                            while($counter <= $#p_split) {
+                                $run_command =~ s/{pv$counter}/$p_split[$counter]/g;
+                                $counter++;
+                            }
                             $socket->send($run_command . "\n");
                             sleep(0.75);
                         }
