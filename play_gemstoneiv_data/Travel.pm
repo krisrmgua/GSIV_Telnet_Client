@@ -10,6 +10,8 @@ use vars qw/%TRAVEL %CURRENTLOC/;
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
         ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
         ice_pawn => "Stark wooden floorboards creak under the weight of stacks of bundled weapons and leather.  Perched",
+        ice_lock => "The walls of this small room are lined with small, gold-framed cases holding some of Blackfinger's finer wares.  Ranging",
+        ice_emp_gld => "Intricate marquetry of naturally hued woods, incorporating palest pine",
     );
 
 %TRAVEL = (
@@ -21,6 +23,20 @@ use vars qw/%TRAVEL %CURRENTLOC/;
             'ice_pawn' => {
                 'move' => [ "o", "go stairs", "w", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
                 'discription' => 'Go to Icemule TC', 
+            },
+            'ice_lock' => {
+                'move' => [ "go door", "out", "n", "w" ], 
+                'discription' => 'Go to Icemule TC', 
+            },
+            'ice_emp_gld' => {
+                'move' => [ "out", "w", "s", "s", "go glass door", "go iron door", "go street", "w", "nw", "sw", "w", "s" ],
+                'discription' => 'Go to Icemule TC',
+            },
+        },
+        'lock' => {
+            'ice_tc' => {
+                'move' => [ "e", "s", "go store", "go door" ], 
+                'discription' => 'Go to Town Locksmith', 
             },
         },
         'pawn' => {
@@ -51,7 +67,7 @@ use vars qw/%TRAVEL %CURRENTLOC/;
                 'discription' => 'Travel to Icemule', 
             },
         },
-        'landing' => {
+        'wl' => {
             'ice_tc' => {
                 'move' => [ "s","s","s","s","s","go gate","s","w","w","nw","s","w","s","s","s","sw","e","sleep 8","sw","sw","sw","sleep 8","s","s","climb branch","w","down","s","go trail","sleep 8","sw","sw","climb bank","s","e","se","sleep 8","s","sw","s","sleep 8","s","sw","sleep 8","w","sleep 8","sw","sw","sleep 8","sw","sleep 8","w","climb rockslide","sleep 8","sw","sleep 8","w","sleep 8","w","w","sw","sw","w","w","w","nw","sleep 8","nw","sleep 8","w","sleep 8","w","sw","go bridge","s","sw","s","sw","s","s","sleep 8","sw","sw","sleep 8","sw","s","s","s","sw","s","s","up","w","up","up","sw","w","n","nw","w","n","w","sw","sw","w","s","sw","sw","sw","sw","w","down","down","s","down","sw","se","go trunk","s","s","s","sw","s","sw","w","nw","w","sw","s","go trail","w","w","w","sw","w","w","nw","nw","nw","nw","nw","n","go path","ne","n","n","n","nw","n","nw","n","ne","n","n","n","n","n","ne","go gate","s","w","s","s","se" ], 
                 'discription' => 'Travel to Wehnimer\'s Landing', 
