@@ -9,6 +9,7 @@ use vars qw/%TRAVEL %CURRENTLOC/;
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
         ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
+        ice_pawn => "Stark wooden floorboards creak under the weight of stacks of bundled weapons and leather.  Perched",
     );
 
 %TRAVEL = (
@@ -16,6 +17,16 @@ use vars qw/%TRAVEL %CURRENTLOC/;
             'ice_gem' => {
                 'move' => [ "o", "n", "n", "w" ], 
                 'discription' => 'Go to Icemule TC', 
+            },
+            'ice_pawn' => {
+                'move' => [ "o", "go stairs", "w", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
+                'discription' => 'Go to Icemule TC', 
+            },
+        },
+        'pawn' => {
+            'ice_tc' => {
+                'move' => [ "e", "e", "e", "e", "s", "w", "sw", "se", "e", "climb stairs", "go door" ], 
+                'discription' => 'Go to Pawnshop', 
             },
         },
         'gem' => {
@@ -69,7 +80,7 @@ sub print_travel_list {
     print $COLORS_FUNC->{'color_green'} . "################################## " . $COLORS_FUNC->{'color_gold'} . "TRAVEL" . $COLORS_FUNC->{'color_green'} . " ######################################\n" . $COLORS_FUNC->{'color_normal'};
     for my $script_name ( sort keys %TRAVEL_FUNC_HASH ){
         if($TRAVEL_FUNC_HASH{$script_name}{$cur_loc}{'discription'}){
-            print "\t" . $COLORS_FUNC->{'color_gold'} . "." . $script_name . $COLORS_FUNC->{'color_normal'} . $COLORS_FUNC->{'color_bold'} . "\t-" . $TRAVEL_FUNC_HASH{$script_name}{$cur_loc}{'discription'} . "\n";
+            print "\t" . $COLORS_FUNC->{'color_gold'} . "." . $script_name . $COLORS_FUNC->{'color_normal'} . $COLORS_FUNC->{'color_bold'} . "\t\t-" . $TRAVEL_FUNC_HASH{$script_name}{$cur_loc}{'discription'} . "\n";
         }
     }
     print $COLORS_FUNC->{'color_green'} . "################################################################################\n" . $COLORS_FUNC->{'color_normal'};
