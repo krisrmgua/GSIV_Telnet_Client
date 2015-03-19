@@ -84,6 +84,9 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Popper' => "color_dark_grey",
         'Wolfloner' => "color_dark_grey",
         },
+    NPCS => {
+        'a West Gate guard' => "color_yellow",  
+    },
     MONSTERS => {
         'a wraith' => "color_red",
         'a cobra' => "color_red",

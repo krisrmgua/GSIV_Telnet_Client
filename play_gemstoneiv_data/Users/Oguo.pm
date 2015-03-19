@@ -25,6 +25,8 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
 %SCRIPTS = (
         'rem' => [ "tap my $GLOBALS{'player_weapon2'}" ],
         'wear' => [ "clench my $GLOBALS{'player_weapon1'}" ],
+        'get' => [ "open my $GLOBALS{'player_backpack1'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack1'}", "close my $GLOBALS{'player_backpack1'}"  ],
+        'get2' => [ "open my $GLOBALS{'player_backpack2'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack2'}", "close my $GLOBALS{'player_backpack2'}"  ],
         'trolls' => [ "incant 1125" ],
         'herbs' => [ "{print}$COLORS{'color_green'}##################### $COLORS{'color_gold'}HERBS$COLORS{'color_green'} ######################$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb1 \t -- $COLORS{'color_green'}Acantha Leaf$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb2 \t -- $COLORS{'color_blue'}Ambrominas Leaf$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb3 \t -- $COLORS{'color_blue'}Wolifrew Lichen$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb4 \t -- $COLORS{'color_blue'}Basal Moss$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb5 \t -- $COLORS{'color_black_on_light_blue'}Ephlox Moss$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb6 \t -- $COLORS{'color_black_on_light_blue'}Aloeas Stem$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb7 \t -- $COLORS{'color_black_on_light_blue'}Pothinir Grass$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb8 \t -- $COLORS{'color_yellow'}Cactacae Spine$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb9 \t -- $COLORS{'color_yellow'}Torban Leaf$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb10\t -- $COLORS{'color_yellow'}Haphip Root$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb11\t -- $COLORS{'color_black_on_yellow'}Calamia Fruit$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb12\t -- $COLORS{'color_black_on_yellow'}Woth Flower$COLORS{'color_normal'}","{print}$COLORS{'color_gold'}\t.cherb13\t -- $COLORS{'color_black_on_yellow'}Sovyn Clove$COLORS{'color_normal'}","{print}$COLORS{'color_green'}##################################################$COLORS{'color_normal'}" ],
         'cherb1' => [ "prepare 1118", "summon acantha leaf" ],
@@ -40,6 +42,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'cherb11' => [ "prepare 1118", "summon calamia fruit" ],
         'cherb12' => [ "prepare 1118", "summon woth flower" ],
         'cherb13' => [ "prepare 1118", "summon sovyn clove" ],
+        'c' => [ "prepare 1106", "channel {pv1}" ],
         'buff' => [ "prepare 1130", "cast", "sleep 5", "prepare 1125", "cast", "sleep 20", "prepare 120", "cast", "sleep 5", "prepare 1119", "cast", "sleep 20", "prepare 219", "cast", "sleep 5", "prepare 218", "cast", "sleep 20", "prepare 115", "cast", "sleep 5", "prepare 215", "cast", "sleep 20", "prepare 211", "cast", "sleep 5", "prepare 1109", "cast", "sleep 20", "prepare 107", "cast", "sleep 5", "prepare 103", "cast", "sleep 5", "prepare 202", "cast", "sleep 5", "prepare 102", "cast", "sleep 5", "prepare 101" ],
     );
 
