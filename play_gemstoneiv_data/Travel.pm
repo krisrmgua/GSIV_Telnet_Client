@@ -7,8 +7,10 @@ use vars qw/%TRAVEL %CURRENTLOC/;
 
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
+        wl_voln => "A well maintained and healthy garden occupies the entirety of the courtyard.  The air here is cool and crisp",
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
         ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
+        ice_voln => "Alpine flowerbeds ring this tucked-away courtyard, their bright colors a feast",
         ice_pawn => "Stark wooden floorboards creak under the weight of stacks of bundled weapons and leather.  Perched",
         ice_lock => "The walls of this small room are lined with small, gold-framed cases holding some of Blackfinger's finer wares.  Ranging",
         ice_emp_gld => "Intricate marquetry of naturally hued woods, incorporating palest pine",
@@ -32,7 +34,25 @@ use vars qw/%TRAVEL %CURRENTLOC/;
                 'move' => [ "out", "w", "s", "s", "go glass door", "go iron door", "go street", "w", "nw", "sw", "w", "s" ],
                 'discription' => 'Go to Icemule TC',
             },
+            'wl_voln' => {
+                'move' => [ "w", "w", "w", "go trail", "s", "s", "sw", "w", "go bridge", "w", "w", "nw", "n", "n", "n", "n", "n", "ne", "go gate", "s", "w", "s", "s", "se" ],
+                'discription' => 'Go to Wehnimer\'s Landing TC',
+            },
+            'ice_voln' => {
+                'move' => [ "go gate", "sw", "w", "s" ],
+                'discription' => 'Go to Icemule TC',
+            },
         },
+        'voln' => {
+            'wl_tc' => {
+                'move' => [ "nw", "n", "n", "e", "n", "go gate", "sw", "s", "s", "s", "s", "s", "se", "e", "e", "go bridge", "e", "ne", "n", "n", "go trail", "e", "e", "e" ], 
+                'discription' => 'Go to Voln', 
+            },
+            'ice_tc' => {
+                'move' => [ "n", "e", "ne", "go gate" ], 
+                'discription' => 'Go to Voln', 
+            },
+        },        
         'lock' => {
             'ice_tc' => {
                 'move' => [ "e", "s", "go store", "go door" ], 
