@@ -13,6 +13,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Baslim' => "color_pink",
         'Jara' => "color_pink",
         'Imagestar' => "color_pink",
+        'Wimpen' => "color_pink",
         'Jinbei' => "color_pink",
         'Jynai' => "color_pink",
         'Poggin' => "color_pink",
@@ -33,7 +34,6 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Synz' => "color_pink",
         'Maylan' => "color_pink",
         'Brewbane' => "color_pink",
-        'Azimar' => "color_pink",
         'Skarrd' => "color_pink",
         'Rainwalker' => "color_pink",
         'Bloodbeerd' => "color_pink",
@@ -80,6 +80,9 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Alditt' => "color_dark_purple",
         'Praytus' => "color_dark_purple",
         },
+    SORCERERS => {
+        'Azimar' => "color_blue",
+    },
     ROGUES => {
         'Svardin' => "color_dark_grey_on_white",
         'Popper' => "color_dark_grey",
@@ -159,10 +162,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         #HEALING
         'heals_you' => { '(\w+ meditates over you)' => "color_bold" },
         'goodshape' => { '(is in good shape|.* and find that .* has no apparent wounds\.|.* find that .* has no apparent injuries\.)' => "color_green" },
-        'trollheal' => { '(.* your .*close and the bruises fade.|You begin to feel better as the bruises around your .* fade.|The bruises around your .* fade.)' => "color_green" },
+        'trollheal' => { '(.* your .*close and the bruises fade.|You begin to feel better as the bruises around your .* fade.|The bruises around your .* fade.|The twitching of your muscles seem once more under your control)' => "color_green" },
         'trollhealscar' => { '(.* your .*glows faintly white before fading altogether\.)' => "color_green" },
         'badcut' => { '(deep lacerations across \w+ back|deep lacerations across \w+ chest|fractured and bleeding \w+ \w+|deep lacerations across \w+ abdominal area|serious bleeding from \w+ abdominal area)' => "color_red" },
-        'littlecut' => { '(minor cuts and bruises on \w+ \w+ \w+)' => "color_yellow" },
+        'littlecut' => { '(minor cuts and bruises on \w+ \w+ \w+|minor bruises about the \w+|minor cuts and bruises on \w+ chest|strange case of muscle twitching)' => "color_yellow" },
          ##Waiting for Gate to Open or Boat ect
         'gate_opens' => { '(.*The bronze gate pops open, leaving.*|The gate shudders violently, and then, with a protesting screech.*|The huge gate shudders violently!  Dark red flakes.*|The ancient hinges of the gate creak loudly as they give way.  A chain halts.*)' => "color_white_on_blue" },
         'gate_budge' => { '(The gate budges a little more\.)' => "color_bold" },
