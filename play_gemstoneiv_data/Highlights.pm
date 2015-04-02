@@ -14,6 +14,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Jara' => "color_pink",
         'Imagestar' => "color_pink",
         'Wimpen' => "color_pink",
+        'Marigold' => "color_pink",
         'Jinbei' => "color_pink",
         'Jynai' => "color_pink",
         'Poggin' => "color_pink",
@@ -88,9 +89,6 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Popper' => "color_dark_grey",
         'Wolfloner' => "color_dark_grey",
         },
-    NPCS => {
-        'a West Gate guard' => "color_yellow",  
-    },
     MONSTERS => {
         'a wraith' => "color_red",
         'a cobra' => "color_red",
@@ -114,6 +112,8 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     );
 
 %HIGHLIGHT_ITEMS = (
+        ##NPCs
+        'NPCs' => { '(a \w+ Gate guard|a Silvermule courier|a dwarven recruiter)' => "color_yellow" },
         ##Valuable Items
         'white flasks' => { '(a white flask|a white lily-etched flask)' => "color_gold" }, 
         'gems' => { '(a piece of \w+ jasper|a \w*\s*\w*\s*\w+ amber|a \w+ topaz|an? \w+ crystal|a \w+ tourmaline|a \w+ zircon|a \w+ spinel|a \w+ sapphire|some \w+ \w+ coral|a \w*\s*\w+ wand|a \w+ amulet|ayanad crystal|a \w+ opal|a \w+ lockpick|a heavy quartz orb|a small statue|a white flask|a \w*\s*\w+ stone|an? \w*\s*\w+ gem|a \w*\s*\w*\s*\w*\s*\w+ quartz|a \w*\s*\w*\s*\w*\s*\w+ stickpin|a\s*\w*\s*\w+ cube|a piece of \w+ paper|a \w+ scroll|a \w*\s*\w*\s*\w+ talisman|a \w*\s*\w+ amethyst|a \w+ garnet|a \w*\s*\w*\s*\w+ earring|a \w*\s*\w*\s*\w*\s*\w+ statuette|a \w*\s*\w+ pendant|some \w+ lapis lazuli|a \w+ cordierite|a \w+ \w+ pitcher|a star ruby|a rough slab of silver| a \w+ \w+ pearl)' => "color_gold" }, 
@@ -127,7 +127,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'herb_wound_1' => { '(a rose-marrow potion|some ambrominas leaf|some basal moss|some wolifrew lichen)' => "color_blue" }, 
         'herb_wound_2' => { '(some ephlox moss|some aloeas stem|some pothinir grass)' => "color_black_on_light_blue" }, 
         'herb_scar_1' => { '(some torban leaf|some cactacae spine|some haphip root|some woth flower)' => "color_yellow" }, 
-        'herb_scar_2' => { '(some sovyn clove|some calamia fruit)' => "color_black_on_yellow" }, 
+        'herb_scar_2' => { '(some sovyn clove|some calamia fruit)' => "color_black_on_yellow" },
     );
 
 %HIGHLIGHT_TEXT = (
