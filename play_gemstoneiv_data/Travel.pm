@@ -3,7 +3,7 @@ package play_gemstoneiv_data::Travel;
 use Data::Dumper;
 use strict;
 
-use vars qw/%TRAVEL %CURRENTLOC/;
+use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
@@ -12,6 +12,7 @@ use vars qw/%TRAVEL %CURRENTLOC/;
         ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
         ice_voln => "Alpine flowerbeds ring this tucked-away courtyard, their bright colors a feast",
         ice_pawn => "Stark wooden floorboards creak under the weight of stacks of bundled weapons and leather.  Perched",
+        ice_fur => "Stacks of hides and pelts cover the floor in this cramped shop, leaving a narrow trail to the counter.",
         ice_lock => "The walls of this small room are lined with small, gold-framed cases holding some of Blackfinger's finer wares.  Ranging",
         ice_emp_gld => "Intricate marquetry of naturally hued woods, incorporating palest pine",
     );
@@ -24,6 +25,10 @@ use vars qw/%TRAVEL %CURRENTLOC/;
             },
             'ice_pawn' => {
                 'move' => [ "o", "go stairs", "w", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
+                'discription' => 'Go to Icemule TC', 
+            },
+            'ice_fur' => {
+                'move' => [ "o", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
                 'discription' => 'Go to Icemule TC', 
             },
             'ice_lock' => {
@@ -63,6 +68,12 @@ use vars qw/%TRAVEL %CURRENTLOC/;
             'ice_tc' => {
                 'move' => [ "e", "e", "e", "e", "s", "w", "sw", "se", "e", "climb stairs", "go door" ], 
                 'discription' => 'Go to Pawnshop', 
+            },
+        },
+        'fur' => {
+            'ice_tc' => {
+                'move' => [ "e", "e", "e", "e", "s", "w", "sw", "se", "go fur" ], 
+                'discription' => 'Go to Furrier', 
             },
         },
         'gem' => {
