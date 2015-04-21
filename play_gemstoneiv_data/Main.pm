@@ -44,7 +44,7 @@ sub get_session_key {
     my ($GLOBALS_FUNC) = @_;
     my %GLOBALS_FUNC_HASH = %$GLOBALS_FUNC;
     my $cj = HTTP::Cookies->new( autosave => 1, ignore_discard => 1 );
-    my $mech = WWW::Mechanize->new( cookie_jar => $cj );
+    my $mech = WWW::Mechanize->new( cookie_jar => $cj,  ssl_opts => { verify_hostname => 0 });
     $mech->get( $GLOBALS_FUNC_HASH{'sign_in_url'} );
     $mech->submit_form( form_name => 'signin', fields => {
         return_okay_page => $GLOBALS_FUNC_HASH{'return_ok_page'},
