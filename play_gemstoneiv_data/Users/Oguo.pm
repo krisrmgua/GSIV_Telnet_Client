@@ -57,6 +57,13 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
                 'discription' => 'Go to Empath Guild',
             },
         },
+        'locker' => {
+            'ice_tc' => {
+                #'move' => [ "e", "e", "s", "go hall", "e", "e", "e", "go cur", "open locker" ],
+                'move' => [ "s", "s", "s", "s", "go path", "go gate", "go ent", "go arch", "go mural", "go open", "open locker" ],
+                'discription' => 'Go to Locker',
+            },
+        },
         'sell' => {
             'ice_tc' => {
                 'move' => [ "e", "s", "s", "go gem", "remove $GLOBALS{'player_backpack1'}", "sell $GLOBALS{'player_backpack1'}", "o", "n", "n", "e", "e", "e", "s", "w", "sw", "se", "go fur", "sell $GLOBALS{'player_backpack1'}", "wear my $GLOBALS{'player_backpack1'}", "close my $GLOBALS{'player_backpack1'}", "o", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 

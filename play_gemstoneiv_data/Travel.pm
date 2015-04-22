@@ -10,6 +10,8 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
         wl_voln => "A well maintained and healthy garden occupies the entirety of the courtyard.  The air here is cool and crisp",
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
         ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
+        ice_locker1 => "are standing in a cramped room",
+        ice_locker2 => "A small oil lamp provides a bright light as it reflects from the walls.",
         ice_voln => "Alpine flowerbeds ring this tucked-away courtyard, their bright colors a feast",
         ice_pawn => "Stark wooden floorboards creak under the weight of stacks of bundled weapons and leather.  Perched",
         ice_fur => "Stacks of hides and pelts cover the floor in this cramped shop, leaving a narrow trail to the counter.",
@@ -19,6 +21,14 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 
 %TRAVEL = (
         'tc' => {
+            'ice_locker1' => {
+                'move' => [ "close locker", "go cur", "w", "w", "w", "o", "n", "w", "w" ],
+                'discription' => 'Go to Icemule TC', 
+            },
+            'ice_locker2' => {
+                'move' => [ "close locker", "go open", "go mural", "o", "o", "o", "go path", "n", "n", "n", "n" ],
+                'discription' => 'Go to Icemule TC', 
+            },
             'ice_gem' => {
                 'move' => [ "o", "n", "n", "w" ], 
                 'discription' => 'Go to Icemule TC', 
