@@ -8,6 +8,7 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
         wl_voln => "A well maintained and healthy garden occupies the entirety of the courtyard.  The air here is cool and crisp",
+        wl_war_guild => "This appealing rest spot sits directly before the steps leading to the Guild Hall door.",
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
         ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
         ice_locker1 => "are standing in a cramped room",
@@ -56,6 +57,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'ice_voln' => {
                 'move' => [ "go gate", "sw", "w", "s" ],
                 'discription' => 'Go to Icemule TC',
+            },
+            'wl_war_guild' => {
+                'move' => [ "sw", "se", "go port", "s", "w", "w", "w", "w", "w", "w", "s", "s", "se" ], 
+                'discription' => 'Go to WL TC', 
             },
         },
         'voln' => {
