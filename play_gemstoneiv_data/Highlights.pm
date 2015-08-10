@@ -120,7 +120,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'gems' => { '(a piece of \w+ jasper|a \w*\s*\w*\s*\w+ amber|a \w+ topaz|an? \w+ crystal|a \w+ tourmaline|a \w+ zircon|a \w+ spinel|a \w+ sapphire|some \w+ \w+ coral|a \w*\s*\w+ wand|a \w+ amulet|ayanad crystal|a \w+ opal|a \w+ lockpick|a heavy quartz orb|a small statue|a white flask|a \w*\s*\w+ stone|an? \w*\s*\w+ gem|a \w*\s*\w*\s*\w*\s*\w+ quartz|a \w*\s*\w*\s*\w*\s*\w+ stickpin|a\s*\w*\s*\w+ cube|a piece of \w+ paper|a \w+ scroll|a \w*\s*\w*\s*\w+ talisman|a \w*\s*\w+ amethyst|a \w+ garnet|a \w*\s*\w*\s*\w+ earring|a \w*\s*\w*\s*\w*\s*\w+ statuette|a \w*\s*\w+ pendant|some \w+ lapis lazuli|a \w+ cordierite|a \w+ \w+ pitcher|a star ruby|a rough slab of silver| a \w+ \w+ pearl)' => "color_gold" }, 
         'gems2' => { '(an uncut diamond|an uncut emerald|an uncut ruby)' => "color_pink_on_yellow" }, 
         'gold rings' => { '(a \w+ gold ring|gold ring)' => "color_red" }, 
-        'boxes' => { '(an?\s\w*\s*\w+\s\w+\sbox|an?\s\w*\s*\w+\s\w+\schest|an?\s\w*\s*\w+\s\w+\strunk|an?\s\w*\s*\w+\s\w+\scoffer|an?\s\w*\s*\w+\s\w+\sstrongbox)' => "color_red" }, 
+        'boxes' => { '(an?\s\w*-?\s*\w+\s\w+\sbox|an?\s\w*\s*\w+\s\w+\schest|an?\s\w*\s*\w+\s\w+\strunk|an?\s\w*\s*\w+\s\w+\scoffer|an?\s\w*\s*\w+\s\w+\sstrongbox)' => "color_red" }, 
         ##Skins
         'skins' => { '(a spider leg|a cobra skin|a squirrel tail|a rolton pelt)' => "color_gold" }, 
         ##Herbs

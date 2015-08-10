@@ -51,6 +51,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
                 'move' => [ "e", "s", "s", "go gem", "remove $GLOBALS{'player_backpack1'}", "sell $GLOBALS{'player_backpack1'}", "o", "n", "n", "e", "e", "e", "s", "w", "sw", "se", "go fur", "sell $GLOBALS{'player_backpack1'}", "wear my $GLOBALS{'player_backpack1'}", "close my $GLOBALS{'player_backpack1'}", "o", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
                 'discription' => "Sell Everything in $GLOBALS{'player_backpack1'}", 
             },
+            'wl_tc' => {
+                'move' => [ "sw", "s", "s", "s", "e", "go shop", "remove $GLOBALS{'player_backpack1'}", "sell $GLOBALS{'player_backpack1'}", "o", "w", "n", "n", "n", "n", "n", "n", "n", "e", "go shop", "sell $GLOBALS{'player_backpack1'}", "o", "e", "e", "e", "e", "e", "e", "e", "s", "s", "e", "s", "s", "s", "s", "e", "e", "e", "e", "e", "e", "n", "n", "n", "go alc", "e", "sell $GLOBALS{'player_backpack1'}", "wear my $GLOBALS{'player_backpack1'}", "close my $GLOBALS{'player_backpack1'}", "w", "o", "s", "s", "s", "w", "w", "w", "w", "w", "w", "n", "n", "n", "n", "w", "n", "n", "w", "w", "w", "w", "w", "w", "w", "w", "s", "s", "se" ], 
+                'discription' => "Sell Everything in $GLOBALS{'player_backpack1'}", 
+            },
         },
  );
 
