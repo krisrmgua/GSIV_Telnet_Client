@@ -7,7 +7,9 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
+        wl_grave_ice_room => "This room is dominated by a giant slab of ice.  There is a chill",
         wl_grave_outside_gate => "A massive bronze gate spans the path, blocking the way north.",
+        wl_grave_crypt => "The entry foyer to this enormous granite crypt is stark, adorned only",
         wl_voln => "A well maintained and healthy garden occupies the entirety of the courtyard.  The air here is cool and crisp",
         wl_war_guild => "This appealing rest spot sits directly before the steps leading to the Guild Hall door.",
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
@@ -68,10 +70,20 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
                 'discription' => 'Go to WL TC', 
             },
         },
+        'iceroom' => {
+            'wl_grave_crypt' => {
+                'move' => [ "go arch", "e", "say 'shadow bind my soul'", "s", "go ramp", "n", "d", "n", "go corridor", "ne", "ne", "go pile", "d", "d", "e", "n", "n", "go grating", "d", "d", "n", "n", "ne", "go stair" ], 
+                'discription' => 'Go to ice room ( Arch Wight 20U )', 
+            },
+        },
         'grave' => {
             'wl_tc' => {
                 'move' => [ "nw", "n", "n", "e", "n", "go gate", "sw", "s", "s", "s", "s", "s", "se", "e", "e", "go bridge", "e", "ne", "n", "go trail", "e", "e", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "go trail", "go path", "go gate", "climb gate", "jump", "go crypt" ], 
-                'discription' => 'Go to Graveyard', 
+                'discription' => 'Go to Graveyard Crypt', 
+            },
+            'wl_grave_ice_room' => {
+                'move' => [ "go stair", "sw", "s", "s", "u", "u", "go grating", "o", "s", "w", "u", "u", "u", "sw", "sw", "go corridor", "s", "u", "s", "go ramp", "n", "go portal", "w", "go arch" ], 
+                'discription' => 'Go to Graveyard Crypt', 
             },
         },
         'voln' => {
