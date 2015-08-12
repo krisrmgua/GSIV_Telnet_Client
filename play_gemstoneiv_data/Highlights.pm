@@ -20,6 +20,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Poggin' => "color_pink",
         'Sarayva' => "color_pink",
         'Hagren' => "color_pink",
+        'Martyle' => "color_pink",
         'Tranquia' => "color_pink",
         'Vaelia' => "color_pink",
         'Adonal' => "color_pink",

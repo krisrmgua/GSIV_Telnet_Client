@@ -7,6 +7,7 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
+        wl_grave_outside_gate => "A massive bronze gate spans the path, blocking the way north.",
         wl_voln => "A well maintained and healthy garden occupies the entirety of the courtyard.  The air here is cool and crisp",
         wl_war_guild => "This appealing rest spot sits directly before the steps leading to the Guild Hall door.",
         ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
@@ -22,6 +23,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 
 %TRAVEL = (
         'tc' => {
+            'wl_grave_outside_gate' => {
+                'move' => [ "go path", "go trail", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "w", "go trail", "s", "sw", "w", "go bridge", "w", "w", "nw", "n", "n", "n", "n", "n", "ne", "go gate", "s", "w", "s", "s", "se" ],
+                'discription' => 'Go to WL TC', 
+            },
             'ice_locker1' => {
                 'move' => [ "close locker", "go cur", "w", "w", "w", "o", "n", "w", "w" ],
                 'discription' => 'Go to Icemule TC', 
@@ -61,6 +66,12 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'wl_war_guild' => {
                 'move' => [ "sw", "se", "go port", "s", "w", "w", "w", "w", "w", "w", "s", "s", "se" ], 
                 'discription' => 'Go to WL TC', 
+            },
+        },
+        'grave' => {
+            'wl_tc' => {
+                'move' => [ "nw", "n", "n", "e", "n", "go gate", "sw", "s", "s", "s", "s", "s", "se", "e", "e", "go bridge", "e", "ne", "n", "go trail", "e", "e", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "ne", "n", "go trail", "go path", "go gate", "climb gate", "jump", "go crypt" ], 
+                'discription' => 'Go to Graveyard', 
             },
         },
         'voln' => {
