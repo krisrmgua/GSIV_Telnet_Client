@@ -73,7 +73,7 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
         'iceroom' => {
             'wl_grave_crypt' => {
                 'move' => [ "go arch", "e", "say 'shadow bind my soul'", "s", "go ramp", "n", "d", "n", "go corridor", "ne", "ne", "go pile", "d", "d", "e", "n", "n", "go grating", "d", "d", "n", "n", "ne", "go stair" ], 
-                'discription' => 'Go to ice room ( Arch Wight 20U )', 
+                'discription' => 'Go to ice room ( an arch wight 20U )', 
             },
         },
         'grave' => {
