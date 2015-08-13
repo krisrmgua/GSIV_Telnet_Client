@@ -7,6 +7,8 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
+        wl_gem => "Inside the Gemcutter's shop, you see two glass showcases holding jewelry",
+        wl_fur => "This is the large front room of the furrier's shop.  Roughly hewn planks",
         wl_locksmith => "The backroom of the locksmith's shop is stark, and lit by a single tallow candle.",
         wl_alchemist => "Blackened from a previous mishap with fire, the wooden table in one corner of",
         wl_pawn => "This little pawnshop is somewhat cheerier than you would expect, presided over by",
@@ -53,6 +55,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
                 'move' => [ "close locker", "go open", "go mural", "o", "o", "o", "go path", "n", "n", "n", "n" ],
                 'discription' => 'Go to Icemule TC', 
             },
+            'wl_gem' => {
+                'move' => [ "o", "w", "n", "n", "n", "ne" ], 
+                'discription' => 'Go to WL TC', 
+            },
             'ice_gem' => {
                 'move' => [ "o", "n", "n", "w" ], 
                 'discription' => 'Go to Icemule TC', 
@@ -64,6 +70,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'ice_pawn' => {
                 'move' => [ "o", "go stairs", "w", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
                 'discription' => 'Go to Icemule TC', 
+            },
+            'wl_fur' => {
+                'move' => [ "o", "w", "s", "s", "se" ], 
+                'discription' => 'Go to WL TC', 
             },
             'ice_fur' => {
                 'move' => [ "o", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
@@ -143,12 +153,20 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             },
         },
         'fur' => {
+            'wl_tc' => {
+                'move' => [ "nw", "n", "n", "e", "go fur shop" ], 
+                'discription' => 'Go to Furrier', 
+            },
             'ice_tc' => {
                 'move' => [ "e", "e", "e", "e", "s", "w", "sw", "se", "go fur" ], 
                 'discription' => 'Go to Furrier', 
             },
         },
         'gem' => {
+            'wl_tc' => {
+                'move' => [ "sw", "s", "s", "s", "e", "go shop" ], 
+                'discription' => 'Go to Gemshop', 
+            },
             'ice_tc' => {
                 'move' => [ "e", "s", "s", "go gem" ], 
                 'discription' => 'Go to Gemshop', 
