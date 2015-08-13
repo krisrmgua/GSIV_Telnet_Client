@@ -8,6 +8,7 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
         wl_locksmith => "The backroom of the locksmith's shop is stark, and lit by a single tallow candle.",
+        wl_alchemist => "Blackened from a previous mishap with fire, the wooden table in one corner of",
         wl_pawn => "This little pawnshop is somewhat cheerier than you would expect, presided over by",
         wl_grave_ice_room => "This room is dominated by a giant slab of ice.  There is a chill",
         wl_silvergate_locker => "Silvergate, Member's Lockers",
@@ -30,6 +31,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
         'tc' => {
             'wl_grave_outside_gate' => {
                 'move' => [ "go path", "go trail", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "w", "go trail", "s", "sw", "w", "go bridge", "w", "w", "nw", "n", "n", "n", "n", "n", "ne", "go gate", "s", "w", "s", "s", "se" ],
+                'discription' => 'Go to WL TC', 
+            },
+            'wl_alchemist' => {
+                'move' => [ "w", "o", "s", "s", "s", "w", "w", "w", "w", "w", "w", "n", "n", "n", "n", "w", "n", "n", "w", "w", "w", "w", "w", "w", "w", "w", "s", "s", "se" ],
                 'discription' => 'Go to WL TC', 
             },
             'wl_locksmith' => {
@@ -89,6 +94,12 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'wl_grave_crypt' => {
                 'move' => [ "go arch", "e", "say 'shadow bind my soul'", "s", "go ramp", "n", "d", "n", "go corridor", "ne", "ne", "go pile", "d", "d", "e", "n", "n", "go grating", "d", "d", "n", "n", "ne", "go stair" ], 
                 'discription' => 'Go to ice room ( an arch wight 20U )', 
+            },
+        },
+        'alch' => {
+            'wl_tc' => {
+                'move' => [ "nw", "n", "n", "e", "e", "e", "e", "e", "e", "e", "e", "s", "s", "e", "s", "s", "s", "s", "e", "e", "e", "e", "e", "e", "n", "n", "n", "go alc", "e" ],
+                'discription' => 'Go to Alchemist', 
             },
         },
         'grave' => {
