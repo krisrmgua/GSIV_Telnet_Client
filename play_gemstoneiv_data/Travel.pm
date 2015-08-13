@@ -7,7 +7,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
 
 %CURRENTLOC = (
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
+        wl_locksmith => "The backroom of the locksmith's shop is stark, and lit by a single tallow candle.",
+        wl_pawn => "This little pawnshop is somewhat cheerier than you would expect, presided over by",
         wl_grave_ice_room => "This room is dominated by a giant slab of ice.  There is a chill",
+        wl_silvergate_locker => "Silvergate, Member's Lockers",
         wl_grave_outside_gate => "A massive bronze gate spans the path, blocking the way north.",
         wl_grave_crypt => "The entry foyer to this enormous granite crypt is stark, adorned only",
         wl_voln => "A well maintained and healthy garden occupies the entirety of the courtyard.  The air here is cool and crisp",
@@ -29,6 +32,14 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
                 'move' => [ "go path", "go trail", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "sw", "s", "w", "go trail", "s", "sw", "w", "go bridge", "w", "w", "nw", "n", "n", "n", "n", "n", "ne", "go gate", "s", "w", "s", "s", "se" ],
                 'discription' => 'Go to WL TC', 
             },
+            'wl_locksmith' => {
+                'move' => [ "go door", "o", "n", "n", "w", "w", "w", "w", "w", "w", "s", "s", "se" ],
+                'discription' => 'Go to WL TC', 
+            },
+            'wl_silvergate_locker' => {
+                'move' => [ "close locker", "go cur", "go stair", "o", "go door", "go arch door", "go gate", "e", "e", "ne" ],
+                'discription' => 'Go to WL TC', 
+            },
             'ice_locker1' => {
                 'move' => [ "close locker", "go cur", "w", "w", "w", "o", "n", "w", "w" ],
                 'discription' => 'Go to Icemule TC', 
@@ -39,6 +50,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             },
             'ice_gem' => {
                 'move' => [ "o", "n", "n", "w" ], 
+                'discription' => 'Go to Icemule TC', 
+            },
+            'wl_pawn' => {
+                'move' => [ "o", "n", "n", "w", "w", "w", "w", "w", "w", "w", "w", "s", "s", "se" ], 
                 'discription' => 'Go to Icemule TC', 
             },
             'ice_pawn' => {
@@ -97,12 +112,20 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             },
         },        
         'lock' => {
+            'wl_tc' => {
+                'move' => [ "nw", "n", "n", "e", "e", "e", "e", "e", "e", "s", "s", "go door", "go door" ], 
+                'discription' => 'Go to Town Locksmith', 
+            },
             'ice_tc' => {
                 'move' => [ "e", "s", "go store", "go door" ], 
                 'discription' => 'Go to Town Locksmith', 
             },
         },
         'pawn' => {
+            'wl_tc' => {
+                'move' => [ "nw", "n", "n", "e", "e", "e", "e", "e", "e", "e", "e", "s", "s", "go shop" ], 
+                'discription' => 'Go to Pawnshop', 
+            },
             'ice_tc' => {
                 'move' => [ "e", "e", "e", "e", "s", "w", "sw", "se", "e", "climb stairs", "go door" ], 
                 'discription' => 'Go to Pawnshop', 

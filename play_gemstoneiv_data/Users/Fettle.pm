@@ -40,9 +40,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
             },
         },
         'locker' => {
-            'ice_tc' => {
+            'wl_tc' => {
                 #'move' => [ "e", "e", "s", "go hall", "e", "e", "e", "go cur", "open locker" ],
-                'move' => [ "s", "s", "s", "s", "go path", "go gate", "go ent", "go arch", "go mural", "go open", "open locker" ],
+                #'move' => [ "s", "s", "s", "s", "go path", "go gate", "go ent", "go arch", "go mural", "go open", "open locker" ],
+                'move' => [ "sw", "w", "w", "go path", "go door", "go oak door", "go boar", "d", "go cur", "open locker" ],
                 'discription' => 'Go to Locker',
             },
         },
