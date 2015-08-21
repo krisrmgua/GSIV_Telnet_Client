@@ -122,7 +122,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'NPCs' => { '(a \w+ Gate guard|a Silvermule courier|a dwarven recruiter)' => "color_yellow" },
         ##Valuable Items
         'white flasks' => { '(a white flask|a white lily-etched flask)' => "color_gold" },
-        'gems' => { '(a piece of \w+ jasper|a \w*\s*\w*\s*\w+ amber|a \w+ topaz|an? \w+ crystal|a \w+ tourmaline|a \w+ zircon|a \w+ spinel|a \w+ sapphire|some \w+ \w+ coral|a \w*\s*\w+ wand|an \w+ wand|a \w+ amulet|ayanad crystal|a \w+ opal|a \w+ lockpick|a heavy quartz orb|a small statue|a white flask|a \w*\s*\w+ stone|an? \w*\s*\w+ gem|a \w*\s*\w*\s*\w*\s*\w+ quartz|a \w*\s*\w*\s*\w*\s*\w+ stickpin|a\s*\w*\s*\w+ cube|a piece of \w+ paper|a \w+ scroll|a \w*\s*\w*\s*\w+ talisman|a \w*\s*\w+ amethyst|a \w+ garnet|a \w*\s*\w*\s*\w+ earring|a \w*\s*\w*\s*\w*\s*\w+ statuette|a \w*\s*\w+ pendant|some \w+ lapis lazuli|a \w+ cordierite|a \w+ \w+ pitcher|a star ruby|a rough slab of silver|a drake greatsword|iridescent labradorite stone|a \w+ \w+ pearl|a \w+ \w+ essence shard)' => "color_gold" },
+        'gems' => { '(a piece of \w+ jasper|a \w*\s*\w*\s*\w+ amber|a \w+ \w+ morganite stone|a \w+ topaz|an? \w+ crystal|a \w+ tourmaline|a \w+ zircon|a \w+ spinel|a \w+ sapphire|some \w+ \w+ coral|a \w*\s*\w+ wand|an \w+ wand|a \w+ amulet|ayanad crystal|a \w+ opal|a \w+ lockpick|a heavy quartz orb|a small statue|a white flask|a \w*\s*\w+ stone|an? \w*\s*\w+ gem|a \w*\s*\w*\s*\w*\s*\w+ quartz|a \w*\s*\w*\s*\w*\s*\w+ stickpin|a\s*\w*\s*\w+ cube|a piece of \w+ paper|a \w+ scroll|a \w*\s*\w*\s*\w+ talisman|a \w*\s*\w+ amethyst|a \w+ garnet|a \w*\s*\w*\s*\w+ earring|a \w*\s*\w*\s*\w*\s*\w+ statuette|a \w*\s*\w+ pendant|some \w+ lapis lazuli|a \w+ cordierite|a \w+ \w+ pitcher|a star ruby|a rough slab of silver|a drake greatsword|iridescent labradorite stone|a \w+ \w+ pearl|a \w+ \w+ essence shard)' => "color_gold" },
         'gems2' => { '(an uncut diamond|an uncut emerald|an uncut ruby)' => "color_pink_on_yellow" },
         'gold rings' => { '(a \w+ gold ring|gold ring)' => "color_red" },
         'coins' => { '(some silver coins)' => "color_gold" },
@@ -157,6 +157,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'weapon_falls' => { '(The death dirge focuses its voice on your .* falls to the ground\.|\w+ falls to the ground\.)' => "color_white_on_red" },
         'weapon_unbless' => { '(Your \w*\s*\w*\s*\w*\s*\w+ returns to normal\.)' => "color_white_on_blue" },
         'weapon_bless' => { '(A searing white light enfolds your.*)' => "color_white_on_blue" },
+        'monster_moves' => { '(An \w*\s*\w*\s*\w+ just arrived\.|An \w*\s*\w*\s*\w+ \w+ north\.|An \w*\s*\w*\s*\w+ \w+ northeast\.|An \w*\s*\w*\s*\w+ \w+ northwest\.|An \w*\s*\w*\s*\w+ \w+ south\.|An \w*\s*\w*\s*\w+ \w+ southeast\.|An \w*\s*\w*\s*\w+ \w+ southwest\.|An \w*\s*\w*\s*\w+ \w+ east\.|An \w*\s*\w*\s*\w+ \w+ west\.|An \w*\s*\w*\s*\w+ \w+ up\.|An \w*\s*\w*\s*\w+ \w+ down\.)' => "color_red" },
         ##Dies
         'dead_dies' => { '(body as it rises, disappearing into the heavens.|falls to the ground motionless|.*to the ground and dies|lets out a final scream and goes still.|screams evilly one last time and goes still.)' => "color_yellow" },
         ##SPEACH
