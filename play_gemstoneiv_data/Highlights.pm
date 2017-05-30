@@ -177,7 +177,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'trollheal' => { '(.* your .*close and the bruises fade.|You begin to feel better as the bruises around your .* fade.|The bruises around your .* fade.|The twitching of your muscles seem once more under your control)' => "color_green" },
         'trollhealscar' => { '(.* your .*glows faintly white before fading altogether\.)' => "color_green" },
         'badcut' => { '(deep lacerations across \w+ back|deep lacerations across \w+ chest|fractured and bleeding \w+ \w+|deep lacerations across \w+ abdominal area|serious bleeding from \w+ abdominal area)' => "color_red" },
-        'littlecut' => { '(minor cuts and bruises on \w+ \w+ \w+|minor bruises about the \w+|minor cuts and bruises on \w+ chest|strange case of muscle twitching|minor cuts and bruises on \s+ back)' => "color_yellow" },
+        'littlecut' => { '(minor cuts and bruises on \w+ back|minor cuts and bruises on \w+ \w+ \w+|minor bruises about the \w+|minor cuts and bruises on \w+ chest|strange case of muscle twitching|minor cuts and bruises on \s+ back)' => "color_yellow" },
          ##Waiting for Gate to Open or Boat ect
         'gate_opens' => { '(.*The bronze gate pops open, leaving.*|The gate shudders violently, and then, with a protesting screech.*|The huge gate shudders violently!  Dark red flakes.*|The ancient hinges of the gate creak loudly as they give way.  A chain halts.*)' => "color_white_on_blue" },
         'gate_budge' => { '(The gate budges a little more\.)' => "color_bold" },
