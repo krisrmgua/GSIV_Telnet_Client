@@ -21,6 +21,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Pixelia' => "color_pink",
         'Littlepuff' => "color_pink",
         'Marigold' => "color_pink",
+        'Killerhealer' => "color_pink",
         'Jinbei' => "color_pink",
         'Jynai' => "color_pink",
         'Poggin' => "color_pink",
