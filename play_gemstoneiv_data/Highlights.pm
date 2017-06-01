@@ -92,6 +92,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Krisalan' => "color_dark_purple",
         'Asalie' => "color_dark_purple",
         'Kaedra' => "color_dark_purple",
+        'Maerc' => "color_dark_purple",
         'Alditt' => "color_dark_purple",
         'Praytus' => "color_dark_purple",
         },
