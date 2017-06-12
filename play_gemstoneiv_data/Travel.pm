@@ -9,6 +9,7 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
         wl_tc => "This is the heart of the main square of Wehnimer's Landing.  The impromptu shops",
         wl_gem => "Inside the Gemcutter's shop, you see two glass showcases holding jewelry",
         wl_fur => "This is the large front room of the furrier's shop.  Roughly hewn planks",
+        wl_glacier => "something somethign dark side",
         wl_locksmith => "The backroom of the locksmith's shop is stark, and lit by a single tallow candle.",
         wl_alchemist => "Blackened from a previous mishap with fire, the wooden table in one corner of",
         wl_pawn => "This little pawnshop is somewhat cheerier than you would expect, presided over by",
@@ -70,6 +71,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'ice_pawn' => {
                 'move' => [ "o", "go stairs", "w", "nw", "ne", "e", "n", "w", "w", "w", "w" ], 
                 'discription' => 'Go to Icemule TC', 
+            },
+            'wl_glacier' => {
+                'move' => [ "sw","sw","w","down","down","s","down","sw","se","go trunk","s","s","s","sw","s","sw","w","nw","w","sw","s","go trail","w","w","w","sw","w","w","nw","nw","nw","nw","nw","n","go path","ne","n","n","n","nw","n","nw","n","ne","n","n","n","n","n","ne","go gate","s","w","s","s","se" ], 
+                'discription' => 'Go to WL TC', 
             },
             'wl_fur' => {
                 'move' => [ "o", "w", "s", "s", "se" ], 
@@ -180,6 +185,12 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'ice_tc' => {
                 'move' => [ "e", "go bank", "deposit all", "check bal", "out", "w" ], 
                 'discription' => 'Go to bank and deposit all your coins', 
+            },
+        },
+        'glacier' => {
+            'wl_tc' => {
+                'move' => [ "nw","n","n","e","n","go gate","sw","s","s","s","s","s","sw","s","se","s","se","s","s","s","sw","s","s","se","se","se","se","se","e","e","ne","e","e","e","go trail","n","ne","e","se","e","ne","n","ne","n","n","n","go trunk","nw","ne","up","n","up","up","sleep 1","e","ne","ne","go glac" ], 
+                'discription' => 'Go to Glacier', 
             },
         },
         'ice' => {
