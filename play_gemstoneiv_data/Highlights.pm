@@ -192,6 +192,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         ##Room Hidden Move To Locations
         'highlight_hid_loc1' => { 'willow trees\.\s*You also see a wooden sign and (a sturdy bridge)\.' => "color_bold" },
         'highlight_hid_loc2' => { 'gather new cargo\.\s*You also see (a sturdy bridge)'  => "color_bold" },
+        'glacier' => { 'The ice field is almost big enough to be called (a glacier)'  => "color_bold" },
     );
 
 %HIGHLIGHT_TEXT0 = (
