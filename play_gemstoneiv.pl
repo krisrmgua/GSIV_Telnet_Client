@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+## cpan IO::Socket::SSL to fix ssl errors
 use strict;
 use warnings;
 use lib '/home/kris/bin/';
