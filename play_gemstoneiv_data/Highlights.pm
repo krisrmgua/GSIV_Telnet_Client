@@ -12,6 +12,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Mne' => "color_pink",
         'Gleda' => "color_pink",
         'Ilande' => "color_pink",
+        'Laeech' => "color_pink",
         'Baslim' => "color_pink",
         'Choss' => "color_pink",
         'Eryah' => "color_pink",
