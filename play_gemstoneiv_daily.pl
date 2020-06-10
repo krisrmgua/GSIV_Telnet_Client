@@ -26,8 +26,6 @@ if ($num_args != 1){
 }else{
   $charecter = $ARGV[0];
 }
-print $charecter;
-exit(0);
 print $COLORS{'color_green'} . "Charecter selected is $charecter\n" . $COLORS{'color_normal'};
 my $user_module = "play_gemstoneiv_data::Users::$charecter";
 my $user_module_globals = "$user_module"."::GLOBALS";

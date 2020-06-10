@@ -1,5 +1,5 @@
-# play_gemstoneiv_data::Users::Krisrmgua
-package play_gemstoneiv_data::Users::Krisrmgua;
+# play_gemstoneiv_data::Users::Sluf
+package play_gemstoneiv_data::Users::Sluf;
 use Data::Dumper;
 use strict;
 
