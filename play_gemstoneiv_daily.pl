@@ -66,7 +66,7 @@ if($charecter){
         );
 }
 #print Dumper(%HIGHLIGHT_ITEMS);
-$GLOBALS{'password'} = prompt_for_password();
+$GLOBALS{'password'} = "kas\@072578";
 my $session_key = play_gemstoneiv_data::Main::get_session_key(\%GLOBALS);
 my $current_dir_name = dirname(__FILE__);
 play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,\%GLOBALS);
@@ -76,6 +76,9 @@ $socket->send("/FE:JAVA\n");
 my $pid1 = fork();
 if ($pid1){
     while (1){
+        sleep(30);
+        $socket->send("quit" . "\n");
+        exit(0);
         my $send_data = <STDIN>;
         if($send_data =~ "^\\.(.*)"){ 
             play_gemstoneiv_data::Main::save_command_file($send_data,$current_dir_name,\%GLOBALS);
