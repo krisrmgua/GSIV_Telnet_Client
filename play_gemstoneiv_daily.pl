@@ -19,7 +19,15 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
 $| = 1;
 %COLORS = (%play_gemstoneiv_data::Main::COLORS);
 
-my $charecter = prompt_for_charecter();
+my $charecter = "";
+my $num_args = $#ARGV + 1;
+if ($num_args != 1){
+  $charecter = prompt_for_charecter();
+}else{
+  $charecter = $ARGV[0];
+}
+print $charecter;
+exit(0);
 print $COLORS{'color_green'} . "Charecter selected is $charecter\n" . $COLORS{'color_normal'};
 my $user_module = "play_gemstoneiv_data::Users::$charecter";
 my $user_module_globals = "$user_module"."::GLOBALS";
@@ -77,6 +85,8 @@ my $pid1 = fork();
 if ($pid1){
     while (1){
         sleep(30);
+        $socket->send("info" . "\n");
+        sleep(5);
         $socket->send("quit" . "\n");
         exit(0);
         my $send_data = <STDIN>;
