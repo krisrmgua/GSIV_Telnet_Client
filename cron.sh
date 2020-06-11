@@ -7,3 +7,6 @@
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Pristeen > /tmp/Pristeen.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Oguo > /tmp/Oguo.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Krisalan > /tmp/Krisalan.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Zrik > /tmp/Zrik.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Darkl > /tmp/Darkl.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Popper > /tmp/Popper.txt
