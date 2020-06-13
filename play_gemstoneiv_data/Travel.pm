@@ -13,6 +13,7 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
         wl_locksmith => "The backroom of the locksmith's shop is stark, and lit by a single tallow candle.",
         wl_alchemist => "Blackened from a previous mishap with fire, the wooden table in one corner of",
         wl_pawn => "This little pawnshop is somewhat cheerier than you would expect, presided over by",
+        wl_ants => "There is barely room to walk between the walls of solid stone that narrow to a crack",
         wl_grave_ice_room => "This room is dominated by a giant slab of ice.  There is a chill",
         wl_silvergate_locker => "Silvergate, Member's Lockers",
         wl_grave_outside_gate => "A massive bronze gate spans the path, blocking the way north.",
@@ -47,6 +48,10 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'wl_silvergate_locker' => {
                 'move' => [ "close locker", "go cur", "go stair", "o", "go door", "go arch door", "go gate", "e", "e", "ne" ],
                 'discription' => 'Go to WL TC', 
+            },
+            'wl_ants' => {
+                'move' => [ "go crack","n","w","climb rubble","n","climb rope","s" ],
+                'discription' => 'Go to WL TC',
             },
             'ice_locker1' => {
                 'move' => [ "close locker", "go cur", "w", "w", "w", "o", "n", "w", "w" ],
@@ -185,6 +190,12 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
             'ice_tc' => {
                 'move' => [ "e", "go bank", "deposit all", "check bal", "out", "w" ], 
                 'discription' => 'Go to bank and deposit all your coins', 
+            },
+        },
+        'ants' => {
+            'wl_tc' => {
+                'move' => [ "go well","climb rope","s","climb rubble","e","s","go crack" ],
+                'discription' => 'Go to Ants',
             },
         },
         'glac' => {

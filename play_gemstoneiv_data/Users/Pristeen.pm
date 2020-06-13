@@ -11,10 +11,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     charecter			=> 'Thub',
     account_username		=> 'KRISRMGUA7',
     player_id			=> 'W_KRISRMGUA7_000',
-    player_weapon1		=> 'runestaff',
-    player_weapon2		=> 'rune belt',
+    player_weapon1		=> 'rune staff',
+    player_sheath		=> 'sheath',
     player_cloak		=> 'cloak',
-    player_backpack1		=> 'pack',
+    player_backpack1		=> 'backpack',
     player_backpack2		=> 'cloak',
     );
 
@@ -23,18 +23,16 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     );
 
 %SCRIPTS = (
-        'rem' => [ "tap my $GLOBALS{'player_weapon2'}" ],
-        'wear' => [ "clench my $GLOBALS{'player_weapon1'}" ],
+        'rem' => [ "open my $GLOBALS{'player_sheath'}", "get my $GLOBALS{'player_weapon1'} from my $GLOBALS{'player_sheath'}" ],
+        'wear' => [ "open my $GLOBALS{'player_sheath'}", "put my $GLOBALS{'player_weapon1'} in my $GLOBALS{'player_sheath'}" ],
         'get' => [ "open my $GLOBALS{'player_backpack1'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack1'}", "close my $GLOBALS{'player_backpack1'}"  ],
         'get2' => [ "open my $GLOBALS{'player_backpack2'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack2'}", "close my $GLOBALS{'player_backpack2'}"  ],
-        's' => [ "clench my $GLOBALS{'player_weapon1'}", "get my knife from my shirt", "kneel", "skin {pv1} with my knife", "stand", "put my knife in my shirt", "tap my $GLOBALS{'player_weapon2'}", "loot" ],
-        'look' => [ "prepare 116", "cast {pv1}" ],
-        'tran' => [ "prepare 225", "cast {pv1}" ],
-        'c' => [ "INCANT 302" ],
+        's' => [ "kneel", "skin {pv1}", "stand", "loot" ],
+        'c' => [ "INCANT 1700 channel" ],
         'sanc' => [ "prepare 213", "cast" ],
         'msanc' => [ "prepare 220", "cast" ],
         'bread' => [ "prepare 203", "summon peppercorn flatbread", "give flatbread to {pv1}" ],
-        'buff' => [ "prepare 219", "cast", "sleep 5", "prepare 218", "cast", "sleep 20", "prepare 215", "cast", "sleep 20", "prepare 211", "cast", "sleep 5", "prepare 107", "cast", "sleep 5", "prepare 103", "cast", "sleep 5", "prepare 202", "cast", "sleep 5", "prepare 102", "cast", "sleep 5", "prepare 101", "cast", "sleep 5", "prepare 303", "cast", "sleep 20", "prepare 307", "cast", "sleep 5", "prepare 310", "cast", "sleep 20", "prepare 313", "cast" ],
+        'buff' => [ "prepare 103", "cast", "sleep 5", "prepare 102", "cast", "sleep 20", "prepare 101", "cast" ],
     );
 
 %TRAVEL = (

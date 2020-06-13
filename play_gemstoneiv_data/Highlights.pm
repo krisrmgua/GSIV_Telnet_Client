@@ -127,6 +127,11 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'a rolton' => "color_red",
         'a rabid squirrel' => "color_red",
         'a kobold' => "color_red",
+        'a giant ant' => "color_red",
+        'Oguo' => "color_red",
+        'Aiss' => "color_red",
+        'Clergi' => "color_red",
+        'Trenus' => "color_red",
         },
     );
 
@@ -141,7 +146,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'coins' => { '(some silver coins)' => "color_gold" },
         'boxes' => { '(an?\s\w*-?\s*\w+\s\w+\sbox|an?\s\w*\s*\w+\s\w+\schest|an?\s\w*\s*\w+\s\w+\strunk|an?\s\w*\s*\w+\s\w+\scoffer|an?\s\w*\s*\w+\s\w+\sstrongbox)' => "color_red" },
         ##Skins
-        'skins' => { '(a spider leg|a cobra skin|a squirrel tail|a rolton pelt)' => "color_gold" },
+        'skins' => { '(a spider leg|a cobra skin|an ant pincer|a squirrel tail|a rolton pelt)' => "color_gold" },
         ##Herbs
         'herb_heal_1' => { '(some acantha leaf)' => "color_green" },
         'herb_wound_1' => { '(a rose-marrow potion|some ambrominas leaf|some basal moss|some wolifrew lichen)' => "color_blue" },
