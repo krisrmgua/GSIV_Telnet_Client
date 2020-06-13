@@ -128,6 +128,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'a rabid squirrel' => "color_red",
         'a kobold' => "color_red",
         'a giant ant' => "color_red",
+        'A giant ant' => "color_red",
         'Oguo' => "color_red",
         'Aiss' => "color_red",
         'Clergi' => "color_red",
