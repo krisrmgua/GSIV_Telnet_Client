@@ -106,6 +106,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Svardin' => "color_dark_grey_on_white",
         'Popper' => "color_dark_grey",
         'Wolfloner' => "color_dark_grey",
+        'Oguo' => "color_red",
+        'Aiss' => "color_red",
+        'Clergi' => "color_red",
+        'Trenus' => "color_red",
         },
     MONSTERS => {
         'an arch wight' => "color_red",
@@ -150,10 +154,6 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'A cave gnome' => "color_red",
         'a giant ant' => "color_red",
         'A giant ant' => "color_red",
-        'Oguo' => "color_red",
-        'Aiss' => "color_red",
-        'Clergi' => "color_red",
-        'Trenus' => "color_red",
         },
     );
 
@@ -190,7 +190,16 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
 #gestures at you||{bold}gestures at you{normal}
         ##SYSTEM
         'room name' => { '^\!bb!(.*?)\]' => "color_bold" },
-        'also_here' => { 'Also here:' => "color_red" },
+        'also_here' => { 'Also here:' => "color_pink" },
+        'just_arrived' => { 'just arrived' => "color_pink" },
+        'heads_n' => { 'heads north' => "color_yellow" },
+        'heads_s' => { 'heads south' => "color_yellow" },
+        'heads_e' => { 'heads east' => "color_yellow" },
+        'heads_w' => { 'heads west' => "color_yellow" },
+        'heads_ne' => { 'heads northeast' => "color_yellow" },
+        'heads_nw' => { 'heads northwest' => "color_yellow" },
+        'heads_sw' => { 'heads southwest' => "color_yellow" },
+        'heads_se' => { 'heads southeast' => "color_yellow" },
         'moves' => { '(A .* scampers \w+!|A .* trots \w+!)' => "color_yellow" },
         'death' => { '(.*just bit the dust!|The death cry of \w+ echoes in your mind!)' => "color_bold" },
         'accept' => { '(.*Type ACCEPT to accept the offer.*)' => "color_white_on_red" },
