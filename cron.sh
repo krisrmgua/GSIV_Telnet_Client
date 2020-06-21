@@ -10,3 +10,7 @@
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Zrik > /tmp/Zrik.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Darkl > /tmp/Darkl.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Popper > /tmp/Popper.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Itiems > /tmp/Itiems.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Loads > /tmp/Loads.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Wardrob > /tmp/Wardrob.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Loods > /tmp/Loods.txt
