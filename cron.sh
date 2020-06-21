@@ -14,3 +14,5 @@
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Loads > /tmp/Loads.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Wardrob > /tmp/Wardrob.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Loods > /tmp/Loods.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Trenus > /tmp/Trenus.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Aiss > /tmp/Aiss.txt
