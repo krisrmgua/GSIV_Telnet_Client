@@ -16,3 +16,5 @@
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Loods > /tmp/Loods.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Trenus > /tmp/Trenus.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Aiss > /tmp/Aiss.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Seadoo > /tmp/Seadoo.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Wiiz > /tmp/Wiiz.txt
