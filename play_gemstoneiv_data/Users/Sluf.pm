@@ -34,7 +34,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'sanc' => [ "prepare 213", "cast" ],
         'msanc' => [ "prepare 220", "cast" ],
         'bread' => [ "prepare 203", "summon peppercorn flatbread", "give flatbread to {pv1}" ],
-        'buff' => [ "prepare 219", "cast", "sleep 5", "prepare 218", "cast", "sleep 20", "prepare 215", "cast", "sleep 20", "prepare 211", "cast", "sleep 5", "prepare 107", "cast", "sleep 5", "prepare 103", "cast", "sleep 5", "prepare 202", "cast", "sleep 5", "prepare 102", "cast", "sleep 5", "prepare 101", "cast", "sleep 5", "prepare 303", "cast", "sleep 20", "prepare 307", "cast", "sleep 5", "prepare 310", "cast", "sleep 20", "prepare 313", "cast" ],
+        'buff' => [ "prepare 101", "cast", "sleep 5", "prepare 1601", "cast" ],
     );
 
 %TRAVEL = (
