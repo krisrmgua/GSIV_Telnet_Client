@@ -52,6 +52,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'v' => [ "incant 1101" ],
         'x' => [ "incant 1700" ],
         'buff' => [ "prepare 1130", "cast", "sleep 5", "prepare 1125", "cast", "sleep 20", "prepare 120", "cast", "sleep 5", "prepare 1119", "cast", "sleep 20", "prepare 219", "cast", "sleep 5", "prepare 218", "cast", "sleep 20", "prepare 115", "cast", "sleep 5", "prepare 215", "cast", "sleep 20", "prepare 211", "cast", "sleep 5", "prepare 1109", "cast", "sleep 20", "prepare 107", "cast", "sleep 5", "prepare 103", "cast", "sleep 5", "prepare 202", "cast", "sleep 5", "prepare 102", "cast", "sleep 5", "prepare 101" ],
+        'ubuff' => [ "prepare 101", "cast {pv1}", "sleep 5", "prepare 202", "cast {pv1}", "sleep 5", "prepare 107", "cast {pv1}" ],
     );
 
 %TRAVEL = (
