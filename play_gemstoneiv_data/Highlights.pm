@@ -111,6 +111,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Woory' => "color_red",
         'Darkl' => "color_red",
         'Itiems' => "color_red",
+        'Itemim' => "color_red",
         'Loads' => "color_red",
         'Loods' => "color_red",
         'Seadoo' => "color_red",
