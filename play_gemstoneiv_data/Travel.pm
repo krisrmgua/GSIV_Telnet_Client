@@ -20,7 +20,7 @@ use vars qw/%GLOBALS %TRAVEL %CURRENTLOC/;
         wl_grave_crypt => "The entry foyer to this enormous granite crypt is stark, adorned only",
         wl_voln => "A well maintained and healthy garden occupies the entirety of the courtyard.  The air here is cool and crisp",
         wl_war_guild => "This appealing rest spot sits directly before the steps leading to the Guild Hall door.",
-        ice_tc => "The bustling town comes together in this square.  Halflings dressed in varying fashions stand about, some chattering happily",
+        ice_tc => "The center of the bustling frontier town is overseen by the large ice statue of a mule",
         ice_gem => "Apprentices, all lined up in a row at a short steel counter, work",
         ice_locker1 => "are standing in a cramped room",
         ice_locker2 => "A small oil lamp provides a bright light as it reflects from the walls.",
