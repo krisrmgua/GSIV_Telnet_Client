@@ -11,6 +11,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Silversoft' => "color_pink",
         'Mne' => "color_pink",
         'Gleda' => "color_pink",
+        'Alisette' => "color_pink",
         'Ilande' => "color_pink",
         'Laeech' => "color_pink",
         'Baslim' => "color_pink",
@@ -259,19 +260,13 @@ sub color_names {
     for my $player_type_key ( sort keys %HIGHLIGHT_NAMES_FUNC_HASH ) {
         for my $player_name_key ( keys %{ $HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key} } ) {
             if($line =~ /$player_name_key/){
-                my $highlight_line = $COLORS_FUNC->{$HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key}{$player_name_key}} . $player_name_key;
+                my $highlight_line = $COLORS_FUNC->{$HIGHLIGHT_NAMES_FUNC_HASH{$player_type_key}{$player_name_key}} . $player_name_key . $COLORS_FUNC->{'color_normal'};
                 my $tmp_norm = $COLORS_FUNC->{'color_normal'};
                 if($player_type_key eq "MONSTERS"){
                     $line =~ s/$player_name_key/$highlight_line!!NORMAL!!/g;
                 }else{
-                    $line =~ s/$player_name_key\'s/$highlight_line\'s!!NORMAL!!/g;
-                    $line =~ s/$player_name_key\./$highlight_line!!NORMAL!!\./g;
-                    $line =~ s/$player_name_key\,/$highlight_line!!NORMAL!!,/g;
-                    $line =~ s/$player_name_key\n/$highlight_line!!NORMAL!!\n/g;
-                    $line =~ s/$player_name_key\r/$highlight_line!!NORMAL!!\r/g;
-                    $line =~ s/ $player_name_key/ $highlight_line!!NORMAL!!/g;
-                    $line =~ s/ $player_name_key / $highlight_line!!NORMAL!! /g;
-                    $line =~ s/$player_name_key /$highlight_line!!NORMAL!! /g;
+                    $line =~ s/$player_name_key\'s/$highlight_line\'s/g;
+                    $line =~ s/$player_name_key/$highlight_line/g;
                 }
                 $line =~ s/!!NORMAL!!/$tmp_norm/gi;
             }
@@ -310,10 +305,11 @@ sub color_text {
                 $tmp_color2 =~ s/\[/!bb!/gi;
                 my $tmp_match = $tmp_color2 . $tmp_color1;
                 $match =~ s/$tmp_color2/$tmp_match/gi;
-                $line =~ s/$tmp_color2/$tmp_match/gi;
-                my $highlight_line = $tmp_color1 . $match . $tmp_color2;
+                #$line =~ s/$tmp_color2/$tmp_match/gi;
+                #my $highlight_line = $tmp_color1 . $match . $tmp_color2;
+                my $highlight_line = $COLORS_FUNC->{$HIGHLIGHT_TEXT_FUNC_HASH{$item_name_key}{$item_regex_key}} . $match . $COLORS_FUNC->{'color_normal'};
                 $line =~ s/$match/$highlight_line/gi;
-                $line .= $tmp_color2;
+                #$line .= $tmp_color2;
             }
         }
     }
