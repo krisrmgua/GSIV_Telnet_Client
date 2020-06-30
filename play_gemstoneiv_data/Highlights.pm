@@ -216,7 +216,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'heads_w' => { 'heads west' => "color_yellow" },
         'moves' => { '(A .* scampers \w+!|A .* trots \w+!)' => "color_yellow" },
         'death' => { '(.*just bit the dust!|The death cry of \w+ echoes in your mind!)' => "color_bold" },
-        'accept' => { '(.*Type ACCEPT to accept the offer.*)' => "color_white_on_red" },
+        'accept' => { 'Type ACCEPT to accept the offer or DECLINE to decline it.' => "color_white_on_red" },
         'coin' => { '(.*coins which you quickly pocket\.)' => "color_red" },
         'weapon_falls' => { '(The death dirge focuses its voice on your .* falls to the ground\.|\w+ falls to the ground\.)' => "color_white_on_red" },
         'weapon_unbless' => { '(Your \w*\s*\w*\s*\w*\s*\w+ returns to normal\.)' => "color_white_on_blue" },
@@ -303,11 +303,7 @@ sub color_text {
                 $tmp_color1 =~ s/\[/!bb!/gi;
                 my $tmp_color2 = $COLORS_FUNC->{'color_normal'} ;
                 $tmp_color2 =~ s/\[/!bb!/gi;
-                my $tmp_match = $tmp_color2 . $tmp_color1;
-                $match =~ s/$tmp_color2/$tmp_match/gi;
-                #$line =~ s/$tmp_color2/$tmp_match/gi;
-                #my $highlight_line = $tmp_color1 . $match . $tmp_color2;
-                my $highlight_line = $COLORS_FUNC->{$HIGHLIGHT_TEXT_FUNC_HASH{$item_name_key}{$item_regex_key}} . $match . $COLORS_FUNC->{'color_normal'};
+                my $highlight_line = $tmp_color1 . $match . $tmp_color2;
                 $line =~ s/$match/$highlight_line/gi;
                 #$line .= $tmp_color2;
             }
@@ -331,9 +327,6 @@ sub color_text_pre {
                 $tmp_color1 =~ s/\[/!bb!/gi;
                 my $tmp_color2 = $COLORS_FUNC->{'color_normal'} ;
                 $tmp_color2 =~ s/\[/!bb!/gi;
-                my $tmp_match = $tmp_color2 . $tmp_color1;
-                $match =~ s/$tmp_color2/$tmp_match/gi;
-                $line =~ s/$tmp_color2/$tmp_match/gi;
                 my $highlight_line = $tmp_color1 . $match . $tmp_color2;
                 $line =~ s/$match/$highlight_line/gi;
                 $line .= $tmp_color2;

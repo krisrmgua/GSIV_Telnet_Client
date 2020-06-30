@@ -11,10 +11,13 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     charecter			=> 'Sluf',
     account_username		=> 'KRISRMGUA5',
     player_id			=> 'W_KRISRMGUA5_000',
-    player_weapon1		=> 'runestaff',
-    player_weapon2		=> 'rune belt',
+    player_weapon1		=> 'sword',
+    player_skin_knife1		=> 'knife',
+    player_skin_sheath1		=> 'shirt',
+    player_sheath		=> 'trimmed sheath',
+    player_shield		=> 'shield',
     player_cloak		=> 'cloak',
-    player_backpack1		=> 'pack',
+    player_backpack1		=> 'backpack',
     player_backpack2		=> 'cloak',
     );
 
@@ -23,17 +26,12 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     );
 
 %SCRIPTS = (
-        'rem' => [ "tap my $GLOBALS{'player_weapon2'}" ],
-        'wear' => [ "clench my $GLOBALS{'player_weapon1'}" ],
-        'get' => [ "open my $GLOBALS{'player_backpack1'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack1'}", "close my $GLOBALS{'player_backpack1'}"  ],
-        'get2' => [ "open my $GLOBALS{'player_backpack2'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack2'}", "close my $GLOBALS{'player_backpack2'}"  ],
-        's' => [ "clench my $GLOBALS{'player_weapon1'}", "get my knife from my shirt", "kneel", "skin {pv1} with my knife", "stand", "put my knife in my shirt", "tap my $GLOBALS{'player_weapon2'}", "loot" ],
-        'look' => [ "prepare 116", "cast {pv1}" ],
-        'tran' => [ "prepare 225", "cast {pv1}" ],
+        'rem' => [ "open my $GLOBALS{'player_sheath'}", "get my $GLOBALS{'player_weapon1'}", "remove my $GLOBALS{'player_shield'}" ],
+        'wear' => [ "wear my $GLOBALS{'player_shield'}", "put my $GLOBALS{'player_weapon1'} in my $GLOBALS{'player_sheath'}" ],
+        'get' => [ "put my $GLOBALS{'player_weapon1'} in my $GLOBALS{'player_sheath'}", "open my $GLOBALS{'player_backpack1'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack1'}", "get my $GLOBALS{'player_weapon1'}", "close my $GLOBALS{'player_backpack1'}"  ],
+        'get2' => [ "put my $GLOBALS{'player_weapon1'} in my $GLOBALS{'player_sheath'}", "open my $GLOBALS{'player_backpack2'}", "get {pv1}", "put my {pv1} in my $GLOBALS{'player_backpack2'}", "get my $GLOBALS{'player_weapon1'}", "close my $GLOBALS{'player_backpack2'}"  ],
+        's' => [ "put my $GLOBALS{'player_weapon1'} in my $GLOBALS{'player_sheath'}", "get my $GLOBALS{'player_skin_knife1'} from my $GLOBALS{'player_skin_sheath1'}", "kneel", "skin {pv1} with my $GLOBALS{'player_skin_knife1'}", "stand", "put my $GLOBALS{'player_skin_knife1'} in my $GLOBALS{'player_skin_sheath1'}", "get my $GLOBALS{'player_weapon1'}", "loot" ],
         'c' => [ "INCANT 302" ],
-        'sanc' => [ "prepare 213", "cast" ],
-        'msanc' => [ "prepare 220", "cast" ],
-        'bread' => [ "prepare 203", "summon peppercorn flatbread", "give flatbread to {pv1}" ],
         'buff' => [ "prepare 101", "cast", "sleep 5", "prepare 1601", "cast" ],
     );
 
