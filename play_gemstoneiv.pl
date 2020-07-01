@@ -162,9 +162,10 @@ sub prompt_for_charecter {
     print $COLORS{'color_red'} . "|-------------------------------------------" . $COLORS{color_normal}. "\n";
     my $current_dir_name = dirname(__FILE__);
     opendir (DIR, "$current_dir_name/play_gemstoneiv_data/Users/") or die $!;
+    my @files = sort { $a cmp $b } readdir(DIR);
     my %list_users = ();
     my $counter_x = 1;
-    while (my $file = readdir(DIR)) {
+    while ( my $file = shift @files ) {
         if($file =~ /(.*?)\.pm/){
             $list_users{$counter_x} = $1;
             print $COLORS{'color_red'} . "|\t$counter_x" . $COLORS{'color_normal'} . ":" . $COLORS{'color_green'} . " $1 " . $COLORS{'color_normal'} . "\n";
