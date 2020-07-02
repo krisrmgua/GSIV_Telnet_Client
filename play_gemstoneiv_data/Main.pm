@@ -46,6 +46,8 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     color_ranger => "\033[38;5;106m",
     color_bard => "\033[38;5;226m",
     color_wiz => "\033[38;5;12m",
+    color_light_grey => "\033[38;5;249m",
+    color_dark_red => "\033[38;5;160m",
     );
 
 sub get_session_key {
