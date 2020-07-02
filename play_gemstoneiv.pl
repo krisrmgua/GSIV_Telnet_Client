@@ -159,7 +159,7 @@ exit;
 
 sub prompt_for_charecter {
     print $COLORS{'color_gold'} . "What charecter would you like to play: "  . $COLORS{color_normal} . "\n";
-    print $COLORS{'color_red'} . "|-------------------------------------------" . $COLORS{color_normal}. "\n";
+    print $COLORS{'color_wiz'} . "|-------------------------------------------" . $COLORS{color_normal}. "\n";
     my $current_dir_name = dirname(__FILE__);
     opendir (DIR, "$current_dir_name/play_gemstoneiv_data/Users/") or die $!;
     my @files = sort { $a cmp $b } readdir(DIR);
@@ -178,12 +178,12 @@ sub prompt_for_charecter {
     }
     closedir(DIR);
     for my $acc (sort keys %accounts){
-        print $COLORS{'color_red'} . "|$acc:" . $COLORS{'color_normal'} . "\n";
+        print $COLORS{'color_wiz'} . "|" . $COLORS{'color_light_grey'} . "\t$acc:" . $COLORS{'color_normal'} . "\n";
         for my $acc2 (sort keys %{$accounts{$acc}}){
-            print $COLORS{'color_red'} . "|\t$accounts{$acc}->{$acc2}" . $COLORS{'color_normal'} . ":" . $COLORS{'color_green'} . " $acc2 " . $COLORS{'color_normal'} . "\n";
+            print $COLORS{'color_wiz'} . "|" .$COLORS{'color_dark_red'} . "\t  $accounts{$acc}->{$acc2}" . $COLORS{'color_normal'} . ":" . $COLORS{'color_pal'} . "\t$acc2 " . $COLORS{'color_normal'} . "\n";
         }
     }
-    print $COLORS{'color_red'} . "|-------------------------------------------" . $COLORS{color_normal}. "\n";
+    print $COLORS{'color_wiz'} . "|-------------------------------------------" . $COLORS{color_normal}. "\n";
     my $selection_number = &promptUser($COLORS{'color_gold'} . "Enter number of Charecter to Play: " . $COLORS{'color_normal'},1);
     return $list_users{$selection_number};
 }
