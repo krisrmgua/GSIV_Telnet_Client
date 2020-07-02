@@ -164,15 +164,25 @@ sub prompt_for_charecter {
     opendir (DIR, "$current_dir_name/play_gemstoneiv_data/Users/") or die $!;
     my @files = sort { $a cmp $b } readdir(DIR);
     my %list_users = ();
+    my %accounts = ();
     my $counter_x = 1;
     while ( my $file = shift @files ) {
         if($file =~ /(.*?)\.pm/){
             $list_users{$counter_x} = $1;
-            print $COLORS{'color_red'} . "|\t$counter_x" . $COLORS{'color_normal'} . ":" . $COLORS{'color_green'} . " $1 " . $COLORS{'color_normal'} . "\n";
+            my $acc_name = `grep account_username $current_dir_name/play_gemstoneiv_data/Users/$file | awk -F \\' {'print \$2'}`;
+            chomp($acc_name);
+            $accounts{$acc_name}{$1} = $counter_x;
+            #print $COLORS{'color_red'} . "|\t$counter_x" . $COLORS{'color_normal'} . ":" . $COLORS{'color_green'} . " $1 " . $COLORS{'color_normal'} . "($acc_name)\n";
             $counter_x++;
         }
     }
     closedir(DIR);
+    for my $acc (sort keys %accounts){
+        print $COLORS{'color_red'} . "|$acc:" . $COLORS{'color_normal'} . "\n";
+        for my $acc2 (sort keys %{$accounts{$acc}}){
+            print $COLORS{'color_red'} . "|\t$accounts{$acc}->{$acc2}" . $COLORS{'color_normal'} . ":" . $COLORS{'color_green'} . " $acc2 " . $COLORS{'color_normal'} . "\n";
+        }
+    }
     print $COLORS{'color_red'} . "|-------------------------------------------" . $COLORS{color_normal}. "\n";
     my $selection_number = &promptUser($COLORS{'color_gold'} . "Enter number of Charecter to Play: " . $COLORS{'color_normal'},1);
     return $list_users{$selection_number};
