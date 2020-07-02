@@ -139,6 +139,8 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'Darkl' => "color_red",
         },
     MONSTERS => {
+        'A fire salamander' => "color_red",
+        'a fire salamander' => "color_red",
         'an arch wight' => "color_red",
         'An arch wight' => "color_red",
         'a wraith' => "color_red",
