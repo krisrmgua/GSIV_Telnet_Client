@@ -38,6 +38,14 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     color_white_on_red => "\033[1m\033[41m",
     color_bold => "\033[1m",
     color_normal => "\033[0m",
+    color_sorc => "\033[38;5;162m",
+    color_warr => "\033[38;5;94m",
+    color_pal => "\033[38;5;81m",
+    color_monk => "\033[38;5;214m",
+    color_other => "\033[38;5;139m",
+    color_ranger => "\033[38;5;106m",
+    color_bard => "\033[38;5;226m",
+    color_wiz => "\033[38;5;12m",
     );
 
 sub get_session_key {
