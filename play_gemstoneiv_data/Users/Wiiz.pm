@@ -55,6 +55,12 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'ubuff' => [ "prepare 401", "cast {pv1}", "sleep 5", "prepare 406", "cast {pv1}", "sleep 5", "prepare 414", "cast {pv1}", "sleep 5", "prepare 503", "cast {pv1}", "sleep 5", "prepare 509", "cast {pv1}" ],
         'blurs' => [ "prepare 911", "cast", "sleep 5", "prepare 911", "cast", "sleep 5", "prepare 911", "cast", "sleep 5", "prepare 911", "cast", "sleep 5", "prepare 911", "cast", "sleep 5", "prepare 911", "cast", "sleep 5", "prepare 911", "cast", "sleep 5", "prepare 911", "cast" ],
         'disk' => [ "prepare 511", "cast {pv1}" ],
+        '1' => [ "prepare 401", "cast {pv1}" ],
+        '2' => [ "prepare 406", "cast {pv1}" ],
+        '3' => [ "prepare 414", "cast {pv1}" ],
+        '4' => [ "prepare 503", "cast {pv1}" ],
+        '5' => [ "prepare 509", "cast {pv1}" ],
+        '6' => [ "prepare 911", "cast {pv1}" ],
     );
 
 %TRAVEL = (

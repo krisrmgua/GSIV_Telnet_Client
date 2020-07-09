@@ -31,6 +31,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'look' => [ "prepare 116", "cast {pv1}" ],
         'tran' => [ "prepare 225", "cast {pv1}" ],
         'c' => [ "INCANT 302" ],
+        'l' => [ "touch {pv1} link", "say ::{pv1} just a moment" ],
         'sanc' => [ "prepare 213", "cast" ],
         'msanc' => [ "prepare 220", "cast" ],
         'bread' => [ "prepare 203", "summon peppercorn flatbread", "give flatbread to {pv1}" ],

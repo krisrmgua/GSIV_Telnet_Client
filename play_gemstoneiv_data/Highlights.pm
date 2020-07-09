@@ -242,6 +242,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'dead_dies' => { '(body as it rises, disappearing into the heavens.|falls to the ground motionless|.*to the ground and dies|lets out a final scream and goes still.|screams evilly one last time and goes still.)' => "color_yellow" },
         ##SPEACH
         'nods' => { '^(.* nods .*)$' => "color_gold" },
+        'emplink' => { '^(You sense a successful empathic link has been forged between you .*)$' => "color_white_on_red" },
         'says' => { '(.* says, \".*\"|.* say, \".*\")' => "color_yellow" },
         'asks' => { '(.* asks, \".*\"|.* ask, \".*\")' => "color_yellow" },
         'whispers' => { '(.* whispers, ".*")' => "color_white_on_blue" },
