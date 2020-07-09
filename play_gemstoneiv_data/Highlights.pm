@@ -9,6 +9,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     EMPATHS => {
         'Oguo' => "color_pink",
         'Silversoft' => "color_pink",
+        'Chandrellia' => "color_pink",
+        'Alosaka' => "color_pink",
+        'Feldane' => "color_pink",
+        'Erinaya' => "color_pink",
         'Mne' => "color_pink",
         'Gleda' => "color_pink",
         'Alisette' => "color_pink",
@@ -221,6 +225,8 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'room name' => { '^\!bb!(.*?)\]' => "color_bold" },
         'also_here' => { 'Also here:' => "color_other" },
         'just_arrived' => { 'just arrived' => "color_other" },
+        'emplink' => { 'You sense a successful' => "color_white_on_red" },
+        'emplink2' => { 'link has been forged between you' => "color_white_on_red" },
         'you_whisper' => { 'You quietly whisper to' => "color_white_on_blue" },
         'heads_ne' => { 'heads northeast' => "color_yellow" },
         'heads_nw' => { 'heads northwest' => "color_yellow" },
@@ -242,7 +248,6 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'dead_dies' => { '(body as it rises, disappearing into the heavens.|falls to the ground motionless|.*to the ground and dies|lets out a final scream and goes still.|screams evilly one last time and goes still.)' => "color_yellow" },
         ##SPEACH
         'nods' => { '^(.* nods .*)$' => "color_gold" },
-        'emplink' => { '^(You sense a successful empathic link has been forged between you .*)$' => "color_white_on_red" },
         'says' => { '(.* says, \".*\"|.* say, \".*\")' => "color_yellow" },
         'asks' => { '(.* asks, \".*\"|.* ask, \".*\")' => "color_yellow" },
         'whispers' => { '(.* whispers, ".*")' => "color_white_on_blue" },
