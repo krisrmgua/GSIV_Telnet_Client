@@ -20,3 +20,4 @@
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Seadoo > /tmp/Seadoo.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Wiiz > /tmp/Wiiz.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Bardi > /tmp/Bardi.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Sorci > /tmp/Sorci.txt
