@@ -100,6 +100,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         },
     SORCERERS => {
         'Sazlo' => "color_sorc",
+        'Sorci' => "color_sorc",
         },
     MONKS => {
         'NAMEHERE' => "color_monk",
