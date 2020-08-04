@@ -9,8 +9,8 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
 );
 %GLOBALS = (
     charecter			=> 'Oguo',
-    account_username		=> 'KRISRMGUA',
-    player_id			=> 'W_KRISRMGUA_W000',
+    account_username		=> 'KRISRMGUA2',
+    player_id			=> 'W_KRISRMGUA2_W004',
     player_weapon1		=> 'runestaff',
     player_weapon2		=> 'rune wristlet',
     player_cloak		=> 'cloak',
