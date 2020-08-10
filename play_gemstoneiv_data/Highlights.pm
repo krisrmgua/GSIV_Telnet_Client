@@ -110,6 +110,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         },
     WARRIORS => {
         'Woory' => "color_warr",
+        'Loads' => "color_warr",
         'Itiems' => "color_warr",
         'Itemim' => "color_warr",
         'Loads' => "color_warr",
@@ -129,6 +130,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         },
     RANGERS => {
         'Seadoo' => "color_ranger",
+        'Clu' => "color_ranger",
     },
     BARDS => {
         'Bardi' => "color_bard",
