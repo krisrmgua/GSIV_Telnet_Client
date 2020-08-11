@@ -207,10 +207,10 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
         'skins' => { '(a spider leg|a cobra skin|an ant larva|an ant pincer|a squirrel tail|a rolton pelt)' => "color_gold" },
         ##Herbs
         'herb_heal_1' => { '(some acantha leaf)' => "color_green" },
-        'herb_wound_1' => { '(a rose-marrow potion|some ambrominas leaf|some basal moss|some wolifrew lichen)' => "color_blue" },
-        'herb_wound_2' => { '(some ephlox moss|some aloeas stem|some pothinir grass)' => "color_black_on_light_blue" },
-        'herb_scar_1' => { '(some torban leaf|some cactacae spine|some haphip root|some woth flower)' => "color_yellow" },
-        'herb_scar_2' => { '(some sovyn clove|some calamia fruit)' => "color_black_on_yellow" },
+        'herb_wound_1' => { '(a rose-marrow potion|ambrominas leaf|basal moss|wolifrew lichen)' => "color_blue" },
+        'herb_wound_2' => { '(ephlox moss|aloeas stem|pothinir grass)' => "color_black_on_light_blue" },
+        'herb_scar_1' => { '(torban leaf|cactacae spine|haphip root|woth flower)' => "color_yellow" },
+        'herb_scar_2' => { '(sovyn clove|calamia fruit)' => "color_black_on_yellow" },
     );
 
 %HIGHLIGHT_TEXT = (
