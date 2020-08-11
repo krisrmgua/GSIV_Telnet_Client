@@ -30,7 +30,7 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     color_dark_grey_on_white => "\033[1;30m\033[47m",
     color_dark_green => "\033[32m",
     color_red => "\033[1;31m",
-    color_blue => "\033[1;36m",
+    color_blue => "\033[38;5;12m",
     color_purple => "\033[1;34m",
     color_pink => "\033[1;35m",
     color_dark_purple => "\033[35m",
