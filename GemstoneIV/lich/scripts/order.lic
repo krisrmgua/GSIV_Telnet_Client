@@ -1,0 +1,8 @@
+
+order = proc { |num, item|
+    fput "order #{num}"
+    fput "buy"
+    fput "drop #{item}"
+}
+
+order.call(script.vars[1], script.vars[2])

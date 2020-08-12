@@ -1,0 +1,37 @@
+lootsack = UserVars.lootsack
+echo "Found lootsack: #{lootsack}" if debug    
+fput "open my #{lootsack}"
+
+if GameObj.right_hand.name != "Empty"
+    right_hand = GameObj.right_hand.id
+    fput "stow #{GameObj.right_hand}"
+end
+if GameObj.left_hand.name != "Empty"
+    left_hand = GameObj.left_hand.id
+    fput "stow #{GameObj.left_hand}"
+end
+
+loop {
+
+    if GameObj.right_hand.name != "Empty" && GameObj.left_hand.name != "Empty"
+        fput "stow ##{GameObj.left_hand.id}"
+    end
+    while Spell[1118].affordable?
+        fput "prepare 1118"
+        sleep 4
+        fput "summon acantha leaf"
+        while line = get               
+            if line =~ /Some (.*) suddenly appears at your feet\./
+                herb = $1.strip
+                break
+            end
+        end
+        fput "get #{herb}"
+        fput "stow #{herb}"
+        sleep 3
+    end
+sleep 300
+start_script "bundleall"
+sleep 60
+}
+exit

@@ -1,0 +1,9 @@
+fput "out"
+loop {
+    fput "go gate"
+    sleep 1
+    if Room.current.id.to_s == "4140"
+        break
+    end
+    sleep 2
+}

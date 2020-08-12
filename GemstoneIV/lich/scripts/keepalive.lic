@@ -1,0 +1,4 @@
+while true
+    fput "l"
+    sleep 60
+end

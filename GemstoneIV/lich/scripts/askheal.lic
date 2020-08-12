@@ -1,0 +1,52 @@
+if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+    fput "tap aiss2"
+    line = matchtimeout 10, "What were you referring to", "You lightly tap"
+    if line =~ /What were you referring to/
+        mynum = rand(1..6)
+        if mynum == 1
+            fput "say Can I get some healing?"
+        elsif mynum == 2
+            fput "say Anyone healing please?"
+        elsif mynum == 3
+            fput "say I am in need of healing"
+        elsif mynum == 4
+            fput "say Any empaths working?"
+        elsif mynum == 5
+            fput "say Healing please?"
+        elsif mynum == 6
+            fput "say Is there a healer available?"
+        else
+            fput "say Anyone healing?"
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 or Wounds.leftArm > 0 or Wounds.rightArm > 0 or Wounds.leftLeg > 0 or Wounds.rightLeg > 0 or Wounds.back > 0 or Wounds.leftHand > 0 or Wounds.rightHand > 0 or Wounds.nerves > 0 or Wounds.leftEye > 0 or Wounds.rightEye > 0
+            sleep 10
+        end
+        if Wounds.abdomen < 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.chest < 1 and Wounds.leftArm < 1 and Wounds.rightArm < 1 and Wounds.leftLeg < 1 and Wounds.rightLeg < 1 and Wounds.back < 1 and Wounds.leftHand < 1 and Wounds.rightHand < 1 and Wounds.nerves < 1 and Wounds.leftEye < 1 and Wounds.rightEye < 1
+            fput "say Thanks" 
+        end
+    end
+    if line =~ /You lightly tap/
+        sleep 90
+    end
+end

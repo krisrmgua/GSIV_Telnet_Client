@@ -1,0 +1,144 @@
+get_bless_woory = proc { 
+    Script.run('go2', 'landing')
+    fput "open my sheath"
+    fput "get my axe from my sheath"
+    loop {
+        fput "whisper sluf bless me"
+        line = matchtimeout 10, "Silvery tendrils rise up and wreathe their way around your"
+        if line =~ /Silvery tendrils rise up and wreathe their way around your/
+            break
+        end
+        sleep 60
+    }
+    loop {
+        fput "whisper pristeen bless me"
+        line = matchtimeout 10, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
+        if line =~ /silvery wisps enfolds your/
+            break
+        end
+        if line =~ /brilliant shower of sparks bursts from your/
+            break
+        end
+        sleep 60
+    }
+    fput "put my axe in my sheath"
+}
+
+get_bless_clu = proc { 
+    Script.run('go2', 'landing')
+    fput "open my greatc"
+    fput "get my arrow from my greatc"
+    loop {
+        fput "whisper sluf bless me"
+        line = matchtimeout 10, "Silvery tendrils rise up and wreathe their way around your", "brilliant shower of sparks bursts from your"
+        if line =~ /Silvery tendrils rise up and wreathe their way around your/
+            break
+        end
+        if line =~ /brilliant shower of sparks bursts from your/
+            break
+        end
+        sleep 60
+    }
+    loop {
+        fput "whisper pristeen bless me"
+        line = matchtimeout 10, "silvery wisps enfolds your"
+        if line =~ /silvery wisps enfolds your/
+            break
+        end
+        sleep 60
+    }
+    fput "put my arrow in my greatc"
+}
+
+def monitor_interaction()
+    start_exec_script( <<-eos
+        def show_window(line);
+            window_title = Char.name + ':' + line;
+            Gtk.queue {
+                $myWindow = Gtk::Window.new;
+                $myWindow.title = "Dead Body Found";
+                $myWindow.set_size_request(450, 25);
+                label = Gtk::Label.new window_title;
+                $myWindow.add(label);
+                $myWindow.show_all;
+            };
+        end;
+        line = "Dead Body Found"
+        show_window(line);
+        echo "AUTOBOT ALERT: " + line;
+        eos
+    )
+end
+Myname = Char.name
+loop {
+    line = matchtimeout 10, "the body of", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
+    if line =~ /the body of/
+        if Room.current.id.to_s !~ /^228$/
+            echo "kris you found the body of" + Room.current.id.to_s
+            monitor_interaction()
+        end
+    end
+	if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
+		healee = $1
+        if Myname == "Pristeen"
+		    if Spell[304].affordable?
+		        Spell[304].cast healee
+            end
+        end
+        if Myname == "Sluf"
+            if Spell[1604].affordable?
+		        Spell[1604].cast healee
+            end
+        end
+	end
+    if line =~ /but it has no effect!/ and Myname == "Clu"
+        loop {
+            #if Room.current.id.to_s == "228"
+            line = matchtimeout 10, "You are wearing"
+            if line =~ /You are wearing/
+                break
+            end
+        }
+        get_bless_clu.call()
+        start_script('bigshot')
+    end
+    if line =~ /golvern battle axe returns to normal/ and Myname == "Woory"
+        loop {
+            #if Room.current.id.to_s == "228"
+            line = matchtimeout 10, "You are wearing"
+            if line =~ /You are wearing/
+                break
+            end
+        }
+        get_bless_woory.call()
+        start_script('bigshot')
+    end
+    if line =~ /([A-Z,a-z]+) focuses on you with intense concentration/
+        healee = $1
+        if Room.current.id.to_s == "228"
+            mynum = rand(1..5)
+            if mynum == 1
+                silver = "300"
+            elsif mynum == 2
+                silver = "325"
+            elsif mynum == 3
+                silver = "350"
+            elsif mynum == 4
+                silver = "400"
+            elsif mynum == 5
+                silver = "450"
+            else
+                silver = "315"
+            end
+            sleep 20
+            start_script "bank", [silver]
+            pause 6
+            kill_script "bank"
+            fput "give " + healee + " " + silver + " silver"
+            pause 1
+            start_script "bank"
+            pause 6
+            kill_script "bank"
+        end
+    end
+}

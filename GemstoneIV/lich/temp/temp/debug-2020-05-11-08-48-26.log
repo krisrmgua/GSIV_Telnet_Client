@@ -1,0 +1,7 @@
+2020-05-11 08:48:26: info: Lich 4.6.52
+2020-05-11 08:48:26: info: Ruby 2.5.5
+2020-05-11 08:48:26: info: i386-mingw32
+2020-05-11 08:48:27: info: no force-mode info given
+#<Thread:0x07057488@D:/Google Drive/Software/GemstoneIV/GemstoneIV LICH/lich/temp/lich-4.6.52.rbw:10592 run> terminated with exception (report_on_exception is true):
+D:/Google Drive/Software/GemstoneIV/GemstoneIV LICH/lich/temp/lich-4.6.52.rbw:11910:in `kill': wrong number of arguments (given 0, expected 1) (ArgumentErrorD:/Google Drive/Software/GemstoneIV/GemstoneIV LICH/lich/temp/lich-4.6.52.rbw:11910:in `kill': wrong number of arguments (given 0, expected 1) (ArgumentError)
+	from D:/Google Drive/Software/GemstoneIV/GemstoneIV LICH/lich/temp/lich-4.6.52.rbw:11910:in `block in <main>'

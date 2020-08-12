@@ -1,0 +1,28 @@
+loop {
+    def monitor_interaction()
+        start_exec_script( <<-eos
+            def show_window(line);
+                window_title = Char.name + ':' + line;
+                Gtk.queue {
+                    $myWindow = Gtk::Window.new;
+                    $myWindow.title = "DeadBody";
+                    $myWindow.set_size_request(450, 25);
+                    label = Gtk::Label.new window_title;
+                    $myWindow.add(label);
+                    $myWindow.show_all;
+                };
+            end;
+            line = "Found Dead Body"
+            show_window(line);
+            echo "AUTOBOT ALERT: " + line;
+            eos
+        )
+    end
+    line = matchtimeout 10, "the body of"
+    if line =~ /the body of/
+        if Room.current.id.to_s != 228
+            echo "kris you found the body of"
+            monitor_interaction()
+        end
+    end
+}

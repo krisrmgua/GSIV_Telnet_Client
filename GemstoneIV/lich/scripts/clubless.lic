@@ -1,0 +1,36 @@
+get_bless = proc { 
+    Script.run('go2', 'landing')
+    fput "open my greatc"
+    fput "get my arrow from my greatc"
+    loop {
+        fput "tick sluf"
+        line = matchtimeout 10, "Silvery tendrils rise up and wreathe their way around your"
+        if line =~ /Silvery tendrils rise up and wreathe their way around your/
+            break
+        end
+        sleep 60
+    }
+    loop {
+        fput "tick pristeen"
+        line = matchtimeout 10, "silvery wisps enfolds your"
+        if line =~ /silvery wisps enfolds your/
+            break
+        end
+        sleep 60
+    }
+    fput "put my arrow in my greatc"
+}
+
+loop {
+    line = matchtimeout 10, "but it has no effect"
+    if line =~ /but it has no effect!/
+        loop {
+            if Room.current.id.to_s == "228"
+                sleep 120
+                break
+            end
+        }
+        get_bless.call()
+        start_script('bigshot')
+    end
+}

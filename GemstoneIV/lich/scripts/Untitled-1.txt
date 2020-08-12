@@ -1,0 +1,1 @@
+injuries = injuries + line.scan(/((?:right |left )?(?:hand|arm|face|leg|chest|abdominal|eye|back|neck|head|convulsions|twitching|developed slurred speech))(?: area| trauma and bleeding from the ears)?(?:,| and|\.$)/).flatten()

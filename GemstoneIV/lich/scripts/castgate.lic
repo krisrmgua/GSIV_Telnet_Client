@@ -1,0 +1,19 @@
+=begin
+cast gate
+
+# Name: Cast Gate Go Gate
+# Authors: Oguo
+# Categories: cast gate
+# Tags: cast gate
+=end
+
+fput "prepare 304"
+pause 1
+fput "cast gate"
+pause 1
+fput "go gate"
+pause 1
+fput "go crypt"
+pause 1
+fput "med"
+exit

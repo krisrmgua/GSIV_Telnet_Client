@@ -1,0 +1,41 @@
+2020-08-11 20:17:31: info: Lich 4.6.58
+2020-08-11 20:17:31: info: Ruby 2.5.1
+2020-08-11 20:17:31: info: armv7l-linux-eabihf
+2020-08-11 20:17:31: info: DISPLAY environment variable is not set; not trying gtk
+2020-08-11 20:17:31: info: no force-mode info given
+2020-08-11 20:17:31: info: using quick game entry settings for Woory
+2020-08-11 20:17:32: info: gamehost: storm.gs4.game.play.net
+2020-08-11 20:17:32: info: gameport: 10024
+2020-08-11 20:17:32: info: game: STORM
+2020-08-11 20:17:32: info: connecting to game server (storm.gs4.game.play.net:10024)
+2020-08-11 20:17:32: info: connected
+2020-08-11 20:17:32: info: dropping superuser privileges...
+/root/GemstoneIV/lich/lich.rbw:3584: warning: constant ::Fixnum is deprecated
+bigshot:89: warning: already initialized constant BIGSHOT_VERSION
+bigshot:89: warning: previous definition of BIGSHOT_VERSION was here
+bigshot:90: warning: already initialized constant RALLY_TIME
+bigshot:90: warning: previous definition of RALLY_TIME was here
+bigshot:91: warning: already initialized constant REST_INTERVAL
+bigshot:91: warning: previous definition of REST_INTERVAL was here
+bigshot:368: warning: already initialized constant Bigshot::PRONE
+bigshot:368: warning: previous definition of PRONE was here
+bigshot:89: warning: already initialized constant BIGSHOT_VERSION
+bigshot:89: warning: previous definition of BIGSHOT_VERSION was here
+bigshot:90: warning: already initialized constant RALLY_TIME
+bigshot:90: warning: previous definition of RALLY_TIME was here
+bigshot:91: warning: already initialized constant REST_INTERVAL
+bigshot:91: warning: previous definition of REST_INTERVAL was here
+bigshot:368: warning: already initialized constant Bigshot::PRONE
+bigshot:368: warning: previous definition of PRONE was here
+bigshot:89: warning: already initialized constant BIGSHOT_VERSION
+bigshot:89: warning: previous definition of BIGSHOT_VERSION was here
+bigshot:90: warning: already initialized constant RALLY_TIME
+bigshot:90: warning: previous definition of RALLY_TIME was here
+bigshot:91: warning: already initialized constant REST_INTERVAL
+bigshot:91: warning: previous definition of REST_INTERVAL was here
+bigshot:368: warning: already initialized constant Bigshot::PRONE
+bigshot:368: warning: previous definition of PRONE was here
+2020-08-11 20:23:40: info: stopping scripts...
+2020-08-11 20:23:41: info: saving script settings...
+2020-08-11 20:23:41: info: closing connections...
+2020-08-11 20:23:41: info: exiting...

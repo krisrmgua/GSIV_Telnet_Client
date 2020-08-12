@@ -1,0 +1,11 @@
+=begin
+Meditate
+
+# Name: Med
+# Authors: Oguo
+# Categories: AMeditation
+# Tags: meditation
+=end
+
+fput "med"
+exit

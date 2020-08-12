@@ -1,0 +1,8 @@
+healee = "clu"
+start_script "bank", [200]
+pause 10
+kill_script "bank"
+fput "give " + healee + " 200 silver"
+start_script "bank"
+pause 10
+kill_script "bank"

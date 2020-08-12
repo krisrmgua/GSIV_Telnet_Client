@@ -1,0 +1,2 @@
+target = script.vars.shift
+fput "tap #{target}"

@@ -1,0 +1,12 @@
+loop {
+    line = matchtimeout 10, "tickles you"
+	if line =~ /([A-Z,a-z]+) tickles you\./
+		healee = $1
+		echo "Direct tap."
+		sleep 1
+		if Spell[304].affordable?
+		    Spell[304].cast healee
+        end
+		sleep 3
+	end
+}

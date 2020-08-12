@@ -1,0 +1,3 @@
+kill_script "bigshot"
+kill_script "go2"
+#Script.start('kill', 'go2', { :quiet => true })

@@ -1,0 +1,61 @@
+2020-08-11 20:25:26: info: Lich 4.6.58
+2020-08-11 20:25:26: info: Ruby 2.5.1
+2020-08-11 20:25:26: info: armv7l-linux-eabihf
+2020-08-11 20:25:26: info: DISPLAY environment variable is not set; not trying gtk
+2020-08-11 20:25:26: info: no force-mode info given
+2020-08-11 20:25:26: info: using quick game entry settings for Aiss
+2020-08-11 20:25:27: info: gamehost: storm.gs4.game.play.net
+2020-08-11 20:25:27: info: gameport: 10024
+2020-08-11 20:25:27: info: game: STORM
+2020-08-11 20:25:27: info: connecting to game server (storm.gs4.game.play.net:10024)
+2020-08-11 20:25:27: info: connected
+2020-08-11 20:25:27: info: dropping superuser privileges...
+2020-08-11 20:32:57: error: sheal:60: syntax error, unexpected tSTRING_DEND, expecting end-of-input
+	/root/GemstoneIV/lich/lich.rbw:2526:in `eval'
+	/root/GemstoneIV/lich/lich.rbw:2526:in `block (2 levels) in <class:Script>'
+/root/GemstoneIV/lich/lich.rbw:8029: warning: constant ::Fixnum is deprecated
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+/root/GemstoneIV/lich/lich.rbw:5722: warning: regular expression has redundant nested repeat operator '??': /successful empathic link|link failed???/
+2020-08-11 21:03:43: info: stopping scripts...
+2020-08-11 21:03:44: info: saving script settings...
+2020-08-11 21:03:44: info: closing connections...
+2020-08-11 21:03:44: info: exiting...

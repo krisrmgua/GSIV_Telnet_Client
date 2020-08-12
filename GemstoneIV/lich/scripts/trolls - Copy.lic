@@ -1,0 +1,121 @@
+=begin
+Keeps Trolls Blood (1125) Active
+
+# Name: Med
+# Authors: Oguo
+# Categories: Empath, Trolls Blood, Heal, Healing
+# Tags: Empath, Trolls Blood, Heal, Healing
+=end
+
+cast_trolls_blood = proc { 
+    next if not Spell[1125].known? or not Spell[1125].affordable?
+    if Spell[1125].timeleft < 30
+        Spell[1125].cast(nil)
+    end
+}
+
+cast_spirit_1 = proc { 
+    next if not Spell[101].known? or not Spell[101].affordable?
+    if Spell[101].timeleft < 30
+        Spell[101].cast(nil)
+    end
+}
+
+cast_emp_focus = proc { 
+    next if not Spell[1109].known? or not Spell[1109].affordable?
+    if Spell[1109].timeleft < 30
+        Spell[1109].cast(nil)
+    end
+}
+
+cast_spirit_bar = proc { 
+    next if not Spell[102].known? or not Spell[102].affordable?
+    if Spell[102].timeleft < 30
+        Spell[102].cast(nil)
+    end
+}
+
+cast_spirit_def = proc { 
+    next if not Spell[103].known? or not Spell[103].affordable?
+    if Spell[103].timeleft < 30
+        Spell[103].cast(nil)
+    end
+}
+
+cast_spirit_2 = proc { 
+    next if not Spell[107].known? or not Spell[107].affordable?
+    if Spell[107].timeleft < 30
+        Spell[107].cast(nil)
+    end
+}
+
+cast_fathers_reward = proc { 
+    next if not Spell[115].known? or not Spell[115].affordable?
+    if Spell[115].timeleft < 30
+        Spell[115].cast(nil)
+    end
+}
+
+cast_lesser_shroud = proc { 
+    next if not Spell[120].known? or not Spell[120].affordable?
+    if Spell[120].timeleft < 30
+        Spell[120].cast(nil)
+    end
+}
+
+cast_spirit_shield = proc { 
+    next if not Spell[202].known? or not Spell[202].affordable?
+    if Spell[202].timeleft < 30
+        Spell[202].cast(nil)
+    end
+}
+
+cast_bravery = proc { 
+    next if not Spell[211].known? or not Spell[211].affordable?
+    if Spell[211].timeleft < 30
+        Spell[211].cast(nil)
+    end
+}
+
+cast_heroism = proc { 
+    next if not Spell[215].known? or not Spell[215].affordable?
+    if Spell[215].timeleft < 30
+        Spell[215].cast(nil)
+    end
+}
+
+cast_spell_shield = proc { 
+    next if not Spell[219].known? or not Spell[219].affordable?
+    if Spell[219].timeleft < 30
+        Spell[219].cast(nil)
+    end
+}
+
+cast_intensity = proc { 
+    next if not Spell[1130].known? or not Spell[1130].affordable?
+    if Spell[1130].timeleft < 30
+        Spell[1130].cast(nil)
+    end
+}
+
+loop {
+    cast_spirit_1.call()
+    cast_spirit_bar.call()
+    cast_spirit_def.call()
+    cast_spirit_2.call()
+    cast_fathers_reward.call()
+    cast_lesser_shroud.call()
+    cast_spirit_shield.call()
+    cast_bravery.call()
+    cast_heroism.call()
+    cast_spell_shield.call()
+    cast_emp_focus.call()
+    cast_trolls_blood.call()
+    cast_intensity.call()
+    sleep 60
+}
+
+
+
+#fput "yes"
+exit

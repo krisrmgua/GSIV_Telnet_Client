@@ -1,0 +1,23 @@
+info: Thu Mar 22 17:44:27 -0600 2012
+info: Lich 4.3.6
+info: Ruby 1.8.7
+info: i386-mingw32
+info: $lich_dir: I:/New Install/GemstoneIV LICH/lich/
+info: $script_dir: I:/New Install/GemstoneIV LICH/lich/scripts/
+info: $data_dir: I:/New Install/GemstoneIV LICH/lich/data/
+info: $temp_dir: I:/New Install/GemstoneIV LICH/lich/temp/
+info: HAVE_GTK: true
+info: launch file: C:\Users\kris\AppData\Local\Temp\Gse.~xt
+info: no force-mode info given
+info: gamehost: storm.gs4.game.play.net
+info: gameport: 10024
+info: game: STORM
+info: launcher_cmd: "C:\PROGRA~2\SIMU\Launcher.exe" I:\New Install\GemstoneIV LICH\lich\temp\lich7966.sal
+info: waiting for client to connect...
+info: connected
+info: connecting to game server (storm.gs4.game.play.net:10024)
+info: connected
+info: stopping scripts...
+info: saving script data...
+info: closing connections...
+info: exiting...
