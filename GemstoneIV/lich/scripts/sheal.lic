@@ -296,6 +296,7 @@ heal_target = proc { |target, imprint = false|
         end
     end
     fput "unlink"
+    heal_down.call()
 }
 
 imprint_target = proc { |target|
@@ -306,7 +307,7 @@ imprint_target = proc { |target|
     elsif $sheal_imprint_timers[target]
         echo 'target is still in cooldown'
     else
-        fput "imprint #{target}"
+        #fput "imprint #{target}"
     end
 }
 
