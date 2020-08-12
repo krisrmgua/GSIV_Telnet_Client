@@ -6,7 +6,7 @@ echo -e "\t5:\tSorci"
 echo -e "\t6:\tTrenus"
 echo -e "\t7:\tWardrob"
 echo -e "\t8:\tLoads"
-echo -e "\n"
+echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
 
 read num
@@ -20,21 +20,27 @@ then
     character=Sluf
     port=8002
 elif [ $num -eq 3 ]
+then
     character=Pristeen
     port=8003
 elif [ $num -eq 4 ]
+then
     character=Aiss
     port=8004
 elif [ $num -eq 5 ]
+then
     character=Sorci
     port=8005
 elif [ $num -eq 6 ]
+then
     character=Trenus
     port=8006
 elif [ $num -eq 7 ]
+then
     character=Wardrob
     port=8007
 elif [ $num -eq 8 ]
+then
     character=Loads
     port=8008
 else
