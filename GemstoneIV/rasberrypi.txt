@@ -1,0 +1,10 @@
+https://gswiki.play.net/Lich_(software)#Chromebook_.26_Debian_variants
+
+sudo apt-get -y update
+sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libsqlite3-dev unzip
+
+sudo apt-get install libglib2.0-dev libatk1.0-dev libcairo-dev libsqlite3-dev libpango1.0-dev libgtk2.0-dev libgdk-pixbuf2.0 libgtk2.0
+sudo apt-get install libgirepository1.0-dev
+
+
+had to kill off all running services to install gtk gem for ruby
