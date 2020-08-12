@@ -115,9 +115,6 @@ class LNet
 			ssl_socket = OpenSSL::SSL::SSLSocket.new(socket, ssl_context)
 			ssl_socket.sync_close = true
 			ssl_socket.connect
-         if $lnet_debug
-            echo ssl_socket.peer_cert.inspect
-         end
 			if (ssl_socket.peer_cert.subject.to_a.find { |n| n[0] == 'CN' }[1] != 'lichproject.org') and (ssl_socket.peer_cert.subject.to_a.find { |n| n[0] == 'CN' }[1] != 'LichNet')
 				echo "error: server certificate hostname mismatch"
 				ssl_socket.close
@@ -636,9 +633,7 @@ class LNet
 					@@last_priv = from
 					LNet.echo_thought(from, text, 'Private')
 				elsif (@active_attributes.last['type'] == 'privateto') and (to = @active_attributes.last['to'])
-					if text.length < 512 # fixme
-						LNet.echo_thought(to, text, 'PrivateTo')
-					end
+					LNet.echo_thought(to, text, 'PrivateTo')
 				elsif (@active_attributes.last['type'] == 'channel') and (from = @active_attributes.last['from']) and (channel = @active_attributes.last['channel'])
 					LNet.echo_thought(from, text, channel)
 				end
@@ -825,7 +820,6 @@ class LNet
 					output.concat "\n" unless data['own_channels'].empty? and data['mod_channels'].empty?
 					respond output
 				elsif (@active_attributes.last['type'] == 'spell-ranks') and (@active_attributes.last['from'] == 'server') and defined?(SpellRanks)
-               echo 'spell-ranks' if $lnet_debug
 					begin
 						# fixme: really really slow to do the whole list, also too large (1.7mb or something)
 						format = data['_format_']

@@ -277,7 +277,7 @@ heal_down = proc {
 
 heal_target = proc { |target, imprint = false|
     target = target.downcase.strip
-    fput "whisper #{target} just a moment"
+    fput "say ::#{target} just a moment"
     linking(target)
     cast_trolls_blood.call()
     get_target_injuries.call(target, imprint).each { |injury|
@@ -295,6 +295,7 @@ heal_target = proc { |target, imprint = false|
             res = dothistimeout "transfer #{target}", 1, /Nothing happens|You take (?:some|all)|from whom?/
         end
     end
+    fput "unlink"
 }
 
 imprint_target = proc { |target|
