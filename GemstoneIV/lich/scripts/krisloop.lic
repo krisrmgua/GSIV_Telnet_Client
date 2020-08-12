@@ -4,7 +4,7 @@ get_bless_woory = proc {
     fput "get my axe from my sheath"
     loop {
         fput "whisper sluf bless me"
-        line = matchtimeout 10, "Silvery tendrils rise up and wreathe their way around your"
+        line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your"
         if line =~ /Silvery tendrils rise up and wreathe their way around your/
             break
         end
@@ -12,7 +12,7 @@ get_bless_woory = proc {
     }
     loop {
         fput "whisper pristeen bless me"
-        line = matchtimeout 10, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
+        line = matchtimeout 20, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
         if line =~ /silvery wisps enfolds your/
             break
         end
@@ -30,7 +30,7 @@ get_bless_clu = proc {
     fput "get my arrow from my greatc"
     loop {
         fput "whisper sluf bless me"
-        line = matchtimeout 10, "Silvery tendrils rise up and wreathe their way around your", "brilliant shower of sparks bursts from your"
+        line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your", "brilliant shower of sparks bursts from your"
         if line =~ /Silvery tendrils rise up and wreathe their way around your/
             break
         end
@@ -41,7 +41,7 @@ get_bless_clu = proc {
     }
     loop {
         fput "whisper pristeen bless me"
-        line = matchtimeout 10, "silvery wisps enfolds your"
+        line = matchtimeout 20, "silvery wisps enfolds your"
         if line =~ /silvery wisps enfolds your/
             break
         end

@@ -1,3 +1,6 @@
+
+$HOME/GemstoneIV/buildxmlfile/build.sh
+
 echo -e "\t1:\tWoory"
 echo -e "\t2:\tSluf"
 echo -e "\t3:\tPristeen"
