@@ -1,7 +1,5 @@
 
 
-		<window class='text' top='1'  left='119' height='12' width='118'  value='familiar' buffer-size='2000' />
-		<window class='text' top='14' left='0'   height='7' width='19'  value='death' buffer-size='500' />
 		<window class='text' top='21' left='0'   height='8' width='19'  value='logons' buffer-size='500' />
 		<!--<window class='text' top='0'  left='161' height='20' width='76'  value='room,roomDesc,roomName' buffer-size='500' />-->
 				
