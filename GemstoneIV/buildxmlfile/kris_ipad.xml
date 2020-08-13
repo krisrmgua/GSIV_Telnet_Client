@@ -119,7 +119,7 @@ Includes preset highlight colors for merchants/GMs/staff, wizards, sorcerers, em
 		<window class="indicator" top='0'  left='12' height='1' width='50'  value='left' label='Empty' />
 		<window class="indicator" top='0' left='62' height='1' width='50' value='right' label="Empty" />
 		
-		<window class='text' top='27' left='13'  height='52' width='213' value='main' buffer-size='2000'/>
+		<window class='text' top='27' left='13'  height='58' width='213' value='main' buffer-size='2000'/>
 		<window class='text' top='12' left='13' height='14' width='190'  value='speech' buffer-size='2000' />
 		<window class='text' top='1'  left='0'   height='10' width='118' value='lnet,thoughts,voln' buffer-size='2000' />
 		<window class='text' top='1'  left='119' height='12' width='118'  value='familiar' buffer-size='2000' />

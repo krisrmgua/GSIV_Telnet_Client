@@ -25,7 +25,7 @@ then
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
 elif [ $num -eq 4 ]
 then
-    cat $HOME/GemstoneIV/buildxmlfile/kris_ipad.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_ipad.xml > ~/.profanity/kris.xml
 else
     echo "BAD INPUT"
     exit
