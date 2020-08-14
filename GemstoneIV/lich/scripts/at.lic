@@ -1,0 +1,30 @@
+Myname = Char.name
+goto "Start"
+Start:
+  line = matchtimeout 15, "tries to bite you!", "charges at you!"
+  if line =~ /tries to bite you/ or line=~ /charges at you/
+    if Myname == "Wardrob"
+      fput "stance off"
+      fput "attack"
+    end
+    line = matchtimeout 3, "falls to the ground and dies", "someting else"
+    if line =~ /falls to the ground and dies/ or line=~ /something else/
+      waitrt?
+      Script.run('sloot')
+      goto "End"
+    end
+    waitrt?
+    if Myname == "Wardrob"
+      fput "attack"
+    end
+    line = matchtimeout 3, "falls to the ground and dies", "someting else"
+    if line =~ /falls to the ground and dies/ or line=~ /something else/
+      waitrt?
+      Script.run('sloot')
+      goto "End"
+    end
+    waitrt?
+    fput "stance def"
+    goto "Start"
+  end
+End:

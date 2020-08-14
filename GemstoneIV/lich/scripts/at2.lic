@@ -1,0 +1,68 @@
+mob = "giant ant"
+rest = "landing"
+huntarea = "rat2"
+attack = "attack"
+stance = "offensive"
+flee_count = 1
+swings = 2
+
+
+
+
+TT = "target"
+Script.run('go2', "#{huntarea}")
+goto "Walk"
+Start:
+  loop = 0
+  line = matchtimeout 15, "tries to bite you!", "charges at you!"
+  if line =~ /tries to bite you/ or line=~ /charges at you/
+    fput "stance #{stance}"
+    while loop < swings
+      fput "#{attack} #{TT}"
+      waitrt?
+      loop += 1
+      dead = GameObj.dead
+      if dead
+        fput "stance defensive"
+        Script.run('sloot') 
+        if checkfried
+          goto "Fried"
+        end
+        goto "Walk"
+      end
+      npcs = GameObj.npcs
+      if not npcs.size or npcs.size > flee_count
+        fput "stance defensive"
+        goto "Walk"
+      end
+    end
+    fput "stance defensive"
+  end
+  goto "Start"
+
+Walk:
+  sleep 1
+  goto "Walk" unless walk
+    if not checkpcs
+      npcs = GameObj.npcs
+      target = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob}$/i or npc.noun =~ /^#{mob}$/i) }
+      TT = target
+      if target and npcs.size <= flee_count
+        goto "Start"
+      end
+      goto "Walk"
+    end
+  goto "Walk"
+
+Fried:
+  Script.run('go2', "#{rest}")
+  goto "Fried2"
+
+Fried2:
+  sleep 60
+  if checkmind(4)
+    goto "Fried2"
+  else
+    Script.run('go2', "#{huntarea}")
+    goto "Walk"
+  end

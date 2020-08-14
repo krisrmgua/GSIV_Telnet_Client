@@ -1,5 +1,5 @@
-                <window class='text' top='25' left='13'  height='69' width='350' value='main' buffer-size='2000'/>
-                <window class='text' top='14' left='20' height='10' width='350'  value='speech' buffer-size='2000' />
+                <window class='text' top='25' left='13'  height='65' width='350' value='main' buffer-size='2000'/>
+                <window class='text' top='14' left='20' height='10' width='343'  value='speech' buffer-size='2000' />
                 <window class='text' top='1'  left='0'   height='12' width='363' value='lnet,thoughts,voln' buffer-size='2000' />
                 <window class='text' top='1'  left='119' height='12' width='118'  value='familiar' buffer-size='2000' />
                 <window class='text' top='14' left='0'   height='10' width='18'  value='death' buffer-size='500' />
