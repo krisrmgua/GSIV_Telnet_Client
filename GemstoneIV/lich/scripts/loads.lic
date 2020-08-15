@@ -77,7 +77,7 @@ Walk:
     Script.run('go2', "#{lastroom}")
   end
   lastroom = Room.current.id
-  echo lastroom
+  #echo lastroom
   goto "ENDIT" if checkdead
   fput "stand" if not checkstanding
   waitrt?
