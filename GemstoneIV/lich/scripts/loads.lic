@@ -1,0 +1,142 @@
+mob = "lesser mummy"
+mob2 = "relnak"
+#rest = "landing"
+rest = "4142"
+huntarea = "4144"
+roomboundry = [4171,4143]
+attack = "attack"
+stance = "offensive"
+herbsack = "sack"
+flee_count = 1
+swings = 2
+
+
+go2rest = proc {
+    Script.run('go2', "#{rest}")
+    Script.run('gogate')
+    Script.run('go2', "landing")
+}
+
+lastroom = "none"
+TT = "target"
+Script.run('go2', "#{huntarea}")
+goto "Walk"
+Start:
+  goto "ENDIT" if checkdead
+  fput "stand" if not checkstanding
+  waitrt?
+  loop = 0
+  npcs = GameObj.npcs
+  goto "Walk" if npcs.size < 1
+  target = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob}$/i or npc.noun =~ /^#{mob}$/i) }
+  TT = target
+  if not target
+    target2 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob2}$/i or npc.noun =~ /^#{mob2}$/i) }
+    TT = target2
+    if not target2
+      goto "Walk"
+    end
+  end
+  line = matchtimeout 15, "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "swings a", "attacks you", "stomps at you"
+  if line =~ /tries to bite you/ or line=~ /charges at you/ or line=~ /claws at you/ or line=~ /tries to ensnare you/ or line=~ /A \w+ \w+ swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /A \w+ swings a \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/
+    fput "stance #{stance}"
+    while loop < swings
+      goto "HEAL" if Wounds.head > 0 or Wounds.neck > 0 or Wounds.abs > 0 or Wounds.lhand > 0 or Wounds.rhand > 0 or Wounds.larm > 0 or Wounds.rarm > 0 or Wounds.chest > 0 or Wounds.back > 0 or Wounds.rleg > 0 or Wounds.lleg > 0 or Wounds.nerves > 0
+      fput "#{attack} #{TT}"
+      line = matchtimeout 5, "but it has no effect!"
+      if line =~ /but it has no effect/
+          go2rest.call()
+          goto "GETBLESS"
+      end
+      waitrt?
+      fput "stand" if not checkstanding
+      waitrt?
+      loop += 1
+      dead = GameObj.dead
+      if dead
+        fput "stance defensive"
+        Script.run('sloot') 
+        if checkfried
+          goto "Fried"
+        end
+        goto "Walk"
+      end
+      npcs = GameObj.npcs
+      if not npcs.size or npcs.size > flee_count
+        fput "stance defensive"
+        goto "Walk"
+      end
+    end
+    fput "stance defensive"
+  end
+  goto "Start"
+
+Walk:
+  if roomboundry.include?(Room.current.id)
+    echo "BOUNDRY HIT goto #{lastroom}"
+    Script.run('go2', "#{lastroom}")
+  end
+  lastroom = Room.current.id
+  echo lastroom
+  goto "ENDIT" if checkdead
+  fput "stand" if not checkstanding
+  waitrt?
+  sleep 1
+  goto "Walk" unless walk
+    if not checkpcs
+      npcs = GameObj.npcs
+      if npcs.size <= flee_count
+        goto "Start"
+      end
+      goto "Walk"
+    end
+  goto "Walk"
+
+Fried:
+  fput "stand" if not checkstanding
+  waitrt?
+  go2rest.call()
+  goto "Fried2"
+
+Fried2:
+  sleep 60
+  if checkmind(4)
+    goto "Fried2"
+  else
+    Script.run('go2', "#{huntarea}")
+    goto "Walk"
+  end
+
+GETBLESS:
+    loop {
+        fput "whisper sluf bless me"
+        line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your"
+        if line =~ /Silvery tendrils rise up and wreathe their way around your/
+            break
+        end
+        sleep 60
+    }
+    loop {
+        fput "whisper pristeen bless me"
+        line = matchtimeout 20, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
+        if line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/
+            break
+        end
+        sleep 60
+    }
+    goto "Fried"
+
+HEAL:
+  go2rest.call()
+  fput "say Anyone healing please and thanks"
+  sleep 60
+  fput "bow"
+  sleep 20
+  Script.run('useherbs', "in bin")
+  Script.run('useherbs', "on bench")
+  Script.run('useherbs', "under bench")
+  Script.run('useherbs', "--buy=on in my #{herbsack}")
+  Script.run('go2', "#{huntarea}")
+  goto "Walk"
+
+ENDIT:

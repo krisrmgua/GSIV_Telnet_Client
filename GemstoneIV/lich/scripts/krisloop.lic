@@ -13,11 +13,12 @@ get_bless_woory = proc {
     loop {
         fput "whisper pristeen bless me"
         line = matchtimeout 20, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
-        if line =~ /silvery wisps enfolds your/
+        if line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/
             break
         end
-        if line =~ /brilliant shower of sparks bursts from your/
-            break
+        if line =~ /Nothing happens/
+            fput "open my sheath"
+            fput "get my axe from my sheath"
         end
         sleep 60
     }
@@ -30,19 +31,20 @@ get_bless_clu = proc {
     fput "get my arrow from my greatc"
     loop {
         fput "whisper sluf bless me"
-        line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your", "brilliant shower of sparks bursts from your"
-        if line =~ /Silvery tendrils rise up and wreathe their way around your/
+        line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your", "brilliant shower of sparks bursts from your", "Nothing happens."
+        if line =~ /Silvery tendrils rise up and wreathe their way around your/ or line =~ /brilliant shower of sparks bursts from your/
             break
         end
-        if line =~ /brilliant shower of sparks bursts from your/
-            break
-        end
+        if line =~ /Nothing happens/
+            fput "open my greatc"
+            fput "get my arrow from my greatc"
+        end 
         sleep 60
     }
     loop {
         fput "whisper pristeen bless me"
-        line = matchtimeout 20, "silvery wisps enfolds your"
-        if line =~ /silvery wisps enfolds your/
+        line = matchtimeout 20, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
+        if line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/
             break
         end
         sleep 60

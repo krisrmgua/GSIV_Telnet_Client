@@ -13,12 +13,18 @@ TT = "target"
 Script.run('go2', "#{huntarea}")
 goto "Walk"
 Start:
+  goto "ENDIT" if checkdead
+  fput "stand" if not checkstanding
+  waitrt?
   loop = 0
   line = matchtimeout 15, "tries to bite you!", "charges at you!"
   if line =~ /tries to bite you/ or line=~ /charges at you/
     fput "stance #{stance}"
     while loop < swings
+      goto "HEAL" if Wounds.head > 0 or Wounds.neck > 0 or Wounds.abs > 0 or Wounds.lhand > 0 or Wounds.rhand > 0 or Wounds.larm > 0 or Wounds.rarm > 0 or Wounds.chest > 0 or Wounds.back > 0 or Wounds.rleg > 0 or Wounds.lleg > 0 or Wounds.nerves > 0
       fput "#{attack} #{TT}"
+      waitrt?
+      fput "stand" if not checkstanding
       waitrt?
       loop += 1
       dead = GameObj.dead
@@ -41,6 +47,9 @@ Start:
   goto "Start"
 
 Walk:
+  goto "ENDIT" if checkdead
+  fput "stand" if not checkstanding
+  waitrt?
   sleep 1
   goto "Walk" unless walk
     if not checkpcs
@@ -55,6 +64,8 @@ Walk:
   goto "Walk"
 
 Fried:
+  fput "stand" if not checkstanding
+  waitrt?
   Script.run('go2', "#{rest}")
   goto "Fried2"
 
@@ -66,3 +77,9 @@ Fried2:
     Script.run('go2', "#{huntarea}")
     goto "Walk"
   end
+
+HEAL:
+  Script.run('go2', "#{rest}")
+  goto "ENDIT" 
+
+ENDIT:
