@@ -1,0 +1,4 @@
+        <!--Warrior Characters-->
+        <highlight fg='A08231' bg='000000'>
+                \b(?:Woory|Loads)\b
+	</highlight>

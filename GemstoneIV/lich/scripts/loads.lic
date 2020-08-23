@@ -1,20 +1,21 @@
-mob = "lesser mummy"
+mob = "thyril"
 mob2 = "relnak"
-#rest = "landing"
-rest = "4142"
-huntarea = "4144"
-roomboundry = [4171,4143]
+rest = "landing"
+#rest = "4142"
+huntarea = "thyril"
+roomboundry = [7949,7931]
 attack = "attack"
 stance = "offensive"
 herbsack = "sack"
-flee_count = 1
+flee_count = 2
 swings = 2
+weapon = "broadsword"
 
 
 go2rest = proc {
     Script.run('go2', "#{rest}")
-    Script.run('gogate')
-    Script.run('go2', "landing")
+    #Script.run('gogate')
+    #Script.run('go2', "landing")
 }
 
 lastroom = "none"
@@ -38,10 +39,10 @@ Start:
     end
   end
   line = matchtimeout 15, "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "swings a", "attacks you", "stomps at you"
-  if line =~ /tries to bite you/ or line=~ /charges at you/ or line=~ /claws at you/ or line=~ /tries to ensnare you/ or line=~ /A \w+ \w+ swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /A \w+ swings a \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/
+  if line =~ /tries to bite you/ or line=~ /charges at you/ or line=~ /claws at you/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/
     fput "stance #{stance}"
     while loop < swings
-      goto "HEAL" if Wounds.head > 0 or Wounds.neck > 0 or Wounds.abs > 0 or Wounds.lhand > 0 or Wounds.rhand > 0 or Wounds.larm > 0 or Wounds.rarm > 0 or Wounds.chest > 0 or Wounds.back > 0 or Wounds.rleg > 0 or Wounds.lleg > 0 or Wounds.nerves > 0
+      goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0
       fput "#{attack} #{TT}"
       line = matchtimeout 5, "but it has no effect!"
       if line =~ /but it has no effect/
@@ -136,6 +137,7 @@ HEAL:
   Script.run('useherbs', "on bench")
   Script.run('useherbs', "under bench")
   Script.run('useherbs', "--buy=on in my #{herbsack}")
+  fput "get my #{weapon}"
   Script.run('go2', "#{huntarea}")
   goto "Walk"
 

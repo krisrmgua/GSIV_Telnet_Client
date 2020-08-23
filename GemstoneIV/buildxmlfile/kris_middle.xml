@@ -1,0 +1,53 @@
+	<preset id='whisper' fg='88aaff'/>
+	<preset id='speech' fg='66ff66'/>
+	<preset id='roomName' fg='ffffff' bg='000000'/>
+	<preset id='monsterbold' fg='ffff00'/>
+	<preset id='familiar' bg='00001a'/>
+	<preset id='thoughts' bg='001a00'/>
+	<preset id='voln' bg='001a00'/>
+	<preset id='debug' fg='badb73'/>
+	<preset id='rpa' fg='FF5475'/>
+
+	<key id='alt'>
+	<key id='p' macro='\xput \? in my cinereal pants'/>
+	<key id='s' macro="\xstance "/>
+  	<key id='t' macro='\xtake \? from my cinereal pants'/>
+  	<key id='l' macro='\xlook in my cinereal pants\r'/>
+  	<key id='a' macro='\xambush \? right leg'/>
+  	<key id='n' macro='\xput \? in my straps'/>
+  	<key id='u' macro='\xtake \? from my straps'/>
+	</key>
+
+	<key id='ctrl+z' macro='\xwhisper '/>
+	
+	<key id='ctrl+n' macro='\xput \? in my straps'/>
+	<key id='ctrl+u' macro='\xtake \? from my straps'/>
+	<key id='plus' macro='\xlook\r'/>
+	<key id='7' macro='stance def\r'/>
+	
+	<key id='enter' action='send_command'/>
+	<key id='left' action='cursor_left'/>
+	<key id='right' action='cursor_right'/>
+	<key id='ctrl+left' action='cursor_word_left'/>
+	<key id='ctrl+right' action='cursor_word_right'/>
+	<key id='home' action='cursor_home'/>
+	<key id='end' action='cursor_end'/>
+	<key id='backspace' action='cursor_backspace'/>
+	<key id='win_backspace' action='cursor_backspace'/>
+	<key id='ctrl+?' action='cursor_backspace'/>
+	<key id='delete' action='cursor_delete'/>
+	<key id='tab' action='switch_current_window'/>
+	<key id='alt+page_up' action='scroll_current_window_up_one'/>
+	<key id='alt+page_down' action='scroll_current_window_down_one'/>
+	<key id='page_up' action='scroll_current_window_up_page'/>
+	<key id='page_down' action='scroll_current_window_down_page'/>
+	<key id='up' action='previous_command'/>
+	<key id='down' action='next_command'/>
+	<key id='ctrl+up' action='send_last_command'/>
+	<key id='alt+up' action='send_second_last_command'/>
+	<key id='resize' action='resize'/>
+
+	<layout id='default'>
+		<window class="indicator" top='0'  left='12' height='1' width='50'  value='left' label='Empty' />
+		<window class="indicator" top='0' left='62' height='1' width='50' value='right' label="Empty" />
+		

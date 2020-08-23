@@ -1,0 +1,4 @@
+	<!--Ranger Characters-->
+	<highlight fg='6BC662' bg='000000'>
+		\b(?:Clu|Chaoswynd|Arshwikk|Nuadjha|Leifa|Aurach|Hoy|Droit|Yagnuts|Radom|Sepher|Odysia|Dinklz|Kilflin|Silverthorne|Slovigg|Wutaki|Regyy|Kakoon|Slocan|Najash|Rabenwolf|Aravian|Hypherdol|Syrend|Ryku|Chuckaar|Heust|Ironblue|Artistansas|Martieln|Wolfstarr|Valdarrow|Tenalin|Vrell|Ruh|Nodread|Barttonium|Ankroson|Varamond|Rysali|Belnia|Haalen|Buronson|Silvendar|Karibeth|Allanor|Tykeara|Barachado|Anarquendi|Driikn|Greenwolf|Turinrond|Radeek|Glanvis|Geysis|Silvynn|Bordald|Payme|Lyonis|Vrekk|Poloneus|Greycrown|Ysharra|Quaroath|Drakam|Gnarble|Tigerwolf|Diablic|Telum|Kittai|Erykk|Genysis|Lormaek|Timmie|Meltun|Davel|Jesperus|Thornstar|Dara|Arodon|Brielus|Bahktaiini|Taru|Reddwolf|Evrem|Amerek|Frederiko|Nicadex|Silkie|Abysso|Derryen|Dimaire)\b
+	</highlight>

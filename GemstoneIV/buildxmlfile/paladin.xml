@@ -1,0 +1,4 @@
+        <!--Paladin Characters-->
+        <highlight fg='80FFFB' bg='000000'>
+                \b(?:Sluf|someoneelse)\b
+	</highlight>

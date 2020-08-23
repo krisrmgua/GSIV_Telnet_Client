@@ -12,16 +12,40 @@ read num
 if [ $num -eq 1 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_tall.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
 elif [ $num -eq 2 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_wide.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
 elif [ $num -eq 3 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_normal.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
 elif [ $num -eq 4 ]
@@ -30,6 +54,14 @@ then
 elif [ $num -eq 5 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_msi.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
 else
