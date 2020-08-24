@@ -1,21 +1,36 @@
-mob = "thyril"
-mob2 = "relnak"
+mob = "giant marmot"
+mob2 = "dark orc"
+fleemob = "wraith"
 rest = "landing"
-#rest = "4142"
-huntarea = "thyril"
-roomboundry = [7949,7931]
-attack = "attack"
+huntarea = "6888"
+roomboundry = [6879,6897]
+attack = "fire"
 stance = "offensive"
-herbsack = "sack"
-flee_count = 2
-swings = 2
-weapon = "broadsword"
+herbsack = "kit"
+flee_count = 1
+weapon = "shortbow"
 
 
 go2rest = proc {
     Script.run('go2', "#{rest}")
     #Script.run('gogate')
     #Script.run('go2', "landing")
+}
+
+putawayweapon = proc {
+    fput "wear my #{weapon}"
+}
+
+getweapon = proc {
+    fput "remove my #{weapon}"
+}
+
+sell = proc {
+    Script.run('poolparty')
+    Script.run('sloot sell')
+    Script.run('waggle')
+    Script.run('checkbank')
+    Script.run('yawn')
 }
 
 lastroom = "none"
@@ -38,38 +53,46 @@ Start:
       goto "Walk"
     end
   end
-  line = matchtimeout 15, "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "swings a", "attacks you", "stomps at you"
-  if line =~ /tries to bite you/ or line=~ /charges at you/ or line=~ /claws at you/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/
-    fput "stance #{stance}"
-    while loop < swings
-      goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0
-      fput "#{attack} #{TT}"
-      line = matchtimeout 5, "but it has no effect!"
-      if line =~ /but it has no effect/
-          go2rest.call()
-          goto "GETBLESS"
-      end
-      waitrt?
-      fput "stand" if not checkstanding
-      waitrt?
-      loop += 1
-      dead = GameObj.dead
-      if dead
-        fput "stance defensive"
-        Script.run('sloot') 
-        if checkfried
-          goto "Fried"
-        end
-        goto "Walk"
-      end
-      npcs = GameObj.npcs
-      if not npcs.size or npcs.size > flee_count
-        fput "stance defensive"
-        goto "Walk"
-      end
-    end
-    fput "stance defensive"
+  fleenow = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob}$/i or npc.noun =~ /^#{fleemob}$/i) }
+  if fleenow
+      goto "Walk"
   end
+  goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 80
+  hidetries = 0
+  while checkhidden == false 
+      fput "hide"
+      hidetries += 1
+      waitrt?
+      if hidetries > 4
+        goto "Walk"
+      end
+  end 
+  fput "stance #{stance}"
+  fput "#{attack} #{TT}"
+  line = matchtimeout 5, "but it has no effect!"
+  if line =~ /but it has no effect/
+      go2rest.call()
+      goto "GETBLESS"
+  end
+  waitrt?
+  fput "stand" if not checkstanding
+  waitrt?
+  loop += 1
+  dead = GameObj.dead
+  if dead
+    fput "stance defensive"
+    Script.run('sloot') 
+    if checkfried or percentencumbrance > 40
+      goto "Fried"
+    end
+    goto "Walk"
+  end
+  npcs = GameObj.npcs
+  if not npcs.size or npcs.size > flee_count
+    fput "stance defensive"
+    goto "Walk"
+  end
+  fput "stance defensive"
   goto "Start"
 
 Walk:
@@ -97,6 +120,8 @@ Fried:
   fput "stand" if not checkstanding
   waitrt?
   go2rest.call()
+  putawayweapon.call()
+  sell.call()
   goto "Fried2"
 
 Fried2:
@@ -104,6 +129,7 @@ Fried2:
   if checkmind(4)
     goto "Fried2"
   else
+    getweapon.call()
     Script.run('go2', "#{huntarea}")
     goto "Walk"
   end
@@ -129,16 +155,17 @@ GETBLESS:
 
 HEAL:
   go2rest.call()
-  fput "say Anyone healing please and thanks"
-  sleep 60
-  fput "bow"
-  sleep 20
+  putawayweapon.call()
+  Script.run('askheal')
+  sleep 120
   Script.run('useherbs', "in bin")
   Script.run('useherbs', "on bench")
   Script.run('useherbs', "under bench")
   Script.run('useherbs', "--buy=on in my #{herbsack}")
-  fput "get my #{weapon}"
+  sell.call()
+  getweapon.call()
   Script.run('go2', "#{huntarea}")
   goto "Walk"
 
 ENDIT:
+  fput "quit"

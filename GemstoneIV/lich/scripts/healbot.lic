@@ -257,8 +257,8 @@ loop {
 		sleeptime = 3
 
 		if percentmind <= 25 #you need xp
-			waittime = 2
-			sleeptime = 1
+			waittime = 24
+			sleeptime = 3
 			echo "*** Mind low, moving quickly on #{healee} ***"
 		end
 		if percentmind > 70 #give other healers a chance
@@ -289,7 +289,10 @@ loop {
 		echo "***** We will heal #{healee}. ******"
 
 		#appraisal check
-		result = dothistimeout "appraise #{healee}", 5, /You take a quick appraisal/
+                aname = "#{healee}" 
+                if aname != "Trenus" and aname != "Sorci" and aname != "Woory" and aname != "Clu" and aname != "Pristeen" and aname != "Sluf" and aname != "Wardrob"
+		    result = dothistimeout "appraise #{healee}", 5, /You take a quick appraisal/
+                end
 		if result =~ /no apparent injuries/
 			echo "***** #{healee} is not injured.  False alarm? *****"
 			if has_bodies && line =~ bodies_regex
@@ -301,6 +304,7 @@ loop {
 					echo "*** The dead body has no injuries. ***"
 					next
 				else
+                                        next
 					fput "nod #{healee}"
 					fput "nod #{deader}"
                                         linking(deader)
@@ -315,6 +319,7 @@ loop {
                             echo "SKIPPING #{healee}"
                         else
 			    fput "nod #{healee}"
+                            fput "say ::#{healee} just a moment"
                             linking(healee)
                         end
 		end
@@ -365,8 +370,11 @@ loop {
 			sleep 3
 		}
 	end
-	healbot_healme("Wounds", 3)
-	healbot_healme("Scars", 3)
+	healbot_healme("Wounds", 1)
+	#healbot_healme("Wounds", 3)
+	healbot_healme("Scars", 1)
+	#healbot_healme("Scars", 3)
+        Script.run('sheal')
 
 def linking(who)
 	fput "touch #{who} link"

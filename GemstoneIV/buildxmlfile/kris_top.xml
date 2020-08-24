@@ -5,6 +5,8 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='9090ff'>^(?:You gesture|You intone a phrase of elemental power|You recite a series of mystical phrases|You trace a series of glowing runes|Your hands glow with power as you invoke|You trace a simple rune while intoning|You trace a sign while petitioning the spirits|You trace an intricate sign that contorts in the air).*$</highlight>
 	<highlight fg='9090ff'>^(?:Cast Roundtime 3 Seconds\.|Your spell is ready\.)$</highlight>
 	<highlight fg="a6e22e">coraesine|urnon|glass and pink pearl jar|pearly grey glass jar|cobalt glass lapis-rimmed jar|pearly white glass jar</highlight>
+        <highlight fg="CE8C5C">a \w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
+        <highlight fg="0DEFF6">a \w+?\s?\w+\s(?:amethyst|spinel|diopside|flask|topaz|zircon|tourmaline)</highlight>
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
 	<highlight fg="F6931D">nods to</highlight>
 	<highlight fg="F6931D">nods at</highlight>
@@ -18,6 +20,8 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
 	<highlight fg='90FF8B'>^\[Private(?:To)?\]|Also here:</highlight>
 	<highlight fg='008000'>^\[code\]</highlight>
+	<highlight fg='FF0000' bg='FFE800'>^.*keyboard.*$|^.*Keyboard.*$|^.*REPORT.*$|^.*Waigint for you to.*$|^.*waiting for you to.*$|^.*AFK.*$</highlight>
+	<highlight fg='00FFFF' bg='282828'>\[healbot.*$</highlight>
 	<highlight fg='00A2FF'>acantha leaf</highlight>
 	<highlight fg='00FFFF'>ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion</highlight>
 	<highlight fg='00FFFF' bg='282828'>pothinir grass|aloeas stem|ephlox moss</highlight>
