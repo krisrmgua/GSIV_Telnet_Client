@@ -1,0 +1,5 @@
+Myname = Char.name
+Script.start('krisloop')
+if Myname == "Clu"
+  Script.start('clu')
+end

@@ -27,14 +27,25 @@ getweapon = proc {
 
 sell = proc {
     Script.run('poolparty')
-    Script.run('sloot sell')
+    Script.run('sloot', "sell")
     Script.run('waggle')
     Script.run('checkbank')
     Script.run('yawn')
 }
 
+itemcheck = proc {
+    fput "inventory quantity"
+    line = matchtimeout 5, "items found"
+    if line =~ /(\d\d) items found/
+        if $1 .to_i > 90
+            goto "Fried"
+        end
+    end
+}
+
 lastroom = "none"
 TT = "target"
+getweapon.call()
 Script.run('go2', "#{huntarea}")
 goto "Walk"
 Start:
@@ -82,9 +93,10 @@ Start:
   if dead
     fput "stance defensive"
     Script.run('sloot') 
-    if checkfried or percentencumbrance > 40
+    if checkfried or percentencumbrance > 20
       goto "Fried"
     end
+    itemcheck.call()
     goto "Walk"
   end
   npcs = GameObj.npcs
