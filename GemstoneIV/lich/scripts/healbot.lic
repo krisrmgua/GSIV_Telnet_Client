@@ -328,6 +328,9 @@ loop {
                     echo "Skipping"
                 else
 		    gd_wound_transfer(healee)
+                    sleep 3
+                    Script.run('sheal')
+                    fput "unlink" 
                 end
 	elsif line =~ /([A-Z,a-z]+)('s group | )(just arrived|arrives at your table|just came crawling in|just limped in|just came marching in|just came sashaying in gracefully|just arrived, skipping merrily|just tiptoed in|just strode in|just stumbled in|just came trudging in)/
 		healee = $1
@@ -374,7 +377,6 @@ loop {
 	#healbot_healme("Wounds", 3)
 	healbot_healme("Scars", 1)
 	#healbot_healme("Scars", 3)
-        Script.run('sheal')
 
 def linking(who)
 	fput "touch #{who} link"
