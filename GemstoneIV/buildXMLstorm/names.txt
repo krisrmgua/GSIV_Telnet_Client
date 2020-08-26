@@ -823,3 +823,10 @@ Conshi paladin
 Daphren paladin
 Koops paladin
 Madkilla paladin
+Sheev warrior
+Eluveitie sorcerer
+Korvance sorcerer
+Grouse ranger
+Tokorvyn ranger
+Jonboi bard
+Retrone monk

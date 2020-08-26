@@ -1,4 +1,4 @@
         <!--Bard Characters-->
         <highlight fg='FFF58F' bg='000000'>
-                \b(?:Newsby|Sirensong|Kjartan|Rylohk|Hoddat|Osloe|Xitu|Sonvacias|Caye|Rokim|Kahneda|Larston|Ruol|Sonahtina|Yossef|Fosorian|Leineshan|Kerythen|Deynalla|Rastacia|Phounix|Raeyshencarl|Kasparaitis|Eleza|Stupes|Rucil|Kobant|Commotion|Marabet|Kassdorgia|Murillio|Yfirup|Composer|Musix|Drekom|Calvert|Florania|Deftone|Zzadist|Bertoch|Milax|Brilik|Zobin|Lutes|Doflamingo|Endaro|Aegnorr|Vatis|Dayzed|Mongonator|Adagiago|Keps|Imrys|Kaabo|Lazarwolf|Kolts|Faerinn|Johanna|Greatorex|Eliseen|Trackesh|Flyber)\b
+                \b(?:Newsby|Sirensong|Kjartan|Rylohk|Hoddat|Osloe|Xitu|Sonvacias|Caye|Rokim|Kahneda|Larston|Ruol|Sonahtina|Yossef|Fosorian|Leineshan|Kerythen|Deynalla|Rastacia|Phounix|Raeyshencarl|Kasparaitis|Eleza|Stupes|Rucil|Kobant|Commotion|Marabet|Kassdorgia|Murillio|Yfirup|Composer|Musix|Drekom|Calvert|Florania|Deftone|Zzadist|Bertoch|Milax|Brilik|Zobin|Lutes|Doflamingo|Endaro|Aegnorr|Vatis|Dayzed|Mongonator|Adagiago|Keps|Imrys|Kaabo|Lazarwolf|Kolts|Faerinn|Johanna|Greatorex|Eliseen|Trackesh|Flyber|Jonboi)\b
         </highlight>
