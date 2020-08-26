@@ -79,6 +79,7 @@ File.open(filename, 'w') {|file| file.truncate(0) }
 CharSettings['known_players'].each do |k,v|
   File.open(filename, 'a'){|f| f.puts k + " " + v}
 end
+system("/root/GemstoneIV/buildxmlfile/build_names.pl")
 
 
 
