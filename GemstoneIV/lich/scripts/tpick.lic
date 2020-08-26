@@ -49,7 +49,7 @@
 	Non Rogues and bards do not need to use the "v" command line, they will always pick boxes with a vaalin lockpick and won't use calipers.
 	
 	Author: Tgo01
-	Version: 254
+	Version: 258
 
 =end
 
@@ -99,6 +99,8 @@ stow_wedge = nil
 critter_level = nil
 total_number_of_boxes = 0
 lock = 0
+temp_403_variable = nil
+temp_404_variable = nil
 current_room = nil
 scarab_name = nil
 scarab_object = nil
@@ -116,6 +118,7 @@ CharSettings['total_boxes_picked'] = 0 unless CharSettings['total_boxes_picked']
 CharSettings['total_time_spent_picking_boxes'] = 0 unless CharSettings['total_time_spent_picking_boxes']
 average_picking_time = 0
 start_time = 0
+use_404_for_trap_difficulty = nil
 before_recommended_pick = nil
 i_need_403 = nil
 stow_both = nil
@@ -208,6 +211,7 @@ disarm_trap = nil
 cast_402 = nil
 cast_403 = nil
 cast_404 = nil
+use_403_for_lock_difficulty = nil
 can_use_calipers = nil
 pop_boxes_begin = nil
 fused_lock_disarm = nil
@@ -676,7 +680,7 @@ setup = proc{
 		$OP_TABLE5.attach(align, 1, 2, 8, 9)
 
 		label = Gtk::Label.new
-		label.set_markup("Enter <b>yes</b> for any spells you want to keep on while disarming/picking, <b>no</b> for any spells you don't want to cast.\nIf 403 and 404 are set to <b>no</b> the script will cast the spells when needed (after a failure or for a very high lock) and if you know the spell.\nSet 403 and 404 to <b>cancel</b> if you want these spells stopped when starting on a new box.\nSet 403 to <b>never</b> to NEVER use 403.\nIf <b>407</b> is set to <b>plate</b> the script will attempt to open plated boxes (except mithril or enruned) with 407 if you have no acid vials or wedges.\nIf <b>407</b> is set to <b>all</b> the script will attempt to open all boxes (except mithril and enruned) with 407.\nEnter <b>no</b> for <b>407</b> to skip using 407 on boxes.")
+		label.set_markup("Enter <b>yes</b> for any spells you want to keep on while disarming/picking, <b>no</b> for any spells you don't want to cast.\nIf 403 and 404 are set to <b>no</b> the script will cast the spells when needed (after a failure or for a very high lock) and if you know the spell.\nSet 403 and 404 to <b>cancel</b> if you want these spells stopped when starting on a new box.\nSet 403 to <b>never</b> to NEVER use 403.\nSet 403 or 404 to a number (like 100) to always use 403/404 if the lock/trap difficulty is above this number.\nYou can do something like <b>100,cancel</b> (note no spaces) if you still want to cancel 403/404 when starting a new box.\nIf <b>407</b> is set to <b>plate</b> the script will attempt to open plated boxes (except mithril or enruned) with 407 if you have no acid vials or wedges.\nIf <b>407</b> is set to <b>all</b> the script will attempt to open all boxes (except mithril and enruned) with 407.\nEnter <b>no</b> for <b>407</b> to skip using 407 on boxes.")
 		align = Gtk::Alignment.new(1, 0, 0, 0)
 		align.set_padding(50, 0, 0, 40)
 		align.add(label)
@@ -787,8 +791,8 @@ end
 
 def tpick_stop_403_404		
 	waitrt?
-	fput "stop 403" if Spell[403].active? && UserVars.tpick["always_use_403"] == "cancel"
-	fput "stop 404" if Spell[404].active? && UserVars.tpick["always_use_404"] == "cancel"
+	fput "stop 403" if Spell[403].active? && UserVars.tpick["always_use_403"] =~ /cancel/
+	fput "stop 404" if Spell[404].active? && UserVars.tpick["always_use_404"] =~ /cancel/
 end
 
 def tpick_stow_box(current_box)
@@ -930,6 +934,9 @@ detect_plinite = proc{
 						break
 					end
 				end
+				if use_403_for_lock_difficulty && Spell[403].known? && lock > use_403_for_lock_difficulty
+					i_need_403 = true
+				end
 			end
 			if i_need_403
 				number = 0
@@ -1027,7 +1034,11 @@ detect_plinite = proc{
 			end
 			echo "Recommended lock pick: #{recommended_pick} with a modifier of #{recommended_pick_modifier}"
 			if need_403 == "yes"
-				echo "Recommend 403: Yes"
+				if use_403_for_lock_difficulty && Spell[403].known? && lock > use_403_for_lock_difficulty
+					echo "Lock difficulty is higher than your 403 setting in setup menu, using 403."
+				else
+					echo "Recommend 403: Yes"
+				end
 				echo "Your calculated lockpicking skill: #{pick_skill}"
 				echo "Your calculated lockpicking lore: #{pick_lore}"
 				temp_math_number = pick_skill + pick_lore
@@ -1154,6 +1165,20 @@ gnomish_bracers_trap_check = proc{
 					break
 				end
 			}
+			if current_box.nil?
+				table.contents.each{ |item|
+					fput "tap ##{item.id}"
+					while line = get
+						if line =~ /^You probably shouldn\'t do that\./
+							break
+						elsif line =~ /^You tap/
+							current_box = item
+							break
+						end
+					end
+					break if current_box
+				}
+			end
 			sleep 1
 		end
 		echo "Found your box/plinite! Name: #{current_box}, ID: #{current_box.id}, tip: #{offered_tip_amount}, critter name: #{critter_name}, critter level: #{critter_level}"
@@ -2106,6 +2131,20 @@ manually_disarm_trap = proc{
 					break
 				end
 			}
+			if current_box.nil?
+				table.contents.each{ |item|
+					fput "tap ##{item.id}"
+					while line = get
+						if line =~ /^You probably shouldn\'t do that\./
+							break
+						elsif line =~ /^You tap/
+							current_box = item
+							break
+						end
+					end
+					break if current_box
+				}
+			end
 			sleep 1
 		end
 		echo "Found your box/plinite! Name: #{current_box}, ID: #{current_box.id}, tip: #{offered_tip_amount}, critter name: #{critter_name}, critter level: #{critter_level}"
@@ -2166,8 +2205,15 @@ manually_disarm_trap = proc{
 				end
 				if trap_difficulty > total_trap_skill
 					trap_cant_be_disarmed = true
+				elsif use_404_for_trap_difficulty && Spell[404].known?
+					if trap_difficulty > use_404_for_trap_difficulty
+						if second_trap_check.nil?
+							echo "Trap difficulty is higher than your setting in the setup menu for when to use Disarm Enhancement (404), going to use Disarm Enhancement (404)."
+						end
+						need_404 = "yes"
+					end
 				elsif trap_difficulty > disarm_skill && Spell[404].known?
-					if second_trap_check == nil
+					if second_trap_check.nil?
 						echo "This trap looks tough, going to use Disarm Enhancement (404)."
 					end
 					need_404 = "yes"
@@ -3090,6 +3136,9 @@ measure = proc{
 							break
 						end
 					end
+					if use_403_for_lock_difficulty && Spell[403].known? && lock > use_403_for_lock_difficulty
+						i_need_403 = true
+					end
 				end
 				if i_need_403
 					number = 0
@@ -3186,7 +3235,11 @@ measure = proc{
 				end
 				echo "Recommended lock pick: #{recommended_pick} with a modifier of #{recommended_pick_modifier}"
 				if need_403 == "yes"
-					echo "Recommend 403: Yes"
+					if use_403_for_lock_difficulty && Spell[403].known? && lock > use_403_for_lock_difficulty
+						echo "Lock difficulty is higher than your 403 setting in setup menu, using 403."
+					else
+						echo "Recommend 403: Yes"
+					end
 					echo "Your calculated lockpicking skill: #{pick_skill}"
 					echo "Your calculated lockpicking lore: #{pick_lore}"
 					temp_math_number = pick_skill + pick_lore
@@ -4433,12 +4486,38 @@ if Spell[402].known? && UserVars.tpick["always_use_402"] == "yes"
 	use_spell_402 = true
 end
 
-if Spell[403].known? && UserVars.tpick["always_use_403"] == "yes"
-	use_spell_403 = true
+if Spell[403].known?
+	if UserVars.tpick["always_use_403"] =~ /\,/
+		temp_403_variable = UserVars.tpick["always_use_403"].split(",")
+		if temp_403_variable[0] =~ /\d+/
+			use_403_for_lock_difficulty = temp_403_variable[0].to_i
+		elsif temp_403_variable[1] =~ /\d+/
+			use_403_for_lock_difficulty = temp_403_variable[1].to_i
+		end
+	else
+		if UserVars.tpick["always_use_403"] =~ /\d+/
+			use_403_for_lock_difficulty = UserVars.tpick["always_use_403"].to_i
+		elsif UserVars.tpick["always_use_403"] == "yes"
+			use_spell_403 = true
+		end
+	end
 end
 
-if Spell[404].known? && UserVars.tpick["always_use_404"] == "yes"
-	use_spell_404 = true
+if Spell[404].known?
+	if UserVars.tpick["always_use_404"] =~ /\,/
+		temp_404_variable = UserVars.tpick["always_use_404"].split(",")
+		if temp_404_variable[0] =~ /\d+/
+			use_404_for_lock_difficulty = temp_404_variable[0].to_i
+		elsif temp_404_variable[1] =~ /\d+/
+			use_404_for_lock_difficulty = temp_404_variable[1].to_i
+		end
+	else
+		if UserVars.tpick["always_use_404"] =~ /\d+/
+			use_404_for_lock_difficulty = UserVars.tpick["always_use_404"].to_i
+		elsif UserVars.tpick["always_use_404"] == "yes"
+			use_spell_404 = true
+		end
+	end
 end
 
 if Spell[506].known? && UserVars.tpick["always_use_506"] == "yes"

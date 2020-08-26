@@ -1,0 +1,52 @@
+<settings client="1.0.1.26">
+	<names>
+		<h color="@0" text="Oguo" bgcolor="@14"/>
+		<h color="@49" text="Tranquia"/>
+		<h color="@49" text="Ellianna"/>
+		<h color="@49" text="Traiva"/>
+		<h color="@49" text="Servena"/>
+		<h color="@49" text="Chandrellia"/>
+		<h color="@49" text="Nykus"/>
+		<h color="@49" text="Brianyel"/>
+		<h color="@49" text="Raeggnar"/>
+		<h text="Sluf" color="@89" bgcolor="@57"/>
+		<h text="Clu" color="@89" bgcolor="@57"/>
+		<h text="Loads" color="@89" bgcolor="@57"/>
+		<h text="Woory" color="@89" bgcolor="@57"/>
+		<h text="Trenus" color="@89" bgcolor="@57"/>
+		<h text="Aiss" color="@89" bgcolor="@57"/>
+		<h text="Sorci" color="@89" bgcolor="@57"/>
+		<h text="Pristeen" color="@89" bgcolor="@57"/>
+        <!-- ########### Cleric ########### -->
+		<h text="Leafiara" color="@73"/>
+		<!-- ############################### -->
+		<!-- ########### Warrior ########### -->
+		<h color="@104" text="Zugzugg"/>
+		<!-- ############################### -->
+		<!-- ############ Rogue ############ -->
+		<h color="@87" text="Sorlu"/>
+		<!-- ############################### -->
+		<!-- ############ Wizard ########### -->
+		<h color="@64" text="Claudaro"/>
+		<!-- ############################### -->
+		<!-- ############ Empath ########### -->
+		<h color="@49" text="Chandrellia"/>
+		<!-- ############################### -->
+		<!-- ########### Sorcerer ########## -->
+		<h color="@56" text="Dalabrac"/>
+		<!-- ############################### -->
+		<!-- ############ Ranger ########### -->
+		<h color="@37" text="Lleuo"/>
+		<!-- ############################### -->
+		<!-- ############# Bard ############ -->
+		<h color="@35" text="Newsby"/>
+		<!-- ############################### -->
+		<!-- ############# Monk ############ -->
+		<h color="@33" text="Paiyot"/>
+		<!-- ############################### -->
+		<!-- ########### Paladin ########### -->
+		<h color="@70" text="Dord"/>
+		<!-- ############################### -->
+	</names>
+
+</settings>

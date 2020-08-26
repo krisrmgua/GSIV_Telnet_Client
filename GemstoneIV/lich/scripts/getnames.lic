@@ -1,0 +1,73 @@
+CharSettings['known_players'] = Hash.new unless CharSettings['known_players']
+
+#from title.lic
+squelch_who = proc{
+	started = false
+	hook_proc = proc { |s|
+		if started
+			if s =~ /<prompt/
+				DownstreamHook.remove('squelch-who')
+				nil
+			elsif s =~ /<output/
+				s
+			else
+				nil
+			end
+		elsif s =~ /^Brave Adventurers Questing:/
+			started = true
+			nil
+		else
+			s
+		end
+	}
+	DownstreamHook.add('squelch-who', hook_proc)
+}
+
+scan_for_players = proc { |pro|
+	echo "***Checking for new " + pro + "...***"
+	number_of_players_added = 0
+	squelch_who.call
+	silence_me
+	fput "who profession " + pro
+	silence_me
+	all_list = nil
+	while (line = get)
+		if (line =~ /Brave Adventurers Questing\:/)
+			while (line = get)
+				all_list += "#{line} " unless (line =~ /Total\:|^\[.*?\]\-[A-z]+\:|^\[server\]\: "/)
+				break if (line =~ /Total\:/)
+			end
+			break
+		end
+	end
+	all_list = all_list.split(" ")
+	all_list.each { |name|
+		unless CharSettings['known_players'].include?(name)
+			#players_added += "#{name} (#{checking_current_profession})\n"
+			CharSettings['known_players'].store(name, pro)
+			number_of_players_added += 1	
+		end
+	}
+	echo pro + " Scan Complete.***"
+}
+
+scan_for_players.call("warrior")
+scan_for_players.call("rogue")
+scan_for_players.call("wizard")
+scan_for_players.call("cleric")
+scan_for_players.call("empath")
+scan_for_players.call("sorcerer")
+scan_for_players.call("ranger")
+scan_for_players.call("bard")
+scan_for_players.call("monk")
+scan_for_players.call("paladin")
+CharSettings['known_players'].each do |k,v|
+  File.open("/root/GemstoneIV/buildXMLstorm/names.txt", 'a'){|f| f.puts k + " " + v}
+end
+#player_list = ""
+#CharSettings['known_player'].each do |k,v|
+#  player_list = player_list + k + "     " 
+#end
+#open('/root/GemstoneIV/buildXMLstorm/names.txt', 'w') do |f|
+#    f.puts empath_list
+#end

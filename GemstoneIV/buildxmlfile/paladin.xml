@@ -1,4 +1,4 @@
         <!--Paladin Characters-->
         <highlight fg='80FFFB' bg='000000'>
-                \b(?:Sluf|someoneelse)\b
+                \b(?:Thrasyllus|Renfair|Abeer|Warclaidh|Nottinghamm|Khevas|Elereth|Vistal|Jangrel|Thaeren|Dhairn|Nilpferd|Raikko|Cassis|Longynus|Daphren|Krienos|Daengard|Falvicar|Khaell|Nahnya|Songray|Melissent|Rendena|Dord|Sluf|Krunekat|Renzo|Ronvirn|Fulmen|Menos|Bamdur|Gontlin|Vesalus|Peggyanne|Gherraltis|Iewolf|Sabreon|Zosimos|Bumdor|Urtzi|Balaczarr|Yekn|Astelan|Madkilla)\b
 	</highlight>

@@ -257,7 +257,7 @@ loop {
 		sleeptime = 3
 
 		if percentmind <= 25 #you need xp
-			waittime = 24
+			waittime = 20
 			sleeptime = 3
 			echo "*** Mind low, moving quickly on #{healee} ***"
 		end

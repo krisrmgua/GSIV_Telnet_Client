@@ -1,0 +1,4 @@
+        <!--Monk Characters-->
+        <highlight fg='F0922D' bg='000000'>
+                \b(?:Elumbrosba|Cidven|Tzenmire|Tabubu|Jver|Cuddy|Hugasbinkarta|Bumpur|Uatro|Inford|Retrone|Sisstar|Ordy|Gnarevo|Smalt|Jateloos|Alarenn|Grummis|Llanduin|Takoa|Thorwel|Zothos|Ailemoine|Vindan|Rhaivan|Yaoren|Nyuba|Setsuko|Hoddy|Amazed|Yndrael|Huebald|Villorn|Thalastes|Zaj|Ratho|Ronvir|Dervingrad|Scorpa|Merokai|Ebstein|Eyom|Uchiwa|Alfryd|Draacon|Shinromei|Kruppe|Ipacryn|Ruikhan|Lriat|Aeroals|Karmella|Weirs|Anubisa|Eltran|Atilio|Attar|Tarine)\b
+	</highlight>

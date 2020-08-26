@@ -1,0 +1,7 @@
+Myname = Char.name
+if Myname == "Clu"
+    fput "remove my shortbow"
+elsif Myname == "Wardrob"
+    fput "remove my shield"
+    fput "get my broadsword"
+end

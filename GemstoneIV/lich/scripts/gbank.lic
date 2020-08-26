@@ -7,13 +7,13 @@ Run ;gbank help   for help on commands
 
 Email or krisrmgua@gmail.com contact Kris on LNet if you have problems
 
-1.4  = Initial Release
+1.5  = Initial Release
 
 # Name: Bank
 # Author: Kris
 # Categories: Utility, bank
 # Tags: utility, stormfront, bank, silver, note, notes, deposit, withdraw
-# Version: 1.4
+# Version: 1.5
 =end
 
 withdraw = proc { |amount, note = false|

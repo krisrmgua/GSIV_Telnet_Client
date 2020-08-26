@@ -1,0 +1,7 @@
+Myname = Char.name
+if Myname == "Clu"
+    fput "wear my shortbow"
+elsif Myname == "Wardrob"
+    fput "wear my shield"
+    fput "put my broadsword in my sheath"
+end

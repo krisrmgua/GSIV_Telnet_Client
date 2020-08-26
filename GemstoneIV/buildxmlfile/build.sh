@@ -4,6 +4,7 @@ echo -e "\t2:\tMonitor Wide"
 echo -e "\t3:\tMac Laptop"
 echo -e "\t4:\tIpad"
 echo -e "\t5:\tMSI"
+echo -e "\t6:\tMini"
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
 
@@ -12,10 +13,13 @@ read num
 if [ $num -eq 1 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/bard.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/monk.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/rogue.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
@@ -25,10 +29,13 @@ then
 elif [ $num -eq 2 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/bard.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/monk.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/rogue.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
@@ -38,10 +45,13 @@ then
 elif [ $num -eq 3 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/bard.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/monk.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/rogue.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
@@ -54,15 +64,34 @@ then
 elif [ $num -eq 5 ]
 then
     cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/bard.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/monk.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/rogue.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_msi.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
+elif [ $num -eq 6 ]
+then
+    cat $HOME/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/bard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/monk.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/rogue.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/kris_lap_mini.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
 else
     echo "BAD INPUT"

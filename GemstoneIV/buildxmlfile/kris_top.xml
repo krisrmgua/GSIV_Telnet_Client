@@ -7,7 +7,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="a6e22e">coraesine|urnon|glass and pink pearl jar|pearly grey glass jar|cobalt glass lapis-rimmed jar|pearly white glass jar</highlight>
 	<highlight fg="FF0000">a \w+?\s?\w+ gold ring</highlight>
         <highlight fg="CE8C5C">(a|an) \w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
-        <highlight fg="0DEFF6">a \w+?\s?\w+\s(?:amethyst|spinel|diopside|stone|flask|topaz|zircon|tourmaline)</highlight>
+        <highlight fg="0DEFF6">a \w+?\s?\w+?\s?\w+\s(?:amethyst|sapphire|gem|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)</highlight>
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
 	<highlight fg="F6931D">nods to</highlight>
 	<highlight fg="F6931D">nods at</highlight>
@@ -16,7 +16,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="48C014">is in good shape|Despite no apparent injuries|no apparent injuries\.</highlight>
 	<highlight fg='9090ff'>^.*remaining\. \]$</highlight>
 	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|You have no silver coins with you.</highlight>
-	<highlight fg='696969'>([A-Z][a-z]+ disk)</highlight>
+	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
 	<highlight fg='90FF8B'>^\[Private(?:To)?\]|Also here:</highlight>
