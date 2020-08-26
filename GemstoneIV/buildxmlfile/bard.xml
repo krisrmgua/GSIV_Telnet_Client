@@ -1,4 +1,4 @@
         <!--Bard Characters-->
         <highlight fg='FFF58F' bg='000000'>
-                \b(?:Wichai|Zobin|Lorespinner|Kjartan|Marcato|Oamir|Eyrek|Erajaes|Lazarwolf|Nemt|Drog|Greatorex|Igglbid|Kahneda|Jabalia|Ruol|Kriasna|Marabet|Doflamingo|Kielrin|Bertoch|Luto|Kasparaitis|Eleza|Twits|Perphect|Emislity|Fingrimbal|Newsby|Kerythen|Sornryn|Jnohr|Deftone|Rylohk|Hoddat|Eheylien|Digbie|Imrys|Rokim|Brilik|Larston|Leineshan|Sonahtina|Fosorian|Deynalla|Yossef|Caye|Oseon|Kassdorgia|Flyber|Kasori|Murillio|Resonancer|Rastacia|Stupes|Rymy|Sonvacias|Vatis|Sirensong|Commotion|Tylaen|Reconago|Kolts|Yfirup|Eliseen|Composer|Musix|Calvert|Dayzed|Kobant|Arlenus|Abbyrose|Raeyshencarl|Aegnorr|Florania)\b
-	</highlight>
+                \b(?:Newsby|Sirensong|Kjartan|Rylohk|Hoddat|Osloe|Xitu|Sonvacias|Caye|Rokim|Kahneda|Larston|Ruol|Sonahtina|Yossef|Fosorian|Leineshan|Kerythen|Deynalla|Rastacia|Phounix|Raeyshencarl|Kasparaitis|Eleza|Stupes|Rucil|Kobant|Commotion|Marabet|Kassdorgia|Murillio|Yfirup|Composer|Musix|Drekom|Calvert|Florania|Deftone|Zzadist|Bertoch|Milax|Brilik|Zobin|Lutes|Doflamingo|Endaro|Aegnorr|Vatis|Dayzed|Mongonator|Adagiago|Keps|Imrys|Kaabo|Lazarwolf|Kolts|Faerinn|Johanna|Greatorex|Eliseen|Trackesh|Flyber)\b
+        </highlight>

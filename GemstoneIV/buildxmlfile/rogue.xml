@@ -1,4 +1,4 @@
         <!--Rogue Characters-->
         <highlight fg='696969' bg='000000'>
-                \b(?:Sorlu|Kretan|Arceneaux|Tatra|Hymore|Pitia|Quivet|Crime|Nozama|Qebit|Starkitty|Leung|Obreg|Annyse|Gonzy|Lohk|Zedeskur|Tavino|Frathini|Mirdahr|Kiyna|Nekales|Nordred|Queatus|Lucket|Greng|Jaddi|Gingerenee|Pydan|Talaendra|Udari|Drevn|Isela|Mykkul|Lynaera|Ashren|Ronivarn|Hathishee|Hoddum|Wolfloner|Chirakk|Vef|Vallera|Savaniah|Ealanas|Bashrah|Rakip|Tavastri|Strelkor|Stiara|Teson|Neovik|Kekish|Horwoo|Nodyre|Shisshio|Sacru|Grimmjaww|Chiora|Sequizer|Federica|Xitek|Nhadrin|Alamany|Xanlin|Aracnid|Bitly|Yardie|Boomsplat)\b
-	</highlight>
+                \b(?:Mykkul|Frathini|Horwoo|Quivet|Ronivarn|Nrik|Hoddum|Federica|Talaendra|Bashrah|Teson|Isela|Lohk|Nhadrin|Strelkor|Ryjin|Ceilia|Kritz|Ealanas|Eraphon|Neovik|Starkitty|Vef|Yardie|Felita|Qebit|Heldalyn|Lynaera|Sacru|Theokoles|Picknox|Xitek|Kekish|Rakip|Kiyna|Nordred|Chirakk|Pydan|Udari|Stiara|Isyn|Maeddow|Boomsplat|Grandsome|Hymore|Nodyre|Vultie|Vanei|Zugu|Min|Gilliar|Pitia|Davminar|Sorlu|Tippy|Marex)\b
+        </highlight>

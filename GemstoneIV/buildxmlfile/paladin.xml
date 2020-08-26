@@ -1,4 +1,4 @@
         <!--Paladin Characters-->
         <highlight fg='80FFFB' bg='000000'>
-                \b(?:Thrasyllus|Renfair|Abeer|Warclaidh|Nottinghamm|Khevas|Elereth|Vistal|Jangrel|Thaeren|Dhairn|Nilpferd|Raikko|Cassis|Longynus|Daphren|Krienos|Daengard|Falvicar|Khaell|Nahnya|Songray|Melissent|Rendena|Dord|Sluf|Krunekat|Renzo|Ronvirn|Fulmen|Menos|Bamdur|Gontlin|Vesalus|Peggyanne|Gherraltis|Iewolf|Sabreon|Zosimos|Bumdor|Urtzi|Balaczarr|Yekn|Astelan|Madkilla)\b
-	</highlight>
+                \b(?:Krunekat|Bamdur|Yekn|Fulvus|Kilrod|Gontlin|Cassis|Vistal|Songray|Ronvirn|Abeer|Chastane|Fulmen|Renfair|Menos|Vesalus|Zosimos|Warclaidh|Iewolf|Nahnya|Delilahrae|Appoloin|Tasinn|Sabreon|Bumdor|Thaeren|Dord|Renzo|Gherraltis|Rendena|Kalcawkk|Balaczarr|Vordrisk|Falicor|Koergun|Khoal|Escanor|Rhodie|Reinwulfe|Veramilion|Nottinghamm|Jangrel|Conshi|Daphren|Koops|Madkilla)\b
+        </highlight>

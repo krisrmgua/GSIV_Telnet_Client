@@ -1,4 +1,5 @@
 CharSettings['known_players'] = Hash.new unless CharSettings['known_players']
+filename = "/root/GemstoneIV/buildXMLstorm/names.txt"
 
 #from title.lic
 squelch_who = proc{
@@ -48,9 +49,22 @@ scan_for_players = proc { |pro|
 			number_of_players_added += 1	
 		end
 	}
-	echo pro + " Scan Complete.***"
+	#echo pro + " Scan Complete.***"
 }
 
+read_names = proc {
+    File.open(filename).each do |line|
+        values = line.split(" ")
+        values.delete_if{|e| e.length == 0}
+        dname = values[0]
+        dpro = values[1]
+        unless CharSettings['known_players'].include?(dname)
+            CharSettings['known_players'].store(dname, dpro)
+        end
+    end
+}
+
+read_names.call()
 scan_for_players.call("warrior")
 scan_for_players.call("rogue")
 scan_for_players.call("wizard")
@@ -61,9 +75,15 @@ scan_for_players.call("ranger")
 scan_for_players.call("bard")
 scan_for_players.call("monk")
 scan_for_players.call("paladin")
+File.open(filename, 'w') {|file| file.truncate(0) }
 CharSettings['known_players'].each do |k,v|
-  File.open("/root/GemstoneIV/buildXMLstorm/names.txt", 'a'){|f| f.puts k + " " + v}
+  File.open(filename, 'a'){|f| f.puts k + " " + v}
 end
+
+
+
+
+
 #player_list = ""
 #CharSettings['known_player'].each do |k,v|
 #  player_list = player_list + k + "     " 
