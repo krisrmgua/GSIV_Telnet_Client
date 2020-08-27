@@ -83,7 +83,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "the body of", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
+    line = matchtimeout 10, "the body of", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
     if line =~ /the body of/
         if Room.current.id.to_s !~ /^228$/
             echo "kris you found the body of" + Room.current.id.to_s
@@ -115,6 +115,10 @@ loop {
         start_script('bigshot')
     end
     #if line =~ /golvern battle axe returns to normal/ and Myname == "Woory"
+    if line =~ /^(\w+) offers you/ and Myname == "Aiss"
+        wname = $1
+        fput "whisper " + NAME + "no thanks!"
+    end
     if line =~ /but it has no effect!/ and Myname == "Woory"
         loop {
             #if Room.current.id.to_s == "228"

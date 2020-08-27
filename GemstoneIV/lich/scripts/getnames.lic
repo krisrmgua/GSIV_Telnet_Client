@@ -53,9 +53,11 @@ scan_for_players = proc { |pro|
                     CharSettings['known_players'].store(name, pro)
 		else
                     CharSettings['known_players'].store(name, pro)
+		    number_of_players_added += 1	
                 end
 	}
 	#echo pro + " Scan Complete.***"
+        echo "***Added #{number_of_players_added} new #{pro} to the list.***"
 }
 
 read_names = proc {
