@@ -167,7 +167,7 @@ my $file_top = '<settings client="1.0.1.26">
                 <i id="77" color="#50185A"/>
                 <i id="78" color="#4A2142"/>
                 <i id="79" color="#4A1818"/>
-                <i id="80" color="#6A4040"/>
+                <i id="80" color="#7A4949"/>
                 <i id="81" color="#7B3900"/>
                 <i id="82" color="#5A4A31"/>
                 <i id="83" color="#304000"/>
