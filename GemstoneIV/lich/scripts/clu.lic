@@ -12,6 +12,7 @@ weapon = "shortbow"
 cloak = "greatcloak"
 backpack = "pack"
 sheath = "sheath"
+encumbrance = 20
 
 
 go2rest = proc {
@@ -108,7 +109,7 @@ Start:
   if dead
     fput "stance defensive"
     Script.run('sloot') 
-    if checkfried or percentencumbrance > 20
+    if checkfried or percentencumbrance > encumbrance
       goto "Fried"
     end
     itemcheck.call()
