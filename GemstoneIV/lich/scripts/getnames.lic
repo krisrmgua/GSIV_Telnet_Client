@@ -43,11 +43,17 @@ scan_for_players = proc { |pro|
 	end
 	all_list = all_list.split(" ")
 	all_list.each { |name|
-		unless CharSettings['known_players'].include?(name)
-			#players_added += "#{name} (#{checking_current_profession})\n"
-			CharSettings['known_players'].store(name, pro)
-			number_of_players_added += 1	
-		end
+		#unless CharSettings['known_players'].include?(name)
+		#	#players_added += "#{name} (#{checking_current_profession})\n"
+		#	CharSettings['known_players'].store(name, pro)
+		#	number_of_players_added += 1	
+		#end
+                if CharSettings['known_players'].include?(name)
+                    CharSettings['known_players'].delete(name)
+                    CharSettings['known_players'].store(name, pro)
+		else
+                    CharSettings['known_players'].store(name, pro)
+                end
 	}
 	#echo pro + " Scan Complete.***"
 }

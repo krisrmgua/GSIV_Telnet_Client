@@ -1,4 +1,4 @@
         <!--Paladin Characters-->
         <highlight fg='80FFFB' bg='000000'>
-                \b(?:Krunekat|Bamdur|Yekn|Fulvus|Kilrod|Gontlin|Cassis|Vistal|Songray|Ronvirn|Abeer|Chastane|Fulmen|Renfair|Menos|Vesalus|Zosimos|Warclaidh|Iewolf|Nahnya|Delilahrae|Appoloin|Tasinn|Sabreon|Bumdor|Thaeren|Dord|Renzo|Gherraltis|Rendena|Kalcawkk|Balaczarr|Vordrisk|Falicor|Koergun|Khoal|Escanor|Rhodie|Reinwulfe|Veramilion|Nottinghamm|Jangrel|Conshi|Daphren|Koops|Madkilla|Dhairn|Sunwu|Mynon|Valif|Hauston|Dragauth|Treben|Hamuir|Juggubob|Kinsale|Corfaire)\b
+                \b(?:Kilrod|Chastane|Fulmen|Renfair|Nahnya|Tasinn|Renzo|Rendena|Kalcawkk|Balaczarr|Falicor|Escanor|Rhodie|Nottinghamm|Jangrel|Conshi|Daphren|Koops|Dhairn|Sunwu|Mynon|Hauston|Dragauth|Treben|Hamuir|Juggubob|Kinsale|Corfaire|Ayaan|Maddisyn|Zosimos|Krunekat|Bamdur|Sluf|Delilahrae|Fulvus|Gontlin|Appoloin|Ryski|Ronvirn|Abeer|Songray|Yekn|Gherraltis|Menos|Vesalus|Reinwulfe|Thaeren|Warclaidh|Vordrisk|Iewolf|Madkilla|Sabreon|Koergun|Khoal|Bumdor|Veramilion|Valif|Dord|Cassis|Krienos|Vistal)\b
         </highlight>
