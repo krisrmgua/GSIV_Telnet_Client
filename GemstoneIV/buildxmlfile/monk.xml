@@ -1,4 +1,4 @@
         <!--Monk Characters-->
         <highlight fg='F0922D' bg='000000'>
-                \b(?:Takoa|Huebald|Setsuko|Hoddy|Cuddy|Eltran|Vindan|Snooshezis|Ebstein|Merokai|Inford|Ailemoine|Ronvir|Dervingrad|Uatro|Ipacryn|Stiga|Villorn|Alfryd|Uchiwa|Nyuba|Aeroals|Kruppe|Draacon|Lriat|Tarine|Raevous|Felhik|Bumpur|Harkel|Sisstar|Elumbrosba|Vaikar|Kalol|Zaj|Tzenmire|Rhaivan|Yndrael|Atilio|Dharana|Riffin|Tabubu|Donbeard|Flessen|Jateloos|Ellzibette|Grummis|Saraban|Retrone|Gnarevo|Usami|Aliavaila|Veidae|Nerric|Fozi|Anilee|Cidven|Karmella|Lopen|Scorpa|Jver|Anubisa)\b
+                \b(?:Takoa|Huebald|Setsuko|Hoddy|Cuddy|Eltran|Vindan|Snooshezis|Ebstein|Merokai|Inford|Ailemoine|Ronvir|Dervingrad|Uatro|Ipacryn|Stiga|Villorn|Alfryd|Uchiwa|Nyuba|Aeroals|Kruppe|Draacon|Lriat|Tarine|Raevous|Felhik|Bumpur|Harkel|Sisstar|Elumbrosba|Vaikar|Kalol|Zaj|Tzenmire|Rhaivan|Yndrael|Atilio|Dharana|Riffin|Tabubu|Donbeard|Flessen|Jateloos|Ellzibette|Grummis|Saraban|Retrone|Gnarevo|Usami|Aliavaila|Veidae|Nerric|Fozi|Anilee|Cidven|Karmella|Lopen|Scorpa|Jver|Anubisa|Corsial|Karisi|Kassiri|Orionian)\b
         </highlight>
