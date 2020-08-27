@@ -80,6 +80,8 @@ CharSettings['known_players'].each do |k,v|
   File.open(filename, 'a'){|f| f.puts k + " " + v}
 end
 system("/root/GemstoneIV/buildxmlfile/build_names.pl")
+system("/root/GemstoneIV/buildxmlfile/build.sh 6")
+system("/root/GemstoneIV/buildXMLstorm/build.pl")
 
 
 

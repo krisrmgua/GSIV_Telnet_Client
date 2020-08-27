@@ -1,14 +1,18 @@
-echo -e " "
-echo -e "\t1:\tMonitor Tall"
-echo -e "\t2:\tMonitor Wide"
-echo -e "\t3:\tMac Laptop"
-echo -e "\t4:\tIpad"
-echo -e "\t5:\tMSI"
-echo -e "\t6:\tMini"
-echo -e " "
-echo -e "ENTER SELECTOIN NUMBER: "
+if [ "$1" != "" ]; then
+    num=$1
+else
+    echo -e " "
+    echo -e "\t1:\tMonitor Tall"
+    echo -e "\t2:\tMonitor Wide"
+    echo -e "\t3:\tMac Laptop"
+    echo -e "\t4:\tIpad"
+    echo -e "\t5:\tMSI"
+    echo -e "\t6:\tMini"
+    echo -e " "
+    echo -e "ENTER SELECTOIN NUMBER: "
 
-read num
+    read num
+fi
 
 if [ $num -eq 1 ]
 then
