@@ -212,6 +212,7 @@ end
 
 ############################################################################################################
 echo "***HealBot knows about #{CharSettings['known_empaths'].length} empaths.***"
+Script.start('krisloop')
 scan_for_empaths.call
 $lastScan = Time.now 
 

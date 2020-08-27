@@ -117,7 +117,9 @@ loop {
     #if line =~ /golvern battle axe returns to normal/ and Myname == "Woory"
     if line =~ /^(\w+) offers you/ and Myname == "Aiss"
         wname = $1
-        fput "whisper " + NAME + "no thanks!"
+        fput "whisper " + wname + " no thanks!"
+        sleep 5
+        fput "decline"
     end
     if line =~ /but it has no effect!/ and Myname == "Woory"
         loop {
