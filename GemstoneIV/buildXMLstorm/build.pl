@@ -24,59 +24,59 @@ while(<FH>){
       if ($warriors eq ""){
           $warriors =  "          <h color=\"\@80\" text=\"" . $list[0] . "\"/>\n";
       }else{
-          $warriors = $warriors . "|$list[0]";
+          $warriors = $warriors . "          <h color=\"\@80\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "rogue") {
       if ($rogues eq ""){
-          $rogues = "$list[0]";
+          $rogues = "          <h color=\"\@87\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $rogues = $rogues . "          <h color=\"\@87\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "wizard") {
       if ($wizards eq ""){
-          $wizards = "$list[0]";
+          $wizards = "          <h color=\"\@64\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $wizards = $wizards . "          <h color=\"\@64\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "cleric") {
       if ($clerics eq ""){
-          $clerics = "$list[0]";
+          $clerics = "          <h color=\"\@73\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $clerics = $clerics . "          <h color=\"\@73\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "empath") {
       if ($empaths eq ""){
-          $empaths = "$list[0]";
+          $empaths = "          <h color=\"\@49\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $empaths = $empaths . "          <h color=\"\@49\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "sorcerer") {
       if ($sorcerers eq ""){
-          $sorcerers = "$list[0]";
+          $sorcerers = "          <h color=\"\@56\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $sorcerers = $sorcerers . "          <h color=\"\@56\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "ranger") {
       if ($rangers eq ""){
-          $rangers = "$list[0]";
+          $rangers = "          <h color=\"\@37\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $rangers = $rangers . "          <h color=\"\@37\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "bard") {
       if ($bards eq ""){
-          $bards = "$list[0]";
+          $bards = "          <h color=\"\@35\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $bards = $bards . "          <h color=\"\@35\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "monk") {
       if ($monks eq ""){
-          $monks = "$list[0]";
+          $monks = "          <h color=\"\@33\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $monks = $monks . "          <h color=\"\@33\" text=\"" . $list[0] . "\"/>\n";
       }
    }elsif ($list[1] eq "paladin") {
       if ($paladins eq ""){
-          $paladins = "$list[0]";
+          $paladins = "          <h color=\"\@70\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $paladins = $paladins . "          <h color=\"\@70\" text=\"" . $list[0] . "\"/>\n";
       }
