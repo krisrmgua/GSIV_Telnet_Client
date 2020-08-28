@@ -1,0 +1,4 @@
+        <!--Enemy Characters-->
+        <highlight fg='000000' bg='FF0303'>
+                \b(?:Enemy1|Melicant)\b
+        </highlight>

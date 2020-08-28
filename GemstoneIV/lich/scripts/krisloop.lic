@@ -86,6 +86,7 @@ loop {
     line = matchtimeout 10, "the body of", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
     if line =~ /your current room was not found/
       fput "move west"
+      fput "crawl west"
     end
     if line =~ /the body of/
         if Room.current.id.to_s !~ /^228$/
@@ -120,6 +121,7 @@ loop {
     #if line =~ /golvern battle axe returns to normal/ and Myname == "Woory"
     if line =~ /^(\w+) offers you/ and Myname == "Aiss"
         wname = $1
+        sleep 5
         fput "whisper " + wname + " no thanks!"
         sleep 5
         fput "decline"

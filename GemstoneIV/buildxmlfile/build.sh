@@ -27,6 +27,8 @@ then
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_tall.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -43,6 +45,8 @@ then
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_wide.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -59,6 +63,8 @@ then
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_normal.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -78,6 +84,8 @@ then
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_msi.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -94,6 +102,8 @@ then
     cat $HOME/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
+    cat $HOME/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_lap_mini.xml >> ~/.profanity/kris.xml
     cat $HOME/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml

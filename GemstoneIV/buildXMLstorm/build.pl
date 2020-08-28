@@ -14,6 +14,8 @@ my $rangers = "";
 my $bards = "";
 my $monks = "";
 my $paladins = "";
+my $kris = "";
+my $enemy = "";
 
 open(FH, '<', $filename) or die $!;
 while(<FH>){
@@ -80,6 +82,18 @@ while(<FH>){
       }else{
           $paladins = $paladins . "          <h color=\"\@70\" text=\"" . $list[0] . "\"/>\n";
       }
+   }elsif ($list[1] eq "enemy") {
+      if ($enemy eq ""){
+          $enemy = "          <h color=\"\@89\" bgcolor=\"\@30\" text=\"" . $list[0] . "\"/>\n";
+      }else{
+          $enemy = $enemy . "          <h color=\"\@89\" bgcolor=\"\@30\" text=\"" . $list[0] . "\"/>\n";
+      }
+   }elsif ($list[1] eq "kris") {
+      if ($kris eq ""){
+          $kris = "          <h color=\"\@90\" bgcolor=\"\@20\" text=\"" . $list[0] . "\"/>\n";
+      }else{
+          $kris = $kris . "          <h color=\"\@90\" bgcolor=\"\@20\" text=\"" . $list[0] . "\"/>\n";
+      }
    } 
    #print Dumper(\%warrior_hash);
 }
@@ -120,7 +134,7 @@ my $file_top = '<settings client="1.0.1.26">
                 <i id="30" color="#E70000"/>
                 <i id="31" color="#AD0000"/>
                 <i id="32" color="#E87400"/>
-                <i id="33" color="#F89439"/>
+                <i id="33" color="#FBBD86"/>
                 <i id="34" color="#E7BD18"/>
                 <i id="35" color="#FFF793"/>
                 <i id="36" color="#31E739"/>
@@ -167,7 +181,7 @@ my $file_top = '<settings client="1.0.1.26">
                 <i id="77" color="#50185A"/>
                 <i id="78" color="#4A2142"/>
                 <i id="79" color="#4A1818"/>
-                <i id="80" color="#7A4949"/>
+                <i id="80" color="#9E5F5F"/>
                 <i id="81" color="#7B3900"/>
                 <i id="82" color="#5A4A31"/>
                 <i id="83" color="#304000"/>
@@ -211,29 +225,13 @@ my $file_top = '<settings client="1.0.1.26">
         </presets>
         <names>
                 <h color="@0" text="Oguo" bgcolor="@14"/>
-                <h color="@49" text="Tranquia"/>
-                <h color="@49" text="Ellianna"/>
-                <h color="@49" text="Traiva"/>
-                <h color="@49" text="Servena"/>
-                <h color="@49" text="Chandrellia"/>
-                <h color="@49" text="Nykus"/>
-                <h color="@49" text="Brianyel"/>
-                <h color="@49" text="Raeggnar"/>
-                <h text="Sluf" color="@89" bgcolor="@57"/>
-                <h text="Clu" color="@89" bgcolor="@57"/>
-                <h text="Loads" color="@89" bgcolor="@57"/>
-                <h text="Woory" color="@89" bgcolor="@57"/>
-                <h text="Trenus" color="@89" bgcolor="@57"/>
-                <h text="Aiss" color="@89" bgcolor="@57"/>
-                <h text="Sorci" color="@89" bgcolor="@57"/>
-                <h text="Pristeen" color="@89" bgcolor="@57"/>
 ';
 
 my $file_bottom = '     </names>
 
 </settings>';
 
-my $complete = $file_top . $warriors . $rogues . $wizards . $clerics . $empaths . $sorcerers . $rangers . $bards . $monks . $paladins . $file_bottom;
+my $complete = $file_top . $kris . $warriors . $rogues . $wizards . $clerics . $empaths . $sorcerers . $rangers . $bards . $monks . $paladins . $enemy . $file_bottom;
 
 open(FH, '>', $outfile) or die $!;
 print FH $complete;

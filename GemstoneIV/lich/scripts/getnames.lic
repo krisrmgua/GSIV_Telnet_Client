@@ -32,6 +32,7 @@ scan_for_players = proc { |pro|
 	fput "who profession " + pro
 	silence_me
 	all_list = nil
+	all_list2 = nil
 	while (line = get)
 		if (line =~ /Brave Adventurers Questing\:/)
 			while (line = get)
@@ -56,6 +57,26 @@ scan_for_players = proc { |pro|
 		    number_of_players_added += 1	
                 end
 	}
+        CharSettings['known_players'].delete("Melicant")
+        CharSettings['known_players'].store("Melicant", "enemy")
+        CharSettings['known_players'].delete("Thailmore")
+        CharSettings['known_players'].store("Thailmore", "empath")
+        CharSettings['known_players'].delete("Aiss")
+        CharSettings['known_players'].store("Aiss", "kris")
+        CharSettings['known_players'].delete("Pristeen")
+        CharSettings['known_players'].store("Pristeen", "kris")
+        CharSettings['known_players'].delete("Clu")
+        CharSettings['known_players'].store("Clu", "kris")
+        CharSettings['known_players'].delete("Wardrob")
+        CharSettings['known_players'].store("Wardrob", "kris")
+        CharSettings['known_players'].delete("Trenus")
+        CharSettings['known_players'].store("Trenus", "kris")
+        CharSettings['known_players'].delete("Sorci")
+        CharSettings['known_players'].store("Sorci", "kris")
+        CharSettings['known_players'].delete("Woory")
+        CharSettings['known_players'].store("Woory", "kris")
+        CharSettings['known_players'].delete("Sluf")
+        CharSettings['known_players'].store("Sluf", "kris")
 	#echo pro + " Scan Complete.***"
         echo "***Added #{number_of_players_added} new #{pro} to the list.***"
 }

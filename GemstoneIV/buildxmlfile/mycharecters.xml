@@ -1,0 +1,4 @@
+        <!--My Characters-->
+        <highlight fg='ffffff' bg='0D5C61'>
+                \b(?:Aiss|Pristeen|Clu|Wardrob|Trenus|Sorci|Woory|Sluf)\b
+        </highlight>

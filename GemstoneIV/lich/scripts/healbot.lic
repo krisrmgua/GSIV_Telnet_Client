@@ -25,7 +25,8 @@
 #You will automatically heal these people when they run into the room.
 #Pinipin focuses on Azanoth with intense concentration.
 friendlist = []
-ignore = []
+ignore = ["Sluf", "Pristeen", "Woory", "Trenius", "Sorci", "Clu", "Wardrob"]
+fail = 0
 $invasion = script.vars[1] =~ /invasion/
 
 if $invasion
@@ -92,7 +93,7 @@ scan_for_empaths = proc {
 #You will also not automatically heal these people who you know to be empaths
 #Sometimes people can hide their profession from the who list
 KnownEmpaths = /Tawariell|Suvean|Chandrellia|Phatall|Tranquia|Vrom|Invuna|
-				Roqe|Aezha|Treeva|Elionwey|Wanion|Samyael|Balley|Kahlanni|
+				Roqe|Thailmore|Aezha|Treeva|Elionwey|Wanion|Samyael|Balley|Kahlanni|
 				Yosaffbrig|Snarc|Dirvy|Martyle|Cyana|Xanthras|Rhangath|Iseo|
 				Archengrace|Minniemae|Hanscold|Elionway|Dowfen|Telare|Anditus|
 				Aeraaxu|Mirando|Morvai|Svanya/x
@@ -230,7 +231,7 @@ loop {
 	line = matchtimeout 10, "whispers", "asks", "exclaims", "says", "just", "arrived", "arrives", "taps you", "shatters into thousands of fragments", "severely perforated", "drawing the blood from his body", "begins to boil violently", "sickly greenish hue"
 	#next if checkmind !~ /becoming|muddled|clear|fresh|numbed/
 #You infuse Fliayeb with your own strength, and she appears entirely restored
-	if line =~ /(?:^Speaking .*to )?(you, |[A-Z][a-z]+, )?(?:The ghostly voice of |The ghost of )?([A-Z][a-z]+).*(whispers,|asks,|exclaims,|says,)(?i).*?(heal[^t]|bleed|minor|'?ealing?|lacerations|cuts|wound|patch|empath|poison|disease|medic).*?(?:\.|\!|\?)\"|([A-Z][a-z]+) meditates over.*/i
+	if line =~ /(?:^Speaking .*to )?(you, |[A-Z][a-z]+, )?(?:The ghostly voice of |The ghost of )?([A-Z][a-z]+).*(whispers,|asks,|exclaims,|says,)(?i).*?(heal[^t]|bleed|minor|'?ealing?|lacerations|cuts|wound|patch|empath|medic).*?(?:\.|\!|\?)\"|([A-Z][a-z]+) meditates over.*/i
 		target = $1
 		healee = $2
 
@@ -241,6 +242,7 @@ loop {
 		end
 
 		next if ignore.include? healee
+                next if healee.start_with?(healee.downcase)
 		next if healee =~ /Speaking/
 
 		bodies = GameObj.pcs.select { |pc| pc.status =~ /dead/ }.map{ |pc| pc.name }
@@ -255,7 +257,7 @@ loop {
 		end
 		
 		#default wait time
-		waittime = 6
+		waittime = 20
 		sleeptime = 3
 
 		if percentmind <= 25 #you need xp
@@ -265,9 +267,12 @@ loop {
 		end
 		if percentmind > 70 #give other healers a chance
 			if !AnyOtherEmpaths?()
+			        waittime = 12
+			        sleeptime = 3
 				echo "*** There seem to be no other empaths, so we won't wait extra long ***"
 			else
 				waittime = 24
+			        sleeptime = 3
 				echo "*** Mind high, waiting longer to see if #{healee} gets healed.. ***"
 			end
 		end
@@ -292,6 +297,7 @@ loop {
 
 		#appraisal check
                 aname = "#{healee}" 
+		fput "nod #{healee}"
                 if aname != "Trenus" and aname != "Sorci" and aname != "Woory" and aname != "Clu" and aname != "Pristeen" and aname != "Sluf" and aname != "Wardrob"
 		    result = dothistimeout "appraise #{healee}", 5, /You take a quick appraisal/
                 end
@@ -320,9 +326,11 @@ loop {
                         if aname == "Trenus" or aname == "Sorci" or aname == "Woory" or aname == "Clu" or aname == "Pristeen" or aname == "Sluf" or aname == "Wardrob"
                             echo "SKIPPING #{healee}"
                         else
-			    fput "nod #{healee}"
-                            fput "say ::#{healee} just a moment"
-                            linking(healee)
+                            if fail == 0
+			        #fput "nod #{healee}"
+                                fput "say ::#{healee} just a moment"
+                                linking(healee)
+                             end
                         end
 		end
 		sleep sleeptime
@@ -381,15 +389,18 @@ loop {
 	#healbot_healme("Scars", 3)
 
 def linking(who)
+        fail = 0
 	fput "touch #{who} link"
-	result = waitfor "successful empathic link", "link failed???"
-	if result.include?("link failed???")
+	result = waitfor "successful empathic link", "link fails"
+	if result.include?("link fails")
 		respond
 		respond
 		respond "Unable To Link!"
 		respond
 		respond
-		return
+                fput "whisper ooc " + who + " sorry my f2p account wont let me heal ya again for now, maybe another empath can" 
+                fail = 1
+
 	end
 end
 }

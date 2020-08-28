@@ -13,6 +13,8 @@ my $rangers = "";
 my $bards = "";
 my $monks = "";
 my $paladins = "";
+my $enemiess = "";
+my $kris = "";
 
 open(FH, '<', $filename) or die $!;
 while(<FH>){
@@ -79,6 +81,18 @@ while(<FH>){
       }else{
           $paladins = $paladins . "|$list[0]";
       }
+   }elsif ($list[1] eq "enemy") {
+      if ($enemiess eq ""){
+          $enemiess = "$list[0]";
+      }else{
+          $enemiess = $enemiess . "|$list[0]";
+      }
+   }elsif ($list[1] eq "kris") {
+      if ($kris eq ""){
+          $kris = "$list[0]";
+      }else{
+          $kris = $kris . "|$list[0]";
+      }
    } 
    #print Dumper(\%warrior_hash);
 }
@@ -114,6 +128,12 @@ my $monk_file_top = '        <!--Monk Characters-->
 my $paladin_file_top = '        <!--Paladin Characters-->
         <highlight fg=\'80FFFB\' bg=\'000000\'>
                 \b(?:';
+my $enemy_file_top = '        <!--Enemy Characters-->
+        <highlight fg=\'000000\' bg=\'FF0303\'>
+                \b(?:';
+my $kris_file_top = '        <!--My Characters-->
+        <highlight fg=\'ffffff\' bg=\'0D5C61\'>
+                \b(?:';
 my $file_end = ')\b
         </highlight>';
 
@@ -127,6 +147,8 @@ my $comb_ranger_file = $ranger_file_top . $rangers . $file_end;
 my $comb_bard_file = $bard_file_top . $bards . $file_end;
 my $comb_monk_file = $monk_file_top . $monks . $file_end;
 my $comb_paladin_file = $paladin_file_top . $paladins . $file_end;
+my $comb_enemy_file = $enemy_file_top . $enemiess . $file_end;
+my $comb_kris_file = $kris_file_top . $kris . $file_end;
 
 
 my $war_file = '/root/GemstoneIV/buildxmlfile/warrior.xml';
@@ -177,4 +199,14 @@ close(FH);
 my $pal_file = '/root/GemstoneIV/buildxmlfile/paladin.xml';
 open(FH, '>', $pal_file) or die $!;
 print FH $comb_paladin_file;
+close(FH);
+
+my $ene_file = '/root/GemstoneIV/buildxmlfile/enemy.xml';
+open(FH, '>', $ene_file) or die $!;
+print FH $comb_enemy_file;
+close(FH);
+
+my $kris_file = '/root/GemstoneIV/buildxmlfile/mycharecters.xml';
+open(FH, '>', $kris_file) or die $!;
+print FH $comb_kris_file;
 close(FH);
