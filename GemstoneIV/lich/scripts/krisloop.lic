@@ -83,7 +83,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "the body of", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
+    line = matchtimeout 10, "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"

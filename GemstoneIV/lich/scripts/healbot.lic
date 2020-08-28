@@ -298,9 +298,9 @@ loop {
 		#appraisal check
                 aname = "#{healee}" 
 		fput "nod #{healee}"
-                if aname != "Trenus" and aname != "Sorci" and aname != "Woory" and aname != "Clu" and aname != "Pristeen" and aname != "Sluf" and aname != "Wardrob"
-		    result = dothistimeout "appraise #{healee}", 5, /You take a quick appraisal/
-                end
+                #if aname != "Trenus" and aname != "Sorci" and aname != "Woory" and aname != "Clu" and aname != "Pristeen" and aname != "Sluf" and aname != "Wardrob"
+		result = dothistimeout "appraise #{healee}", 5, /You take a quick appraisal/
+                #end
 		if result =~ /no apparent injuries/
 			echo "***** #{healee} is not injured.  False alarm? *****"
 			if has_bodies && line =~ bodies_regex
@@ -323,25 +323,25 @@ loop {
 			end
 		else
                         aname = "#{healee}" 
-                        if aname == "Trenus" or aname == "Sorci" or aname == "Woory" or aname == "Clu" or aname == "Pristeen" or aname == "Sluf" or aname == "Wardrob"
-                            echo "SKIPPING #{healee}"
-                        else
-                            if fail == 0
-			        #fput "nod #{healee}"
-                                fput "say ::#{healee} just a moment"
-                                linking(healee)
-                             end
+                        #if aname == "Trenus" or aname == "Sorci" or aname == "Woory" or aname == "Clu" or aname == "Pristeen" or aname == "Sluf" or aname == "Wardrob"
+                        #    echo "SKIPPING #{healee}"
+                        #else
+                        if fail == 0
+		            #fput "nod #{healee}"
+                            fput "say ::#{healee} just a moment"
+                            linking(healee)
                         end
+                        #end
 		end
 		sleep sleeptime
-                if aname == "Trenus" or aname == "Sorci" or aname == "Woory" or aname == "Clu" or aname == "Pristeen" or aname == "Sluf" or aname == "Wardrob"
-                    echo "Skipping"
-                else
-		    gd_wound_transfer(healee)
-                    sleep 3
-                    Script.run('sheal')
-                    fput "unlink" 
-                end
+                #if aname == "Trenus" or aname == "Sorci" or aname == "Woory" or aname == "Clu" or aname == "Pristeen" or aname == "Sluf" or aname == "Wardrob"
+                #    echo "Skipping"
+                #else
+	        gd_wound_transfer(healee)
+                sleep 3
+                Script.run('sheal')
+                fput "unlink" 
+                #end
 	elsif line =~ /([A-Z,a-z]+)('s group | )(just arrived|arrives at your table|just came crawling in|just limped in|just came marching in|just came sashaying in gracefully|just arrived, skipping merrily|just tiptoed in|just strode in|just stumbled in|just came trudging in)/
 		healee = $1
 		if friendlist.include?(healee)

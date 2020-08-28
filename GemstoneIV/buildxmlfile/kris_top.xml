@@ -6,7 +6,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='9090ff'>^(?:Cast Roundtime 3 Seconds\.|Your spell is ready\.)$</highlight>
 	<highlight fg="a6e22e">coraesine|urnon|glass and pink pearl jar|pearly grey glass jar|cobalt glass lapis-rimmed jar|pearly white glass jar</highlight>
 	<highlight fg="FF0000">a \w+?\s?\w+ gold ring</highlight>
-        <highlight fg="CE8C5C">(a|an) \w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
+        <highlight fg="CE8C5C">(a|an) \w+?-?\w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
         <highlight fg="0DEFF6">a \w+?\s?\w+?\s?\w+\s(?:amethyst|sapphire|gem|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)</highlight>
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
 	<highlight fg="F6931D">nods to</highlight>
