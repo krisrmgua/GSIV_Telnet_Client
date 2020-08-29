@@ -1,0 +1,76 @@
+---
+resting_room_id: '228'
+resting_commands: cle my rune
+resting_scripts: poolparty,sloot sell,waggle,askheal,useherbs in bin,useherbs on bench,useherbs
+  under bench,useherbs in my kit --buy=on,checkbank,med
+fog_return: 0
+hunting_room_id: '8470'
+hunting_boundaries: '8469,11111'
+targets: nedum vereri
+quickhunt_targets: ''
+hunting_stance: defensive
+hunting_prep_commands: open my backpack, look in my backpack, open my cloak, look
+  in my cloak, open my kit, look in my kit, tap my wrist,get my runestaff
+hunting_scripts: ''
+signs: ''
+loot_script: sloot
+wracking_spirit: ''
+ambush: ''
+archery_aim: ''
+flee_count: '1'
+invalid_targets: ''
+always_flee_from: tomb spider
+flee_message: ''
+wander_wait: ''
+hunting_commands: target,incant 302 channel
+hunting_commands_b: ''
+hunting_commands_c: ''
+hunting_commands_d: ''
+hunting_commands_e: ''
+hunting_commands_f: ''
+hunting_commands_g: ''
+hunting_commands_h: ''
+hunting_commands_i: ''
+hunting_commands_j: ''
+disable_commands: ''
+quick_commands: ''
+tier3: ''
+aim: ''
+uac_mstrike: ''
+mstrike_stamina_cooldown: ''
+mstrike_stamina_quickstrike: ''
+mstrike_mob: ''
+rest_till_exp: '50'
+rest_till_mana: '100'
+rest_till_spirit: '8'
+fried: '100'
+overkill: ''
+oom: '4'
+encumbered: ''
+wounded_eval: XMLData.injuries.any?{|key,value| value["wound"] > 1} || percenthealth
+  <= 70
+ammo_container: ''
+ammo: ''
+fresh_wand_container: ''
+dead_wand_container: ''
+wand: ''
+dead_man_switch: true
+monitor_interaction: true
+depart_switch: false
+flee_clouds: true
+flee_vines: true
+flee_webs: true
+priority: false
+use_wracking: false
+delay_loot: false
+loot_stance: true
+pull: true
+spam: true
+lone_targets_only: false
+bless: false
+uac_smite: false
+mstrike_cooldown: false
+mstrike_quickstrike: false
+hide_for_ammo: false
+wand_if_oom: false
+lte_boost: ''

@@ -1,0 +1,4 @@
+if Room.current.id.to_s == "228"
+  Script.run('go2', '3743')
+  fput "go table"
+end

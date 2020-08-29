@@ -19,6 +19,47 @@ if Myname == "Clu"
     backpack = "pack"
     sheath = "sheath"
     encumbrance = 20
+    active_scripts = [""]
+elsif Myname == "Pristeen"
+    mobs = ["nedum vereri"]
+    fleemobs = ["tomb spider"]
+    rest = "landing"
+    huntarea = "8470"
+    roomboundry = ["8469"]
+    attack = "incant 302 channel"
+    stance = "defensive"
+    herbsack = "kit"
+    flee_count = 1
+    swings = 9
+    skipwaitattack = 1
+    hideme = 0
+    weapon = "runestaff"
+    shield = "shield"
+    cloak = "cloak"
+    backpack = "backpack"
+    sheath = "sheath"
+    encumbrance = 35
+    active_scripts = [""]
+elsif Myname == "Sluf"
+    mobs = ["nedum vereri"]
+    fleemobs = ["tomb spider"]
+    rest = "landing"
+    huntarea = "8470"
+    roomboundry = ["8469"]
+    attack = "attack"
+    stance = "offensive"
+    herbsack = "kit"
+    flee_count = 1
+    swings = 3
+    skipwaitattack = 0
+    hideme = 0
+    weapon = "backsword"
+    shield = "shield"
+    cloak = "cloak"
+    backpack = "backpack"
+    sheath = "sheath"
+    encumbrance = 35
+    active_scripts = ["surge"]
 elsif Myname == "Wardrob"
     mobs = ["thyril", "relnak"]
     fleemobs = ["wraith"]
@@ -38,6 +79,7 @@ elsif Myname == "Wardrob"
     backpack = "greatcloak"
     sheath = "sheath"
     encumbrance = 35
+    active_scripts = [""]
 elsif Myname == "Loods"
     mobs = ["giant ant"]
     fleemobs = ["nothing"]
@@ -57,6 +99,7 @@ elsif Myname == "Loods"
     backpack = "jacket"
     sheath = "sheath"
     encumbrance = 5
+    active_scripts = [""]
 else
     exit
 end
@@ -107,6 +150,8 @@ go2rest = proc {
 putawayweapon = proc {
     if Myname == "Clu" 
         fput "wear my weapon"
+    elsif Myname == "Pristeen" 
+        Script.run('wear')
     else
         fput "wear my #{shield}"
         fput "put my #{weapon} in my #{sheath}"
@@ -116,6 +161,8 @@ putawayweapon = proc {
 getweapon = proc {
     if Myname == "Clu" 
         fput "remove my #{weapon}"
+    elsif Myname == "Pristeen" 
+        Script.run('rem')
     else
         fput "remove my #{shield}"
         fput "get my #{weapon} from my #{sheath}"
@@ -151,8 +198,17 @@ openlook = proc {
 
 }
 
+check_for_people = proc {
+   ppl = GameObj.pcs
+   if ppl.size
+     go_defensive.call()
+     $need_flee = true
+   end
+}
+
 check_flee_count = proc {
    npcs = GameObj.npcs
+   ppl = GameObj.pcs
    if not npcs.size or npcs.size > flee_count
      go_defensive.call()
      $need_flee = true
@@ -188,6 +244,23 @@ find_target = proc {
     end
   end
   target
+}
+
+start_active = proc {
+  active_scripts.each do |i|
+    if running? "#{i}"
+    else
+      Script.start(i) 
+    end
+  end
+}
+
+stop_active = proc {
+  active_scripts.each do |i|
+    if running? "#{i}"
+      kill_script "#{i}" 
+    end
+  end
 }
 
 attack_target = proc { |target|
@@ -257,10 +330,12 @@ loop {
   $need_bless = false
   $need_rest = false
   $need_flee = false
+  start_active.call()
   bs_wander.call(roomboundry)
   fput "quit" if checkdead
   check_standing.call()
   check_flee_count.call()
+  check_for_people.call()
   if $need_flee != true
     target = find_target.call()
     if target
@@ -269,6 +344,7 @@ loop {
   end
   check_standing.call()
   if $need_healing or $need_bless or $need_rest
+    stop_active.call()
     go2rest.call()
     openlook.call()
     putawayweapon.call()

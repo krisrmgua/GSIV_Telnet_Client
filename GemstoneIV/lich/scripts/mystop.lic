@@ -1,0 +1,8 @@
+while Script.list
+  mylist = Script.list
+  mylist.each do |i|
+    if "#{i}" != "lnet" or "#{i}" != "infomon"
+      kill_script "#{i}"
+    end
+  end
+end
