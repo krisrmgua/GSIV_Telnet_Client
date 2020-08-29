@@ -4,7 +4,10 @@ if Myname == "Clu"
     mob = "giant marmot"
     mob2 = "dark orc"
     mob3 = "spotted lynx"
+    mob4 = "hobgoblin"
     fleemob = "wraith"
+    fleemob2 = "wraith"
+    fleemob3 = "wraith"
     rest = "landing"
     huntarea = "6888"
     roomboundry = [6879,6897]
@@ -27,17 +30,20 @@ elsif Myname == "Wardrob"
     #mob2 = "relnak"
     mob2 = "mongrel hobgoblin"
     mob3 = "spotted lynx"
+    mob4 = "hobgoblin"
     fleemob = "wraith"
+    fleemob2 = "wraith"
+    fleemob3 = "wraith"
     rest = "landing"
     #huntarea = "7545"
     huntarea = "hob"
     #roomboundry = [7949,7931]
-    roomboundry = [6766,6764,6786]
+    roomboundry = [6766,6764,6776,6786]
     attack = "attack"
     stance = "offensive"
     herbsack = "sack"
     flee_count = 1
-    swings = 2
+    swings = 1
     skipwaitattack = 0
     hideme = 0
     weapon = "broadsword"
@@ -46,6 +52,30 @@ elsif Myname == "Wardrob"
     backpack = "greatcloak"
     sheath = "sheath"
     encumbrance = 35
+elsif Myname == "Loods"
+    mob = "giant ant"
+    mob2 = "mongrel hobgoblin"
+    mob3 = "spotted lynx"
+    mob4 = "hobgoblin"
+    fleemob = "wraith"
+    fleemob2 = "wraith"
+    fleemob3 = "wraith"
+    rest = "landing"
+    huntarea = "ants"
+    roomboundry = [6766,6764,6776,6786]
+    attack = "attack"
+    stance = "offensive"
+    herbsack = "sack"
+    flee_count = 1
+    swings = 1
+    skipwaitattack = 0
+    hideme = 0
+    weapon = "sword"
+    shield = "shield"
+    cloak = "jacket"
+    backpack = "jacket"
+    sheath = "sheath"
+    encumbrance = 5
 else
     exit
 end
@@ -134,7 +164,11 @@ Start:
       target3 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob3}$/i or npc.noun =~ /^#{mob3}$/i) }
       TT = target3
       if not target3
-        goto "Walk"
+        target4 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob4}$/i or npc.noun =~ /^#{mob4}$/i) }
+        TT = target4
+        if not target4
+          goto "Walk"
+        end
       end
     end
   end
@@ -145,7 +179,9 @@ Start:
     while loop < swings
       check_flee_count.call()
       fleenow = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob}$/i or npc.noun =~ /^#{fleemob}$/i) }
-      if fleenow
+      fleenow2 = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob2}$/i or npc.noun =~ /^#{fleemob2}$/i) }
+      fleenow3 = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob3}$/i or npc.noun =~ /^#{fleemob3}$/i) }
+      if fleenow or fleenow2 or fleenow3
         goto "Walk"
       end
       goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 70
