@@ -1,13 +1,8 @@
 Myname = Char.name
 
 if Myname == "Clu"
-    mob = "giant marmot"
-    mob2 = "dark orc"
-    mob3 = "spotted lynx"
-    mob4 = "hobgoblin"
-    fleemob = "wraith"
-    fleemob2 = "wraith"
-    fleemob3 = "wraith"
+    mobs = ["giant marmot", "dark orc"]
+    fleemobs = ["wraith"]
     rest = "landing"
     huntarea = "6888"
     roomboundry = [6879,6897]
@@ -25,12 +20,11 @@ if Myname == "Clu"
     sheath = "sheath"
     encumbrance = 20
 elsif Myname == "Wardrob"
-    mob = "thyril"
-    mob2 = "relnak"
-    fleemob = "wraith"
+    mobs = ["thyril", "relnak"]
+    fleemobs = ["wraith"]
     rest = "landing"
     huntarea = "7545"
-    roomboundry = [7949,7931]
+    roomboundry = ["7949","7931"]
     attack = "attack"
     stance = "offensive"
     herbsack = "sack"
@@ -45,13 +39,8 @@ elsif Myname == "Wardrob"
     sheath = "sheath"
     encumbrance = 35
 elsif Myname == "Loods"
-    mob = "giant ant"
-    mob2 = "mongrel hobgoblin"
-    mob3 = "spotted lynx"
-    mob4 = "hobgoblin"
-    fleemob = "wraith"
-    fleemob2 = "wraith"
-    fleemob3 = "wraith"
+    mobs = ["giant ant"]
+    fleemobs = ["nothing"]
     rest = "landing"
     huntarea = "ants"
     roomboundry = [6766,6764,6776,6786]
@@ -71,6 +60,37 @@ elsif Myname == "Loods"
 else
     exit
 end
+
+
+def global_vars
+  $need_healing = false
+  $need_bless = false
+  $need_rest = false
+  $need_flee = false
+end
+
+bs_wander = proc { |roomboundry|
+  $wander_rooms    ||= Array.new
+  room = Room.current
+  next_room_options = room.wayto.keys - roomboundry
+  next_room_options.delete_if { |room_id| (room.timeto[room_id].class == Proc) and room.timeto[room_id].call.nil? }
+  next_room = next_room_options.find_all { |r| not $wander_rooms.include?(r) }
+  if next_room.empty?
+    next_room = $wander_rooms.find { |r| next_room_options.include?(r) }
+  else
+    next_room = next_room[rand(next_room.length)]
+  end
+  $wander_rooms.delete(next_room)
+  $wander_rooms.push(next_room)
+  way = room.wayto[next_room]
+  if way.class == String
+    pause 0.3
+    move(way)
+  else
+    way.call
+  end
+}
+
 
 go2rest = proc {
     Script.run('go2', "#{rest}")
@@ -109,7 +129,7 @@ itemcheck = proc {
     line = matchtimeout 5, "items found"
     if line =~ /(\d\d) items found/
         if $1 .to_i > 90
-            goto "Fried"
+            $need_sale = true
         end
     end
 }
@@ -129,165 +149,155 @@ check_flee_count = proc {
    npcs = GameObj.npcs
    if not npcs.size or npcs.size > flee_count
      fput "stance defensive"
-     goto "Walk"
+     $need_flee = true
    end
 }
 
-lastroom = "none"
-TT = "target"
-openlook.call()
-getweapon.call()
-Script.run('go2', "#{huntarea}")
-goto "Walk"
-Start:
-  goto "ENDIT" if checkdead
+gohunt = proc {
+  Script.run('go2', "#{huntarea}")
+}
+
+check_standing = proc {
   fput "stand" if not checkstanding
   waitrt?
-  loop = 0
+}
+
+check_flee_target = proc {
+  flee = false
   npcs = GameObj.npcs
-  goto "Walk" if npcs.size < 1
-  target = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob}$/i or npc.noun =~ /^#{mob}$/i) }
-  TT = target
-  if not target
-    target2 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob2}$/i or npc.noun =~ /^#{mob2}$/i) }
-    TT = target2
-    if not target2
-      target3 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob3}$/i or npc.noun =~ /^#{mob3}$/i) }
-      TT = target3
-      if not target3
-        target4 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob4}$/i or npc.noun =~ /^#{mob4}$/i) }
-        TT = target4
-        if not target4
-          goto "Walk"
-        end
-      end
+  fleemobs.each do |i|
+    if GameObj.npcs.find { |npc| (npc.name =~ /^#{i}$/i or npc.noun =~ /^#{i}$/i) }
+      flee = true
     end
   end
+  flee
+}
+
+find_target = proc {
+  target = ""
+  npcs = GameObj.npcs
+  mobs.each do |i|
+    if GameObj.npcs.find { |npc| (npc.name =~ /^#{i}$/i or npc.noun =~ /^#{i}$/i) }
+      target = i
+    end
+  end
+  target
+}
+
+
+attack_target = proc { |target|
   if skipwaitattack == 0
     line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
   end
   if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
+    loop = 0
     while loop < swings
       check_flee_count.call()
-      fleenow = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob}$/i or npc.noun =~ /^#{fleemob}$/i) }
-      fleenow2 = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob2}$/i or npc.noun =~ /^#{fleemob2}$/i) }
-      fleenow3 = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob3}$/i or npc.noun =~ /^#{fleemob3}$/i) }
-      if fleenow or fleenow2 or fleenow3
-        goto "Walk"
+      break if $need_flee == true
+      if check_flee_target.call()
+        break
       end
-      goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 70
+      if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 70
+        $need_healing = true
+        break
+      end
       hidetries = 0
       if hideme == 1
-          while checkhidden == false
-              fput "hide"
-              hidetries += 1
-              waitrt?
-              if hidetries > 4
-                  goto "Walk"
-              end
+        while checkhidden == false
+          fput "hide"
+          hidetries += 1
+          waitrt?
+          if hidetries > 4
+            break
           end
+        end
       end
-      fput "stand" if not checkstanding
+      check_standing.call()
       fput "stance #{stance}"
-      fput "#{attack} #{TT}"
+      fput "#{attack} #{target}"
       line = matchtimeout 5, "but it has no effect!"
-      if line =~ /but it has no effect/
-        go2rest.call()
-        goto "GETBLESS"
-      end
+        if line =~ /but it has no effect/
+          $need_blessing = true
+          break
+        end
       waitrt?
-      fput "stand" if not checkstanding
-      waitrt?
+      check_standing.call()
       loop += 1
       dead = GameObj.dead
       if dead
         fput "stance defensive"
-        Script.run('sloot') 
+        Script.run('sloot')
         if checkfried or percentencumbrance > encumbrance
-          goto "Fried"
+          $need_rest = true
+          break
         end
         itemcheck.call()
-        goto "Walk"
+        break if $need_sale == true
       end
       check_flee_count.call()
+      break if $need_flee == true
     end
     fput "stance defensive"
   end
-  goto "Start"
+}
 
-Walk:
-  if roomboundry.include?(Room.current.id)
-    echo "BOUNDRY HIT goto #{lastroom}"
-    Script.run('go2', "#{lastroom}")
-  end
-  lastroom = Room.current.id
-  #echo lastroom
-  goto "ENDIT" if checkdead
-  fput "stand" if not checkstanding
-  waitrt?
-  sleep 1
-  goto "Walk" unless walk
-    if not checkpcs
-      npcs = GameObj.npcs
-      if npcs.size <= flee_count
-        goto "Start"
-      end
-      goto "Walk"
+
+openlook.call()
+getweapon.call()
+gohunt.call()
+global_vars()
+
+loop {
+  $need_healing = false
+  $need_bless = false
+  $need_rest = false
+  $need_flee = false
+  bs_wander.call(roomboundry)
+  fput "quit" if checkdead
+  check_standing.call()
+  check_flee_count.call()
+  if $need_flee != true
+    target = find_target.call()
+    if target
+      attack_target.call(target)
     end
-  goto "Walk"
-
-Fried:
-  fput "stand" if not checkstanding
-  waitrt?
-  go2rest.call()
-  openlook.call()
-  putawayweapon.call()
-  sell.call()
-  goto "Fried2"
-
-Fried2:
-  sleep 60
-  if checkmind(4)
-    goto "Fried2"
-  else
-    getweapon.call()
-    Script.run('go2', "#{huntarea}")
-    goto "Walk"
   end
-
-GETBLESS:
-    loop {
+  check_standing.call()
+  if $need_healing or $need_bless or $need_rest
+    go2rest.call()
+    openlook.call()
+    putawayweapon.call()
+    if $need_healing
+      Script.run('askheal')
+      sleep 120
+      Script.run('useherbs', "in bin")
+      Script.run('useherbs', "on bench")
+      Script.run('useherbs', "under bench")
+      Script.run('useherbs', "--buy=on in my #{herbsack}")
+    end
+    if $need_bless
+      loop {
         fput "whisper sluf bless me"
         line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your"
         if line =~ /Silvery tendrils rise up and wreathe their way around your/
             break
         end
         sleep 60
-    }
-    loop {
+      }
+      loop {
         fput "whisper pristeen bless me"
         line = matchtimeout 20, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
         if line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/
             break
         end
         sleep 60
-    }
-    goto "Fried"
-
-HEAL:
-  go2rest.call()
-  openlook.call()
-  putawayweapon.call()
-  Script.run('askheal')
-  sleep 120
-  Script.run('useherbs', "in bin")
-  Script.run('useherbs', "on bench")
-  Script.run('useherbs', "under bench")
-  Script.run('useherbs', "--buy=on in my #{herbsack}")
-  sell.call()
-  getweapon.call()
-  Script.run('go2', "#{huntarea}")
-  goto "Walk"
-
-ENDIT:
-  fput "quit"
+      }
+    end
+    while checkmind(4)
+      sleep 60 
+    end
+    sell.call()
+    getweapon.call()
+    Script.run('go2', "#{huntarea}")
+  end
+}

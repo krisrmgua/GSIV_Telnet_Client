@@ -1,0 +1,2 @@
+Script.stop('mybigshot_runner')
+Script.stop('go2')

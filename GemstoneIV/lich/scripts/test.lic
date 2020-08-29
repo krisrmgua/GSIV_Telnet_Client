@@ -1,3 +1,3 @@
-mob = "giant ant"
-target = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob}$/i or npc.noun =~ /^#{mob}$/i) }
-echo target
+roomboundry = ["7949","7931"]
+room = Room.current
+next_room_options = room.wayto.keys - roomboundry

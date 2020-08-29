@@ -2796,7 +2796,7 @@ if( script.vars[1].nil? || script.vars[1] =~ /solo|(bounty)|quick/i )
   end
 
   bs = Bigshot.new(bounty_mode)
-  bs.croak('Requires Lich V4') unless defined?(Gtk.queue) || defined?($bigshot_headless)
+  #bs.croak('Requires Lich V4') unless defined?(Gtk.queue) || defined?($bigshot_headless)
   bs.croak('Requires a mapped room.') if(( Room.current.id.nil? || Room.current.id == 4 ) && !$bigshot_quick)
   bs.lead()
 
