@@ -1,27 +1,55 @@
-mob = "giant marmot"
-mob2 = "dark orc"
-mob3 = "spotted lynx"
-fleemob = "wraith"
-rest = "landing"
-huntarea = "6888"
-roomboundry = [6879,6897]
-attack = "fire"
-stance = "offensive"
-herbsack = "kit"
-flee_count = 1
-swings = 2
-skipwaitattack = 1
-hideme = 1
-shield = "shield"
-weapon = "shortbow"
-cloak = "greatcloak"
-backpack = "pack"
-sheath = "sheath"
-encumbrance = 20
-
-
-
 Myname = Char.name
+
+if Myname == "Clu"
+    mob = "giant marmot"
+    mob2 = "dark orc"
+    mob3 = "spotted lynx"
+    fleemob = "wraith"
+    rest = "landing"
+    huntarea = "6888"
+    roomboundry = [6879,6897]
+    attack = "fire"
+    stance = "offensive"
+    herbsack = "kit"
+    flee_count = 1
+    swings = 2
+    skipwaitattack = 1
+    hideme = 1
+    shield = "shield"
+    weapon = "shortbow"
+    cloak = "greatcloak"
+    backpack = "pack"
+    sheath = "sheath"
+    encumbrance = 20
+elsif Myname == "Wardrob"
+    #mob = "thyril"
+    mob = "hobgoblin shaman"
+    #mob2 = "relnak"
+    mob2 = "mongrel hobgoblin"
+    mob3 = "spotted lynx"
+    fleemob = "wraith"
+    rest = "landing"
+    #huntarea = "7545"
+    huntarea = "hob"
+    #roomboundry = [7949,7931]
+    roomboundry = [6766,6764,6786]
+    attack = "attack"
+    stance = "offensive"
+    herbsack = "sack"
+    flee_count = 1
+    swings = 2
+    skipwaitattack = 0
+    hideme = 0
+    weapon = "broadsword"
+    shield = "shield"
+    cloak = "greatcloak"
+    backpack = "greatcloak"
+    sheath = "sheath"
+    encumbrance = 35
+else
+    exit
+end
+
 
 go2rest = proc {
     Script.run('go2', "#{rest}")
