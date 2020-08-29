@@ -1,14 +1,21 @@
-mob = "thyril"
-mob2 = "relnak"
+#mob = "thyril"
+mob = "hobgoblin shaman"
+#mob2 = "relnak"
+mob2 = "mongrel hobgoblin"
+mob3 = "spotted lynx"
 fleemob = "wraith"
 rest = "landing"
-huntarea = "7545"
-roomboundry = [7949,7931]
+#huntarea = "7545"
+huntarea = "hob"
+#roomboundry = [7949,7931]
+roomboundry = [6766,6764,6786]
 attack = "attack"
 stance = "offensive"
 herbsack = "sack"
 flee_count = 1
-swings = 1
+swings = 2
+skipwaitattack = 0
+hideme = 0
 weapon = "broadsword"
 shield = "shield"
 cloak = "greatcloak"
@@ -89,11 +96,17 @@ Start:
     target2 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob2}$/i or npc.noun =~ /^#{mob2}$/i) }
     TT = target2
     if not target2
-      goto "Walk"
+      target3 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob3}$/i or npc.noun =~ /^#{mob3}$/i) }
+      TT = target3
+      if not target3
+        goto "Walk"
+      end
     end
   end
-  line = matchtimeout 15, "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "swings a", "attacks you", "stomps at you"
-  if line =~ /tries to bite you/ or line=~ /charges at you/ or line=~ /claws at you/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/
+  if skipwaitattack == 0
+    line = matchtimeout 15, "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
+  end
+  if line =~ /tries to bite you/ or line=~ /charges at you/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
     while loop < swings
       check_flee_count.call()
       fleenow = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob}$/i or npc.noun =~ /^#{fleemob}$/i) }
@@ -101,6 +114,17 @@ Start:
         goto "Walk"
       end
       goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 70
+      hidetries = 0
+      if hideme == 1
+          while checkhidden == false
+              fput "hide"
+              hidetries += 1
+              waitrt?
+              if hidetries > 4
+                  goto "Walk"
+              end
+          end
+      end
       fput "stance #{stance}"
       fput "#{attack} #{TT}"
       line = matchtimeout 5, "but it has no effect!"

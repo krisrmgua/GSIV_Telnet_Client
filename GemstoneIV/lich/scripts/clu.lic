@@ -1,5 +1,6 @@
 mob = "giant marmot"
 mob2 = "dark orc"
+mob3 = "spotted lynx"
 fleemob = "wraith"
 rest = "landing"
 huntarea = "6888"
@@ -8,12 +9,19 @@ attack = "fire"
 stance = "offensive"
 herbsack = "kit"
 flee_count = 1
+swings = 2
+skipwaitattack = 1
+hideme = 1
+shield = "shield"
 weapon = "shortbow"
 cloak = "greatcloak"
 backpack = "pack"
 sheath = "sheath"
 encumbrance = 20
 
+
+
+Myname = Char.name
 
 go2rest = proc {
     Script.run('go2', "#{rest}")
@@ -22,11 +30,21 @@ go2rest = proc {
 }
 
 putawayweapon = proc {
-    fput "wear my #{weapon}"
+    if Myname == "Clu" 
+        fput "wear my weapon"
+    else
+        fput "wear my #{shield}"
+        fput "put my #{weapon} in my #{sheath}"
+    end
 }
 
 getweapon = proc {
-    fput "remove my #{weapon}"
+    if Myname == "Clu" 
+        fput "remove my #{weapon}"
+    else
+        fput "remove my #{shield}"
+        fput "get my #{weapon} from my #{sheath}"
+    end
 }
 
 sell = proc {
@@ -58,6 +76,14 @@ openlook = proc {
 
 }
 
+check_flee_count = proc {
+   npcs = GameObj.npcs
+   if not npcs.size or npcs.size > flee_count
+     fput "stance defensive"
+     goto "Walk"
+   end
+}
+
 lastroom = "none"
 TT = "target"
 openlook.call()
@@ -77,50 +103,60 @@ Start:
     target2 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob2}$/i or npc.noun =~ /^#{mob2}$/i) }
     TT = target2
     if not target2
-      goto "Walk"
-    end
-  end
-  fleenow = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob}$/i or npc.noun =~ /^#{fleemob}$/i) }
-  if fleenow
-      goto "Walk"
-  end
-  goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 70
-  hidetries = 0
-  while checkhidden == false 
-      fput "hide"
-      hidetries += 1
-      waitrt?
-      if hidetries > 4
+      target3 = GameObj.npcs.find { |npc| (npc.name =~ /^#{mob3}$/i or npc.noun =~ /^#{mob3}$/i) }
+      TT = target3
+      if not target3
         goto "Walk"
       end
-  end 
-  fput "stance #{stance}"
-  fput "#{attack} #{TT}"
-  line = matchtimeout 5, "but it has no effect!"
-  if line =~ /but it has no effect/
-      go2rest.call()
-      goto "GETBLESS"
-  end
-  waitrt?
-  fput "stand" if not checkstanding
-  waitrt?
-  loop += 1
-  dead = GameObj.dead
-  if dead
-    fput "stance defensive"
-    Script.run('sloot') 
-    if checkfried or percentencumbrance > encumbrance
-      goto "Fried"
     end
-    itemcheck.call()
-    goto "Walk"
   end
-  npcs = GameObj.npcs
-  if not npcs.size or npcs.size > flee_count
+  if skipwaitattack == 0
+    line = matchtimeout 15, "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
+  end
+  if line =~ /tries to bite you/ or line=~ /charges at you/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
+    while loop < swings
+      check_flee_count.call()
+      fleenow = GameObj.npcs.find { |npc| (npc.name =~ /^#{fleemob}$/i or npc.noun =~ /^#{fleemob}$/i) }
+      if fleenow
+        goto "Walk"
+      end
+      goto "HEAL" if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 70
+      hidetries = 0
+      if hideme == 1
+          while checkhidden == false
+              fput "hide"
+              hidetries += 1
+              waitrt?
+              if hidetries > 4
+                  goto "Walk"
+              end
+          end
+      end
+      fput "stance #{stance}"
+      fput "#{attack} #{TT}"
+      line = matchtimeout 5, "but it has no effect!"
+      if line =~ /but it has no effect/
+        go2rest.call()
+        goto "GETBLESS"
+      end
+      waitrt?
+      fput "stand" if not checkstanding
+      waitrt?
+      loop += 1
+      dead = GameObj.dead
+      if dead
+        fput "stance defensive"
+        Script.run('sloot') 
+        if checkfried or percentencumbrance > encumbrance
+          goto "Fried"
+        end
+        itemcheck.call()
+        goto "Walk"
+      end
+      check_flee_count.call()
+    end
     fput "stance defensive"
-    goto "Walk"
   end
-  fput "stance defensive"
   goto "Start"
 
 Walk:
