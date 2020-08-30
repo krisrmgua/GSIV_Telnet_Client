@@ -31,7 +31,7 @@ end
     echo "#{@list[index]} :: #{@list[index]}: #{@healed[index]}"
   else
     count = @healed[0..index-1].count(@healed[index])+1
-    echo "#{@list[index]} :: #{@list[index]}: #{@healed[index]} #{count}"
+    echo "#{@list[index]} :: #{@healed[index] || ''}#{count > 1 ? " (#{count})" : ""}"
   end
 }
 def self.new_healed(target) 
