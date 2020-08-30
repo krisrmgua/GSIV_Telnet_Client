@@ -26,22 +26,13 @@ end
 @patterns["heal"] = /^(?:You infuse )?(?<target>\w+)(?:'s nervous system damage gradually fades, affecting your|'s .*? wound gradually fades, forming on your| with your own strength)/i
 @patterns["fade"] = /^You sense your empathic link with (?<target>\w+) fade away./i
 @list = ['01','02','03','04','05','06','07','08','09','10']
-@render = proc {
-  dialog = "<dialogData id='HealTracker' clear='t'>"
-  if @running
-    @list.each_with_index { |ordinal,index|
-      if index == 0
-        dialog += "<label id = '#{@list[index]}', value = '#{@list[index]}: #{@healed[index] || ''}', justify='4' anchor_top='title' top='0' left='1' height='nil' width='nil'/>"
-      else
-        count = @healed[0..index-1].count(@healed[index])+1
-        dialog += "<label id = '#{@list[index]}', value = '#{@list[index]}: #{@healed[index] || ''}#{count > 1 ? " (#{count})" : ""}', justify='4' anchor_top='#{@list[index-1]}' top='0' left='1' height='nil' width='nil'/>"
-      end
-    }
+@list.each_with_index { |ordinal,index|
+  if index == 0
+    echo "#{@list[index]} :: , #{@list[index]}: #{@healed[index]}"
   else
-    dialog += "<label id = 'disabled', value = 'HealTracker is not running', justify='1' anchor_top='title' top='0' left='1' height='nil' width='nil'/>"
+    count = @healed[0..index-1].count(@healed[index])+1
+    echo "#{@list[index]} :: #{@list[index]}: #{@healed[index]} #{count}"
   end
-  dialog += "</dialogData>"
-  puts(dialog)
 }
 def self.new_healed(target) 
   echo "new_healed(#{target}) called" if @debug
@@ -54,8 +45,6 @@ before_dying {
   @running = false
   @render.call
 }
-puts("<closeDialog id='HealTracker'/><openDialog type='dynamic' id='HealTracker' title='HealTracker' target='HealTracker' location='main' height='150' resident='true'><dialogData id='HealTracker'></dialogData></openDialog>")
-@render.call
 @healing = nil
 m = nil
 while line = get

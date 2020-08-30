@@ -240,7 +240,7 @@ loop {
 		if line =~ /Speaking .*to/
 			next unless line =~ /Speaking .*to you/
 		end
-
+                next if line =~ /poison|poisen|disea|desea/i
 		next if ignore.include? healee
                 next if healee.start_with?(healee.downcase)
 		next if healee =~ /Speaking/

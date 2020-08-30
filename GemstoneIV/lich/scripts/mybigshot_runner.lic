@@ -236,7 +236,7 @@ check_flee_target = proc {
 }
 
 find_target = proc {
-  target = ""
+  target = "0"
   npcs = GameObj.npcs
   mobs.each do |i|
     if GameObj.npcs.find { |npc| (npc.name =~ /^#{i}$/i or npc.noun =~ /^#{i}$/i) }
@@ -248,17 +248,21 @@ find_target = proc {
 
 start_active = proc {
   active_scripts.each do |i|
-    if running? "#{i}"
-    else
-      Script.start(i) 
+    if i.length > 1
+      if running? "#{i}"
+      else
+        Script.start(i) 
+      end
     end
   end
 }
 
 stop_active = proc {
   active_scripts.each do |i|
-    if running? "#{i}"
-      kill_script "#{i}" 
+    if i.length > 1
+      if running? "#{i}"
+        kill_script "#{i}" 
+      end
     end
   end
 }
@@ -338,7 +342,7 @@ loop {
   check_for_people.call()
   if $need_flee != true
     target = find_target.call()
-    if target
+    if target != "0"
       attack_target.call(target)
     end
   end

@@ -1,8 +1,10 @@
-while Script.list
-  mylist = Script.list
-  mylist.each do |i|
-    if "#{i}" != "lnet" or "#{i}" != "infomon"
+mylist = Script.list
+mylist.each do |i|
+  if "#{i}" != "lnet" and "#{i}" != "infomon" and "#{i}" != "mystop"
+    echo "Got #{i}"
+    while running? "#{i}"
+      echo "Killling #{i}"
       kill_script "#{i}"
-    end
+    end 
   end
 end
