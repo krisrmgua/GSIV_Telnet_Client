@@ -28,7 +28,7 @@ end
 @list = ['01','02','03','04','05','06','07','08','09','10']
 @list.each_with_index { |ordinal,index|
   if index == 0
-    echo "#{@list[index]} :: #{@list[index]}: #{@healed[index]}"
+    echo "#{@list[index]} :: #{@healed[index]}"
   else
     count = @healed[0..index-1].count(@healed[index])+1
     echo "#{@list[index]} :: #{@healed[index] || ''}#{count > 1 ? " (#{count})" : ""}"
