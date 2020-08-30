@@ -28,6 +28,7 @@ friendlist = []
 ignore = ["Sluf", "Pristeen", "Woory", "Trenius", "Sorci", "Clu", "Wardrob"]
 fail = 0
 $invasion = script.vars[1] =~ /invasion/
+Script.start('my_heal_tracker')
 
 if $invasion
 	echo "************************"
@@ -88,6 +89,7 @@ scan_for_empaths = proc {
 	}
 	echo "***Added #{number_of_players_added} new empaths to the list.***"
         Script.run('getnames')
+        Script.run('heal_list')
 }
 
 #You will also not automatically heal these people who you know to be empaths
