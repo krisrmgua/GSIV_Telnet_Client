@@ -8,16 +8,18 @@ if Myname == "Clu"
     roomboundry = ["6879","6897"]
     attack = "fire"
     stance = "offensive"
-    herbsack = "kit"
     flee_count = 1
     swings = 2
     skipwaitattack = 1
     hideme = 1
-    shield = "shield"
-    weapon = "shortbow"
-    cloak = "greatcloak"
+    shield = "shortbow"
+    weapon = ""
+    sheath = ""
     backpack = "pack"
-    sheath = "sheath"
+    cloak = "greatcloak"
+    herbsack = "kit"
+    skinknife = "knife"
+    skinsheath = "shirt"
     encumbrance = 20
     active_scripts = [""]
 elsif Myname == "Pristeen"
@@ -28,23 +30,24 @@ elsif Myname == "Pristeen"
     roomboundry = ["8469"]
     attack = "incant 302 channel"
     stance = "defensive"
-    herbsack = "kit"
     flee_count = 1
     swings = 9
     skipwaitattack = 1
     hideme = 0
-    weapon = "runestaff"
     shield = "shield"
-    cloak = "cloak"
-    backpack = "backpack"
+    weapon = "runestaff"
     sheath = "sheath"
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "kit"
+    skinknife = ""
+    skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Sluf"
     mobs = ["nedum vereri"]
     fleemobs = ["tomb spider"]
     rest = "landing"
-    huntarea = "8470"
     roomboundry = ["8469"]
     attack = "attack"
     stance = "offensive"
@@ -53,13 +56,60 @@ elsif Myname == "Sluf"
     swings = 3
     skipwaitattack = 0
     hideme = 0
-    weapon = "backsword"
     shield = "shield"
-    cloak = "cloak"
-    backpack = "backpack"
+    weapon = "backsword"
     sheath = "sheath"
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "kit"
+    skinknife = "knife"
+    skinsheath = "shirt"
     encumbrance = 35
     active_scripts = ["surge"]
+elsif Myname == "Trenus"
+    mobs = ["wraith"]
+    fleemobs = ["greater spider"]
+    rest = "landing"
+    huntarea = "4175"
+    roomboundry = ["4195","4187","4181"]
+    attack = "incant 904 channel"
+    stance = "offensive"
+    flee_count = 2
+    swings = 1
+    skipwaitattack = 1
+    hideme = 0
+    shield = "aegis"
+    weapon = ""
+    sheath = ""
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "cloak"
+    skinknife = "knife"
+    skinsheath = "thigh-sheath"
+    encumbrance = 35
+    active_scripts = [""]
+elsif Myname == "Sorci"
+    mobs = ["wraith"]
+    fleemobs = ["greater spider"]
+    rest = "landing"
+    huntarea = "4175"
+    roomboundry = ["4195","4187","4181"]
+    attack = "incant 702 channel"
+    stance = "defensive"
+    flee_count = 1
+    swings = 9
+    skipwaitattack = 1
+    hideme = 0
+    shield = "shield"
+    weapon = ""
+    sheath = ""
+    backpack = "pack"
+    cloak = "cloak"
+    herbsack = "kit"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
 elsif Myname == "Wardrob"
     mobs = ["thyril", "relnak"]
     fleemobs = ["wraith"]
@@ -68,16 +118,18 @@ elsif Myname == "Wardrob"
     roomboundry = ["7544"]
     attack = "attack"
     stance = "offensive"
-    herbsack = "sack"
     flee_count = 1
     swings = 1
     skipwaitattack = 0
     hideme = 0
-    weapon = "broadsword"
     shield = "shield"
-    cloak = "greatcloak"
-    backpack = "greatcloak"
+    weapon = "broadsword"
     sheath = "sheath"
+    backpack = "greatcloak"
+    cloak = "greatcloak"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Loods"
@@ -88,16 +140,18 @@ elsif Myname == "Loods"
     roomboundry = [6766,6764,6776,6786]
     attack = "attack"
     stance = "offensive"
-    herbsack = "sack"
     flee_count = 1
     swings = 1
     skipwaitattack = 0
     hideme = 0
-    weapon = "sword"
     shield = "shield"
-    cloak = "jacket"
-    backpack = "jacket"
+    weapon = "sword"
     sheath = "sheath"
+    backpack = "jacket"
+    cloak = "jacket"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
     encumbrance = 5
     active_scripts = [""]
 else
@@ -149,23 +203,40 @@ go2rest = proc {
 
 putawayweapon = proc {
     if Myname == "Clu" 
-        fput "wear my weapon"
+        fput "wear my #{shield}"
     elsif Myname == "Pristeen" 
         Script.run('wear')
     else
-        fput "wear my #{shield}"
-        fput "put my #{weapon} in my #{sheath}"
+        if "#{shield}" != ""
+          fput "wear my #{shield}"
+        end
+        if "#{weapon}" != ""
+          fput "put my #{weapon} in my #{sheath}"
+        end
     end
 }
 
 getweapon = proc {
-    if Myname == "Clu" 
-        fput "remove my #{weapon}"
-    elsif Myname == "Pristeen" 
+    if Myname == "Pristeen" 
         Script.run('rem')
     else
-        fput "remove my #{shield}"
-        fput "get my #{weapon} from my #{sheath}"
+        if "#{shield}" != ""
+          fput "remove my #{shield}"
+        end
+        if "#{weapon}" != ""
+          fput "get my #{weapon} from my #{sheath}"
+        end
+    end
+}
+
+hands_check = proc {
+    if "#{skinknife}" != ""
+      fput "hands"
+      line = matchtimeout 2, "#{skinknife}"
+      if line =~ /#{skinknife}/
+        fput "put my #{skinknife} in my #{skinsheath}"
+        getweapon.call()
+      end
     end
 }
 
@@ -199,10 +270,12 @@ openlook = proc {
 }
 
 check_for_people = proc {
+   echo "Checking For People"
    ppl = GameObj.pcs
    if ppl.size
      go_defensive.call()
      $need_flee = true
+     echo "PERSON FOUND"
    end
 }
 
@@ -279,7 +352,7 @@ attack_target = proc { |target|
       if check_flee_target.call()
         break
       end
-      if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth < 70
+      if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70
         $need_healing = true
         break
       end
@@ -297,9 +370,11 @@ attack_target = proc { |target|
       check_standing.call()
       fput "stance #{stance}"
       fput "#{attack} #{target}"
-      line = matchtimeout 5, "but it has no effect!"
+      line = matchtimeout 5, "but it has no effect!", "You do not currently have a target"
         if line =~ /but it has no effect/
           $need_blessing = true
+          break
+        elsif line=~ /You do not currently have a target/
           break
         end
       waitrt?
@@ -309,6 +384,7 @@ attack_target = proc { |target|
       if dead
         go_defensive.call()
         Script.run('sloot')
+        hands_check.call()
         if checkfried or percentencumbrance > encumbrance
           $need_rest = true
           break
@@ -334,20 +410,25 @@ loop {
   $need_bless = false
   $need_rest = false
   $need_flee = false
+  $need_sale = false
   start_active.call()
   bs_wander.call(roomboundry)
+  sleep 0.3
   fput "quit" if checkdead
   check_standing.call()
   check_flee_count.call()
   check_for_people.call()
   if $need_flee != true
     target = find_target.call()
-    if target != "0"
+    sleep 0.5
+    check_for_people.call()
+    while target != "0" and not $need_flee and not $need_sale and not $need_blessing and not $need_healing and not $need_bless
       attack_target.call(target)
+      target = find_target.call()
     end
   end
   check_standing.call()
-  if $need_healing or $need_bless or $need_rest
+  if $need_healing or $need_bless or $need_rest or $need_sale
     stop_active.call()
     go2rest.call()
     openlook.call()

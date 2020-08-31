@@ -2,5 +2,4 @@ Myname = Char.name
 if Myname == "Aiss"
   Script.start('krisloop')
   Script.start('healbot')
-  Script.start('my_heal_tracker')
 end

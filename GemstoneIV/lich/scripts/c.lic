@@ -1,0 +1,23 @@
+change_stance = proc { |stance|
+    loop {
+        break if checkstance == stance
+
+        res = dothistimeout "stance #{stance}", 2, /You are now|Roundtime|Wait|wait/
+        if res =~ /Roundtime: (\d+)|wait (\d+)/i
+            sleep (($1 || $2).strip.to_f - 1)
+        elsif res =~ /You are now/
+            break
+        end
+    }
+}
+
+Myname = Char.name
+waitrt?
+if Myname == "Trenus"
+    change_stance.call('offensive')
+    fput "incant 904 channel"
+elsif Myname == "Sorci"
+    fput "incant 702 channel"
+elsif Myname == "Pristeen"
+    fput "incant 302 channel"
+end

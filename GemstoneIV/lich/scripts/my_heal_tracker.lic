@@ -14,17 +14,13 @@
          version: 1.5.0
   +---------------------------------------------------------------+
 =end
-@debug   = false;
+@debug   = true;
 @running = true;
 @reset   = false;   @reset = true if script.vars[0] =~ /clear|reset/
 if !CharSettings['healed'] || @reset
   CharSettings['healed'] = []
 end
 @healed = CharSettings['healed']
-@patterns = Hash.new
-@patterns["link"] = /^You focus on (?<target>\w+) and narrow your concentration, reaching out to her with your mind./i
-@patterns["heal"] = /^(?:You infuse )?(?<target>\w+)(?:'s nervous system damage gradually fades, affecting your|'s .*? wound gradually fades, forming on your| with your own strength)/i
-@patterns["fade"] = /^You sense your empathic link with (?<target>\w+) fade away./i
 @list = ['01','02','03','04','05','06','07','08','09','10']
 @list.each_with_index { |ordinal,index|
   if index == 0
@@ -39,33 +35,18 @@ def self.new_healed(target)
   @healed.unshift(target)
   CharSettings['healed'] = @healed[0..9]
   @healed = @healed[0..9]
-  @render.call
 end
 before_dying {
   @running = false
-  @render.call
 }
 @healing = nil
 m = nil
-while line = get
-  if @patterns["heal"].match(line)
-    echo "@patterns[\"heal\"] matched line" if @debug
-    m = @patterns["heal"].match(line)
-    @healing = m[:target]
+loop {
+  line = matchtimeout 20, "You sense your empathic link with"
+  if line =~ /You sense your empathic link with (\w+) fade away/i
+    echo "GOT " + $1 
+    new_healed($1)
+    @healing = nil
     m = nil
-    echo "healing #{@healing}" if @debug
   end
-  if @patterns["fade"].match(line)
-    echo "@patterns[\"fade\"] matched line" if @debug
-    m = @patterns["fade"].match(line)
-    if @healing == m[:target]
-      echo "link faded #{@healing}" if @debug
-      new_healed(@healing)
-      @healing = nil
-      m = nil
-    else
-      echo "#{@healing} != #{m[:target]}" if @debug
-      @healing = nil
-    end
-  end
-end
+}

@@ -242,9 +242,10 @@ loop {
 		if line =~ /Speaking .*to/
 			next unless line =~ /Speaking .*to you/
 		end
-                next if line =~ /poison|poisen|disea|desea/i
+                next if line =~ /poison|poisen|disea|desea|body|dead|for/i
 		next if ignore.include? healee
                 next if healee.start_with?(healee.downcase)
+                next if healee =~ /general|help|merchant/i
 		next if healee =~ /Speaking/
 
 		bodies = GameObj.pcs.select { |pc| pc.status =~ /dead/ }.map{ |pc| pc.name }
@@ -263,17 +264,17 @@ loop {
 		sleeptime = 3
 
 		if percentmind <= 25 #you need xp
-			waittime = 20
+			waittime = 15
 			sleeptime = 3
 			echo "*** Mind low, moving quickly on #{healee} ***"
 		end
 		if percentmind > 70 #give other healers a chance
 			if !AnyOtherEmpaths?()
-			        waittime = 12
+			        waittime = 20
 			        sleeptime = 3
 				echo "*** There seem to be no other empaths, so we won't wait extra long ***"
 			else
-				waittime = 24
+				waittime = 20
 			        sleeptime = 3
 				echo "*** Mind high, waiting longer to see if #{healee} gets healed.. ***"
 			end

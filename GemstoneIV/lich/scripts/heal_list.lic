@@ -34,14 +34,3 @@ end
     echo "#{@list[index]} :: #{@healed[index] || ''}#{count > 1 ? " (#{count})" : ""}"
   end
 }
-def self.new_healed(target)
-  echo "new_healed(#{target}) called" if @debug
-  @healed.unshift(target)
-  CharSettings['healed'] = @healed[0..9]
-  @healed = @healed[0..9]
-  @render.call
-end
-before_dying {
-  @running = false
-  @render.call
-}
