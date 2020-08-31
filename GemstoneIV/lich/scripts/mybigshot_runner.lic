@@ -97,7 +97,7 @@ elsif Myname == "Sorci"
     attack = "incant 702 channel"
     stance = "defensive"
     flee_count = 1
-    swings = 9
+    swings = 1
     skipwaitattack = 1
     hideme = 0
     shield = "shield"
@@ -375,6 +375,12 @@ attack_target = proc { |target|
           $need_blessing = true
           break
         elsif line=~ /You do not currently have a target/
+          dead = GameObj.dead
+          if dead
+            go_defensive.call()
+            Script.run('sloot')
+            hands_check.call()
+          end
           break
         end
       waitrt?
@@ -459,10 +465,10 @@ loop {
         sleep 60
       }
     end
+    sell.call()
     while checkmind(4)
       sleep 60 
     end
-    sell.call()
     getweapon.call()
     Script.run('go2', "#{huntarea}")
   end
