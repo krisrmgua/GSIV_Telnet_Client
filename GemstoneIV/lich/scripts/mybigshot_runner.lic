@@ -344,7 +344,7 @@ attack_target = proc { |target|
   if skipwaitattack == 0
     line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
   end
-  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
+  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare/ or line=~ /swings a/ or line=~ /stomps at you/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
     loop = 0
     while loop < swings
       check_flee_count.call()
