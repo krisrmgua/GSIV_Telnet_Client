@@ -102,7 +102,7 @@ my $warrior_file_top = '        <!--Warrior Characters-->
         <highlight fg=\'A08231\' bg=\'000000\'>
                 \b(?:';
 my $rogue_file_top = '        <!--Rogue Characters-->
-        <highlight fg=\'696969\' bg=\'000000\'>
+        <highlight fg=\'7A7A7A\' bg=\'000000\'>
                 \b(?:';
 my $wizard_file_top = '        <!--Wizard Characters-->
         <highlight fg=\'88aaff\' bg=\'000000\'>
