@@ -4,7 +4,7 @@ $debug = nil
 if Myname == "Clu"
     #mobs = ["giant marmot", "dark orc"]
     #mobs = ["forest troll", "mongrel troll"]
-    mobs = ["mountain ogre"]
+    mobs = ["mountain ogre","krolvin mercenary"]
     fleemobs = ["wraith"]
     rest = "landing"
     #huntarea = "6888"
@@ -376,6 +376,7 @@ attack_target = proc { |target|
         end
       end
       waitrt?
+      waitcastrt?
       hidetries = 0
       if hideme == 1
         while checkhidden == false
