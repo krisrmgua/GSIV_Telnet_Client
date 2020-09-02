@@ -1,12 +1,20 @@
 Myname = Char.name
+$debug = nil
 
 if Myname == "Clu"
-    mobs = ["giant marmot", "dark orc"]
+    #mobs = ["giant marmot", "dark orc"]
+    #mobs = ["forest troll", "mongrel troll"]
+    mobs = ["mountain ogre"]
     fleemobs = ["wraith"]
     rest = "landing"
-    huntarea = "6888"
-    roomboundry = ["6879","6897"]
+    #huntarea = "6888"
+    #huntarea = "5266"
+    huntarea = "8045"
+    #roomboundry = ["6879","6897"]
+    #roomboundry = ["5267","5211"]
+    roomboundry = ["8044","8065","8066"]
     attack = "fire"
+    $preattackspell = "608"
     stance = "offensive"
     flee_count = 1
     swings = 2
@@ -164,6 +172,7 @@ def global_vars
   $need_bless = false
   $need_rest = false
   $need_flee = false
+  $need_sale = false
 end
 
 go_defensive = proc {
@@ -270,12 +279,12 @@ openlook = proc {
 }
 
 check_for_people = proc {
-   echo "Checking For People"
+   echo "Checking For People" if $debug
    ppl = GameObj.pcs
    if ppl.size
      go_defensive.call()
      $need_flee = true
-     echo "PERSON FOUND"
+     echo "PERSON FOUND" if $debug
    end
 }
 
@@ -312,7 +321,9 @@ find_target = proc {
   target = "0"
   npcs = GameObj.npcs
   mobs.each do |i|
+    echo "looking for #{i}" if $debug
     if GameObj.npcs.find { |npc| (npc.name =~ /^#{i}$/i or npc.noun =~ /^#{i}$/i) }
+      echo "target found #{i}" if $debug
       target = i
     end
   end
@@ -348,14 +359,23 @@ attack_target = proc { |target|
     loop = 0
     while loop < swings
       check_flee_count.call()
+      echo "Fleeing" if $need_flee == true and $debug
       break if $need_flee == true
       if check_flee_target.call()
+        echo "Fleeing from target" if $debug
         break
       end
       if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70
+        echo "Need Healing" if $debug
         $need_healing = true
         break
       end
+      if defined?($preattackspell)
+        if checkhidden == false
+          Spell[$preattackspell].cast() if Spell[$preattackspell].affordable?
+        end
+      end
+      waitrt?
       hidetries = 0
       if hideme == 1
         while checkhidden == false
@@ -363,18 +383,23 @@ attack_target = proc { |target|
           hidetries += 1
           waitrt?
           if hidetries > 4
+            echo "To Many Hides" if $debug
             break
           end
         end
       end
       check_standing.call()
+      check_flee_count.call()
+      echo "Fleeing" if $need_flee == true and $debug
+      break if $need_flee == true
       fput "stance #{stance}"
       fput "#{attack} #{target}"
-      line = matchtimeout 5, "but it has no effect!", "You do not currently have a target"
+      line = matchtimeout 5, "but it has no effect!", "You do not currently have a target", "I could not find what"
         if line =~ /but it has no effect/
-          $need_blessing = true
+          $need_bless = true
+          echo "Need Bless" if $debug
           break
-        elsif line=~ /You do not currently have a target/
+        elsif line=~ /You do not currently have a target|I could not find what/
           dead = GameObj.dead
           if dead
             go_defensive.call()
@@ -392,13 +417,17 @@ attack_target = proc { |target|
         Script.run('sloot')
         hands_check.call()
         if checkfried or percentencumbrance > encumbrance
+          echo "FRIED" if checkfried and $debug
+          echo "Encumbranced" if percentencumbrance > encumbrance and $debug
           $need_rest = true
           break
         end
         itemcheck.call()
+        echo "To Many Items" if $need_sale == true and $debug
         break if $need_sale == true
       end
       check_flee_count.call()
+      echo "Fleeing" if $need_flee == true and $debug
       break if $need_flee == true
     end
     go_defensive.call()
@@ -410,16 +439,14 @@ openlook.call()
 getweapon.call()
 gohunt.call()
 global_vars()
+echo "BEGIN HUNTING" if $debug
 
 loop {
-  $need_healing = false
-  $need_bless = false
-  $need_rest = false
-  $need_flee = false
-  $need_sale = false
+  global_vars()
   start_active.call()
   bs_wander.call(roomboundry)
   sleep 0.3
+  echo "#{Room.current.id.to_s}" if checkdead
   fput "quit" if checkdead
   check_standing.call()
   check_flee_count.call()
@@ -428,7 +455,7 @@ loop {
     target = find_target.call()
     sleep 0.5
     check_for_people.call()
-    while target != "0" and not $need_flee and not $need_sale and not $need_blessing and not $need_healing and not $need_bless
+    while target != "0" and not $need_flee and not $need_rest and not $need_sale and not $need_healing and not $need_bless
       attack_target.call(target)
       target = find_target.call()
     end

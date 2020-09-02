@@ -1,0 +1,2 @@
+Spell[308].cast(script.vars[1])
+Spell[318].cast(script.vars[1])
