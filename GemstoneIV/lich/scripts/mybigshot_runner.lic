@@ -4,7 +4,7 @@ $debug = nil
 if Myname == "Clu"
     #mobs = ["giant marmot", "dark orc"]
     #mobs = ["forest troll", "mongrel troll"]
-    mobs = ["mountain ogre","krolvin mercenary"]
+    mobs = ["mountain ogre","krolvin mercenary","humpbacked puma"]
     fleemobs = ["wraith"]
     rest = "landing"
     #huntarea = "6888"
@@ -381,6 +381,10 @@ attack_target = proc { |target|
       if hideme == 1
         while checkhidden == false
           fput "hide"
+          line = matchtimeout 1, "see anywhere to hide", "You attempt to blend"
+          if line=~ /see anywhere to hide/
+            break
+          end
           hidetries += 1
           waitrt?
           if hidetries > 4

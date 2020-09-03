@@ -1,0 +1,13 @@
+if script.vars[2]
+  what = script.vars[1] + " " + script.vars[2]
+elsif script.vars[1]
+  what = script.vars[1]
+else
+  echo "type join NAME"
+  echo "type hunt"
+  exit
+end
+fput "think to woory #{what}" 
+fput "think to sluf #{what}" 
+fput "think to pristeen #{what}" 
+fput "think to clu #{what}" 

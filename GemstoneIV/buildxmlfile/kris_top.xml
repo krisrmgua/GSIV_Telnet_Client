@@ -21,6 +21,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
 	<highlight fg='90FF8B'>^\[Private(?:To)?\]|Also here:</highlight>
+	<highlight fg='FFFFFF' bg='FF0000'>.*(recites|say|yell).*(blurs|Blurs|BLURS|guards|Guards|GUARDS|colors|Colors|COLORS|hues|Hues|HUES).*</highlight>
 	<highlight fg='008000'>^\[code\]</highlight>
 	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
 	<highlight fg='00FFFF' bg='282828'>\[healbot.*$</highlight>

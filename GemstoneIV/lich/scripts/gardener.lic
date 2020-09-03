@@ -92,6 +92,7 @@ if script.vars.empty?
     if Spell[203].known? && Char.level >= 3 &&  Spell[203].timeleft < 2
         Spell[203].cast
         fput "gobble ##{GameObj.right_hand.id}"
+        fput "gobble ##{GameObj.right_hand.id}"
         waitcastrt?
     end
     

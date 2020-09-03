@@ -83,7 +83,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
+    line = matchtimeout 10, "you are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -118,6 +118,12 @@ loop {
         get_bless_clu.call()
         start_script('bigshot')
     end
+    if line =~ /you are now level/
+      
+    end
+    if line =~ /.*(say|yell|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
+        fput "think to pristeen KRIS BLURS"
+    end
     #if line =~ /golvern battle axe returns to normal/ and Myname == "Woory"
     if line =~ /^(\w+) offers you/ and Myname == "Aiss"
         wname = $1
@@ -141,6 +147,15 @@ loop {
         }
         get_bless_woory.call()
         start_script('bigshot')
+    end
+    if line =~ /Aiss thinks\, \"Join ([A-Z,a-z]+)/
+        joiny = $1
+        kill_script "mybigshot_runner"
+        Script.run('go2', 'landing')
+        fput "join #{joiny}"
+    end
+    if line =~ /Aiss thinks\, \"Hunt/
+        start_script('mybigshot_runner') if Myname != "Aiss"
     end
     if line =~ /([A-Z,a-z]+) focuses on you with intense concentration/ or line =~ /You feel an odd tingling sensation as ([A-Z,a-z]+) focuses on you/
         healee = $1
