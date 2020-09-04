@@ -1,7 +1,7 @@
 if script.vars[1] == "hunt"
   what = script.vars[1]
 else
-  what = "join " + script.vars[2]
+  what = "join " + script.vars[1]
 end
 fput "think to woory #{what}" 
 fput "think to sluf #{what}" 

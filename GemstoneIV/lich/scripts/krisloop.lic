@@ -127,7 +127,10 @@ loop {
       dlevel = $1
       system("/root/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
-    if line =~ /.*(say|yell|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
+    if line =~ /.*(say|yell|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
+        fput "think to pristeen KRIS BLURS"
+    end
+    if line =~ /.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join.*/ and Myname == "Aiss"
         fput "think to pristeen KRIS BLURS"
     end
     #if line =~ /golvern battle axe returns to normal/ and Myname == "Woory"
