@@ -1,11 +1,7 @@
-if script.vars[2]
-  what = script.vars[1] + " " + script.vars[2]
-elsif script.vars[1]
+if script.vars[1] == "hunt"
   what = script.vars[1]
 else
-  echo "type join NAME"
-  echo "type hunt"
-  exit
+  what = "join " + script.vars[2]
 end
 fput "think to woory #{what}" 
 fput "think to sluf #{what}" 

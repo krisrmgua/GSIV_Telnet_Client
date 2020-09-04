@@ -83,7 +83,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "you are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
+    line = matchtimeout 10, "thinks, \"I am now level", "you are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -97,13 +97,13 @@ loop {
 	if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
 		healee = $1
         if Myname == "Pristeen"
-		    if Spell[304].affordable?
-		        Spell[304].cast healee
+            if Spell[304].affordable?
+              Spell[304].cast healee
             end
         end
         if Myname == "Sluf"
             if Spell[1604].affordable?
-		        Spell[1604].cast healee
+                Spell[1604].cast healee
             end
         end
 	end
@@ -118,8 +118,14 @@ loop {
         get_bless_clu.call()
         start_script('bigshot')
     end
-    if line =~ /you are now level/
-      
+    if line =~ /([A-Z,a-z]+) thinks, "I am now level (\d+)/
+        dname = $1
+        dlevel = $2
+        system("/root/GemstoneIV/lich/scripts/levelup.pl #{dname} #{dlevel}") 
+    end
+    if line =~ /you are now level (\d+)/
+      dlevel = $1
+      system("/root/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
     if line =~ /.*(say|yell|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
         fput "think to pristeen KRIS BLURS"
