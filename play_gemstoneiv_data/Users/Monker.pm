@@ -1,5 +1,5 @@
-# play_gemstoneiv_data::Users::Munkie
-package play_gemstoneiv_data::Users::Munkie;
+# play_gemstoneiv_data::Users::Monker
+package play_gemstoneiv_data::Users::Monker;
 use Data::Dumper;
 use strict;
 
@@ -8,9 +8,9 @@ use vars qw/%GLOBALS %COLORS %HIGHLIGHT_NAMES %HIGHLIGHT_ITEMS %HIGHLIGHT_TEXT %
     %play_gemstoneiv_data::Main::COLORS,
 );
 %GLOBALS = (
-    charecter			=> 'Munkie',
+    charecter			=> 'Monker',
     account_username		=> 'KRISRMGUA15',
-    player_id			=> 'W_KRISRMGUA15_000',
+    player_id			=> 'W_KRISRMGUA15_001',
     player_weapon1		=> 'runestaff',
     player_weapon2		=> 'rune belt',
     player_cloak		=> 'cloak',

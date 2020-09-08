@@ -20,4 +20,4 @@
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Aiss > /tmp/Aiss.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Sorci > /tmp/Sorci.txt
 /website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Clu > /tmp/Clu.txt
-/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Munkie > /tmp/Clu.txt
+/website/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Monker > /tmp/Monker.txt
