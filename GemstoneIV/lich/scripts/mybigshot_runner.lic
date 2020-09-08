@@ -1,5 +1,6 @@
 Myname = Char.name
 $debug = nil
+$OOM = 5
 
 if Myname == "Clu"
     #mobs = ["giant marmot", "dark orc"]
@@ -122,15 +123,15 @@ elsif Myname == "Monker"
     mobs = ["giant ant"]
     fleemobs = ["greater spider"]
     rest = "landing"
-    huntarea = "7584"
+    huntarea = "7583"
     roomboundry = ["7582", "7575"]
     attack = "attack"
     stance = "offensive"
     flee_count = 1
-    swings = 2
+    swings = 1
     skipwaitattack = 0
     hideme = 0
-    shield = "jackblade"
+    shield = "razorpaw"
     weapon = "tiger-claw"
     sheath = "satchel"
     backpack = "pack"
@@ -184,6 +185,29 @@ elsif Myname == "Loods"
     skinsheath = ""
     encumbrance = 5
     active_scripts = [""]
+elsif Myname == "Wiiz"
+    mobs = ["lesser mummy"]
+    fleemobs = ["greater spider"]
+    rest = "landing"
+    huntarea = "4144"
+    roomboundry = ["4171","4143"]
+    attack = "incant 904 channel"
+    stance = "offensive"
+    flee_count = 2
+    swings = 1
+    skipwaitattack = 1
+    hideme = 0
+    shield = ""
+    weapon = "staff"
+    sheath = "sheath"
+    backpack = "backpack"
+    cloak = "backpack"
+    herbsack = "satchel"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
+    $OOM = 3 
 else
     exit
 end
@@ -255,7 +279,8 @@ getweapon = proc {
           fput "remove my #{shield}"
         end
         if "#{weapon}" != ""
-          fput "get my #{weapon} from my #{sheath}"
+          #fput "get my #{weapon} from my #{sheath}"
+          fput "get my #{weapon}"
         end
     end
 }
@@ -395,6 +420,11 @@ attack_target = proc { |target|
         $need_healing = true
         break
       end
+      if percentmana() < $OOM
+        echo "OOM" #if $debug
+        $need_rest = true
+        break
+      end
       if defined?($preattackspell)
         if checkhidden == false
           Spell[$preattackspell].cast() if Spell[$preattackspell].affordable?
@@ -425,8 +455,11 @@ attack_target = proc { |target|
       echo "Fleeing" if $need_flee == true and $debug
       break if $need_flee == true
       fput "stance #{stance}"
-      fput "#{attack} #{target}"
-      line = matchtimeout 5, "but it has no effect!", "You do not currently have a target", "I could not find what"
+      if Myname == "Monker" 
+        Script.run('combo', "#{target}")
+      else
+        fput "#{attack} #{target}"
+        line = matchtimeout 5, "but it has no effect!", "You do not currently have a target", "I could not find what"
         if line =~ /but it has no effect/
           $need_bless = true
           echo "Need Bless" if $debug
@@ -440,6 +473,7 @@ attack_target = proc { |target|
           end
           break
         end
+      end
       waitrt?
       check_standing.call()
       loop += 1
@@ -458,6 +492,11 @@ attack_target = proc { |target|
         echo "To Many Items" if $need_sale == true and $debug
         break if $need_sale == true
       end
+      if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70
+        echo "Need Healing" if $debug
+        $need_healing = true
+        break
+      end
       check_flee_count.call()
       echo "Fleeing" if $need_flee == true and $debug
       break if $need_flee == true
@@ -468,6 +507,10 @@ attack_target = proc { |target|
 
 
 openlook.call()
+while percentmana() < 100
+  echo "Mana Below 100" #if $debug
+  sleep 10
+end
 getweapon.call()
 gohunt.call()
 global_vars()
@@ -478,6 +521,10 @@ loop {
   start_active.call()
   bs_wander.call(roomboundry)
   sleep 0.3
+  if percentmana() < $OOM
+    echo "OOM" #if $debug
+    $need_rest = true
+  end
   echo "#{Room.current.id.to_s}" if checkdead
   fput "quit" if checkdead
   check_standing.call()
@@ -527,6 +574,10 @@ loop {
     sell.call()
     while checkmind(4)
       sleep 60 
+    end
+    while percentmana() < 100
+      echo "Mana Below 100" #if $debug
+      sleep 10 
     end
     getweapon.call()
     Script.run('go2', "#{huntarea}")
