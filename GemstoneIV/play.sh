@@ -8,11 +8,13 @@ echo -e "\t4:\tPristeen"
 echo -e "\t5:\tAiss"
 echo -e "\t6:\tSorci"
 echo -e "\t7:\tTrenus"
-echo -e "\t8:\tWardrob"
-echo -e "\t9:\tLoads"
-echo -e "\t10:\tLoods"
-echo -e "\t11:\tItiems"
-echo -e "\t12:\tItemim"
+echo -e "\t8:\tMonker"
+echo -e "\t9:\tWardrob"
+echo -e "\t10:\tLoads"
+echo -e "\t11:\tLoods"
+echo -e "\t12:\tItiems"
+echo -e "\t13:\tItemim"
+echo -e "\t14:\tWiiz"
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
 
@@ -48,24 +50,32 @@ then
     port=8007
 elif [ $num -eq 8 ]
 then
-    character=Wardrob
+    character=Monker
     port=8008
 elif [ $num -eq 9 ]
 then
-    character=Loads
+    character=Wardrob
     port=8009
 elif [ $num -eq 10 ]
 then
-    character=Loods
+    character=Loads
     port=8010
 elif [ $num -eq 11 ]
 then
-    character=Itiems
+    character=Loods
     port=8011
 elif [ $num -eq 12 ]
 then
-    character=Itemim
+    character=Itiems
     port=8012
+elif [ $num -eq 13 ]
+then
+    character=Itemim
+    port=8013
+elif [ $num -eq 14 ]
+then
+    character=Wiiz
+    port=8014
 else
     echo "BAD INPUT"
     exit

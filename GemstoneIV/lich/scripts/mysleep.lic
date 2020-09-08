@@ -1,0 +1,4 @@
+if script.vars[1]
+  dtime = script.vars[1]
+  sleep dtime.to_i
+end

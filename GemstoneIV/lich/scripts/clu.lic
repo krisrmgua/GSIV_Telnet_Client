@@ -1,0 +1,15 @@
+loop {
+    line = matchtimeout 20, "point"
+    if line =~ /point/
+        ppl = GameObj.pcs
+        if ppl.size < 2
+            npcs = GameObj.npcs
+            while npcs.size
+                waitrt? 
+                npcs = GameObj.npcs
+                fput "fire"
+                npcs = GameObj.npcs
+            end
+        end
+    end
+}

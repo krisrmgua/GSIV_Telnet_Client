@@ -2,4 +2,9 @@ Myname = Char.name
 if Myname == "Aiss"
   Script.start('krisloop')
   Script.start('healbot')
+elsif Myname == "Wiiz"
+  Script.start('krisloop')
+  Script.start('keepalive')
+  Script.start('autoinvitefriends')
+  Script.start('wiiz')
 end

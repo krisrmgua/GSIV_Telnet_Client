@@ -25,7 +25,7 @@
 #You will automatically heal these people when they run into the room.
 #Pinipin focuses on Azanoth with intense concentration.
 friendlist = []
-ignore = ["Sluf", "Pristeen", "Woory", "Trenus", "Sorci", "Clu", "Wardrob"]
+ignore = ["Sluf", "Monker", "Pristeen", "Woory", "Trenus", "Sorci", "Clu", "Wardrob"]
 fail = 0
 $invasion = script.vars[1] =~ /invasion/
 Script.start('my_heal_tracker')

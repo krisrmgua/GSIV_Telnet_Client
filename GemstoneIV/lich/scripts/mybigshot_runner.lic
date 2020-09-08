@@ -118,6 +118,28 @@ elsif Myname == "Sorci"
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
+elsif Myname == "Monker"
+    mobs = ["giant ant"]
+    fleemobs = ["greater spider"]
+    rest = "landing"
+    huntarea = "7584"
+    roomboundry = ["7582", "7575"]
+    attack = "attack"
+    stance = "offensive"
+    flee_count = 1
+    swings = 2
+    skipwaitattack = 0
+    hideme = 0
+    shield = "jackblade"
+    weapon = "tiger-claw"
+    sheath = "satchel"
+    backpack = "pack"
+    cloak = "cloak"
+    herbsack = "kit"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
 elsif Myname == "Wardrob"
     mobs = ["thyril", "relnak"]
     fleemobs = ["wraith"]
@@ -213,7 +235,7 @@ go2rest = proc {
 putawayweapon = proc {
     if Myname == "Clu" 
         fput "wear my #{shield}"
-    elsif Myname == "Pristeen" 
+    elsif Myname == "Pristeen" or Myname == "Monker"
         Script.run('wear')
     else
         if "#{shield}" != ""
@@ -226,7 +248,7 @@ putawayweapon = proc {
 }
 
 getweapon = proc {
-    if Myname == "Pristeen" 
+    if Myname == "Pristeen" or Myname == "Monker" 
         Script.run('rem')
     else
         if "#{shield}" != ""
@@ -253,6 +275,9 @@ sell = proc {
     Script.run('poolparty')
     Script.run('sloot', "sell")
     Script.run('waggle')
+    Script.run('mytable', 'wiiz')
+    Script.run('mysleep', '120')
+    Script.run('go2', "#{rest}")
     Script.run('checkbank')
     Script.run('yawn')
 }
@@ -377,6 +402,8 @@ attack_target = proc { |target|
       end
       waitrt?
       waitcastrt?
+      echo "#{Room.current.id.to_s}" if checkdead
+      fput "quit" if checkdead
       hidetries = 0
       if hideme == 1
         while checkhidden == false

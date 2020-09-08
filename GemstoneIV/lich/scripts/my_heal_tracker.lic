@@ -30,9 +30,10 @@ end
     echo "#{@list[index]} :: #{@healed[index] || ''}#{count > 1 ? " (#{count})" : ""}"
   end
 }
-def self.new_healed(target) 
+#def self.new_healed(target) 
+def new_healed(target) 
   echo "new_healed(#{target}) called" if @debug
-  @healed.unshift(target)
+  #@healed.unshift(target)
   CharSettings['healed'] = @healed[0..9]
   @healed = @healed[0..9]
 end
@@ -42,8 +43,8 @@ before_dying {
 @healing = nil
 m = nil
 loop {
-  line = matchtimeout 20, "You sense your empathic link with"
-  if line =~ /You sense your empathic link with (\w+) fade away/i
+  line = matchtimeout 30, "You sense your empathic link with"
+  if line =~ /You sense your empathic link with ([A-Z,a-z]+) fade away/i
     echo "GOT " + $1 
     new_healed($1)
     @healing = nil

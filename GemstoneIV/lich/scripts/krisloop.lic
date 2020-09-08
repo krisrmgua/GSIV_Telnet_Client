@@ -83,7 +83,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "thinks, \"I am now level", "you are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
+    line = matchtimeout 10, "thinks, \"I am now level", "You are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -123,7 +123,7 @@ loop {
         dlevel = $2
         system("/root/GemstoneIV/lich/scripts/levelup.pl #{dname} #{dlevel}") 
     end
-    if line =~ /you are now level (\d+)/
+    if line =~ /You are now level (\d+)/
       dlevel = $1
       system("/root/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end

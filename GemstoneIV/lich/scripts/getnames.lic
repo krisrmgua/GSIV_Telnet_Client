@@ -77,6 +77,8 @@ scan_for_players = proc { |pro|
         CharSettings['known_players'].store("Woory", "kris")
         CharSettings['known_players'].delete("Sluf")
         CharSettings['known_players'].store("Sluf", "kris")
+        CharSettings['known_players'].delete("Monker")
+        CharSettings['known_players'].store("Monker", "kris")
 	#echo pro + " Scan Complete.***"
         echo "***Added #{number_of_players_added} new #{pro} to the list.***"
 }
@@ -114,7 +116,30 @@ system("/root/GemstoneIV/buildXMLstorm/build.pl")
 
 
 
-
+if script.vars[1]
+  loop {
+    sleep 300
+    read_names.call()
+    scan_for_players.call("warrior")
+    scan_for_players.call("rogue")
+    scan_for_players.call("wizard")
+    scan_for_players.call("cleric")
+    scan_for_players.call("empath")
+    scan_for_players.call("sorcerer")
+    scan_for_players.call("ranger")
+    scan_for_players.call("bard")
+    scan_for_players.call("monk")
+    scan_for_players.call("paladin")
+    File.open(filename, 'w') {|file| file.truncate(0) }
+    CharSettings['known_players'].each do |k,v|
+      File.open(filename, 'a'){|f| f.puts k + " " + v}
+    end
+    system("/root/GemstoneIV/buildxmlfile/build_names.pl")
+    system("/root/GemstoneIV/buildxmlfile/build.sh 6")
+    system("/root/GemstoneIV/buildXMLstorm/build.pl")
+    
+  }
+end
 
 #player_list = ""
 #CharSettings['known_player'].each do |k,v|
