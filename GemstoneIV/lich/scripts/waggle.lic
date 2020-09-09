@@ -582,7 +582,7 @@ elsif script.vars[1] =~ /^list$|^show$/i
    respond "          reserve mana: #{reserve_mana}"
    respond
    exit
-elsif script.vars[1].downcase == /^start[_\-]at$/
+elsif script.vars[1].downcase =~ /^start[_\-]at$/
    if script.vars[2] =~ /^[0-9]+$/
       CharSettings['start_at'] = script.vars[2].to_i
       echo "stackable spells with less than #{CharSettings['start_at']} minutes remaining when the script starts will be skipped"

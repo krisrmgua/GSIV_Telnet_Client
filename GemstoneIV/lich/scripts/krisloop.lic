@@ -25,41 +25,12 @@ get_bless_woory = proc {
         sleep 60
     }
     fput "put my axe in my sheath"
-}
-
-get_bless_clu = proc { 
-    Script.run('go2', 'landing')
-    fput "open my greatc"
-    fput "get my arrow from my greatc"
-    loop {
-        fput "whisper sluf bless me"
-        line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your", "brilliant shower of sparks bursts from your", "Silvery tendrils rise up and wreathe their way around your"
-        if line =~ /Silvery tendrils rise up and wreathe their way around your/
-            break
-        end
-        if line =~ /brilliant shower of sparks bursts from your/
-            break
-        end
-        if line =~ /Silvery tendrils rise up and wreathe their way around your/
-            break
-        end        
-        if line =~ /A searing white light enfolds your/
-            break
-        end
-        sleep 60
-    }
-    loop {
-        fput "whisper pristeen bless me"
-        line = matchtimeout 20, "silvery wisps enfolds your", "A searing white light enfolds your"
-        if line =~ /silvery wisps enfolds your/
-            break
-        end
-        if line =~ /A searing white light enfolds your/
-            break
-        end
-        sleep 60
-    }
-    fput "put my arrow in my greatc"
+    Script.run('askheal')
+    Script.run('useherbs', 'in bin')
+    Script.run('useherbs', 'on bench')
+    Script.run('useherbs', 'under bench')
+    Script.run('useherbs', 'behind bench')
+    Script.run('useherbs', 'in my kit')
 }
 
 def monitor_interaction()
@@ -83,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "thinks, \"I am now level", "You are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "You feel an odd tingling sensation",  "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal", "focuses on you with intense concentration"
+    line = matchtimeout 10, "thinks, \"I am now level", "but your attack has no effect", "You are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -94,8 +65,8 @@ loop {
             #monitor_interaction()
         end
     end
-	if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
-		healee = $1
+    if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
+	healee = $1
         if Myname == "Pristeen"
             if Spell[304].affordable?
               Spell[304].cast healee
@@ -106,17 +77,6 @@ loop {
                 Spell[1604].cast healee
             end
         end
-	end
-    if line =~ /but it has no effect!/ and Myname == "Clu"
-        loop {
-            #if Room.current.id.to_s == "228"
-            line = matchtimeout 10, "You are wearing"
-            if line =~ /You are wearing/
-                break
-            end
-        }
-        get_bless_clu.call()
-        start_script('bigshot')
     end
     if line =~ /([A-Z,a-z]+) thinks, "I am now level (\d+)/
         dname = $1
@@ -127,7 +87,7 @@ loop {
       dlevel = $1
       system("/root/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
-    if line =~ /.*(say|yell|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
+    if line =~ /.*(say|yell|asks|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
         fput "think to pristeen KRIS BLURS"
     end
     if line =~ /.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join.*/ and Myname == "Aiss"
@@ -140,6 +100,11 @@ loop {
         fput "whisper " + wname + " no thanks!"
         sleep 5
         fput "decline"
+    end
+    if line =~ /but your attack has no effect/ and Myname == "Monker"
+            kill_script "combo"
+            sleep 2
+            fput "slap monker"
     end
     if line =~ /but it has no effect!/ and Myname == "Woory"
         loop {
@@ -157,7 +122,7 @@ loop {
         get_bless_woory.call()
         start_script('bigshot')
     end
-    if line =~ /Aiss thinks\, \"Join ([A-Z,a-z]+)/
+    if line =~ /Aiss thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Aiss"
         joiny = $1
         kill_script "mybigshot_runner"
         Script.run('go2', 'landing')
@@ -165,33 +130,5 @@ loop {
     end
     if line =~ /Aiss thinks\, \"Hunt/
         start_script('mybigshot_runner') if Myname != "Aiss"
-    end
-    if line =~ /([A-Z,a-z]+) focuses on you with intense concentration/ or line =~ /You feel an odd tingling sensation as ([A-Z,a-z]+) focuses on you/
-        healee = $1
-        if Room.current.id.to_s == "228"
-            mynum = rand(1..5)
-            if mynum == 1
-                silver = "300"
-            elsif mynum == 2
-                silver = "325"
-            elsif mynum == 3
-                silver = "350"
-            elsif mynum == 4
-                silver = "400"
-            elsif mynum == 5
-                silver = "450"
-            else
-                silver = "315"
-            end
-            sleep 20
-            start_script "bank", [silver]
-            pause 6
-            kill_script "bank"
-            fput "give " + healee + " " + silver + " silver"
-            pause 1
-            start_script "bank"
-            pause 6
-            kill_script "bank"
-        end
     end
 }

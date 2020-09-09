@@ -1,0 +1,4 @@
+exit
+Script.run('mytable', 'wiiz')
+Script.run('mysleep', '120')
+Script.run('go2', "#{rest}")
