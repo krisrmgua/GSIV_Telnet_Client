@@ -90,6 +90,7 @@
 before_dying {fput "stance #{CharSettings['stance']}"}
 
 attack = proc {|target|
+        echo @action
 	exit if target.status =~ /dead/
 	if running? 'bigshot' && !UserVars.op['always_flee_from'].nil? && UserVars.op['flee_count'].to_i > 0
 			exit if GameObj.npcs.any? { |i| UserVars.op['always_flee_from'].split.include?(i.noun) }
@@ -266,7 +267,12 @@ while line = get
 		changeAction.call('jab') if @position != 'excellent' && @hit
 		changeAction.call(CharSettings['tier3']) if (@position == 'excellent' or @position == 'good') && @action != CharSettings['tier3']
 	elsif line =~ /Strike leaves foe vulnerable to a followup (.*) attack!/
-		changeAction.call($1)
+                ### KRIS NO BLESSED BOOTS SO SKIPPING KICK KRIS
+                if $1 == "kick"
+		    changeAction.call("jab")
+                else
+		    changeAction.call($1)
+                end
 		script.clear
 		attack.call(@target)
 	elsif line =~ /You fail to find an opening for your strike\./
