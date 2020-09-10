@@ -268,7 +268,7 @@ while line = get
 		changeAction.call(CharSettings['tier3']) if (@position == 'excellent' or @position == 'good') && @action != CharSettings['tier3']
 	elsif line =~ /Strike leaves foe vulnerable to a followup (.*) attack!/
                 ### KRIS NO BLESSED BOOTS SO SKIPPING KICK KRIS
-                if $1 == "kick"
+                if $1 == "kick2222"
 		    changeAction.call("jab")
                 else
 		    changeAction.call($1)

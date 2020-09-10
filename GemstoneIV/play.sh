@@ -82,6 +82,6 @@ else
 fi
 
 ruby $HOME/GemstoneIV/lich/lich.rbw --login $character --without-frontend --detachable-client=$port & pid_connect=$!
-sleep 10
+sleep 6
 $HOME/GemstoneIV/ProfanityFE-onedreian/profanity_kris.rb --port=$port --char=$character --file=kris.xml 2> /dev/null
 kill $pid_connect

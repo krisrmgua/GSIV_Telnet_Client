@@ -17,6 +17,8 @@ if Myname == "Clu"
     hideme = 1
     shield = "shortbow"
     weapon = ""
+    weapon2 = ""
+    boots = ""
     sheath = ""
     backpack = "pack"
     cloak = "greatcloak"
@@ -128,6 +130,7 @@ elsif Myname == "Monker"
     shield = ""
     weapon = "tiger-claw"
     weapon2 = "razorpaw"
+    boots = "boots"
     sheath = "satchel"
     backpack = "pack"
     cloak = "cloak"
@@ -181,11 +184,11 @@ elsif Myname == "Loods"
     encumbrance = 5
     active_scripts = [""]
 elsif Myname == "Wiiz"
-    mobs = ["lesser mummy"]
-    fleemobs = ["greater spider"]
+    mobs = ["werebear","darkwoode"]
+    fleemobs = ["greater orc"]
     rest = "landing"
-    huntarea = "4144"
-    roomboundry = ["4171","4143"]
+    huntarea = "8508"
+    roomboundry = ["8435"]
     attack = "incant 904 channel"
     stance = "offensive"
     flee_count = 1
@@ -571,43 +574,69 @@ loop {
     end
     if $need_bless
       getweapon.call()
+      $swaper = false
+      $blessboots = false
+      $gothere = false
       loop {
-        swaper = false
         echo "Waiting for Sluf Bless" #if $debug
         fput "whisper sluf bless me"
-        line = matchtimeout 20, "Silvery tendrils rise up and wreathe their way around your"
-        if line =~ /Silvery tendrils rise up and wreathe their way around your/
+        line = matchtimeout 20, "quickly returns to normal", "Silvery tendrils rise up and wreathe their way around your"
+        if line =~ /Silvery tendrils rise up and wreathe their way around your/ or line =~ /quickly returns to normal/
+            $gothere = true
             if weapon2
                 fput "swap"
-                if swaper
+                if $blessboots == true
+                    fput "wear #{boots}"
+                    getweapon.call()
                     break
-                else
-                    swaper = true
+                end
+                if $swaper
+                    if boots
+                        putawayweapon.call()
+                        fput "remove #{boots}"
+                        $blessboots = true
+                    else
+                        break
+                    end
                 end
             else
                 break
             end
         end
-        sleep 30
+        $swaper = true if $gothere
+        sleep 30 if not $gothere
       }
+      $swaper = false
+      $blessboots = false
+      $gothere = false
       loop {
-        swaper = false
         echo "Waiting for Pristeen Bless" #if $debug
         fput "whisper pristeen bless me"
-        line = matchtimeout 20, "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
-        if line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/
+        line = matchtimeout 20, "quickly returns to normal", "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
+        if line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/ or line =~ /quickly returns to normal/
+            $gothere = true
             if weapon2
                 fput "swap"
-                if swaper
+                if $blessboots == true
+                    fput "wear #{boots}"
+                    getweapon.call()
                     break
-                else
-                    swaper = true
+                end
+                if $swaper
+                    if boots
+                        putawayweapon.call()
+                        fput "remove #{boots}"
+                        $blessboots = true
+                    else
+                        break
+                    end
                 end
             else
                 break
             end
         end
-        sleep 30
+        $swaper = true if $gothere
+        sleep 30 if not $gothere
       }
       putawayweapon.call()
     end

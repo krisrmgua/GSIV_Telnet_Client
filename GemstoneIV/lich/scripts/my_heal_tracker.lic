@@ -33,7 +33,7 @@ end
 #def self.new_healed(target) 
 def new_healed(target) 
   echo "new_healed(#{target}) called" if @debug
-  #@healed.unshift(target)
+  @healed.unshift(target)
   CharSettings['healed'] = @healed[0..9]
   @healed = @healed[0..9]
 end
