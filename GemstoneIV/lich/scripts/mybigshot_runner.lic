@@ -116,11 +116,11 @@ elsif Myname == "Sorci"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Monker"
-    mobs = ["phantom","lesser ghoul","skeleton"]
+    mobs = ["lesser mummy"]
     fleemobs = ["goblin"]
     rest = "landing"
-    huntarea = "4141"
-    roomboundry = ["4142","7166","7184","4140"]
+    huntarea = "4144"
+    roomboundry = ["4171","4143"]
     attack = "attack"
     stance = "defensive"
     flee_count = 1
@@ -521,10 +521,12 @@ attack_target = proc { |target|
 
 
 openlook.call()
-while percentmana() < 99
-  echo "Mana Below 100%" #if $debug
+if percentmana() < 25
   go2rest.call()
-  sleep 10
+  while percentmana() < 99
+    echo "Mana Below 100%" #if $debug
+    sleep 10
+  end
 end
 getweapon.call()
 gohunt.call()
@@ -604,7 +606,7 @@ loop {
             end
         end
         $swaper = true if $gothere
-        sleep 30 if not $gothere
+        sleep 15 if not $gothere
       }
       $swaper = false
       $blessboots = false
@@ -636,20 +638,27 @@ loop {
             end
         end
         $swaper = true if $gothere
-        sleep 30 if not $gothere
+        sleep 15 if not $gothere
       }
       putawayweapon.call()
     end
     sell.call()
     while checkmind(4)
       echo "Mind Still to High" #if $debug
-      sleep 60 
+      sleep 15 
     end
     while percentmana() < 99
       echo "Mana Below 100%" #if $debug
-      sleep 10 
+      sleep 15 
     end
     getweapon.call()
     Script.run('go2', "#{huntarea}")
+    if Room.current.id.to_s != "#{huntarea}"
+      fput "w"
+      sleep 1
+      fput "e"
+      sleep 1
+      Script.run('go2', "#{huntarea}")
+    end
   end
 }

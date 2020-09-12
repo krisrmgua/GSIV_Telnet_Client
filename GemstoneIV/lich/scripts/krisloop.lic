@@ -93,7 +93,6 @@ loop {
     if line =~ /.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join.*/ and Myname == "Aiss"
         fput "think to pristeen KRIS BLURS"
     end
-    #if line =~ /golvern battle axe returns to normal/ and Myname == "Woory"
     if line =~ /^(\w+) offers you/ and Myname == "Aiss"
         wname = $1
         sleep 5
@@ -110,8 +109,8 @@ loop {
         loop {
             #if Room.current.id.to_s == "228"
             kill_script "bigshot"
-            Script.run('go2', '4142')
-            Script.run('gogate')
+            #Script.run('go2', '4142')
+            #Script.run('gogate')
             Script.run('go2', 'landing')
             break
             #line = matchtimeout 10, "You are wearing"

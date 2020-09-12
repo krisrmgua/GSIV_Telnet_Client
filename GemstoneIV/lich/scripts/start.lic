@@ -3,6 +3,7 @@ if Myname == "Aiss"
   Script.start('krisloop')
   Script.start('getnames', '1')
   Script.start('my_heal_tracker')
+  Script.start('taptoheal')
 #  Script.start('healbot')
 elsif Myname == "Wiiz"
   Script.start('krisloop')
