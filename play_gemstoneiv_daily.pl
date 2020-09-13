@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use lib '/home/kris/bin/';
-use lib '/website/GSIV_Telnet_Client/';
+use lib '/root/GSIV_Telnet_Client/';
 use Data::Dumper;
 use LWP::UserAgent;
 use HTTP::Cookies;

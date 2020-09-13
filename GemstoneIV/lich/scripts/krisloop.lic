@@ -89,9 +89,10 @@ loop {
     end
     if line =~ /.*(say|yell|asks|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
         fput "think to pristeen KRIS BLURS"
-    end
-    if line =~ /.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join.*/ and Myname == "Aiss"
+        system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
+    elsif line =~ /.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join.*/ and Myname == "Aiss"
         fput "think to pristeen KRIS BLURS"
+        system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
     end
     if line =~ /^(\w+) offers you/ and Myname == "Aiss"
         wname = $1
@@ -104,22 +105,6 @@ loop {
             kill_script "combo"
             sleep 2
             fput "slap monker"
-    end
-    if line =~ /but it has no effect!/ and Myname == "Woory"
-        loop {
-            #if Room.current.id.to_s == "228"
-            kill_script "bigshot"
-            #Script.run('go2', '4142')
-            #Script.run('gogate')
-            Script.run('go2', 'landing')
-            break
-            #line = matchtimeout 10, "You are wearing"
-            #if line =~ /You are wearing/
-            #    break
-            #end
-        }
-        get_bless_woory.call()
-        start_script('bigshot')
     end
     if line =~ /Aiss thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Aiss"
         joiny = $1
