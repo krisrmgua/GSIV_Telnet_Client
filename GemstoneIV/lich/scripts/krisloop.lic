@@ -54,17 +54,17 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "thinks, \"I am now level", "but your attack has no effect", "You are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "the body of", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "thinks, \"I am now level", "but your attack has no effect", "You are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
     end
-    if line =~ /the body of/
-        if Room.current.id.to_s !~ /^228$/
-            echo "kris you found the body of" + Room.current.id.to_s
-            #monitor_interaction()
-        end
-    end
+    #if line =~ /the body of/
+    #    if Room.current.id.to_s !~ /^228$/
+    #        echo "kris you found the body of" + Room.current.id.to_s
+    #        #monitor_interaction()
+    #    end
+    #end
     if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
 	healee = $1
         if Myname == "Pristeen"
