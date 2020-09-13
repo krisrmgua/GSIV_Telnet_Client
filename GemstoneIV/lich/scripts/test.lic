@@ -1,3 +1,11 @@
-roomboundry = ["7949","7931"]
-room = Room.current
-next_room_options = room.wayto.keys - roomboundry
+bodies = GameObj.pcs.select { |pc| pc.status =~ /dead/ }.map{ |pc| pc.name }
+has_bodies = bodies.length > 0
+bodies_regex = /(#{bodies.join('|')})/
+
+#if has_bodies
+  if bodies !~ /Wiiz/
+    echo "Does not have name"
+  else
+    echo "Has Name"
+  end
+#end
