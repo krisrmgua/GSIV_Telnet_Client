@@ -1,0 +1,30 @@
+Broken pipe
+./profanity.rb:1500:in `write'
+./profanity.rb:1500:in `puts'
+./profanity.rb:1500:in `block in <main>'
+./profanity.rb:2040:in `block in <main>'
+Broken pipe
+./profanity.rb:1501:in `write'
+./profanity.rb:1501:in `puts'
+./profanity.rb:1501:in `block in <main>'
+./profanity.rb:2041:in `block in <main>'
+Broken pipe
+./profanity.rb:1501:in `write'
+./profanity.rb:1501:in `puts'
+./profanity.rb:1501:in `block in <main>'
+./profanity.rb:2041:in `block in <main>'
+Broken pipe
+./profanity.rb:1500:in `write'
+./profanity.rb:1500:in `puts'
+./profanity.rb:1500:in `block in <main>'
+./profanity.rb:2040:in `block in <main>'
+Broken pipe
+./profanity.rb:1500:in `write'
+./profanity.rb:1500:in `puts'
+./profanity.rb:1500:in `block in <main>'
+./profanity.rb:2040:in `block in <main>'
+Broken pipe
+./profanity.rb:1500:in `write'
+./profanity.rb:1500:in `puts'
+./profanity.rb:1500:in `block in <main>'
+./profanity.rb:2040:in `block in <main>'
