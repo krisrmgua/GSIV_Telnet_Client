@@ -1,5 +1,5 @@
 
-$HOME/GemstoneIV/buildxmlfile/build.sh
+$HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh
 
 echo -e "\t1:\tWoory"
 echo -e "\t2:\tSluf"
@@ -81,7 +81,7 @@ else
     exit
 fi
 
-ruby $HOME/GemstoneIV/lich/lich.rbw --login $character --without-frontend --detachable-client=$port & pid_connect=$!
+ruby $HOME/GSIV_Telnet_Client/GemstoneIV/lich/lich.rbw --login $character --without-frontend --detachable-client=$port & pid_connect=$!
 sleep 6
-$HOME/GemstoneIV/ProfanityFE-onedreian/profanity_kris.rb --port=$port --char=$character --file=kris.xml 2> /dev/null
+$HOME/GSIV_Telnet_Client/GemstoneIV/ProfanityFE-onedreian/profanity_kris.rb --port=$port --char=$character --file=kris.xml 2> /dev/null
 kill $pid_connect

@@ -2,7 +2,7 @@
 use warnings;
 use strict;
 
-my $filename = "/root/GemstoneIV/buildXMLstorm/names.txt";
+my $filename = "/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/names.txt";
 my $warriors = "";
 my $rogues = "";
 my $wizards = "";
@@ -151,62 +151,62 @@ my $comb_enemy_file = $enemy_file_top . $enemiess . $file_end;
 my $comb_kris_file = $kris_file_top . $kris . $file_end;
 
 
-my $war_file = '/root/GemstoneIV/buildxmlfile/warrior.xml';
+my $war_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/warrior.xml';
 open(FH, '>', $war_file) or die $!;
 print FH $comb_warrior_file;
 close(FH);
 
-my $rog_file = '/root/GemstoneIV/buildxmlfile/rogue.xml';
+my $rog_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/rogue.xml';
 open(FH, '>', $rog_file) or die $!;
 print FH $comb_rogue_file;
 close(FH);
 
-my $wiz_file = '/root/GemstoneIV/buildxmlfile/wizard.xml';
+my $wiz_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml';
 open(FH, '>', $wiz_file) or die $!;
 print FH $comb_wizard_file;
 close(FH);
 
-my $cle_file = '/root/GemstoneIV/buildxmlfile/cleric.xml';
+my $cle_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/cleric.xml';
 open(FH, '>', $cle_file) or die $!;
 print FH $comb_cleric_file;
 close(FH);
 
-my $emp_file = '/root/GemstoneIV/buildxmlfile/empath.xml';
+my $emp_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/empath.xml';
 open(FH, '>', $emp_file) or die $!;
 print FH $comb_empath_file;
 close(FH);
 
-my $sor_file = '/root/GemstoneIV/buildxmlfile/sorcerer.xml';
+my $sor_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/sorcerer.xml';
 open(FH, '>', $sor_file) or die $!;
 print FH $comb_sorcerer_file;
 close(FH);
 
-my $ran_file = '/root/GemstoneIV/buildxmlfile/ranger.xml';
+my $ran_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/ranger.xml';
 open(FH, '>', $ran_file) or die $!;
 print FH $comb_ranger_file;
 close(FH);
 
-my $bard_file = '/root/GemstoneIV/buildxmlfile/bard.xml';
+my $bard_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/bard.xml';
 open(FH, '>', $bard_file) or die $!;
 print FH $comb_bard_file;
 close(FH);
 
-my $monk_file = '/root/GemstoneIV/buildxmlfile/monk.xml';
+my $monk_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/monk.xml';
 open(FH, '>', $monk_file) or die $!;
 print FH $comb_monk_file;
 close(FH);
 
-my $pal_file = '/root/GemstoneIV/buildxmlfile/paladin.xml';
+my $pal_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/paladin.xml';
 open(FH, '>', $pal_file) or die $!;
 print FH $comb_paladin_file;
 close(FH);
 
-my $ene_file = '/root/GemstoneIV/buildxmlfile/enemy.xml';
+my $ene_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml';
 open(FH, '>', $ene_file) or die $!;
 print FH $comb_enemy_file;
 close(FH);
 
-my $kris_file = '/root/GemstoneIV/buildxmlfile/mycharecters.xml';
+my $kris_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml';
 open(FH, '>', $kris_file) or die $!;
 print FH $comb_kris_file;
 close(FH);

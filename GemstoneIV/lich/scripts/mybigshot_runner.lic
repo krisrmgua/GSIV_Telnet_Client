@@ -1,6 +1,7 @@
 Myname = Char.name
 $debug = nil
 $OOM = 5
+$CMAN = nil
 
 if Myname == "Clu"
     mobs = ["mountain ogre","krolvin mercenary","humpbacked puma"]
@@ -28,20 +29,20 @@ if Myname == "Clu"
     encumbrance = 20
     active_scripts = [""]
 elsif Myname == "Pristeen"
-    mobs = ["nedum vereri"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
     rest = "landing"
-    huntarea = "8470"
-    roomboundry = ["8469"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
     attack = "incant 302 channel"
     stance = "defensive"
     flee_count = 1
     swings = 9
     skipwaitattack = 1
     hideme = 0
-    shield = "shield"
+    shield = ""
     weapon = "runestaff"
-    sheath = "sheath"
+    sheath = ""
     backpack = "backpack"
     cloak = "cloak"
     herbsack = "kit"
@@ -50,16 +51,17 @@ elsif Myname == "Pristeen"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Sluf"
-    mobs = ["nedum vereri"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
     rest = "landing"
-    roomboundry = ["8469"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
     attack = "attack"
     stance = "offensive"
     herbsack = "kit"
     flee_count = 1
-    swings = 3
-    skipwaitattack = 0
+    swings = 1
+    skipwaitattack = 1
     hideme = 0
     shield = "shield"
     weapon = "backsword"
@@ -111,8 +113,8 @@ elsif Myname == "Sorci"
     backpack = "pack"
     cloak = "cloak"
     herbsack = "kit"
-    skinknife = ""
-    skinsheath = ""
+    skinknife = "knife"
+    skinsheath = "wrist sheath"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Monker"
@@ -135,8 +137,32 @@ elsif Myname == "Monker"
     backpack = "pack"
     cloak = "cloak"
     herbsack = "kit"
-    skinknife = ""
-    skinsheath = ""
+    skinknife = "knife"
+    skinsheath = "wrist sheath"
+    encumbrance = 35
+    active_scripts = [""]
+elsif Myname == "Woory"
+    mobs = ["moaning spirit","night hound"]
+    mobs = ["nedum vereri"]
+    fleemobs = ["tomb spider"]
+    rest = "landing"
+    huntarea = "8470"
+    roomboundry = ["8469"]
+    attack = "attack"
+    $CMAN = "feint"
+    stance = "offensive"
+    flee_count = 1
+    swings = 9
+    skipwaitattack = 1
+    hideme = 0
+    shield = ""
+    weapon = "axe"
+    sheath = "sheath"
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "kit"
+    skinknife = "knife"
+    skinsheath = "thigh-sheath"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Wardrob"
@@ -345,6 +371,7 @@ check_flee_count = proc {
      go_defensive.call()
      $need_flee = true
    end
+   GameObj.loot.each { |i| $need_flee = true if i.noun =~ /cloud|breath/ }
 }
 
 gohunt = proc {
@@ -402,6 +429,7 @@ stop_active = proc {
 }
 
 attack_target = proc { |target|
+  CMAN_EXE = nil
   if skipwaitattack == 0
     line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
   end
@@ -461,6 +489,13 @@ attack_target = proc { |target|
       fput "stance #{stance}"
       echo "HEALTH LOW!" if percenthealth <= 40
       fput "quit" if percenthealth <= 40
+      if $CMAN and not CMAN_EXE
+        if checkstamina 30
+          fput "cman #{$CMAN} #{target}"
+          waitrt?
+          CMAN_EXE = true
+        end
+      end
       if Myname == "Monker" 
         Script.run('combo', "#{target}")
         line = matchtimeout 2, "You slap yourself"
@@ -568,7 +603,6 @@ loop {
     putawayweapon.call()
     if $need_healing
       Script.run('askheal')
-      sleep 120
       Script.run('useherbs', "in bin")
       Script.run('useherbs', "on bench")
       Script.run('useherbs', "under bench")

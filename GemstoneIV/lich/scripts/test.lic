@@ -3,9 +3,11 @@ has_bodies = bodies.length > 0
 bodies_regex = /(#{bodies.join('|')})/
 
 #if has_bodies
-  if bodies !~ /Wiiz/
+  if bodies.grep(/Talaendra/).empty?
     echo "Does not have name"
+    echo bodies
   else
     echo "Has Name"
+    echo bodies
   end
 #end

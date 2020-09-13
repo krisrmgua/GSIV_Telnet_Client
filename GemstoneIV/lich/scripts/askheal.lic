@@ -18,7 +18,7 @@ if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 
         else
             fput "say Anyone healing?"
         end
-        line = matchtimeout 30, "You feel an odd tingling sensation", "focuses on you with intense concentration"
+        line = matchtimeout 45, "You feel an odd tingling sensation", "focuses on you with intense concentration"
         if line =~ /([A-Z,a-z]+) focuses on you with intense concentration/ or line =~ /You feel an odd tingling sensation as ([A-Z,a-z]+) focuses on you/
             healee = $1
             if Room.current.id.to_s == "228"

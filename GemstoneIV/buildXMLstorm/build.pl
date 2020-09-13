@@ -2,8 +2,8 @@
 use warnings;
 use strict;
 
-my $filename = "/root/GemstoneIV/buildXMLstorm/names.txt";
-my $outfile = "/website/httpd/krissimmons/gsiv/names.xml";
+my $filename = "/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/names.txt";
+my $outfile = "/root/GSIV_Telnet_Client/GemstoneIV/SMB/names.xml";
 my $warriors = "";
 my $rogues = "";
 my $wizards = "";

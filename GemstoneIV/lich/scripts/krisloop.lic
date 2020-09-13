@@ -81,11 +81,11 @@ loop {
     if line =~ /([A-Z,a-z]+) thinks, "I am now level (\d+)/
         dname = $1
         dlevel = $2
-        system("/root/GemstoneIV/lich/scripts/levelup.pl #{dname} #{dlevel}") 
+        system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{dname} #{dlevel}") 
     end
     if line =~ /You are now level (\d+)/
       dlevel = $1
-      system("/root/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
+      system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
     if line =~ /.*(say|yell|asks|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
         fput "think to pristeen KRIS BLURS"

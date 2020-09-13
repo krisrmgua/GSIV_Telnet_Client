@@ -9,4 +9,4 @@ if [ -z "$character" ];then
 fi
 echo "Logging in $character in detached mode."
 echo "call profanity in another terminal"
-ruby $HOME/GemstoneIV/lich/lich.rbw --login $character --without-frontend --detachable-client=8000
+ruby $HOME/GSIV_Telnet_Client/GemstoneIV/lich/lich.rbw --login $character --without-frontend --detachable-client=8000

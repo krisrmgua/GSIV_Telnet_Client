@@ -1,11 +1,25 @@
+waggle_it = proc { |target|
+  bodies = GameObj.pcs.select { |pc| pc.status =~ /dead/ }.map{ |pc| pc.name }
+  has_bodies = bodies.length > 0
+  bodies_regex = /(#{bodies.join('|')})/
+  if bodies.grep(/#{target}/).empty?
+    Script.run('waggle', "#{target}")
+    #echo "Does not have name"
+    #echo bodies
+  #else
+    #echo "Has Name"
+    #echo bodies
+  end
+}
+
 loop {
     if Room.current.id.to_s =~ /^228$/
-        Script.run('waggle', 'clu')
-        Script.run('waggle', 'woory')
-        Script.run('waggle', 'pristeen')
-        Script.run('waggle', 'sluf')
-        Script.run('waggle', 'monker')
-        Script.run('waggle', 'sorci')
+        waggle_it.call('clu')
+        waggle_it.call('woory')
+        waggle_it.call('pristeen')
+        waggle_it.call('sluf')
+        waggle_it.call('monker')
+        waggle_it.call('sorci')
         sleep 60
     else
         line = matchtimeout 20, "just arrived", "arrives at"
