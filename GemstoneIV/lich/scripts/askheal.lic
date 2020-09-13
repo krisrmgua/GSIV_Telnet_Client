@@ -36,10 +36,11 @@ if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 
                 else
                     silver = "315"
                 end
-                sleep 20
-                if Wounds.abdomen < 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.chest < 1 and Wounds.leftArm < 1 and Wounds.rightArm < 1 and Wounds.leftLeg < 1 and Wounds.rightLeg < 1 and Wounds.back < 1 and Wounds.leftHand < 1 and Wounds.rightHand < 1 and Wounds.nerves < 1 and Wounds.leftEye < 1 and Wounds.rightEye < 1
+                myx = 0
+                while myx < 45
+                  if Wounds.abdomen < 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.chest < 1 and Wounds.leftArm < 1 and Wounds.rightArm < 1 and Wounds.leftLeg < 1 and Wounds.rightLeg < 1 and Wounds.back < 1 and Wounds.leftHand < 1 and Wounds.rightHand < 1 and Wounds.nerves < 1 and Wounds.leftEye < 1 and Wounds.rightEye < 1
                     fput "say Thanks"
-                    sleep 5
+                    sleep 3
                     start_script "bank", [silver]
                     pause 6
                     kill_script "bank"
@@ -48,6 +49,10 @@ if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 
                     start_script "bank"
                     pause 6
                     kill_script "bank"
+                    myx = 500
+                  end
+                  sleep 1
+                  myx = myx + 1
                 end
             end
         end

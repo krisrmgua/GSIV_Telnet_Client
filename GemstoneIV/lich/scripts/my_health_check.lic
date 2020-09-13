@@ -1,0 +1,16 @@
+quit_dead = proc {
+  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} DEAD\"")
+  echo "YOUR DEAD! ROOM NUM: #{Room.current.id.to_s}"
+  fput "quit"
+}
+quit_health = proc {
+  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} HEALTH LOW\"")
+  echo "HEALTH LOW! ROOM NUM: #{Room.current.id.to_s}"
+  fput "quit"
+}
+
+loop {
+    quit_health.call() if percenthealth <= 40
+    quit_dead.call() if checkdead
+    sleep 3
+}

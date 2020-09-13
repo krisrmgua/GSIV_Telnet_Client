@@ -22,9 +22,9 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
 	<highlight fg='90FF8B'>^\[Private(?:To)?\]|Also here:</highlight>
-	<highlight fg='FFFFFF' bg='FF0000'>.*(recites|say|asks|yell).*(blurs|Blurs|BLURS|guards|Guards|GUARDS|colors|Colors|COLORS|hues|Hues|HUES).*</highlight>
+	<highlight fg='FFFFFF' bg='FF0000'>.*(recites|says|asks|yells).*(blurs|Blurs|BLURS|guards|Guards|GUARDS|colors|Colors|COLORS|hues|Hues|HUES).*</highlight>
 	<highlight fg='008000'>^\[code\]</highlight>
-	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
+	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$|a \w+?\s?\w+ shadowy cloud</highlight>
 	<highlight fg='00FFFF' bg='282828'>\[healbot.*$</highlight>
 	<highlight fg='00A2FF'>acantha leaf</highlight>
 	<highlight fg='00FFFF'>ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion</highlight>
@@ -86,7 +86,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 		|Several flaming meteors light the nearby sky!
 		|Several flaming rocks burst from the sky and smite the area!
 		|A low roar of quickly parting air can be heard above!)</highlight>
-	<highlight fg='D85D03'>^.*(?:falls slack against the floor|falls slack against the ground|falls to the floor, motionless|falls to the ground dead|hits the ground with a less than elegant thud|falls to the ground motionless|and dies|and lies still|goes still|going still|slowly settles to the ground and begins to dissipate|growls one last time, and crumples to the ground in a heap)\.$</highlight>
+	<highlight fg='D85D03'>^.*(?:falls slack against the floor|falls on its side and lets out one last whimpering sigh of dark and shadowy whirlwinds|falls slack against the ground|falls to the floor, motionless|falls to the ground dead|hits the ground with a less than elegant thud|falls to the ground motionless|and dies|and lies still|goes still|going still|slowly settles to the ground and begins to dissipate|growls one last time, and crumples to the ground in a heap)\.$</highlight>
 	<highlight fg='ffffff'>^.* is stunned!$|^You come out of hiding\.$|body as it rises, disappearing into the heavens</highlight>
 	<highlight fg='ffaaaa'>.*ruining your hiding place\.$|^You are no longer hidden\.$|^\s*You are (?:stunned|knocked to the ground).*|^You are unable to remain hidden!$|^You are visible again\.$|^You fade into sight\.$|^You fade into view.*|^You feel drained!$|^You have overextended yourself!$|^You feel yourself going into shock!$</highlight>
 	<highlight fg='ffaaaa' bg="7A7A7A">^You feel the sting of a recent death slowly fade away, yet a lingering weakness remains.$</highlight>

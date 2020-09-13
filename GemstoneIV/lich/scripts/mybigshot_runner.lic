@@ -57,13 +57,14 @@ elsif Myname == "Sluf"
     huntarea = "7319"
     roomboundry = ["7318","7324"]
     attack = "attack"
+    $CMAN = "shield bash"
     stance = "offensive"
     herbsack = "kit"
     flee_count = 1
-    swings = 1
+    swings = 9
     skipwaitattack = 1
     hideme = 0
-    shield = "shield"
+    shield = "buckler"
     weapon = "backsword"
     sheath = "sheath"
     backpack = "backpack"
@@ -149,7 +150,7 @@ elsif Myname == "Woory"
     huntarea = "8470"
     roomboundry = ["8469"]
     attack = "attack"
-    $CMAN = "feint"
+    $CMAN = "cman feint"
     stance = "offensive"
     flee_count = 1
     swings = 9
@@ -443,8 +444,6 @@ attack_target = proc { |target|
         echo "Fleeing from target" if $debug
         break
       end
-      echo "HEALTH LOW!" if percenthealth <= 40
-      fput "quit" if percenthealth <= 40
       if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70
         echo "Need Healing" if $debug
         $need_healing = true
@@ -462,10 +461,6 @@ attack_target = proc { |target|
       end
       waitrt?
       waitcastrt?
-      echo "HEALTH LOW!" if percenthealth <= 40
-      fput "quit" if percenthealth <= 40
-      echo "#{Room.current.id.to_s}" if checkdead
-      fput "quit" if checkdead
       hidetries = 0
       if hideme == 1
         while checkhidden == false
@@ -487,11 +482,9 @@ attack_target = proc { |target|
       echo "Fleeing" if $need_flee == true and $debug
       break if $need_flee == true
       fput "stance #{stance}"
-      echo "HEALTH LOW!" if percenthealth <= 40
-      fput "quit" if percenthealth <= 40
       if $CMAN and not CMAN_EXE
         if checkstamina 30
-          fput "cman #{$CMAN} #{target}"
+          fput "#{$CMAN} #{target}"
           waitrt?
           CMAN_EXE = true
         end
@@ -539,8 +532,6 @@ attack_target = proc { |target|
         echo "To Many Items" if $need_sale == true and $debug
         break if $need_sale == true
       end
-      echo "HEALTH LOW!" if percenthealth <= 40
-      fput "quit" if percenthealth <= 40
       if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70
         echo "Need Healing" if $debug
         $need_healing = true
@@ -572,15 +563,12 @@ loop {
   global_vars()
   start_active.call()
   bs_wander.call(roomboundry)
+  GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
   sleep 0.3
   if percentmana() < $OOM
     echo "OOM" #if $debug
     $need_rest = true
   end
-  echo "#{Room.current.id.to_s}" if checkdead
-  fput "quit" if checkdead
-  echo "HEALTH LOW!" if percenthealth <= 40
-  fput "quit" if percenthealth <= 40
   check_standing.call()
   check_flee_count.call()
   check_for_people.call()
@@ -594,8 +582,6 @@ loop {
     end
   end
   check_standing.call()
-  echo "HEALTH LOW!" if percenthealth <= 40
-  fput "quit" if percenthealth <= 40
   if $need_healing or $need_bless or $need_rest or $need_sale
     stop_active.call()
     go2rest.call()

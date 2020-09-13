@@ -1,6 +1,7 @@
 #Myname = Char.name
 Script.start('krisloop')
 Script.start('mybigshot_runner')
+Script.start('my_health_check')
 #if Myname == "Clu"
 #  Script.start('clu')
 #end
