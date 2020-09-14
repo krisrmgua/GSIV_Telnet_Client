@@ -16,12 +16,12 @@ waggle_it = proc { |target|
 
 loop {
     if Room.current.id.to_s =~ /^228$/
-        waggle_it.call('clu')
-        waggle_it.call('woory')
-        waggle_it.call('pristeen')
-        waggle_it.call('sluf')
-        waggle_it.call('monker')
-        waggle_it.call('sorci')
+        waggle_it.call('Clu')
+        waggle_it.call('Woory')
+        waggle_it.call('Pristeen')
+        waggle_it.call('Sluf')
+        waggle_it.call('Monker')
+        waggle_it.call('Sorci')
         sleep 60
     else
         line = matchtimeout 20, "just arrived", "arrives at"

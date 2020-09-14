@@ -64,7 +64,7 @@ elsif Myname == "Sluf"
     swings = 9
     skipwaitattack = 1
     hideme = 0
-    shield = "buckler"
+    shield = "aegis"
     weapon = "backsword"
     sheath = "sheath"
     backpack = "backpack"

@@ -18,6 +18,6 @@ elsif Myname == "Pristeen"
 elsif Myname == "Woory"
     fput "put my axe in my sheath"
 elsif Myname == "Sluf"
-    fput "wear my buckler"
+    fput "wear my aegis"
     fput "put my backsword in my sheath"
 end
