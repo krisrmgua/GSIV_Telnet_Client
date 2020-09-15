@@ -1,0 +1,18 @@
+cast_bread = proc { |target|
+    next if not Spell[203].known? or not Spell[203].affordable?
+    if target
+        empty_hands
+    end
+    fput "prepare 203"
+    sleep 1
+    fput "summon manna bread"
+    if target
+        sleep 1
+        fput "give #{target}"
+    else
+        fput "gobble my bread"
+        fput "gobble my bread"
+    end
+}
+
+cast_bread.call(script.vars[1])

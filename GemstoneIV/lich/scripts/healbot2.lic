@@ -260,21 +260,21 @@ loop {
 		end
 		
 		#default wait time
-		waittime = 20
+		waittime = 5
 		sleeptime = 3
 
 		if percentmind <= 25 #you need xp
-			waittime = 15
+			waittime = 5
 			sleeptime = 3
 			echo "*** Mind low, moving quickly on #{healee} ***"
 		end
 		if percentmind > 70 #give other healers a chance
 			if !AnyOtherEmpaths?()
-			        waittime = 20
+			        waittime = 5
 			        sleeptime = 3
 				echo "*** There seem to be no other empaths, so we won't wait extra long ***"
 			else
-				waittime = 20
+				waittime = 5
 			        sleeptime = 3
 				echo "*** Mind high, waiting longer to see if #{healee} gets healed.. ***"
 			end

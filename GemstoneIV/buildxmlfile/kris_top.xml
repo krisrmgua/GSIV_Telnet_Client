@@ -4,10 +4,12 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 <settings>
 	<highlight fg='9090ff'>^(?:You gesture|You intone a phrase of elemental power|You recite a series of mystical phrases|You trace a series of glowing runes|Your hands glow with power as you invoke|You trace a simple rune while intoning|You trace a sign while petitioning the spirits|You trace an intricate sign that contorts in the air).*$</highlight>
 	<highlight fg='9090ff'>^(?:Cast Roundtime 3 Seconds\.|Your spell is ready\.)$</highlight>
-	<highlight fg="a6e22e">(a|an|some) coraesine|\w+ wand|urnon|glass and pink pearl jar|pearly grey glass jar|cobalt glass lapis-rimmed jar|pearly white glass jar</highlight>
+	<highlight fg="a6e22e">(a|an|some) coraesine|urnon|glass and pink pearl jar|pearly grey glass jar|cobalt glass lapis-rimmed jar|pearly white glass jar</highlight>
 	<highlight fg="FF0000">(a|an) gold ring|(a|an) \w+ gold ring|(a|an) \w+ \w+ gold ring|a crystal amulet</highlight>
         <highlight fg="CE8C5C">(a|an) \w+?-?\w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
-        <highlight fg="9AF312">(a|some) \w+?\s?\w+?\s?\w+\s(?:amethyst|cube|quartz|ruby|opal|sapphire|gem|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)</highlight>
+        <highlight fg="9AF312">(a|an|some) (s\'|n\'|t\')?\w+?\s?\w+?\s?\w+\s(?:amethyst|cube|quartz|ruby|pearl|garnet|opal|sapphire|gem|amber|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)</highlight>
+        <highlight fg="479B95">(a|an|some) \w+?\s?\w+?\s?\w+\s(?:lockpick|statue)</highlight>
+        <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a \w+ coin</highlight>
 	<highlight fg="B8AA44">You gather the remaining (\d+) coins</highlight>
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
 	<highlight fg="F6931D">nods to</highlight>
@@ -24,8 +26,8 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='90FF8B'>^\[Private(?:To)?\]|Also here:</highlight>
 	<highlight fg='FFFFFF' bg='FF0000'>.*(recites|says|asks|yells).*(blurs|Blurs|BLURS|guards|Guards|GUARDS|colors|Colors|COLORS|hues|Hues|HUES).*</highlight>
 	<highlight fg='008000'>^\[code\]</highlight>
-	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$|a \w+?\s?\w+ shadowy cloud</highlight>
-	<highlight fg='00FFFF' bg='282828'>\[healbot.*$</highlight>
+	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$|a billowing shadowy cloud|windy vortex</highlight>
+	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]</highlight>
 	<highlight fg='00A2FF'>acantha leaf</highlight>
 	<highlight fg='00FFFF'>ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion</highlight>
 	<highlight fg='00FFFF' bg='282828'>pothinir grass|aloeas stem|ephlox moss</highlight>

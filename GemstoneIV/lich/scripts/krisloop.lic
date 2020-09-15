@@ -54,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "thinks, \"I am now level", "but your attack has no effect", "You are now level", "Aiss thinks", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"Join", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -78,6 +78,21 @@ loop {
             end
         end
     end
+    if line =~ /Keyboard|keyboard|Keyboard|AFK|waiting for you to|REPORT/
+        if line !~ /\[help\]|\[Help\]/
+          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"ALERT: #{line}\"") 
+        end
+    end
+    if line =~ /([A-Z,a-z]+) thinks, "Get exp/
+        healee = $1
+        fput "exp"
+        line = matchtimeout 5, "until next"
+        if line =~ /until next: (\d+)/
+            exp = $1
+            sleep 1
+            fput "think to #{healee} #{exp}"
+        end
+    end
     if line =~ /([A-Z,a-z]+) thinks, "I am now level (\d+)/
         dname = $1
         dlevel = $2
@@ -87,13 +102,17 @@ loop {
       dlevel = $1
       system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
-    if line =~ /.* ([A-Z,a-z]+) (say|yell|asks|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*/ and Myname == "Aiss"
-        dname = $1
-        fput "think to pristeen #{dname} casting Spells"
-        system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
-    elsif line =~ /.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join.*/ and Myname == "Aiss"
-        fput "think to pristeen KRIS SPELLS"
-        system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
+    if line =~ /([A-Z,a-z]+) (quietly asks|quietly says|says|yells|asks|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname == "Aiss"
+          dname = $1
+        if line !~ /hours|Hours|HOURS|4|thanks|Thanks|THANKS/
+          fput "think to pristeen #{dname} casting Spells"
+          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
+        end
+    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname == "Aiss"
+        if line !~ /hours|Hours|HOURS|4|thanks|Thanks|THANKS/
+          fput "think to pristeen KRIS SPELLS"
+          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
+        end
     end
     if line =~ /^(\w+) offers you/ and Myname == "Aiss"
         wname = $1
@@ -107,13 +126,13 @@ loop {
             sleep 2
             fput "slap monker"
     end
-    if line =~ /Aiss thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Aiss"
+    if line =~ /thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Aiss"
         joiny = $1
         kill_script "mybigshot_runner"
         Script.run('go2', 'landing')
         fput "join #{joiny}"
     end
-    if line =~ /Aiss thinks\, \"Hunt/
+    if line =~ /thinks\, \"Hunt/
         start_script('mybigshot_runner') if Myname != "Aiss"
     end
 }
