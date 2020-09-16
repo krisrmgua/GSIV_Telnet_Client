@@ -1,3 +1,13 @@
+=begin
+        # Name: groupdisk
+        # Discription: Auto cast disks for everyone in your group
+        # Author: Kris
+        # Email: krisrmgua@gmail.com
+        # Categories: Utility, disk, spell, scripts
+        # Tags: utility, spells, disk
+        # Version: 0.01
+=end
+
 all_list = nil
 fput "group"
 while (line = get)
@@ -15,5 +25,7 @@ all_list.each { |name|
     if Spell['511'].known? && Spell['511'].affordable?
         echo "Disking #{name}"
         Spell[511].cast("#{name}")
+        waitrt?
+        waitcastrt?
     end
 }
