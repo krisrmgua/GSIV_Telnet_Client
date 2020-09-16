@@ -11,7 +11,7 @@
 all_list = nil
 fput "group"
 while (line = get)
-    if (line =~ /([A-Z,a-z]+) is following you/ or line =~ /Your group status/)
+    if (line =~ /([A-Z,a-z]+) is following you/ or line =~ /([A-Z,a-z]+) is the leader/ or line =~ /([A-Z,a-z]+) is also a member/ or line =~ /Your group status/)
         dname = $1
         if line =~ /Your group status/
             break
