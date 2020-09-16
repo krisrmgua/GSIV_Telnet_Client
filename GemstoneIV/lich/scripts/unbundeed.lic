@@ -1,0 +1,57 @@
+$all_done = nil
+if script.vars[1]
+$sack = script.vars[1]
+else
+  echo "YOU NEED TO PASS THE NAME OF THE SACK HERBS ARE IN"
+  exit
+end
+
+drawer = proc {
+    dothistimeout 'close door', 5, /You hear/
+    dothistimeout 'pull chain', 5, /You hear/
+    dothistimeout 'open drawer', 5, /The drawer slides open/
+    loop {
+        result = dothistimeout "hands", 5, /You have some|You have nothing/
+        if result =~ /You have nothing/
+            result2 = dothistimeout "get aca leaf from my #{$sack}", 5, /You remove|Get what/
+            if result2 =~ /Get what/
+                $all_done = true
+                break
+            end
+        end
+        dothistimeout 'bundle remove', 5, /You carefully|You only/
+        result3 = dothistimeout 'put leaf in drawer', 5, /You put|Your leaf won/
+        if result3 =~ /Your leaf won/
+            fput "bundle"
+            fput "put my leaf in my #{$sack}"
+            break
+        end
+    }
+    dothistimeout 'close drawer', 5, /The drawer slides/
+    dothistimeout 'open door', 5, /swings open/
+    fput "ex"
+    fput "peer door"
+}
+
+start_room = Room.current.id.to_s
+Script.run('go2', '2332')
+fput "open my #{$sack}"
+done_empty_hand = false
+unless done_empty_hand
+    empty_hands
+    done_empty_hand = true
+end
+loop{
+  result = dothis "search flow", /^You/
+  break if result =~/opened ice encrusted door/
+  sleep 5
+}
+waitrt?
+sleep 1
+fput "go door"
+while not $all_done
+    drawer.call()   
+end
+fput "go door"
+fill_hands if done_empty_hand
+Script.run('go2', start_room)

@@ -24,17 +24,17 @@ if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 
             if Room.current.id.to_s == "228"
                 mynum = rand(1..5)
                 if mynum == 1
-                    silver = "300"
+                    silver = "600"
                 elsif mynum == 2
-                    silver = "325"
+                    silver = "700"
                 elsif mynum == 3
-                    silver = "350"
+                    silver = "750"
                 elsif mynum == 4
-                    silver = "400"
+                    silver = "800"
                 elsif mynum == 5
-                    silver = "450"
+                    silver = "850"
                 else
-                    silver = "315"
+                    silver = "500"
                 end
                 myx = 0
                 while myx < 45

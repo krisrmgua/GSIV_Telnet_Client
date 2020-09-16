@@ -1,13 +1,10 @@
-bodies = GameObj.pcs.select { |pc| pc.status =~ /dead/ }.map{ |pc| pc.name }
-has_bodies = bodies.length > 0
-bodies_regex = /(#{bodies.join('|')})/
-
-#if has_bodies
-  if bodies.grep(/Talaendra/).empty?
-    echo "Does not have name"
-    echo bodies
-  else
-    echo "Has Name"
-    echo bodies
-  end
-#end
+done_empty_hand = false
+echo "PUT AWAY"
+unless done_empty_hand
+    echo "YES"
+    empty_hands
+    done_empty_hand = true
+end
+sleep 3
+echo "LETS GET NOW"
+fill_hands if done_empty_hand

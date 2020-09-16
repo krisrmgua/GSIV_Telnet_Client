@@ -1,0 +1,6 @@
+Myname = Char.name
+if Myname == "Pristeen"
+    fput "BESEECH TELEPORT"
+elsif Myname == "Sluf"
+    fput "BESEECH"
+end

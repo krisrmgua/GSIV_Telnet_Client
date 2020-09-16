@@ -4,9 +4,17 @@ else
   what = "join " + script.vars[1]
 end
 fput "think to woory #{what}" 
+sleep 3 if what == "hunt"
 fput "think to sluf #{what}" 
+sleep 3 if what == "hunt"
 fput "think to pristeen #{what}" 
+sleep 3 if what == "hunt"
 fput "think to clu #{what}" 
+sleep 3 if what == "hunt"
 fput "think to sorci #{what}" 
+sleep 3 if what == "hunt"
 fput "think to trenus #{what}" 
+sleep 3 if what == "hunt"
 fput "think to monker #{what}" 
+sleep 3 if what == "hunt"
+fput "think to wiiz #{what}" 

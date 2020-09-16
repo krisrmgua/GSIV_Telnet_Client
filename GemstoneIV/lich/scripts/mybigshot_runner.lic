@@ -1,5 +1,5 @@
 Myname = Char.name
-$debug = nil
+$debug = true
 $OOM = 5
 $CMAN = nil
 
@@ -64,7 +64,7 @@ elsif Myname == "Sluf"
     stance = "offensive"
     herbsack = "kit"
     flee_count = 1
-    swings = 5
+    swings = 4
     skipwaitattack = 1
     hideme = 0
     shield = "aegis"
@@ -77,6 +77,7 @@ elsif Myname == "Sluf"
     skinsheath = "shirt"
     encumbrance = 35
     active_scripts = ["surge"]
+    $OOM = 1 
 elsif Myname == "Trenus"
     mobs = ["nedum vereri"]
     fleemobs = ["greater spider"]
@@ -94,7 +95,7 @@ elsif Myname == "Trenus"
     sheath = ""
     backpack = "backpack"
     cloak = "cloak"
-    herbsack = "cloak"
+    herbsack = "kit"
     skinknife = "knife"
     skinsheath = "thigh-sheath"
     encumbrance = 35
@@ -352,7 +353,7 @@ openlook = proc {
     fput "open my #{backpack}"
     fput "open my #{cloak}"
     fput "open my #{herbsack}"
-    fput "open my #{sheath}"
+    fput "open my #{sheath}" if "#{sheath}" != ""
     fput "look in my #{backpack}"
     fput "look in my #{cloak}"
     fput "look in my #{herbsack}"
@@ -454,7 +455,7 @@ attack_target = proc { |target|
         break
       end
       if percentmana() < $OOM
-        echo "OOM" #if $debug
+        echo "OOM" if $debug
         $need_rest = true
         break
       end
@@ -561,7 +562,7 @@ openlook.call()
 if percentmana() < 25
   go2rest.call()
   while percentmana() < 99
-    echo "Mana Below 100%" #if $debug
+    echo "Mana Below 100%" if $debug
     sleep 10
   end
 end
@@ -581,7 +582,7 @@ loop {
   GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
   sleep 0.3
   if percentmana() < $OOM
-    echo "OOM" #if $debug
+    echo "OOM" if $debug
     $need_rest = true
   end
   check_standing.call()
@@ -609,6 +610,7 @@ loop {
       Script.run('useherbs', "under bench")
       Script.run('useherbs', "--buy=on in my #{herbsack}")
       while checkdisease or checkpoison
+        echo "Poisoned or Diseased" if $debug
         sleep 30
         Script.run('useherbs', "in bin")
         Script.run('useherbs', "on bench")
@@ -622,7 +624,7 @@ loop {
       $blessboots = false
       $gothere = false
       loop {
-        echo "Waiting for Sluf Bless" #if $debug
+        echo "Waiting for Sluf Bless" if $debug
         fput "whisper sluf bless me"
         line = matchtimeout 20, "quickly returns to normal", "Silvery tendrils rise up and wreathe their way around your"
         if line =~ /Silvery tendrils rise up and wreathe their way around your/ or line =~ /quickly returns to normal/
@@ -654,7 +656,7 @@ loop {
       $blessboots = false
       $gothere = false
       loop {
-        echo "Waiting for Pristeen Bless" #if $debug
+        echo "Waiting for Pristeen Bless" if $debug
         fput "whisper pristeen bless me"
         line = matchtimeout 20, "quickly returns to normal", "searing white light enfolds your", "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
         if line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/ or line =~ /quickly returns to normal/i or line =~ /searing white light enfolds your/
@@ -689,11 +691,11 @@ loop {
       fput "#{med}"
     end
     while checkmind(4)
-      echo "Mind Still to High" #if $debug
+      echo "Mind Still to High" if $debug
       sleep 15 
     end
     while percentmana() < 99
-      echo "Mana Below 100%" #if $debug
+      echo "Mana Below 100%" if $debug
       sleep 15 
     end
     getweapon.call()

@@ -12,13 +12,19 @@ if GameObj.left_hand.name != "Empty"
 end
 
 loop {
-
-    if GameObj.right_hand.name != "Empty" && GameObj.left_hand.name != "Empty"
+    wait_until { checkmana(100) }
+    if Room.current.id.to_s =~ /^228$/
+        Script.run('go2', '293') 
+    end
+    if GameObj.right_hand.name != "Empty"
+        fput "stow ##{GameObj.right_hand.id}"
+    end
+    if GameObj.left_hand.name != "Empty"
         fput "stow ##{GameObj.left_hand.id}"
     end
     while Spell[1118].affordable?
         fput "prepare 1118"
-        sleep 4
+        sleep 1
         fput "summon acantha leaf"
         while line = get               
             if line =~ /Some (.*) suddenly appears at your feet\./
@@ -30,8 +36,9 @@ loop {
         fput "stow #{herb}"
         sleep 3
     end
-sleep 300
-start_script "bundleall"
-sleep 60
+    Script.run('bundleall')
+    if Room.current.id.to_s =~ /^293$/
+        Script.run('go2', '228')
+    end
 }
 exit

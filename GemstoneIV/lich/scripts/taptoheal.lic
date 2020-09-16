@@ -13,18 +13,11 @@ def matchfind2(*strings)
    end
 end
 
-#start_script "healself"
-
 loop {
 	$lastline = get
 
 	person = matchfind2 "? taps you lightly on the shoulder."
 	if person
 		Script.run("sheal", [person])
-                #Script.run('sheal', "#{person}")
-		#start_script "sheal", [person]
-		#pause 42
-		#fput "transfer " + person
-                #kill_script "sheal"
 	end
 }
