@@ -1,0 +1,16 @@
+all_list = nil
+fput "group"
+while (line = get)
+    if (line =~ /([A-Z,a-z]+) is following you/ or line =~ /Your group status/)
+        dname = $1
+        if line =~ /Your group status/
+            break
+        end
+        all_list += "#{dname} "
+    end
+end
+all_list = all_list.split(" ")
+all_list.each { |name|
+    echo "Buffing #{name}"
+    Script.run('waggle', "#{name}")
+}
