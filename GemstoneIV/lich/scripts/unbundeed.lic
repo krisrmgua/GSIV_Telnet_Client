@@ -11,15 +11,15 @@ drawer = proc {
     dothistimeout 'pull chain', 5, /You hear/
     dothistimeout 'open drawer', 5, /The drawer slides open/
     loop {
-        result = dothistimeout "hands", 5, /You have some|You have nothing/
-        if result =~ /You have nothing/
+        result = dothistimeout 'bundle remove', 5, /You carefully|You only|You are not/
+        if result =~ /You are not/ 
             result2 = dothistimeout "get aca leaf from my #{$sack}", 5, /You remove|Get what/
             if result2 =~ /Get what/
                 $all_done = true
                 break
             end
+            fput "bundle remove"
         end
-        dothistimeout 'bundle remove', 5, /You carefully|You only/
         result3 = dothistimeout 'put leaf in drawer', 5, /You put|Your leaf won/
         if result3 =~ /Your leaf won/
             fput "bundle"
