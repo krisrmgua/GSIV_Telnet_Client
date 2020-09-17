@@ -21,3 +21,4 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Sorci > /tmp/Sorci.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Clu > /tmp/Clu.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Monker > /tmp/Monker.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Bize > /tmp/Bize.txt

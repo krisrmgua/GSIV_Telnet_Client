@@ -1,4 +1,10 @@
-exit
+Myname = Char.name
+exit if Myname = "Bize"
+exit if Myname = "Wiiz"
+sleep = 1
 Script.run('mytable', 'wiiz')
-Script.run('mysleep', '120')
-Script.run('go2', "#{rest}")
+GameObj.pcs.find { |pcs| sleep = 120 if pcs.noun =~ /Wiiz/i }
+#GameObj.pcs.find { |pcs| sleep = 120 if pcs.name =~ /Wiiz/i or pcs.noun =~ /Wiiz/i }
+#|i| $need_flee = true if i.noun =~ /cloud|breath|windy vortex/
+Script.run('mysleep', "#{sleep}")
+Script.run('go2', "landing")
