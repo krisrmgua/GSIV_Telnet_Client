@@ -1,0 +1,2 @@
+person = script.vars[1]
+Script.run('waggle', "--start-at=240 --stop-at=250 #{person}")

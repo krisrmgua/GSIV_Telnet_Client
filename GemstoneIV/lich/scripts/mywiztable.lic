@@ -1,6 +1,6 @@
 Myname = Char.name
-exit if Myname = "Bize"
-exit if Myname = "Wiiz"
+exit if Myname == "Bize"
+exit if Myname == "Wiiz"
 sleep = 1
 Script.run('mytable', 'wiiz')
 GameObj.pcs.find { |pcs| sleep = 120 if pcs.noun =~ /Wiiz/i }

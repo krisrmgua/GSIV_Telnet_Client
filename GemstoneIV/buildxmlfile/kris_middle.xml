@@ -2,7 +2,7 @@
 	<preset id='speech' fg='66ff66'/>
 	<preset id='roomName' fg='ffffff' bg='000000'/>
 	<preset id='monsterbold' fg='ffff00'/>
-	<preset id='familiar' bg='00001a'/>
+	<preset id='familiar' bg='035FB6'/>
 	<preset id='thoughts' bg='001a00'/>
 	<preset id='voln' bg='001a00'/>
 	<preset id='debug' fg='badb73'/>

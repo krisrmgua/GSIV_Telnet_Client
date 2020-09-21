@@ -22,6 +22,8 @@ loop {
         waggle_it.call('Sluf')
         waggle_it.call('Monker')
         waggle_it.call('Sorci')
+        waggle_it.call('Noce')
+        waggle_it.call('Aiss')
         sleep 60
     else
         line = matchtimeout 20, "just arrived", "arrives at"

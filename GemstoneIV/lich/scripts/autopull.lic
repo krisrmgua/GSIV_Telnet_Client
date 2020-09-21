@@ -1,0 +1,5 @@
+loop {
+  GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
+  sleep 0.3
+}
+

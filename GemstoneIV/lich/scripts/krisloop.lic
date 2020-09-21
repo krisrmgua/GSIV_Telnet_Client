@@ -54,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"Join", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -87,24 +87,46 @@ loop {
         healee = $1
         Script.run('waggle', "#{healee}")
     end
+    if line =~ /([A-Z,a-z]+) thinks, "Getsoc/
+        healee = $1
+        if healee != "#{Myname}"
+            fput "boost info"
+            line = matchtimeout 5, "Society Passes"
+            if line =~ /Society Passes:\s+(\d+)/
+                socnum = $1
+                sleep 8
+                fput "think to #{healee} Society Passes: #{socnum}"
+            end
+            fput "society"
+            line2 = matchtimeout 5, "You have active society"
+            if line2 =~ /You have active society access pass that will expire on/
+                sleep 8
+                fput "think to #{healee} CURRENLY ACTIVE"
+            end
+        end
+    end
     if line =~ /([A-Z,a-z]+) thinks, "Get bank/
         healee = $1
-        fput "bank acc"
-        line = matchtimeout 5, "in the amount of", "Total"
-        if line =~ /in the amount of (\d+,\d+)/ or line =~ /Total: (\d+,\d+,\d+|\d+,\d+)/
-          money = $1
-            sleep 2
-          fput "think to #{healee} #{money}"
+        if healee != "#{Myname}"
+            fput "bank acc"
+            line = matchtimeout 5, "in the amount of", "Total"
+            if line =~ /in the amount of (\d+,\d+)/ or line =~ /Total: (\d+,\d+,\d+|\d+,\d+)/
+                money = $1
+                sleep 8
+                fput "think to #{healee} #{money}"
+            end
         end
     end
     if line =~ /([A-Z,a-z]+) thinks, "Get exp/
         healee = $1
-        fput "exp"
-        line = matchtimeout 5, "until next"
-        if line =~ /until next: (\d+)/
-            exp = $1
-            sleep 2
-            fput "think to #{healee} #{exp}"
+        if healee != "#{Myname}"
+            fput "exp"
+            line = matchtimeout 5, "until next"
+            if line =~ /until next: (\d+)/
+                exp = $1
+                sleep 8
+                fput "think to #{healee} #{exp}"
+            end
         end
     end
     if line =~ /([A-Z,a-z]+) thinks, "I am now level (\d+)/

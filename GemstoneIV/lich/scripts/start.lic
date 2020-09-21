@@ -1,13 +1,21 @@
 Myname = Char.name
 if Myname == "Aiss"
-  Script.start('krisloop')
+  kill_script "krisloop"
+  sleep 1
   Script.start('getnames', '1')
   Script.start('my_heal_tracker')
   Script.start('taptoheal')
+  Script.start('krisloop')
 #  Script.start('healbot')
 elsif Myname == "Wiiz"
-  Script.start('krisloop')
+  kill_script "krisloop"
+  sleep 1
   Script.start('keepalive')
   Script.start('autoinvitefriends')
   Script.start('wiiz')
+  Script.start('krisloop')
+else
+  kill_script "krisloop"
+  sleep 1
+  Script.start('krisloop')
 end

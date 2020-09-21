@@ -132,7 +132,7 @@ my $enemy_file_top = '        <!--Enemy Characters-->
         <highlight fg=\'000000\' bg=\'FF0303\'>
                 \b(?:';
 my $kris_file_top = '        <!--My Characters-->
-        <highlight fg=\'ffffff\' bg=\'0D5C61\'>
+        <highlight fg=\'000000\' bg=\'D2E329\'>
                 \b(?:';
 my $file_end = ')\b
         </highlight>';

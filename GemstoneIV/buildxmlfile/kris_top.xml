@@ -5,38 +5,42 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='9090ff'>^(?:You gesture|You intone a phrase of elemental power|You recite a series of mystical phrases|You trace a series of glowing runes|Your hands glow with power as you invoke|You trace a simple rune while intoning|You trace a sign while petitioning the spirits|You trace an intricate sign that contorts in the air).*$</highlight>
 	<highlight fg='9090ff'>^(?:Cast Roundtime 3 Seconds\.|Your spell is ready\.)$</highlight>
 	<highlight fg="a6e22e">(a|an|some) coraesine|urnon|glass and pink pearl jar|pearly grey glass jar|cobalt glass lapis-rimmed jar|pearly white glass jar</highlight>
+	<highlight fg="FF0000" bg='1DE2D6'>a wide gold ring</highlight>
+	<highlight fg="FF0000" bg='3FCF00'>an inlaid gold ring</highlight>
 	<highlight fg="FF0000">(a|an) gold ring|(a|an) \w+ gold ring|(a|an) \w+ \w+ gold ring|a crystal amulet</highlight>
         <highlight fg="CE8C5C">(a|an) \w+?-?\w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
         <highlight fg="9AF312">(a|an|some) (s\'|n\'|t\')?\w+?\s?\w+?\s?\w+\s(?:amethyst|cube|quartz|ruby|pearl|garnet|opal|sapphire|gem|amber|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)</highlight>
         <highlight fg="479B95">(a|an|some) \w+?\s?\w+?\s?\w+\s(?:lockpick|statue)</highlight>
-        <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a \w+ coin</highlight>
+        <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone| a \w+?\s?\w+ coin|a \w+?\s?\w+ figurine</highlight>
 	<highlight fg="B8AA44">You gather the remaining (\d+) coins</highlight>
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
-	<highlight fg="F6931D">nods to</highlight>
-	<highlight fg="F6931D">nods at</highlight>
+	<highlight fg="F6931D">nods to|nods at|pokes you|taps you</highlight>
 	<highlight fg="FF0000">the body of</highlight>
-	<highlight fg="FF0000">Click ACCEPT to accept the offer or DECLINE to decline it|YOU HAVE BEEN IDLE TOO LONG. PLEASE RESPOND</highlight>
+	<highlight fg="FF0000">As the liquid seeps into your body, you get an increased feeling of well-being|Click ACCEPT to accept the offer or DECLINE to decline it|YOU HAVE BEEN IDLE TOO LONG. PLEASE RESPOND</highlight>
 	<highlight fg="48C014">is in good shape|Despite no apparent injuries|no apparent injuries\.</highlight>
 	<highlight fg='9090ff'>^.*remaining\. \]$</highlight>
-	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|You have no silver coins with you.</highlight>
-	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar</highlight>
+	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|You have no silver coins with you.|for a moment and then appears to become incorporated into it.|sinking into its surface.</highlight>
+	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
 	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
-	<highlight fg='90FF8B'>^\[Private(?:To)?\]|Also here:</highlight>
+	<highlight fg='90FF8B'>^\[Private(?:To)?\]|^\[Focused(?:to)?\]|Also here:</highlight>
 	<highlight fg='FFFFFF' bg='FF0000'>.*(recites|says|asks|yells).*(blurs|Blurs|BLURS|guards|Guards|GUARDS|colors|Colors|COLORS|hues|Hues|HUES).*</highlight>
 	<highlight fg='008000'>^\[code\]</highlight>
-	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$|a billowing shadowy cloud|windy vortex</highlight>
+	<highlight fg='FFFF00'>GameMaster|GameHost</highlight>
+	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
 	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]</highlight>
 	<highlight fg='00A2FF'>acantha leaf</highlight>
 	<highlight fg='00FFFF'>ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion</highlight>
-	<highlight fg='00FFFF' bg='282828'>pothinir grass|aloeas stem|ephlox moss</highlight>
+	<highlight fg='00FFFF' bg='282828'>pothinir grass|aloeas stem|ephlox moss|tincture of pothinir|tincture of aloeas|tincture of ephlox</highlight>
 	<highlight fg='FFA200'>haphip root|cactacae spine|torban leaf|talneo potion</highlight>
 	<highlight fg='FFA200' bg='282828'>woth flower|bolmara potion|wingstem potion|sovyn clove|calamia fruit</highlight>
 	<highlight fg="ff4444">Muscles bunching under its scaled flesh*</highlight>
+	<highlight fg='FF0000' bg='FFE800'>a billowing shadowy cloud|windy vortex</highlight>
 	<highlight fg='D46A6A'>
 		^\[Merchant\]
-		|(churning|gas|dark)\scloud
+		|(churning|gas|dark|shadowy)\scloud
+		|(windy)\svortex
 		|warrior\snaturalist
 		|\ssticky web|\svoid
 		|You shiver slightly as an invisible rash covers your body!
@@ -88,7 +92,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 		|Several flaming meteors light the nearby sky!
 		|Several flaming rocks burst from the sky and smite the area!
 		|A low roar of quickly parting air can be heard above!)</highlight>
-	<highlight fg='D85D03'>^.*(?:falls slack against the floor|falls on its side and lets out one last whimpering sigh of dark and shadowy whirlwinds|falls slack against the ground|falls to the floor, motionless|falls to the ground dead|hits the ground with a less than elegant thud|falls to the ground motionless|and dies|and lies still|goes still|going still|slowly settles to the ground and begins to dissipate|growls one last time, and crumples to the ground in a heap)\.$</highlight>
+	<highlight fg='D85D03'>^.*(?:falls slack against the floor|falls on its side and lets out one last whimpering sigh of dark and shadowy whirlwinds|falls slack against the ground|exhales a sigh of relief and slumps to the ground motionless|falls to the floor, motionless|falls to the ground dead|collapses into a puddle of jelly, falling silent at last|hits the ground with a less than elegant thud|falls to the ground motionless|and dies|and lies still|goes still|going still|slowly settles to the ground and begins to dissipate|growls one last time, and crumples to the ground in a heap)\.$</highlight>
 	<highlight fg='ffffff'>^.* is stunned!$|^You come out of hiding\.$|body as it rises, disappearing into the heavens</highlight>
 	<highlight fg='ffaaaa'>.*ruining your hiding place\.$|^You are no longer hidden\.$|^\s*You are (?:stunned|knocked to the ground).*|^You are unable to remain hidden!$|^You are visible again\.$|^You fade into sight\.$|^You fade into view.*|^You feel drained!$|^You have overextended yourself!$|^You feel yourself going into shock!$</highlight>
 	<highlight fg='ffaaaa' bg="7A7A7A">^You feel the sting of a recent death slowly fade away, yet a lingering weakness remains.$</highlight>

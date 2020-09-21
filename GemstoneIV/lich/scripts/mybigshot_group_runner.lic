@@ -1,5 +1,7 @@
 Myname = Char.name
 $debug = true
+$iammain = false
+$someone = nil
 $OOM = 5
 $CMAN = nil
 $preattackdefspell = ""
@@ -38,10 +40,10 @@ if Myname == "Clu"
     encumbrance = 20
     active_scripts = [""]
 elsif Myname == "Pristeen"
-    mobs = ["moaning spirit","night hound"]
+    mobs = ["striped warcat"]
     fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
+    huntarea = "8141"
+    roomboundry = ["8126","8093","7905"]
     rest = "landing"
     attack = "incant 302 channel"
     stance = "defensive"
@@ -61,13 +63,13 @@ elsif Myname == "Pristeen"
     active_scripts = [""]
     med = "med"
     $OOM = 25 
+    $joinwho = "aiss"
 elsif Myname == "Aiss"
     mobs = ["striped warcat"]
     fleemobs = ["tomb spider"]
     huntarea = "8141"
     roomboundry = ["8126","8093","7905"]
     rest = "landing"
-    restbefore = "7905"
     attack = "incant 1106 channel"
     stance = "defensive"
     flee_count = 1
@@ -86,6 +88,7 @@ elsif Myname == "Aiss"
     active_scripts = [""]
     med = "med"
     $OOM = 25
+    $iammain = true
 elsif Myname == "Sluf"
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
@@ -363,12 +366,6 @@ bs_wander = proc { |roomboundry|
 }
 
 
-go2restbefore = proc {
-    if Room.current.id.to_s != "#{rest}" and restbefore
-      Script.run('go2', "#{restbefore}")
-    end
-}
-
 go2rest = proc {
     if Room.current.id.to_s != "#{rest}"
       Script.run('go2', "#{rest}")
@@ -460,11 +457,8 @@ openlook = proc {
 check_for_people = proc {
    echo "Checking For People" if $debug
    ppl = GameObj.pcs
-   if ppl.size
-     go_defensive.call()
-     $need_flee = true
-     echo "PERSON FOUND" if $debug
-   end
+   GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /Aiss|Pristeen/}
+   echo "PERSON FOUND" if $debug and $need_flee
 }
 
 check_flee_count = proc {
@@ -611,7 +605,7 @@ attack_target = proc { |target|
       else
         fput "#{attack} #{target}"
         line = matchtimeout 5, "your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
-        if line =~ /^You .* has no effect/
+        if line =~ /has no effect/
           $need_bless = true
           echo "Need Bless" if $debug
           break
@@ -619,8 +613,9 @@ attack_target = proc { |target|
           dead = GameObj.dead
           if dead
             go_defensive.call()
-            Script.run('sloot')
+            Script.run('sloot') if $iammain == true
             hands_check.call()
+            sleep 3
           end
           break
         end
@@ -633,7 +628,7 @@ attack_target = proc { |target|
         go_defensive.call()
         Script.run('sloot')
         hands_check.call()
-        if checkfried or percentencumbrance > encumbrance
+        if checkfried or percentencumbrance > encumbrance and $iammain == true
           echo "FRIED" if checkfried and $debug
           echo "Encumbranced" if percentencumbrance > encumbrance and $debug
           $need_rest = true
@@ -659,7 +654,6 @@ attack_target = proc { |target|
 
 openlook.call()
 if percentmana() < 25
-  go2restbefore.call()
   go2rest.call()
   while percentmana() < 99
     echo "Mana Below 100%" if $debug
@@ -670,15 +664,19 @@ empty_hands
 if Myname == "Wiiz" and Room.current.id.to_s =~ /^228$/
     Script.run('bank')
 end
+if $joinwho != "" 
+    fput "join #{$joinwho}"
+end
 getweapon.call()
-gohunt.call()
+gohunt.call() if $iammain == true
 global_vars()
+wait_until {  Room.current.id.to_s == "#{huntarea}" }
 echo "BEGIN HUNTING" if $debug
 
 loop {
   global_vars()
   start_active.call()
-  bs_wander.call(roomboundry)
+  bs_wander.call(roomboundry) if $iammain == true
   if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     echo "Need Healing" if $debug
     $need_healing = true
@@ -704,7 +702,6 @@ loop {
   check_standing.call()
   if $need_healing or $need_bless or $need_rest or $need_sale
     stop_active.call()
-    go2restbefore.call()
     go2rest.call()
     openlook.call()
     putawayweapon.call()

@@ -1,3 +1,5 @@
 # Dat Files
 input*.dat
 /GemstoneIV/lich/temp/*
+GemstoneIV/lich/logs/*
+GemstoneIV/SMB/logs

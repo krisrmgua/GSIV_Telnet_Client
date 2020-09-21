@@ -1,21 +1,22 @@
 
 $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh
 
-echo -e "\t1:\tWoory"
-echo -e "\t2:\tSluf"
-echo -e "\t3:\tClu"
-echo -e "\t4:\tPristeen"
-echo -e "\t5:\tAiss"
-echo -e "\t6:\tSorci"
-echo -e "\t7:\tTrenus"
-echo -e "\t8:\tMonker"
-echo -e "\t9:\tBize"
-echo -e "\t10:\tWardrob"
-echo -e "\t11:\tLoads"
-echo -e "\t12:\tLoods"
-echo -e "\t13:\tItiems"
-echo -e "\t14:\tItemim"
-echo -e "\t15:\tWiiz"
+echo -e "\t1:\tAiss"
+echo -e "\t2:\tClu"
+echo -e "\t3:\tMonker"
+echo -e "\t4:\tTrenus"
+echo -e "\t5:\tSorci"
+echo -e "\t6:\tWoory"
+echo -e "\t7:\tBize"
+echo -e "\t8:\tNoce"
+echo -e "\t9:\tPristeen"
+echo -e "\t10:\tSluf"
+echo -e "\t11:\tWardrob"
+echo -e "\t12:\tLoads"
+echo -e "\t13:\tLoods"
+echo -e "\t14:\tItiems"
+echo -e "\t15:\tItemim"
+echo -e "\t16:\tWiiz"
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
 
@@ -23,64 +24,68 @@ read num
 
 if [ $num -eq 1 ]
 then
-    character=Woory
+    character=Aiss
     port=8001
 elif [ $num -eq 2 ]
 then
-    character=Sluf
+    character=Clu
     port=8002
 elif [ $num -eq 3 ]
 then
-    character=Clu
+    character=Monker
     port=8003
 elif [ $num -eq 4 ]
 then
-    character=Pristeen
+    character=Trenus
     port=8004
 elif [ $num -eq 5 ]
 then
-    character=Aiss
+    character=Sorci
     port=8005
 elif [ $num -eq 6 ]
 then
-    character=Sorci
+    character=Woory
     port=8006
 elif [ $num -eq 7 ]
 then
-    character=Trenus
+    character=Bize
     port=8007
 elif [ $num -eq 8 ]
 then
-    character=Monker
+    character=Noce
     port=8008
 elif [ $num -eq 9 ]
 then
-    character=Bize
+    character=Pristeen
     port=8009
 elif [ $num -eq 10 ]
 then
-    character=Wardrob
+    character=Sluf
     port=8010
 elif [ $num -eq 11 ]
 then
-    character=Loads
+    character=Wardrob
     port=8011
 elif [ $num -eq 12 ]
 then
-    character=Loods
+    character=Loads
     port=8012
 elif [ $num -eq 13 ]
 then
-    character=Itiems
+    character=Loods
     port=8013
 elif [ $num -eq 14 ]
 then
-    character=Itemim
+    character=Itiems
     port=8014
 elif [ $num -eq 15 ]
 then
-    character=Wiiz
+    character=Itemim
     port=8015
+elif [ $num -eq 16 ]
+then
+    character=Wiiz
+    port=8016
 else
     echo "BAD INPUT"
     exit

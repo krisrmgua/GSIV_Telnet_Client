@@ -1,0 +1,9 @@
+$myspell = "419"
+Spell[$myspell].cast() if Spell[$myspell].affordable?
+Spell[$myspell].cast() if Spell[$myspell].affordable?
+Spell[$myspell].cast() if Spell[$myspell].affordable?
+Spell[$myspell].cast() if Spell[$myspell].affordable?
+Spell[$myspell].cast() if Spell[$myspell].affordable?
+Spell[$myspell].cast() if Spell[$myspell].affordable?
+Spell[$myspell].cast() if Spell[$myspell].affordable?
+Spell[$myspell].cast() if Spell[$myspell].affordable?

@@ -1,8 +1,11 @@
 fput "think to wiiz get bank"
 fput "think to monker get bank"
+sleep 0.3
 fput "think to trenus get bank"
 fput "think to sorci get bank"
+sleep 0.3
 fput "think to clu get bank"
 fput "think to woory get bank"
+sleep 0.3
 fput "think to sluf get bank"
 fput "think to pristeen get bank"

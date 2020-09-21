@@ -1,0 +1,44 @@
+lootsack = UserVars.lootsack
+echo "Found lootsack: #{lootsack}" if debug    
+fput "open my #{lootsack}"
+
+if GameObj.right_hand.name != "Empty"
+    right_hand = GameObj.right_hand.id
+    fput "stow #{GameObj.right_hand}"
+end
+if GameObj.left_hand.name != "Empty"
+    left_hand = GameObj.left_hand.id
+    fput "stow #{GameObj.left_hand}"
+end
+
+loop {
+    wait_until { checkmana(100) }
+    if Room.current.id.to_s =~ /^228$/
+        Script.run('go2', '293') 
+    end
+    if GameObj.right_hand.name != "Empty"
+        fput "stow ##{GameObj.right_hand.id}"
+    end
+    if GameObj.left_hand.name != "Empty"
+        fput "stow ##{GameObj.left_hand.id}"
+    end
+    while Spell[1118].affordable?
+        fput "prepare 1118"
+        sleep 1
+        fput "cast"
+        while line = get               
+            if line =~ /Some (.*) suddenly appears at your feet\./
+                herb = $1.strip
+                break
+            end
+        end
+        fput "get #{herb}"
+        fput "stow #{herb}"
+        sleep 3
+    end
+    Script.run('bundleall')
+    if Room.current.id.to_s =~ /^293$/
+        Script.run('go2', '228')
+    end
+}
+exit

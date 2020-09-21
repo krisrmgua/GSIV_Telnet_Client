@@ -90,9 +90,9 @@ while(<FH>){
       }
    }elsif ($list[1] eq "kris") {
       if ($kris eq ""){
-          $kris = "          <h color=\"\@90\" bgcolor=\"\@20\" text=\"" . $list[0] . "\"/>\n";
+          $kris = "          <h color=\"\@89\" bgcolor=\"\@35\" text=\"" . $list[0] . "\"/>\n";
       }else{
-          $kris = $kris . "          <h color=\"\@90\" bgcolor=\"\@20\" text=\"" . $list[0] . "\"/>\n";
+          $kris = $kris . "          <h color=\"\@89\" bgcolor=\"\@35\" text=\"" . $list[0] . "\"/>\n";
       }
    } 
    #print Dumper(\%warrior_hash);
@@ -181,7 +181,7 @@ my $file_top = '<settings client="1.0.1.26">
                 <i id="77" color="#50185A"/>
                 <i id="78" color="#4A2142"/>
                 <i id="79" color="#4A1818"/>
-                <i id="80" color="#9E5F5F"/>
+                <i id="80" color="#794848"/>
                 <i id="81" color="#7B3900"/>
                 <i id="82" color="#5A4A31"/>
                 <i id="83" color="#304000"/>
