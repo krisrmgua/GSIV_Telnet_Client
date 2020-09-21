@@ -425,7 +425,7 @@ hands_check = proc {
 }
 
 sell = proc {
-    Script.run('poolparty', "deposit")
+    Script.run('poolparty')
     Script.run('sloot', "sell")
     Script.run('waggle')
     Script.run('mywiztable')
