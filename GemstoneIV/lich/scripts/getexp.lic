@@ -110,4 +110,47 @@ next_level = mylevel + 1
 exp_needed = level["#{next_level}"]
 mypercent = Integer(((xpnCur) / exp_needed.to_f) * 100)
 mypercent = 100 - mypercent
-respond "[[[ EXP%: #{mypercent}% ]]]"
+bar = "_"
+spaces = "         "
+if mypercent >= 10
+    bar = "░_"
+    spaces = "        "
+    if mypercent >= 20
+        bar = "░░_"
+        spaces = "       "
+        if mypercent >= 30
+            bar = "░░░_"
+            spaces = "      "
+            if mypercent >= 40
+                bar = "░░░░_"
+                spaces = "     "
+                if mypercent >= 50
+                    bar = "░░░░░_"
+                    spaces = "    "
+                    if mypercent >= 60
+                        bar = "░░░░░░_"
+                        spaces = "   "
+                        if mypercent >= 70
+                            bar = "░░░░░░░_"
+                            spaces = "  "
+                            if mypercent >= 80
+                                bar = "░░░░░░░░_"
+                                spaces = " "
+                                if mypercent >= 90
+                                    bar = "░░░░░░░░░_"
+                                    spaces = " "
+                                    if mypercent >= 100
+                                        bar = "░░░░░░░░░░"
+                                        spaces = ""
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+respond "[#{bar}#{spaces}] #{mypercent}%"
