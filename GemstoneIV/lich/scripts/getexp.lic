@@ -1,3 +1,15 @@
+=begin
+        # Name: getexp
+        # Discription: Get exp bar for current level experiance. For thouse not using Stormfront. To change style edit file and set newstyle = true. For dots set new style = "dots"
+        # Author: Kris
+        # Email: krisrmgua@gmail.com
+        # Categories: Utility, experiance, bar, scripts
+        # Tags: utility, experiance, bar
+        # Version: 0.05
+=end
+
+newstyle = false;  ## set to true to change bar style to new false to use old or = "dots" for dots
+
 level = Hash.new
 level['1'] = "2500"
 level['2'] = "2500"
@@ -110,38 +122,85 @@ next_level = mylevel + 1
 exp_needed = level["#{next_level}"]
 mypercent = Integer(((xpnCur) / exp_needed.to_f) * 100)
 mypercent = 100 - mypercent
-bar = "_"
-spaces = "         "
+
+
+if newstyle
+    bar = "□□□□□□□□□□"
+    bar = "⚪⚪⚪⚪⚪⚪⚪⚪⚪⚪" if newstyle == "dots"
+else
+    bar = "░░░░░░░░░░"
+end
+
 if mypercent >= 10
-    bar = "░_"
-    spaces = "        "
+    if newstyle
+        bar = "■□□□□□□□□□"
+        bar = "⚫⚪⚪⚪⚪⚪⚪⚪⚪⚪" if newstyle == "dots"
+    else
+        bar = "█░░░░░░░░░"
+    end
     if mypercent >= 20
-        bar = "░░_"
-        spaces = "       "
+        if newstyle
+            bar = "■■□□□□□□□□"
+            bar = "⚫⚫⚪⚪⚪⚪⚪⚪⚪⚪" if newstyle == "dots"
+        else
+            bar = "██░░░░░░░░"
+        end
         if mypercent >= 30
-            bar = "░░░_"
-            spaces = "      "
+            if newstyle
+                bar = "■■■□□□□□□□"
+                bar = "⚫⚫⚫⚪⚪⚪⚪⚪⚪⚪" if newstyle == "dots"
+            else
+                bar = "███░░░░░░░"
+            end
             if mypercent >= 40
-                bar = "░░░░_"
-                spaces = "     "
+                if newstyle
+                    bar = "■■■■□□□□□□"
+                    bar = "⚫⚫⚫⚫⚪⚪⚪⚪⚪⚪" if newstyle == "dots"
+                else
+                    bar = "████░░░░░░"
+                end
                 if mypercent >= 50
-                    bar = "░░░░░_"
-                    spaces = "    "
+                    if newstyle
+                        bar = "■■■■■□□□□□"
+                        bar = "⚫⚫⚫⚫⚫⚪⚪⚪⚪⚪" if newstyle == "dots"
+                    else
+                        bar = "█████░░░░░"
+                    end
                     if mypercent >= 60
-                        bar = "░░░░░░_"
-                        spaces = "   "
+                        if newstyle
+                            bar = "■■■■■■□□□□"
+                            bar = "⚫⚫⚫⚫⚫⚫⚪⚪⚪⚪" if newstyle == "dots"
+                        else
+                            bar = "██████░░░░"
+                        end
                         if mypercent >= 70
-                            bar = "░░░░░░░_"
-                            spaces = "  "
+                            if newstyle
+                                bar = "■■■■■■■□□□"
+                                bar = "⚫⚫⚫⚫⚫⚫⚫⚪⚪⚪" if newstyle == "dots"
+                            else
+                                bar = "███████░░░"
+                            end
                             if mypercent >= 80
-                                bar = "░░░░░░░░_"
-                                spaces = " "
+                                if newstyle
+                                    bar = "■■■■■■■■□□"
+                                    bar = "⚫⚫⚫⚫⚫⚫⚫⚫⚪⚪" if newstyle == "dots"
+                                else
+                                    bar = "████████░░"
+                                end
                                 if mypercent >= 90
-                                    bar = "░░░░░░░░░_"
-                                    spaces = " "
+                                    if newstyle
+                                        bar = "■■■■■■■■■□"
+                                        bar = "⚫⚫⚫⚫⚫⚫⚫⚫⚫⚪" if newstyle == "dots"
+                                    else
+                                        bar = "█████████░"
+                                    end
                                     if mypercent >= 100
-                                        bar = "░░░░░░░░░░"
-                                        spaces = ""
+                                        if newstyle
+                                            bar = "■■■■■■■■■■"
+                                            bar = "⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫" if newstyle == "dots"
+                                        else
+                                            bar = "██████████"
+                                        end
                                     end
                                 end
                             end
@@ -153,4 +212,4 @@ if mypercent >= 10
     end
 end
 
-respond "[#{bar}#{spaces}] #{mypercent}%"
+respond "#{bar} #{mypercent}%"

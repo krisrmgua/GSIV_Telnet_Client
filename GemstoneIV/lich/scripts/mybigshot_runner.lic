@@ -1,9 +1,16 @@
 Myname = Char.name
 $debug = true
+$skipsale = false
+restbefore = nil
 $OOM = 5
 $CMAN = nil
 $preattackdefspell = ""
 $preattackattspell = ""
+$numkilled = 0
+$numhunts = 0;
+@STORED_TIMES = Array.new
+@BIRTH_TIME   = Time.now.to_i
+@START_TIME   = 1
 
 if Myname == "Clu"
     #mobs = ["mountain ogre","krolvin mercenary","humpbacked puma"]
@@ -27,8 +34,8 @@ if Myname == "Clu"
     shield = "shortbow"
     weapon = ""
     weapon2 = ""
-    arrows = "arrows"
-    arrowssheath = "satchel"
+    $arrows = "arrows"
+    $arrowssheath = "satchel"
     sheath = ""
     backpack = "pack"
     cloak = "greatcloak"
@@ -62,12 +69,12 @@ elsif Myname == "Pristeen"
     med = "med"
     $OOM = 25 
 elsif Myname == "Aiss"
-    mobs = ["striped warcat"]
+    mobs = ["zombie"]
     fleemobs = ["tomb spider"]
-    huntarea = "8141"
-    roomboundry = ["8126","8093","7905"]
-    rest = "landing"
-    restbefore = "7905"
+    huntarea = "3092"
+    roomboundry = ["3100","3091"]
+    rest = "ice"
+    $skipsale = true
     attack = "incant 1106 channel"
     stance = "defensive"
     flee_count = 1
@@ -78,20 +85,23 @@ elsif Myname == "Aiss"
     weapon = "runestaff"
     sheath = "sheath"
     backpack = "backpack"
-    cloak = "backpack"
+    cloak = "greatcloak"
     herbsack = "sack"
     skinknife = ""
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
     med = "med"
-    $OOM = 25
 elsif Myname == "Sluf"
-    mobs = ["moaning spirit","night hound"]
+    #mobs = ["moaning spirit","night hound"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7319"
+    #roomboundry = ["7318","7324"]
+    mobs = ["cyclops"]
     fleemobs = ["tomb spider"]
+    huntarea = "5368"
+    roomboundry = ["5363"]
     rest = "landing"
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
     attack = "attack"
     $preattackattspell = "1615"
     $CMAN = "shield bash"
@@ -111,13 +121,13 @@ elsif Myname == "Sluf"
     skinsheath = "shirt"
     encumbrance = 35
     active_scripts = ["surge"]
-    $OOM = 1 
+    $OOM = 0 
 elsif Myname == "Trenus"
-    mobs = ["nedum vereri"]
-    fleemobs = ["greater spider"]
+    mobs = ["zombie"]
+    fleemobs = ["tomb spider"]
+    huntarea = "7874"
+    roomboundry = ["7873"]
     rest = "landing"
-    huntarea = "8470"
-    roomboundry = ["8469","8495"]
     attack = "incant 904 channel"
     stance = "offensive"
     flee_count = 1
@@ -135,11 +145,11 @@ elsif Myname == "Trenus"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Sorci"
-    mobs = ["nedum vereri"]
-    fleemobs = ["greater spider"]
+    mobs = ["zombie"]
+    fleemobs = ["tomb spider"]
+    huntarea = "7874"
+    roomboundry = ["7873"]
     rest = "landing"
-    huntarea = "8470"
-    roomboundry = ["8469","8495"]
     attack = "incant 702 channel"
     stance = "defensive"
     flee_count = 1
@@ -157,16 +167,21 @@ elsif Myname == "Sorci"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Monker"
-    mobs = ["lesser mummy"]
-    fleemobs = ["greater spider"]
+    #mobs = ["lesser mummy"]
+    #fleemobs = ["greater spider"]
+    #rest = "landing"
+    #huntarea = "4144"
+    #roomboundry = ["4171","4143"]
+    mobs = ["wraith"]
+    fleemobs = ["greater orc"]
     rest = "landing"
-    huntarea = "4144"
-    roomboundry = ["4171","4143"]
+    huntarea = "4175"
+    roomboundry = ["4195","4187","4181"]
     attack = "attack"
     stance = "defensive"
     flee_count = 1
     swings = 1
-    skipwaitattack = 0
+    skipwaitattack = 1
     hideme = 0
     shield = ""
     weapon = ""
@@ -227,15 +242,14 @@ elsif Myname == "Bize"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Woory"
-    #mobs = ["moaning spirit","night hound"]
-    #mobs = ["nedum vereri"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "8470"
-    #roomboundry = ["8469"]
-    mobs = ["moaning spirit","night hound"]
+    mobs = ["zombie"]
     fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
+    huntarea = "7874"
+    roomboundry = ["7873"]
+    #mobs = ["cyclops"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "5368"
+    #roomboundry = ["5363"]
     rest = "landing"
     attack = "attack"
     $CMAN = "cman feint"
@@ -326,12 +340,66 @@ else
 end
 
 
+def message(text)
+    string = ''
+    if( text.index('\n') )
+      text.split('\n').each { |line| string.concat("| #{line}") }
+    else
+      string.concat('| ' + text)
+    end
+    _respond string
+end
+
 def global_vars
   $need_healing = false
   $need_bless = false
   $need_rest = false
   $need_flee = false
   $need_sale = false
+end
+
+def start_watch()
+    echo "start_watch" if $bigshot_debug
+    @START_TIME = Time.now.to_i
+end
+
+def stop_watch()
+    echo "stop_watch" if $bigshot_debug
+    if( @START_TIME > 100 )
+      @STORED_TIMES.push( Time.now.to_i - @START_TIME )
+    end
+    @START_TIME = 0
+end
+
+def display_watch_current()
+    echo "display_watch_current" if $bigshot_debug
+    if( @STORED_TIMES.size > 0 )
+      seconds = @STORED_TIMES[-1]
+      message( sprintf( "Bigshot: Last Hunt: %d min. %0.2f secs.",
+                       seconds / 60, seconds % 60 ) )
+    end
+end
+
+def display_watch_average()
+    echo "display_watch_average" if $bigshot_debug
+    average = 0
+    if( @STORED_TIMES.size == 1 )
+      average = @STORED_TIMES[0]
+    elsif( @STORED_TIMES.size > 1 )
+      @STORED_TIMES.each { |i| average += i }
+      average /= @STORED_TIMES.size
+    else
+      return
+    end
+    message( sprintf( "Bigshot: Average Hunt: %d min. %0.2f secs.",
+                     average / 60, average % 60 ) )
+end
+
+def display_watch_total()
+    echo "display_watch_total" if $bigshot_debug
+    total = Time.now.to_i - @BIRTH_TIME
+    message( sprintf( "Bigshot: Total Time Running: %d min.  %0.2f secs.",
+                     total / 60, total % 60 ) )
 end
 
 go_defensive = proc {
@@ -373,8 +441,10 @@ go2rest = proc {
     if Room.current.id.to_s != "#{rest}"
       Script.run('go2', "#{rest}")
     end
-    #Script.run('gogate')
-    #Script.run('go2', "landing")
+    if rest == "wgrave"
+        Script.run('gogate')
+        Script.run('go2', "landing")
+    end
 }
 
 putawayweapon = proc {
@@ -400,6 +470,8 @@ getweapon = proc {
         Script.run('rem')
     else
         if "#{shield}" != ""
+          fput "get my #{shield}"
+          fput "wear my #{shield}"
           fput "remove my #{shield}"
         end
         if "#{weapon}" != ""
@@ -409,6 +481,10 @@ getweapon = proc {
         if "#{weapon2}" != ""
           #fput "get my #{weapon} from my #{sheath}"
           fput "get my #{weapon2}"
+        end
+        if $arrows
+            fput "get my #{$arrows}"
+            fput "put my #{$arrows} in my #{$arrowssheath}"
         end
     end
 }
@@ -425,14 +501,21 @@ hands_check = proc {
 }
 
 sell = proc {
-    Script.run('poolparty')
-    Script.run('sloot', "sell")
+    if not $skipsale
+        Script.run('poolparty')
+        Script.run('sloot', "sell")
+    end
     Script.run('waggle')
-    Script.run('mywiztable')
-    Script.run('checkbank')
-    Script.run('yawn')
+    if not $skipsale
+        Script.run('mywiztable')
+        Script.run('checkbank')
+        Script.run('yawn')
+    end
     if Myname == "Wiiz"
       Script.run('mytable')
+    end
+    if Myname == "Aiss"
+      Script.run('castany', "1")
     end
 }
 
@@ -531,6 +614,11 @@ stop_active = proc {
   end
 }
 
+print_stats = proc {
+    echo "Number of Hunts: #{$numhunts}"
+    echo "Number of Kills: #{$numkilled}"
+}
+
 attack_target = proc { |target|
   CMAN_EXE = nil
   if skipwaitattack == 0
@@ -620,6 +708,8 @@ attack_target = proc { |target|
           if dead
             go_defensive.call()
             Script.run('sloot')
+            $numkilled = $numkilled + 1;
+            print_stats.call()
             hands_check.call()
           end
           break
@@ -631,7 +721,9 @@ attack_target = proc { |target|
       dead = GameObj.dead
       if dead
         go_defensive.call()
+        $numkilled = $numkilled + 1;
         Script.run('sloot')
+        print_stats.call()
         hands_check.call()
         if checkfried or percentencumbrance > encumbrance
           echo "FRIED" if checkfried and $debug
@@ -658,11 +750,13 @@ attack_target = proc { |target|
 
 
 openlook.call()
+Script.run('checkbank')
 if percentmana() < 25
   go2restbefore.call()
   go2rest.call()
   while percentmana() < 99
     echo "Mana Below 100%" if $debug
+    print_stats.call()
     sleep 10
   end
 end
@@ -671,7 +765,9 @@ if Myname == "Wiiz" and Room.current.id.to_s =~ /^228$/
     Script.run('bank')
 end
 getweapon.call()
+start_watch()
 gohunt.call()
+$numhunts = $numhunts + 1
 global_vars()
 echo "BEGIN HUNTING" if $debug
 
@@ -706,14 +802,19 @@ loop {
     stop_active.call()
     go2restbefore.call()
     go2rest.call()
+    stop_watch()
     openlook.call()
     putawayweapon.call()
     if $need_healing
-      Script.run('askheal')
-      Script.run('useherbs', "in bin")
-      Script.run('useherbs', "on bench")
-      Script.run('useherbs', "under bench")
-      Script.run('useherbs', "--buy=on in my #{herbsack}")
+      if Myname != "Aiss"
+          Script.run('askheal')
+          Script.run('useherbs', "in bin")
+          Script.run('useherbs', "on bench")
+          Script.run('useherbs', "under bench")
+          Script.run('useherbs', "--buy=on in my #{herbsack}")
+      else
+          Script.run('sheal')
+      end
       while checkdisease or checkpoison
         echo "Poisoned or Diseased" if $debug
         sleep 30
@@ -725,14 +826,23 @@ loop {
     end
     if $need_bless
       getweapon.call()
-      if arrows
-          fput "get #{arrows} from my #{arrowssheath}"
+      if $arrows
+          fput "get #{$arrows} from my #{$arrowssheath}"
       end
       $swaper = false
       $blessboots = false
       $gothere = false
       loop {
+        found_sluf = nil
+        found_pristeen = nil
+        GameObj.pcs.each {|s| found_sluf = true if s.noun =~ /Sluf/}
+        GameObj.pcs.each {|s| found_pristeen = true if s.noun =~ /Pristeen/} 
+        break if not found_sluf and found_pristeen
         echo "Waiting for Sluf Bless" if $debug
+        display_watch_current()
+        display_watch_average()
+        display_watch_total()
+        print_stats.call()
         fput "whisper sluf bless me"
         line = matchtimeout 20, "Nothing happens", "quickly returns to normal", "Silvery tendrils rise up and wreathe their way around your"
         if line =~ /Nothing happens/ or line =~ /Silvery tendrils rise up and wreathe their way around your/ or line =~ /quickly returns to normal/
@@ -758,13 +868,17 @@ loop {
             end
         end
         $swaper = true if $gothere
-        sleep 15 if not $gothere
+        sleep 5 if not $gothere
       }
       $swaper = false
       $blessboots = false
       $gothere = false
       loop {
         echo "Waiting for Pristeen Bless" if $debug
+        display_watch_current()
+        display_watch_average()
+        display_watch_total()
+        print_stats.call()
         fput "whisper pristeen bless me"
         line = matchtimeout 20, "Nothing happens", "quickly returns to normal", "searing white light enfolds your", "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
         if line =~ /Nothing happens/ or line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/ or line =~ /quickly returns to normal/i or line =~ /searing white light enfolds your/
@@ -790,10 +904,10 @@ loop {
             end
         end
         $swaper = true if $gothere
-        sleep 15 if not $gothere
+        sleep 5 if not $gothere
       }
-      if arrows
-          fput "put my #{arrows} in my #{arrowssheath}"
+      if $arrows
+          fput "put my #{$arrows} in my #{$arrowssheath}"
       end
       putawayweapon.call()
     end
@@ -803,17 +917,27 @@ loop {
     end
     while checkmind(4)
       echo "Mind Still to High" if $debug
+      display_watch_current()
+      display_watch_average()
+      display_watch_total()
+      print_stats.call()
       sleep 15 
     end
     while percentmana() < 99
       echo "Mana Below 100%" if $debug
+      display_watch_current()
+      display_watch_average()
+      display_watch_total()
+      print_stats.call()
       sleep 15 
     end
     if Myname == "Wiiz"
         Script.run('bank')
     end
     getweapon.call()
+    start_watch()
     Script.run('go2', "#{huntarea}")
+    $numhunts = $numhunts + 1
     if Room.current.id.to_s != "#{huntarea}"
       fput "w"
       sleep 1

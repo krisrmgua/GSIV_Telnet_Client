@@ -16,7 +16,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
 	<highlight fg="F6931D">nods to|nods at|pokes you|taps you</highlight>
 	<highlight fg="FF0000">the body of</highlight>
-	<highlight fg="FF0000" bg="ffffff">As the liquid seeps into your body, you get an increased feeling of well-being</highlight>
+	<highlight fg="FF0000" bg="ffffff">, but it has no effect!|As the liquid seeps into your body, you get an increased feeling of well-being</highlight>
 	<highlight fg="FF0000">Click ACCEPT to accept the offer or DECLINE to decline it|YOU HAVE BEEN IDLE TOO LONG. PLEASE RESPOND</highlight>
 	<highlight fg="48C014">is in good shape|Despite no apparent injuries|no apparent injuries\.</highlight>
 	<highlight fg='9090ff'>^.*remaining\. \]$</highlight>
@@ -35,7 +35,10 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='00FFFF'>ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion</highlight>
 	<highlight fg='00FFFF' bg='282828'>pothinir grass|aloeas stem|ephlox moss|tincture of pothinir|tincture of aloeas|tincture of ephlox</highlight>
 	<highlight fg='FFA200'>haphip root|cactacae spine|torban leaf|talneo potion</highlight>
-	<highlight fg='FFA200' bg='282828'>woth flower|bolmara potion|wingstem potion|sovyn clove|calamia fruit</highlight>
+	<highlight fg='FFA200' bg='282828'>woth flower|bolmara potion|brostheras potion|wingstem potion|sovyn clove|calamia fruit</highlight>
+	<highlight fg='282828' bg='FFA200'>sticky lichen tea</highlight>
+	<highlight fg='282828' bg='A72020'>roasted ratweed tea</highlight>
+	<highlight fg='282828' bg='D3D828'>crushed cavegrass tea</highlight>
 	<highlight fg="ff4444">Muscles bunching under its scaled flesh*</highlight>
 	<highlight fg='FF0000' bg='FFE800'>a billowing shadowy cloud|windy vortex</highlight>
 	<highlight fg='D46A6A'>
@@ -93,7 +96,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 		|Several flaming meteors light the nearby sky!
 		|Several flaming rocks burst from the sky and smite the area!
 		|A low roar of quickly parting air can be heard above!)</highlight>
-	<highlight fg='D85D03'>^.*(?:falls slack against the floor|falls on its side and lets out one last whimpering sigh of dark and shadowy whirlwinds|falls slack against the ground|exhales a sigh of relief and slumps to the ground motionless|falls to the floor, motionless|falls to the ground dead|collapses into a puddle of jelly, falling silent at last|hits the ground with a less than elegant thud|falls to the ground motionless|and dies|and lies still|goes still|going still|slowly settles to the ground and begins to dissipate|growls one last time, and crumples to the ground in a heap)\.$</highlight>
+	<highlight fg='D85D03'>^.*(?:falls slack against the floor|falls on its side and lets out one last whimpering sigh of dark and shadowy whirlwinds|falls slack against the ground|exhales a sigh of relief and slumps to the ground motionless|falls to the floor, motionless|falls to the ground, a lifeless lump of flesh|falls to the ground dead|collapses into a puddle of jelly, falling silent at last|hits the ground with a less than elegant thud|falls to the ground motionless|and dies|and lies still|goes still|going still|slowly settles to the ground and begins to dissipate|growls one last time, and crumples to the ground in a heap)\.$</highlight>
 	<highlight fg='ffffff'>^.* is stunned!$|^You come out of hiding\.$|body as it rises, disappearing into the heavens</highlight>
 	<highlight fg='ffaaaa'>.*ruining your hiding place\.$|^You are no longer hidden\.$|^\s*You are (?:stunned|knocked to the ground).*|^You are unable to remain hidden!$|^You are visible again\.$|^You fade into sight\.$|^You fade into view.*|^You feel drained!$|^You have overextended yourself!$|^You feel yourself going into shock!$</highlight>
 	<highlight fg='ffaaaa' bg="7A7A7A">^You feel the sting of a recent death slowly fade away, yet a lingering weakness remains.$</highlight>

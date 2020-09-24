@@ -1,3 +1,5 @@
+once = nil
+once = true if script.vars[1]
 lootsack = UserVars.lootsack
 echo "Found lootsack: #{lootsack}" if debug    
 fput "open my #{lootsack}"
@@ -12,7 +14,10 @@ if GameObj.left_hand.name != "Empty"
 end
 
 loop {
-    wait_until { checkmana(100) }
+    wait_until { percentmana == 100 }
+    if Room.current.id.to_s =~ /^2300$/
+        Script.run('go2', '3233') 
+    end
     if Room.current.id.to_s =~ /^228$/
         Script.run('go2', '293') 
     end
@@ -37,8 +42,12 @@ loop {
         sleep 3
     end
     Script.run('bundleall')
+    if Room.current.id.to_s =~ /^3233$/
+        Script.run('go2', '2300')
+    end
     if Room.current.id.to_s =~ /^293$/
         Script.run('go2', '228')
     end
+    break if once
 }
 exit
