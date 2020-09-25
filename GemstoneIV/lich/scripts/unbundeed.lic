@@ -1,6 +1,8 @@
 $all_done = nil
 if script.vars[1]
 $sack = script.vars[1]
+$herbs = ["acantha leaf","basal moss","wolifrew lichen","ambrominas leaf","aloeas stem","ephlox moss","pothinir grass","torban leaf","haphip root","woth flower","sovyn clove"]
+$count = 0
 else
   echo "YOU NEED TO PASS THE NAME OF THE SACK HERBS ARE IN"
   exit
@@ -13,17 +15,21 @@ drawer = proc {
     loop {
         result = dothistimeout 'bundle remove', 5, /You carefully|You only|You are not/
         if result =~ /You are not/ 
-            result2 = dothistimeout "get aca leaf from my #{$sack}", 5, /You remove|Get what/
+            result2 = dothistimeout "get #{$herbs[$count]} from my #{$sack}", 5, /You remove|Get what/
             if result2 =~ /Get what/
-                $all_done = true
-                break
+                if $count == 11
+                  $all_done = true
+                  break
+                else
+                  $count = $count + 1
+                end
             end
             fput "bundle remove"
         end
-        result3 = dothistimeout 'put leaf in drawer', 5, /You put|Your leaf won/
-        if result3 =~ /Your leaf won/
+        result3 = dothistimeout "put #{$herbs[$count]} in drawer", 5, /You put|Your/
+        if result3 =~ /Your .* won/
             fput "bundle"
-            fput "put my leaf in my #{$sack}"
+            fput "put my #{$herbs[$count]} in my #{$sack}"
             break
         end
     }

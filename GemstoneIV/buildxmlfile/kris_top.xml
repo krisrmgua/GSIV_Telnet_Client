@@ -20,7 +20,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="FF0000">Click ACCEPT to accept the offer or DECLINE to decline it|YOU HAVE BEEN IDLE TOO LONG. PLEASE RESPOND</highlight>
 	<highlight fg="48C014">is in good shape|Despite no apparent injuries|no apparent injuries\.</highlight>
 	<highlight fg='9090ff'>^.*remaining\. \]$</highlight>
-	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|You have no silver coins with you.|for a moment and then appears to become incorporated into it.|sinking into its surface.</highlight>
+	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|You have no silver coins with you.|obvious signs of someone hiding|for a moment and then appears to become incorporated into it.|sinking into its surface.</highlight>
 	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
 	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>

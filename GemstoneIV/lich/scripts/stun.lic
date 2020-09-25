@@ -1,0 +1,3 @@
+if Spell[108].known? and Spell[108].affordable?
+  Spell[108].cast(script.vars[1])
+end

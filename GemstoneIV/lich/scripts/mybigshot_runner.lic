@@ -33,7 +33,6 @@ if Myname == "Clu"
     hideme = 1
     shield = "shortbow"
     weapon = ""
-    weapon2 = ""
     $arrows = "arrows"
     $arrowssheath = "satchel"
     sheath = ""
@@ -339,6 +338,16 @@ else
     exit
 end
 
+mybigshot_monitor = proc { |server_string|
+  if server_string =~ /obvious signs of someone hiding/i
+    $obvious_hiding_player = true
+  elsif server_string =~ /<a exist="\d+" noun="([a-zA-Z]*?)">[a-zA-Z]*?<\/a> leaps from hiding to attack!/i
+    $obvious_hiding_player = true
+  elsif server_string =~ /flies out of the shadows toward/i
+    $obvious_hiding_player = true
+  end
+  server_string
+}
 
 def message(text)
     string = ''
@@ -356,6 +365,7 @@ def global_vars
   $need_rest = false
   $need_flee = false
   $need_sale = false
+  $obvious_hiding_player = false
 end
 
 def start_watch()
@@ -502,6 +512,7 @@ hands_check = proc {
 
 sell = proc {
     if not $skipsale
+        Script.run('bank')
         Script.run('poolparty')
         Script.run('sloot', "sell")
     end
@@ -544,9 +555,15 @@ check_for_people = proc {
    echo "Checking For People" if $debug
    ppl = GameObj.pcs
    if ppl.size
-     go_defensive.call()
-     $need_flee = true
-     echo "PERSON FOUND" if $debug
+       go_defensive.call()
+       $need_flee = true
+       echo "PERSON FOUND" if $debug
+   end
+   if $obvious_hiding_player
+       $obvious_hiding_player = false
+       go_defensive.call()
+       $need_flee = true
+       echo "HIDDEN PERSON FOUND" if $debug
    end
 }
 
@@ -752,6 +769,7 @@ attack_target = proc { |target|
 openlook.call()
 Script.run('checkbank')
 if percentmana() < 25
+  DownstreamHook.remove("mybigshot_monitor")
   go2restbefore.call()
   go2rest.call()
   while percentmana() < 99
@@ -769,6 +787,7 @@ start_watch()
 gohunt.call()
 $numhunts = $numhunts + 1
 global_vars()
+DownstreamHook.add("mybigshot_monitor", mybigshot_monitor)
 echo "BEGIN HUNTING" if $debug
 
 loop {
@@ -800,6 +819,7 @@ loop {
   check_standing.call()
   if $need_healing or $need_bless or $need_rest or $need_sale
     stop_active.call()
+    DownstreamHook.remove("mybigshot_monitor")
     go2restbefore.call()
     go2rest.call()
     stop_watch()

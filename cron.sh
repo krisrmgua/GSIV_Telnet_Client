@@ -1,6 +1,6 @@
 #0 2 * * * /root/GSIV_Telnet_Client/cron.sh
-#/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Oguo > /tmp/Oguo.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Wiiz > /tmp/Wiiz.txt
+#/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Oguo > /tmp/Oguo.txt
 #/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Bardi > /tmp/Bardi.txt
 #/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Clergi > /tmp/Clergi.txt
 #/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Krisalan > /tmp/Krisalan.txt
@@ -22,3 +22,4 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Clu > /tmp/Clu.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Monker > /tmp/Monker.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Bize > /tmp/Bize.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Noce > /tmp/Noce.txt

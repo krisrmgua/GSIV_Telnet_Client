@@ -1,0 +1,15 @@
+if script.vars[1]
+  fput "look in my #{script.vars[1]}"
+  line = matchtimeout 2, "wand"
+  if line =~ /wand/
+      fput "get wand from my back"
+    if Spell[918].known? and Spell[918].affordable?
+      Spell[918].cast("my wand")
+      fput "sell wand"
+      fput "sell wand"
+    end
+  end
+else
+  echo "YOU NEED TO PASS THE NAME OF THE BAG WANDS ARE IN"
+  exit
+end

@@ -94,8 +94,12 @@ module Helper
     put 'info'
     silence_me if undo_silence
     while (line = get)
-      if line =~ /^\s*Mana\:\s+\-?[0-9]+\s+Silver\:\s+([0-9]+)/
+      if line =~ /^\s*Mana\:\s+\-?[0-9]+\s+Silver\:\s+([0-9]+?)/
         silvers = $1.to_i
+        echo "I HAVE #{silvers}"
+        if silvers >= 1 and silvers < 10 
+            silvers = 10000
+        end
         break
       end
     end
@@ -156,7 +160,7 @@ module Helper
         fput "give banker #{amount} silvers"
       end
     else
-      fput "deposit #{amount}"
+      fput "deposit all"
     end
   end
 
