@@ -49,7 +49,7 @@
 	Non Rogues and bards do not need to use the "v" command line, they will always pick boxes with a vaalin lockpick and won't use calipers.
 	
 	Author: Tgo01
-	Version: 258
+	Version: 263
 
 =end
 
@@ -619,6 +619,8 @@ setup = proc{
 		add_label_entry($OP_TABLE7, "Pick at Percent", 'pick_percent')
 		add_label_entry($OP_TABLE8, "Ready", 'ready')
 		add_label_entry($OP_TABLE8, "Can't Open Box", 'cant_open_box')
+		add_label_entry($OP_TABLE8, "Scarab Found", 'scarab_found')
+		add_label_entry($OP_TABLE8, "Scarab safe", 'scarab_safe')
 		add_label_entry($OP_TABLE9, "Phase (704)", 'always_use_704')
 		add_label_entry($OP_TABLE9, "Number of 416 casts", 'number_of_416_casts')
 		add_label_entry($OP_TABLE9, "Only disarm safe", 'only_disarm_safe')
@@ -694,7 +696,7 @@ setup = proc{
 		$OP_TABLE7.attach(align, 1, 2, 8, 9)
 
 		label = Gtk::Label.new
-		label.set_markup("Enter <b>nil</b> for any option where you don't want to speak.\n<b>Ready:</b>  What to say when ready to be handed boxes from another person. Example: <b>Ready.</b>\n<b>Can't Open Box:</b>  What to say when you can't open a box for another person. Example: <b>Sorry can't open this box.</b>")
+		label.set_markup("Enter <b>nil</b> for any option where you don't want to speak.\n<b>Ready:</b>  What to say when ready to be handed boxes from another person. Example: <b>Ready.</b>\n<b>Can't Open Box:</b>  What to say when you can't open a box for another person. Example: <b>Sorry can't open this box.</b>\n<b>Scarab Found:</b>  What to say before you disarm a scarab trap. Example: <b>Scarab coming down.</b>\n<b>Scarab Safe:</b> What to say after you have disarmed the scarab. For example: <b>Scarab safe.</b>")
 		align = Gtk::Alignment.new(1, 0, 0, 0)
 		align.set_padding(50, 0, 0, 40)
 		align.add(label)
@@ -791,8 +793,8 @@ end
 
 def tpick_stop_403_404		
 	waitrt?
-	fput "stop 403" if Spell[403].active? && UserVars.tpick["always_use_403"] =~ /cancel/
-	fput "stop 404" if Spell[404].active? && UserVars.tpick["always_use_404"] =~ /cancel/
+	fput "stop 403" if Spell[403].active? && UserVars.tpick["always_use_403"] =~ /cancel/i
+	fput "stop 404" if Spell[404].active? && UserVars.tpick["always_use_404"] =~ /cancel/i
 end
 
 def tpick_stow_box(current_box)
@@ -804,7 +806,15 @@ def tpick_stow_box(current_box)
 end
 
 def tpick_say_cant
-	fput "say #{UserVars.tpick["cant_open_box"]}" if UserVars.tpick["cant_open_box"] != "nil"
+	fput "say #{UserVars.tpick["cant_open_box"]}" if UserVars.tpick["cant_open_box"] != "nil" && UserVars.tpick["cant_open_box"].length > 0
+end
+
+def tpick_say_scarab_found
+	fput "say #{UserVars.tpick["scarab_found"]}" if UserVars.tpick["scarab_found"] != "nil" && UserVars.tpick["scarab_found"].length > 0
+end
+
+def tpick_say_scarab_safe
+	fput "say #{UserVars.tpick["scarab_safe"]}" if UserVars.tpick["scarab_safe"] != "nil" && UserVars.tpick["scarab_safe"].length > 0
 end
 
 ask_worker = proc{
@@ -951,6 +961,7 @@ detect_plinite = proc{
 					end
 				end
 			end
+			number = [15, number].min
 			if number == 0
 				needed_pick = UserVars.tpick["copper"]
 				needed_pick_id = $copper_lockpick_id
@@ -1026,7 +1037,7 @@ detect_plinite = proc{
 				needed_pick_id = $kelyn_lockpick_id
 				recommended_pick = "kelyn"
 				recommended_pick_modifier = 2.40
-			elsif number == 15
+			elsif number > 14
 				needed_pick = UserVars.tpick["vaalin"]
 				needed_pick_id = $vaalin_lockpick_id
 				recommended_pick = "vaalin"
@@ -2191,6 +2202,7 @@ manually_disarm_trap = proc{
 		waitrt?
 		sleep 0.1
 		waitrt?
+		tpick_say_scarab_found if current_trap_type == "scarab"
 		fput "disarm ##{current_box.id}"
 		while line = get
 			if line =~ /\(.*\-(\d+)\)\./
@@ -2612,6 +2624,7 @@ manually_disarm_trap = proc{
 					waitrt?
 					scarab_object = GameObj.loot.find{ |i| i.name =~ /#{scarab_name}/ && i.noun == "scarab" }
 					fput "disarm ##{scarab_object.id}"
+					tpick_say_scarab_safe
 					waitrt?
 					fput "get ##{scarab_object.id}"
 					fput "stow ##{scarab_object.id}"
@@ -4338,12 +4351,12 @@ if script.vars[1] =~ /repair/ && Char.prof =~ /Rogue/
 		"#{$copper_lockpick_id}",
 	]
 	number = 1
-	if $tpick_vaalin_wire == nil
-		get_wire_order_numbers.call
-	end
 	lockpicks_to_check.each { |i|
-		result = dothistimeout "look ##{i}", 1, /The.*appears to be broken\.|You see nothing unusual\.|I could not find what you were referring to\./
+		result = dothistimeout "look ##{i}", 1, /The.*appears to be broken\.|You see nothing unusual\.|I could not find what you were referring to\.|appears to be somewhat damaged/
 		if result =~ /The.*appears to be broken\./
+			if $tpick_vaalin_wire == nil
+				get_wire_order_numbers.call
+			end
 			if number == 1
 				lockpick_type = "vaalin"
 				current_wire = $tpick_vaalin_wire
@@ -4400,7 +4413,7 @@ if script.vars[1] =~ /repair/ && Char.prof =~ /Rogue/
 				lockpick_type = "steel"
 				current_wire = $tpick_steel_wire
 				current_wire_cost = $tpick_steel_wire_cost
-			elsif number == 15
+			elsif number > 14
 				lockpick_type = "copper"
 				current_wire = $tpick_copper_wire
 				current_wire_cost = $tpick_copper_wire_cost
@@ -4430,14 +4443,12 @@ if script.vars[1] =~ /repair/ && Char.prof =~ /Rogue/
 				echo "Didn't recognize any game lines."
 				exit
 			end
-		elsif result =~ /You see nothing unusual\.|I could not find what you were referring to\./
-			nil
-		elsif result.nil?
+		elsif result =~ /You see nothing unusual\.|I could not find what you were referring to\.|appears to be somewhat damaged/
 			nil
 		end
 		number += 1
 	}
-	move 'out' if checkpaths 'out'
+	move 'out' if checkroom =~ /workbench/i
 	exit
 elsif script.vars[1] =~ /repair/ && Char.prof !~ /Rogue/
 	echo "Only rogues can repair lockpicks."
@@ -4494,6 +4505,7 @@ if Spell[403].known?
 		elsif temp_403_variable[1] =~ /\d+/
 			use_403_for_lock_difficulty = temp_403_variable[1].to_i
 		end
+		UserVars.tpick["always_use_403"] = "cancel" if temp_403_variable[0] =~ /cancel/i || temp_403_variable[1] =~ /cancel/i
 	else
 		if UserVars.tpick["always_use_403"] =~ /\d+/
 			use_403_for_lock_difficulty = UserVars.tpick["always_use_403"].to_i
@@ -4507,13 +4519,14 @@ if Spell[404].known?
 	if UserVars.tpick["always_use_404"] =~ /\,/
 		temp_404_variable = UserVars.tpick["always_use_404"].split(",")
 		if temp_404_variable[0] =~ /\d+/
-			use_404_for_lock_difficulty = temp_404_variable[0].to_i
+			use_404_for_trap_difficulty = temp_404_variable[0].to_i
 		elsif temp_404_variable[1] =~ /\d+/
-			use_404_for_lock_difficulty = temp_404_variable[1].to_i
+			use_404_for_trap_difficulty = temp_404_variable[1].to_i
 		end
+		UserVars.tpick["always_use_404"] = "cancel" if temp_404_variable[0] =~ /cancel/i || temp_404_variable[1] =~ /cancel/i
 	else
 		if UserVars.tpick["always_use_404"] =~ /\d+/
-			use_404_for_lock_difficulty = UserVars.tpick["always_use_404"].to_i
+			use_404_for_trap_difficulty = UserVars.tpick["always_use_404"].to_i
 		elsif UserVars.tpick["always_use_404"] == "yes"
 			use_spell_404 = true
 		end

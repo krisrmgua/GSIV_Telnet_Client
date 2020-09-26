@@ -65,20 +65,34 @@ loop {
     #        #monitor_interaction()
     #    end
     #end
-    if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
+    if line =~ /([A-Z,a-z]+) whispers, \"Bless/
 	healee = $1
         if Myname == "Pristeen"
-            if Spell[304].affordable?
-              Spell[304].cast healee
+            if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
+                if Spell[304].affordable?
+                  Spell[304].cast healee
+                end
+            elsif line =~ /[A-Z,a-z]+ whispers, \"Bless ([A-Z,a-z]+)\./
+	        healee = $1
+                if Spell[304].affordable?
+                  Spell[304].cast healee
+                end
             end
         end
         if Myname == "Sluf"
-            if Spell[1604].affordable?
-                Spell[1604].cast healee
+            if line =~ /([A-Z,a-z]+) whispers, \"Bless me\./
+                if Spell[1604].affordable?
+                    Spell[1604].cast healee
+                end
+            elsif line =~ /[A-Z,a-z]+ whispers, \"Bless ([A-Z,a-z]+)\./
+                healee = $1
+                if Spell[1604].affordable?
+                    Spell[1604].cast healee
+                end
             end
         end
     end
-    if line =~ /Keyboard|keyboard|Keyboard|AFK|waiting for you to|REPORT/
+    if line =~ /Keyboard|AFK|waiting for you to|^(?!.*audible).*REPORT.*$/i
         if line !~ /\[help\]|\[Help\]/
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"ALERT: #{line}\"") 
         end
@@ -165,7 +179,7 @@ loop {
             sleep 2
             fput "slap monker"
     end
-    if line =~ /thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Aiss" and Myname != "Bize"
+    if line =~ /thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Bize"
         joiny = $1
         kill_script "mybigshot_runner"
         Script.run('go2', 'landing')

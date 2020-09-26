@@ -1,11 +1,11 @@
 =begin
         # Name: getexp
-        # Discription: Get exp bar for current level experiance. For thouse not using Stormfront. To change style edit file and set newstyle = true. For dots set new style = "dots"
+        # Discription: Get exp bar for current level experiance. For thouse not using Stormfront using terminal type interface like ProfanityFE. To change style edit file and set newstyle = true. For dots set new style = "dots"
         # Author: Kris
         # Email: krisrmgua@gmail.com
-        # Categories: Utility, experiance, bar, scripts
-        # Tags: utility, experiance, bar
-        # Version: 0.05
+        # Categories: Utility, experiance, bar, scripts, profanity, profanityfe
+        # Tags: utility, experiance, bar, profanity, profanityfe
+        # Version: 0.08
 =end
 
 newstyle = false;  ## set to true to change bar style to new false to use old or = "dots" for dots
@@ -212,4 +212,4 @@ if mypercent >= 10
     end
 end
 
-respond "#{bar} #{mypercent}%"
+respond "#{bar} #{mypercent}%   #{xpnNLT}"

@@ -13,19 +13,17 @@ $numhunts = 0;
 @START_TIME   = 1
 
 if Myname == "Clu"
-    #mobs = ["mountain ogre","krolvin mercenary","humpbacked puma"]
-    mobs = ["nedum vereri"]
-    #mobs = ["wraith"]
-    fleemobs = ["none2"]
+    #mobs = ["nedum vereri"]
+    #fleemobs = ["none2"]
+    #huntarea = "8470"
+    #roomboundry = ["8469","8495"]
+    mobs = ["zombie"]
+    fleemobs = ["tomb spider"]
+    huntarea = "7874"
+    roomboundry = ["7873"]
     rest = "landing"
-    #huntarea = "8045"
-    huntarea = "8470"
-    #huntarea = "4175"
-    #roomboundry = ["8044","8065","8066"]
-    roomboundry = ["8469","8495"]
-    #roomboundry = ["4195","4187","4181"]
     attack = "fire"
-    #$preattackdefspell = "608"
+    $preattackdefspell = "608"
     stance = "offensive"
     flee_count = 1
     swings = 2
@@ -33,7 +31,9 @@ if Myname == "Clu"
     hideme = 1
     shield = "shortbow"
     weapon = ""
-    $arrows = "arrows"
+    $arrows = "wyrwood arrows"
+    $arrows2 = "wooden arrows"
+    $arrows_cycled = true
     $arrowssheath = "satchel"
     sheath = ""
     backpack = "pack"
@@ -70,10 +70,10 @@ elsif Myname == "Pristeen"
 elsif Myname == "Aiss"
     mobs = ["zombie"]
     fleemobs = ["tomb spider"]
-    huntarea = "3092"
-    roomboundry = ["3100","3091"]
-    rest = "ice"
-    $skipsale = true
+    huntarea = "7874"
+    roomboundry = ["7873"]
+    rest = "landing"
+    $skipsale = false
     attack = "incant 1106 channel"
     stance = "defensive"
     flee_count = 1
@@ -92,14 +92,14 @@ elsif Myname == "Aiss"
     active_scripts = [""]
     med = "med"
 elsif Myname == "Sluf"
-    #mobs = ["moaning spirit","night hound"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "7319"
-    #roomboundry = ["7318","7324"]
-    mobs = ["cyclops"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
-    huntarea = "5368"
-    roomboundry = ["5363"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
+    #mobs = ["cyclops"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "5368"
+    #roomboundry = ["5363"]
     rest = "landing"
     attack = "attack"
     $preattackattspell = "1615"
@@ -168,7 +168,6 @@ elsif Myname == "Sorci"
 elsif Myname == "Monker"
     #mobs = ["lesser mummy"]
     #fleemobs = ["greater spider"]
-    #rest = "landing"
     #huntarea = "4144"
     #roomboundry = ["4171","4143"]
     mobs = ["wraith"]
@@ -195,11 +194,11 @@ elsif Myname == "Monker"
     med = "med GRAPPLE"
     active_scripts = [""]
 elsif Myname == "Noce"
-    mobs = ["giant ant"]
-    fleemobs = ["goblin"]
+    mobs = ["lesser mummy"]
+    fleemobs = ["greater spider"]
+    huntarea = "4144"
+    roomboundry = ["4171","4143"]
     rest = "landing"
-    huntarea = "ants"
-    roomboundry = ["7534","292"]
     attack = "attack"
     stance = "offensive"
     flee_count = 1
@@ -209,7 +208,6 @@ elsif Myname == "Noce"
     shield = ""
     weapon = "dagger"
     weapon2 = "knife"
-    boots = ""
     sheath = "ankle sheath"
     backpack = "pack"
     cloak = "satchel"
@@ -365,6 +363,8 @@ def global_vars
   $need_rest = false
   $need_flee = false
   $need_sale = false
+  $weapon_dead = false
+  $weapon2_dead = false
   $obvious_hiding_player = false
 end
 
@@ -512,7 +512,6 @@ hands_check = proc {
 
 sell = proc {
     if not $skipsale
-        Script.run('bank')
         Script.run('poolparty')
         Script.run('sloot', "sell")
     end
@@ -556,8 +555,9 @@ check_for_people = proc {
    ppl = GameObj.pcs
    if ppl.size
        go_defensive.call()
-       $need_flee = true
-       echo "PERSON FOUND" if $debug
+       #$need_flee = true
+       GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$/}
+       echo "PERSON FOUND" if $debug and $need_flee
    end
    if $obvious_hiding_player
        $obvious_hiding_player = false
@@ -717,9 +717,37 @@ attack_target = proc { |target|
         fput "#{attack} #{target}"
         line = matchtimeout 5, "your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
         if line =~ /^You .* has no effect/
-          $need_bless = true
-          echo "Need Bless" if $debug
-          break
+          if $arrows_cycled
+             fput "ready ammo #{$arrows2}" 
+             $arrows_cycled = false
+          else
+              if weapon2
+                  if line =~ /You swing a closed fist/
+                      fput "swap"
+                  end
+                  if line =~ /#{weapon}/
+                      $weapon_dead = true
+                      fput "put my #{weapon} in my #{sheath}"
+                      fput "swap"
+                   end
+                  if line =~ /#{weapon2}/
+                      $weapon2_dead = true
+                      fput "get my #{weapon} from my #{sheath}"
+                      fput "swap"
+                       $need_bless = true
+                       break
+                   end
+                   if $weapon_dead and $weapon2_dead
+                       $need_bless = true
+                       echo "Need Bless" if $debug
+                       break
+                   end
+              else
+                  $need_bless = true
+                  echo "Need Bless" if $debug
+                  break
+              end
+          end
         elsif line=~ /You do not currently have a target|I could not find what/
           dead = GameObj.dead
           if dead
@@ -837,7 +865,7 @@ loop {
       end
       while checkdisease or checkpoison
         echo "Poisoned or Diseased" if $debug
-        sleep 30
+        sleep 5
         Script.run('useherbs', "in bin")
         Script.run('useherbs', "on bench")
         Script.run('useherbs', "under bench")
@@ -851,6 +879,7 @@ loop {
       end
       $swaper = false
       $blessboots = false
+      $blessarrow = false
       $gothere = false
       loop {
         found_sluf = nil
@@ -867,20 +896,27 @@ loop {
         line = matchtimeout 20, "Nothing happens", "quickly returns to normal", "Silvery tendrils rise up and wreathe their way around your"
         if line =~ /Nothing happens/ or line =~ /Silvery tendrils rise up and wreathe their way around your/ or line =~ /quickly returns to normal/
             $gothere = true
-            if weapon2
-                fput "swap"
-                if $blessboots == true
-                    fput "wear #{boots}"
-                    getweapon.call()
-                    break
-                end
-                if $swaper
-                    if boots
-                        putawayweapon.call()
-                        fput "remove #{boots}"
-                        $blessboots = true
-                    else
+            if weapon2 or $arrows2
+                if $arrows2
+                    break if $blessarrow
+                    fput "put my #{$arrows} in my #{$arrowssheath}"
+                    fput "get my #{$arrows2} from my #{$arrowssheath}"
+                    $blessarrow = true
+                else
+                    fput "swap"
+                    if $blessboots == true
+                        fput "wear #{boots}"
+                        getweapon.call()
                         break
+                    end
+                    if $swaper
+                        if boots
+                            putawayweapon.call()
+                            fput "remove #{boots}"
+                            $blessboots = true
+                        else
+                            break
+                        end
                     end
                 end
             else
@@ -892,6 +928,7 @@ loop {
       }
       $swaper = false
       $blessboots = false
+      $blessarrow = false
       $gothere = false
       loop {
         echo "Waiting for Pristeen Bless" if $debug
@@ -903,20 +940,27 @@ loop {
         line = matchtimeout 20, "Nothing happens", "quickly returns to normal", "searing white light enfolds your", "silvery wisps enfolds your", "brilliant shower of sparks bursts from your"
         if line =~ /Nothing happens/ or line =~ /silvery wisps enfolds your/ or line =~ /brilliant shower of sparks bursts from your/ or line =~ /quickly returns to normal/i or line =~ /searing white light enfolds your/
             $gothere = true
-            if weapon2
-                fput "swap"
-                if $blessboots == true
-                    fput "wear #{boots}"
-                    getweapon.call()
-                    break
-                end
-                if $swaper
-                    if boots
-                        putawayweapon.call()
-                        fput "remove #{boots}"
-                        $blessboots = true
-                    else
+            if weapon2 or $arrows2
+                 if $arrows2
+                    break if $blessarrow
+                    fput "put my #{$arrows2} in my #{$arrowssheath}"
+                    fput "get my #{$arrows} from my #{$arrowssheath}"
+                    $blessarrow = true
+                else
+                    fput "swap"
+                    if $blessboots == true
+                        fput "wear #{boots}"
+                        getweapon.call()
                         break
+                    end
+                    if $swaper
+                        if boots
+                            putawayweapon.call()
+                            fput "remove #{boots}"
+                            $blessboots = true
+                        else
+                            break
+                        end
                     end
                 end
             else
@@ -926,8 +970,12 @@ loop {
         $swaper = true if $gothere
         sleep 5 if not $gothere
       }
+      $weapon_dead = false
+      $weapon2_dead = false
       if $arrows
           fput "put my #{$arrows} in my #{$arrowssheath}"
+          fput "ready ammo #{$arrows}"
+          $arrows_cycled = true
       end
       putawayweapon.call()
     end

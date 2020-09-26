@@ -5,6 +5,9 @@
 #    tags: loot
 
 # changelog:
+#     2020.09.25 - comma update for checking silvers and added blunt skinning
+#     2020.08.26 - bug fix with left/right hand swap
+#     2020.08.20 - fixed some ready list logic
 #     2020.07.22 - bug fix for regex with only 1 gem of a bounty left
 #     2020.07.20 - fix a bug with checkbox toggles in GUI
 #     2020.06.25 - regex fix for ready list with long description items
@@ -34,7 +37,7 @@
 #     2020.03.04 - FWI improvements.
 #     2020.03.03 - Bug fixes. Added version checking. Beginning of a beautiful friendship.
 
-version = '2020.07.22'
+version = '2020.09.25'
 
 if (GameSetting[:sloot_version] != version) || !File.exist?("#{$script_dir}/slootbeta.ui")
   $sloot = nil
@@ -208,7 +211,8 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
           skin_kneel: { default: true },
           skin_resolve: { default: true },
           skin_sheath: { default: '' },
-          skin_weapon: { default: '' }
+          skin_weapon: { default: '' },
+          skin_weapon_blunt: { default: '' }
         }
       },
       internal: {
@@ -471,7 +475,7 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
 
     @@ready_list = {}
     @@sacks = {}
-    @@skinweapon = nil
+    @@skinweapons = { normal: nil, blunt: nil }
     @@skinsheath = nil
 
     def self.sacks
@@ -483,15 +487,6 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
 
       @disk = nil
       @disk_full = false
-
-      info('checking for existence of disk')
-      15.times do
-        break if (@disk = GameObj.loot.find { |l| l.name =~ /#{Char.name} disk$/ })
-
-        sleep(0.1)
-      end
-
-      @disk ? info('disk found') : info('no disk found')
 
       @prev_room = nil
       @sacks_to_close = []
@@ -507,7 +502,7 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
       error('failed to check STOW list; restart me') if res !~ /You have the following/
 
       # rubocop:disable Layout/LineLength
-      stow_match = %r{(shield|weapon|secondary weapon|ranged weapon): <d cmd="[^"]+">[^<]+<a exist="(\d+)" noun="[^"]+">[^<]+<\/a>(?: [^<]+)?<\/d>}
+      stow_match = %r{(shield|weapon|secondary weapon|ranged weapon): <d cmd="[^"]+">[^<]+<a exist="\d+" noun="[^"]+">([^<]+)<\/a>(?: [^<]+)?<\/d>}
       # rubocop:enable Layout/LineLength
       $_SERVERBUFFER_.reverse[0..50].each do |line|
         if line =~ stow_match
@@ -521,6 +516,15 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
 
       lootsack = find_sack('default')
       error('set default stow container before using this script') if lootsack.nil?
+
+      info('checking for existence of disk')
+      15.times do
+        break if (@disk = GameObj.loot.find { |l| l.name =~ /#{Char.name} disk$/ })
+
+        sleep(0.1)
+      end
+
+      @disk ? info('disk found') : info('no disk found')
 
       debug("ready list: #{@@ready_list.inspect}")
       debug("sacks: #{@@sacks.inspect}")
@@ -542,15 +546,12 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
     def check_silver
       silvers = nil
       action = proc do |server_string|
-        if server_string !~ /^\s*Mana\:\s+\-?[0-9]+\s+Silver\:\s+([0-9]+)/
-          nil
-        elsif server_string =~ /^\s*Mana\:\s+\-?[0-9]+\s+Silver\:\s+([0-9]+)/
-          silvers = Regexp.last_match(1).to_i
+        if server_string =~ /Silver:\s+([,0-9]+)/
+          silvers = Regexp.last_match(1).delete(',').to_i
           DownstreamHook.remove('sloot_check_silvers')
-          nil
-        else
-          server_string
         end
+
+        nil
       end
 
       DownstreamHook.add('sloot_check_silvers', action)
@@ -573,13 +574,13 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
         id = item[0]
         hand = item[1]
 
-        if id == @@ready_list['secondary weapon']
+        if id == 'secondary weapon'
           fput('ready 2weapon')
-        elsif id == @@ready_list['shield']
+        elsif id == 'shield'
           fput('ready shield')
-        elsif id == @@ready_list['ranged weapon']
+        elsif id == 'ranged weapon'
           fput('ready ranged')
-        elsif id == @@ready_list['weapon']
+        elsif id == 'weapon'
           fput('ready weapon')
         else
           drag(id, hand)
@@ -623,28 +624,22 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
 
       preferred_hand = 'right' if preferred_hand != 'left' && preferred_hand != 'right'
 
-      # TODO: this logic could probably be cleaned up if I ever care enough
       case preferred_hand
       when 'left'
-        if GameObj.left_hand.id == @@ready_list['secondary weapon']
-          @stowed.push([GameObj.left_hand.id, preferred_hand])
+        if @@ready_list['secondary weapon'] =~ /#{GameObj.left_hand.name}/i
+          @stowed.push(['secondary weapon', preferred_hand])
           fput('store 2weapon')
-        elsif GameObj.left_hand.id == @@ready_list['shield']
-          @stowed.push([GameObj.left_hand.id, preferred_hand])
+        elsif @@ready_list['shield'] =~ /#{GameObj.left_hand.name}/i
+          @stowed.push(['shield', preferred_hand])
           fput('store shield')
-        elsif GameObj.left_hand.id == @@ready_list['ranged weapon']
-          @stowed.push([GameObj.left_hand.id, preferred_hand])
+        elsif @@ready_list['ranged weapon'] =~ /#{GameObj.left_hand.name}/i
+          @stowed.push(['ranged weapon', preferred_hand])
           fput('store ranged')
         end
       else
-        if GameObj.right_hand.id == @@ready_list['weapon']
-          @stowed.push([GameObj.right_hand.id, preferred_hand])
+        if @@ready_list['weapon'] =~ /#{GameObj.right_hand.name}/i
+          @stowed.push(['weapon', preferred_hand])
           fput('store weapon')
-          if reget.reverse[0..10].any? { |l| l =~ /^You can't do that while the shaft/ }
-            fput("pull ##{GameObj.right_hand.id}")
-            waitrt?
-            return empty_hand(preferred_hand)
-          end
         end
       end
 
@@ -654,10 +649,16 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
       drag(to_stow, 'default') if to_stow.id
     end
 
-    def find_skin_weapon
-      return false if @settings[:skin_weapon] == ''
+    def find_skin_weapon(type)
+      case type
+      when :normal
+        weapon_name = @settings[:skin_weapon]
+      when :blunt
+        weapon_name = @settings[:skin_weapon_blunt]
+      end
 
-      return @@skinweapon if @@skinweapon
+      return nil if weapon_name == ''
+      return @@skinweapons[type] if @@skinweapons[type]
 
       unless @@skinsheath
         if @settings[:skin_sheath] != ''
@@ -674,13 +675,23 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
         sleep(1) unless @@skinsheath.contents
       end
 
-      @@skinweapon = @@skinsheath.contents.find do |c|
-        c.name =~ /#{@settings[:skin_weapon]}/i || c.noun =~ /\b#{@settings[:skin_weapon]}\b/i
+      items = @@skinsheath.contents.clone
+      items.push(GameObj.right_hand)
+      items.push(GameObj.left_hand)
+
+      weapon = items.find do |c|
+        next if c.nil? || c.id.nil?
+
+        c.name =~ /#{weapon_name}/i || c.noun =~ /\b#{weapon_name}\b/i
       end
 
-      info("failed to find skinner: #{@settings[:skin_weapon]} in #{@@skinsheath}") unless @@skinweapon
+      unless weapon
+        info("failed to find skinner: #{weapon_name} in #{@@skinsheath}")
+        return nil
+      end
 
-      @@skinweapon
+      @@skinweapons[type] = weapon
+      @@skinweapons[type]
     end
 
     def find_sack(type)
@@ -882,47 +893,66 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
       change_stance('defensive') if @settings[:loot_defensive]
     end
 
-    def skin(npcs)
+    def skin(gameobjs)
       return unless @settings[:skin_enable]
 
-      npcs = npcs.to_a.reject do |npc|
+      gameobjs = gameobjs.to_a.reject do |npc|
         @settings[:unskinnable].index(npc.name) > -1 || npc.type =~ /bandit/ || npc.name =~ /Grimswarm/ ||
           npc.name =~ /^(?:ethereal|ghostly|unwordly)/
       end
 
-      return if npcs.empty?
+      blunt_targets = /krynch/
 
-      skinner = find_skin_weapon
+      # normal npcs can use the regular skinner
+      normal_npcs = gameobjs.reject { |npc| npc.name =~ blunt_targets }
 
-      drag(skinner, 'hand') if skinner
+      # blunt npcs need a blunt skinner
+      blunt_npcs = gameobjs.find_all { |npc| npc.name =~ blunt_targets }
 
-      if GameObj.targets.empty?
-        while @settings[:skin_kneel] && !kneeling?
-          dothistimeout('kneel', 3, /^You kneel down\.$|^You move to|^You are already kneeling\.$/)
-        end
-      end
+      # seems we didn't find any targets
+      return if (normal_npcs + blunt_npcs).empty?
 
-      if @settings[:skin_resolve] && Spell['Sigil of Resolve'].affordable? && !Spell['Sigil of Resolve'].active?
-        Spell['Sigil of Resolve'].cast
-      end
+      skin_npcs = proc do |npcs, type|
+        next if npcs.empty? || npcs.nil?
 
-      npcs.each do |npc|
-        # rubocop:disable Layout/LineLength
-        skin_match = /skinned|botched|already been|cannot skin|must be a member|can only skin|You are unable to break through|You break through the crust of the|You crack open a portion/
-        break_match = /^(?:You break through the crust of the .+ and withdraw |You crack open a portion of the .+ and uncover )(.+)!/
-        # rubocop:enable Layout/LineLength
+        skinner = find_skin_weapon(type)
+        has_skinner = skinner.nil? || [GameObj.right_hand.id, GameObj.left_hand.id].include?(skinner.id)
 
-        res = dothistimeout("skin ##{npc.id}#{skinner ? " #{skinner.id == GameObj.left_hand.id ? 'left' : 'right'}" : ''}", 2, skin_match)
-        if res =~ /^You cannot skin/
-          @settings[:unskinnable].push(npc.name)
-        elsif res =~ break_match
-          drag(Regexp.last_match(1).split.last, 'gem')
-        else
-          @settings[:stats][:skin][:attempts] = @settings[:stats][:skin][:attempts] + 1
+        drag(skinner, 'hand') unless has_skinner
+
+        if GameObj.targets.empty?
+          while @settings[:skin_kneel] && !kneeling?
+            dothistimeout('kneel', 3, /^You kneel down\.$|^You move to|^You are already kneeling\.$/)
+          end
         end
 
-        @settings[:stats][:skin][:failures] = @settings[:stats][:skin][:failures] + 1 if res =~ /^You botched/i
+        if @settings[:skin_resolve] && Spell['Sigil of Resolve'].affordable? && !Spell['Sigil of Resolve'].active?
+          Spell['Sigil of Resolve'].cast
+        end
+
+        npcs.each do |npc|
+          # rubocop:disable Layout/LineLength
+          skin_match = /skinned|botched|already been|cannot skin|must be a member|can only skin|You are unable to break through|You break through the crust of the|You crack open a portion/
+          break_match = /^(?:You break through the crust of the .+ and withdraw |You crack open a portion of the .+ and uncover )(.+)!/
+          # rubocop:enable Layout/LineLength
+
+          res = dothistimeout("skin ##{npc.id}#{skinner ? " #{skinner.id == GameObj.left_hand.id ? 'left' : 'right'}" : ''}", 2, skin_match)
+          if res =~ /^You cannot skin/
+            @settings[:unskinnable].push(npc.name)
+          elsif res =~ break_match
+            drag(Regexp.last_match(1).split.last, 'gem')
+          else
+            @settings[:stats][:skin][:attempts] = @settings[:stats][:skin][:attempts] + 1
+          end
+
+          @settings[:stats][:skin][:failures] = @settings[:stats][:skin][:failures] + 1 if res =~ /^You botched/i
+        end
+
+        drag(skinner, @@skinsheath) unless has_skinner
       end
+
+      skin_npcs.call(normal_npcs, :normal)
+      skin_npcs.call(blunt_npcs, :blunt)
 
       until standing?
         stance = checkstance
@@ -930,8 +960,6 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
         dothistimeout('stand', 3, /You stand|You quickly roll/)
         change_stance(stance) if checkstance != stance
       end
-
-      drag(skinner, @@skinsheath) if skinner
     end
 
     def stow_notes
@@ -1241,6 +1269,7 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
       if (way_in = (GameObj.loot.to_a + GameObj.room_desc.to_a).find { |obj| obj.noun =~ /^(?:opening|curtain)$/ })
         current = Room.current.id
         move "go #{way_in.noun}"
+        # You'll have to wait, Kimsy is presently using that locker booth.
         wait_while { current == Room.current.id }
       else
         error('failed to find locker entrance')
@@ -1488,8 +1517,7 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
         realm = Regexp.last_match(1)
         gem = hoard_normalize_gem(Regexp.last_match(2))
         gems_needed = Regexp.last_match(3).to_i
-        gems_needed -=
-          find_sack('gem').contents.to_a.find_all { |l| gem == hoard_normalize_gem(l.name) }.length
+        gems_needed -= find_sack('gem').contents.to_a.find_all { |l| gem == hoard_normalize_gem(l.name) }.length
 
         gemshop = Room.list.find { |r| r.tags.include?('gemshop') && r.location =~ /#{realm}/i }
         error('failed to find the gemshop to turn into; send this to SpiffyJr') unless gemshop
@@ -1572,10 +1600,6 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
 
         go2(location)
 
-        # sell bulk shitter items
-
-        # refreshes sellable list
-
         if location =~ /furrier|gemshop/
           drag(lootsack, 'hand') if [checkleft, checkright].index(lootsack.noun).nil?
 
@@ -1621,9 +1645,9 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
 
           if obj.type =~ /#{@settings[:sell_appraise_types].join('|')}/
             # rubocop:disable Layout/LineLength
-            appraise_match = /[0-9,]+ (?:silver|Not my line, really|for it if you want to sell|for this if you'd like)|I'm not buying anything this valuable today|not quite my field|only deal in gems and jewelry|There is nothing of value to me|Trying to pull a fast one on old Hortemeyer, are you\?|Can't say I'm interested|That's basically worthless here|no use for that/
+            appraise_match = /[,0-9,]+ (?:silver|Not my line, really|for it if you want to sell|for this if you'd like)|I'm not buying anything this valuable today|not quite my field|only deal in gems and jewelry|There is nothing of value to me|Trying to pull a fast one on old Hortemeyer, are you\?|Can't say I'm interested|That's basically worthless here|no use for that/
             denied = /Not my line, really|not quite my field|only deal in gems and jewelry|There is nothing of value to me|Trying to pull a fast one on old Hortemeyer, are you\?|no use for that/
-            accepted = /([0-9,]+) (?:silver|for it if you want to sell|for this if you'd like)/
+            accepted = /([,0-9,]+) (?:silver|for it if you want to sell|for this if you'd like)/
             # rubocop:enable Layout/LineLength
 
             res = dothistimeout("appraise ##{obj.id}", 3, appraise_match)
@@ -1637,7 +1661,9 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
               info("appraise setting not available for #{location}; report this to SpiffyJr")
             end
 
-            if res.nil? || (res =~ denied) || (res =~ accepted && Regexp.last_match(1).to_i >= value)
+            matched = Regexp.last_match(1).delete(',').to_i
+
+            if res.nil? || (res =~ denied) || (res =~ accepted && matched >= value)
               debug('unknown response from appraisal!') if res.nil?
 
               @sell_ignore.push(obj.id)
@@ -1647,7 +1673,7 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
           end
 
           # rubocop:disable Layout/LineLength
-          sell_match = /(?:pays|hands) you [0-9]+ silver|not quite my field|only deal in gems and jewelry|no use for that|Where do you find this junk|That's basically worthless here/
+          sell_match = /(?:pays|hands) you [,0-9]+ silver|not quite my field|only deal in gems and jewelry|no use for that|Where do you find this junk|That's basically worthless here/
           # rubocop:enable Layout/LineLength
           res = dothistimeout("sell ##{obj.id}", 3, sell_match)
           @sell_ignore.push(obj.id) if res =~ /no use for that|That's basically worthless here/
@@ -1686,7 +1712,6 @@ if $sloot.nil? || script.vars[1] == 'load' || CharSetting[:debug]
 end
 
 # most common use-case, running to loot
-
 if script.vars[1].nil?
   script.silent = true if CharSetting[:silence]
 
@@ -1748,8 +1773,6 @@ elsif script.vars[1] == 'help'
   #   print_option.call(k, v[1])
   # end
   # respond("")
-elsif script.vars[1] == 'stats'
-  echo '-- not yet implemented'
 elsif script.vars[1] == 'silence'
   CharSetting[:silence] = !CharSetting[:silence]
   if CharSetting[:silence]
