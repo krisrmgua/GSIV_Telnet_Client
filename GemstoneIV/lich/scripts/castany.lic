@@ -41,7 +41,8 @@ loop {
         fput "stow #{herb}"
         sleep 3
     end
-    Script.run('bundleall')
+    Script.run('bundleall') if Room.current.id.to_s =~ /^3233$/
+    Script.run('bundleall') if Room.current.id.to_s =~ /^293$/
     if Room.current.id.to_s =~ /^3233$/
         Script.run('go2', '2300')
     end

@@ -9,8 +9,8 @@ echo -e "\t5:\tSorci"
 echo -e "\t6:\tWoory"
 echo -e "\t7:\tBize"
 echo -e "\t8:\tNoce"
-echo -e "\t9:\tPristeen"
-echo -e "\t10:\tSluf"
+echo -e "\t9:\tSluf"
+echo -e "\t10:\tPristeen"
 echo -e "\t11:\tWardrob"
 echo -e "\t12:\tLoads"
 echo -e "\t13:\tLoods"
@@ -56,11 +56,11 @@ then
     port=8008
 elif [ $num -eq 9 ]
 then
-    character=Pristeen
+    character=Sluf
     port=8009
 elif [ $num -eq 10 ]
 then
-    character=Sluf
+    character=Pristeen
     port=8010
 elif [ $num -eq 11 ]
 then

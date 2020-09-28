@@ -1,0 +1,4 @@
+sleep 7200 #2 hours
+Script.run('mystop')
+Script.run('go2', 'landing')
+fput "quit"

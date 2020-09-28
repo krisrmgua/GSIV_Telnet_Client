@@ -1,0 +1,44 @@
+herbs = ["acantha leaf","basal moss","wolifrew lichen","ambrominas leaf","aloeas stem","ephlox moss","pothinir grass","torban leaf","haphip root","woth flower","sovyn clove"]
+herbcount = 0
+while herbcount < 12
+    count = 0
+    fput "close my greatc"
+    fput "get my #{herbs[herbcount]}"
+    line = matchtimeout 3, "You remove", "Get what"
+    if line =~ /Get what/
+        echo "No more herbs"
+        exit
+    end
+    if line =~ /You remove/
+        while count < 49
+            fput "bundle remove"
+            line2 = matchtimeout 3, "You carefully", "You only", "You are not"
+            if line2 =~ /You carefully/ or line2 =~ /You only/
+                fput "drop #{herbs[herbcount]}"
+                count = count + 1
+            end
+            if line2 =~ /You are not/
+                fput "get my #{herbs[herbcount]}"
+                line3 = matchtimeout 3, "You remove", "Get what"
+                if line3 =~ /Get what/
+                    echo "No more herbs"
+                    exit
+                end
+            end
+        end
+        fput "stow #{herbs[herbcount]}"
+        fput "get #{herbs[herbcount]}"
+        count = 1
+        echo "#{herbs[herbcount]}: #{count}"
+        while count < 50
+           fput "get #{herbs[herbcount]}"
+           fput "bundle"
+           count = count + 1
+           echo "#{herbs[herbcount]}: #{count}"
+        end
+        fput "open my greatc"
+        fput "put #{herbs[herbcount]} in my greatcloak"
+        fput "close my greatc"          
+        herbcount = herbcount + 1
+    end
+end

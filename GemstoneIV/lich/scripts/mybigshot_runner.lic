@@ -310,11 +310,11 @@ elsif Myname == "Loods"
     encumbrance = 5
     active_scripts = [""]
 elsif Myname == "Wiiz"
-    mobs = ["wraith"]
-    fleemobs = ["greater orc"]
+    mobs = ["nedum vereri"]
+    fleemobs = ["none2"]
+    huntarea = "8470"
+    roomboundry = ["8469","8495"]
     rest = "landing"
-    huntarea = "4175"
-    roomboundry = ["4195","4187","4181"]
     attack = "incant 904 channel"
     stance = "offensive"
     flee_count = 1
@@ -385,7 +385,7 @@ def display_watch_current()
     echo "display_watch_current" if $bigshot_debug
     if( @STORED_TIMES.size > 0 )
       seconds = @STORED_TIMES[-1]
-      message( sprintf( "Bigshot: Last Hunt: %d min. %0.2f secs.",
+      message( sprintf( "mybigshot_runner: Last Hunt: %d min. %0.2f secs.",
                        seconds / 60, seconds % 60 ) )
     end
 end
@@ -401,14 +401,14 @@ def display_watch_average()
     else
       return
     end
-    message( sprintf( "Bigshot: Average Hunt: %d min. %0.2f secs.",
+    message( sprintf( "mybigshot_runner: Average Hunt: %d min. %0.2f secs.",
                      average / 60, average % 60 ) )
 end
 
 def display_watch_total()
     echo "display_watch_total" if $bigshot_debug
     total = Time.now.to_i - @BIRTH_TIME
-    message( sprintf( "Bigshot: Total Time Running: %d min.  %0.2f secs.",
+    message( sprintf( "mybigshot_runner: Total Time Running: %d min.  %0.2f secs.",
                      total / 60, total % 60 ) )
 end
 
@@ -460,6 +460,8 @@ go2rest = proc {
 putawayweapon = proc {
     if Myname == "Clu" 
         fput "wear my #{shield}"
+        fput "put my #{$arrows} in my #{$arrowssheath}"
+        fput "put my #{$arrows2} in my #{$arrowssheath}"
     elsif Myname == "Pristeen" or Myname == "Monker"
         Script.run('wear')
     else
@@ -495,6 +497,8 @@ getweapon = proc {
         if $arrows
             fput "get my #{$arrows}"
             fput "put my #{$arrows} in my #{$arrowssheath}"
+            fput "get my #{$arrows2}"
+            fput "put my #{$arrows2} in my #{$arrowssheath}"
         end
     end
 }
@@ -806,6 +810,7 @@ if percentmana() < 25
     sleep 10
   end
 end
+putawayweapon.call()
 empty_hands
 if Myname == "Wiiz" and Room.current.id.to_s =~ /^228$/
     Script.run('bank')
@@ -1007,9 +1012,9 @@ loop {
     Script.run('go2', "#{huntarea}")
     $numhunts = $numhunts + 1
     if Room.current.id.to_s != "#{huntarea}"
+      check_standing.call()
+      check_standing.call()
       fput "w"
-      sleep 1
-      fput "e"
       sleep 1
       Script.run('go2', "#{huntarea}")
     end

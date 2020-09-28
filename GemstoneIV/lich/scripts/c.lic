@@ -16,6 +16,9 @@ waitrt?
 if Myname == "Trenus"
     change_stance.call('offensive')
     fput "incant 904 channel"
+elsif Myname == "Wiiz"
+    change_stance.call('offensive')
+    fput "incant 904 channel"
 elsif Myname == "Aiss"
     #fput "incant 1106 channel"
     fput "incant 1101 channel"

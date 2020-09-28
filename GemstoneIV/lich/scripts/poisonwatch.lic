@@ -1,0 +1,10 @@
+loop {
+line = matchtimeout 10, "whispers, \"Unpoisonme", "whispers, \"Undiseaseme"
+    if line =~ /([A-Z,a-z]+) whispers, \"Unpoisonme/
+        healee = $1
+        Spell[114].cast healee
+    elsif line =~ /([A-Z,a-z]+) whispers, \"Undiseaseme/
+        healee = $1
+        Spell[113].cast healee
+     end
+}

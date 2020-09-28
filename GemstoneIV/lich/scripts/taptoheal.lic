@@ -1,23 +1,45 @@
 ## Tap to heal
 ##
 
-def matchfind2(*strings)
-   regex = /#{strings.flatten.join('|').gsub('?', '(.+)')}/i
-   if reobj = regex.match($lastline)
-      ret = reobj.captures.compact
-      if ret.length < 2
-         return ret.first
-      else
-         return ret
-      end
-   end
-end
+#def matchfind2(*strings)
+#   regex = /#{strings.flatten.join('|').gsub('?', '(.+)')}/i
+#   if reobj = regex.match($lastline)
+#      ret = reobj.captures.compact
+#      if ret.length < 2
+#         return ret.first
+#      else
+#         return ret
+#      end
+#   end
+#end
 
 loop {
-	$lastline = get
-
-	person = matchfind2 "? taps you lightly on the shoulder."
-	if person
-		Script.run("sheal", [person])
-	end
+    line = matchtimeout 10, "whispers, \"Unpoisonme", "whispers, \"Undiseaseme", "taps you lightly on the shoulder"
+    if line =~ /([A-Z,a-z]+) whispers, \"Unpoisonme/
+        healee = $1
+        Spell[114].cast healee
+    elsif line =~ /([A-Z,a-z]+) whispers, \"Undiseaseme/
+        healee = $1
+        Spell[113].cast healee
+    elsif line =~ /([A-Z,a-z]+) taps you lightly on the shoulder/
+        healee = $1
+        fput "appraise #{healee}"
+        result = matchtimeout 5, "no apparent injuries", "bleeding"
+        if result =~ /no apparent injuries/
+            echo "***** #{healee} is not injured.  False alarm? *****"
+        else
+            Script.run('sheal', "#{healee}")
+        end
+    end
+#	$lastline = get
+#
+#	person = matchfind2 "? taps you lightly on the shoulder."
+#	if person
+#            result = dothistimeout "appraise #{healee}", 5, /You take a quick appraisal/
+#            if result =~ /no apparent injuries/
+#                echo "***** #{healee} is not injured.  False alarm? *****"
+#            else
+#		Script.run("sheal", [person])
+#            end
+#	end
 }

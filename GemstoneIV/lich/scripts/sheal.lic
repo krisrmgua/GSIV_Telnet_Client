@@ -47,14 +47,17 @@ $sheal_imprint_timers.delete_if { |name, time| Time.now.to_i > time }
 
 def linking(who)
         fput "touch #{who} link"
-        result = waitfor "successful empathic link", "link failed???"
-        if result.include?("link failed???")
+        result = waitfor "successful empathic link", "but the link fails"
+        if result.include?("but the link fails")
+                $dolink = false
                 respond
                 respond
                 respond "Unable To Link!"
                 respond
                 respond
                 return
+        else
+            $dolink = true
         end
 end
 
@@ -277,26 +280,27 @@ heal_down = proc {
 
 heal_target = proc { |target, imprint = false|
     target = target.downcase.strip
-    fput "say ::#{target} just a moment"
+    fput "say ::#{target} just a moment" if target !~ /^sluf$|^pristeen$|^woory$|^sorci$|^trenus$|^monker$|^aiss$|^wiiz$|^clu$/
+    $dolink = false
     linking(target)
     cast_trolls_blood.call()
-    get_target_injuries.call(target, imprint).each { |injury|
-        res = dothistimeout "transfer #{target} #{injury}", 1, /reaching out to him|As you probe the wound|gradually fades|You close your eyes/
-
-        if res =~ /As you probe the wound/ and settings['heal-voluntarily']
-            dothistimeout "transfer #{target} #{injury}", 1, /reaching out to him/
+    if $dolink
+        get_target_injuries.call(target, imprint).each { |injury|
+            res = dothistimeout "transfer #{target} #{injury}", 1, /reaching out to him|reacning out to her|As you probe the wound|gradually fades|You close your eyes/
+            if res =~ /As you probe the wound/ and settings['heal-voluntarily']
+                dothistimeout "transfer #{target} #{injury}", 1, /reaching out to him|reaching out to her/
+            end
+        }
+        if not imprint and settings['heal-blood']
+            res = nil
+            while res !~ /Nothing|You take all|from whom?/
+                heal_blood.call()
+                res = dothistimeout "transfer #{target}", 1, /Nothing happens|You take (?:some|all)|from whom?/
+            end
         end
-    }
-    
-    if not imprint and settings['heal-blood']
-        res = nil
-        while res !~ /Nothing|You take all|from whom?/
-            heal_blood.call()
-            res = dothistimeout "transfer #{target}", 1, /Nothing happens|You take (?:some|all)|from whom?/
-        end
+        fput "unlink"
+        heal_down.call()
     end
-    fput "unlink"
-    heal_down.call()
 }
 
 imprint_target = proc { |target|

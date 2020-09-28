@@ -158,12 +158,12 @@ loop {
     if line =~ /([A-Z,a-z]+) (quietly asks|quietly says|says|yells|asks|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname == "Aiss"
           dname = $1
         if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/
-          fput "think to pristeen #{dname} casting Spells"
+          #fput "think to pristeen #{dname} casting Spells"
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
         end
     elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname == "Aiss"
         if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/
-          fput "think to pristeen KRIS SPELLS"
+          #fput "think to pristeen KRIS SPELLS"
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
         end
     end
@@ -179,13 +179,15 @@ loop {
             sleep 2
             fput "slap monker"
     end
-    if line =~ /thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Bize"
+    if line =~ /.*Focused.*thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Bize"
         joiny = $1
         kill_script "mybigshot_runner"
         Script.run('go2', 'landing')
         fput "join #{joiny}"
     end
-    if line =~ /thinks\, \"Hunt/
-        start_script('mybigshot_runner') if Myname != "Aiss"
+    if line =~ /.*Focused.*thinks\, \"Hunt/
+        if line !~ /Focused to/
+            start_script('mybigshot_runner') if Myname != "Aiss"
+        end
     end
 }
