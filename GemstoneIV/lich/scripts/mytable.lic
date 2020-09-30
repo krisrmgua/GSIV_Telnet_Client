@@ -1,4 +1,4 @@
-if Room.current.id.to_s == "228"
+if Room.current.id.to_s == "228" or Room.current.id.to_s == "288"
   Script.run('go2', '3743')
   if script.vars[1]
     who = script.vars[1]

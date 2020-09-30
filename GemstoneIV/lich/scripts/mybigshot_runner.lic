@@ -13,15 +13,12 @@ $numhunts = 0;
 @START_TIME   = 1
 
 if Myname == "Clu"
-    #mobs = ["nedum vereri"]
-    #fleemobs = ["none2"]
-    #huntarea = "8470"
-    #roomboundry = ["8469","8495"]
     mobs = ["zombie"]
     fleemobs = ["tomb spider"]
     huntarea = "7874"
     roomboundry = ["7873"]
     rest = "landing"
+    rest2 = "park"
     attack = "fire"
     $preattackdefspell = "608"
     stance = "offensive"
@@ -49,6 +46,7 @@ elsif Myname == "Pristeen"
     huntarea = "7319"
     roomboundry = ["7318","7324"]
     rest = "landing"
+    rest2 = "park"
     attack = "incant 302 channel"
     stance = "defensive"
     flee_count = 1
@@ -101,6 +99,7 @@ elsif Myname == "Sluf"
     #huntarea = "5368"
     #roomboundry = ["5363"]
     rest = "landing"
+    rest2 = "park"
     attack = "attack"
     $preattackattspell = "1615"
     $CMAN = "shield bash"
@@ -127,6 +126,7 @@ elsif Myname == "Trenus"
     huntarea = "7874"
     roomboundry = ["7873"]
     rest = "landing"
+    rest2 = "park"
     attack = "incant 904 channel"
     stance = "offensive"
     flee_count = 1
@@ -149,6 +149,7 @@ elsif Myname == "Sorci"
     huntarea = "7874"
     roomboundry = ["7873"]
     rest = "landing"
+    rest2 = "park"
     attack = "incant 702 channel"
     stance = "defensive"
     flee_count = 1
@@ -173,6 +174,7 @@ elsif Myname == "Monker"
     mobs = ["wraith"]
     fleemobs = ["greater orc"]
     rest = "landing"
+    rest2 = "park"
     huntarea = "4175"
     roomboundry = ["4195","4187","4181"]
     attack = "attack"
@@ -199,6 +201,7 @@ elsif Myname == "Noce"
     huntarea = "4144"
     roomboundry = ["4171","4143"]
     rest = "landing"
+    rest2 = "park"
     attack = "attack"
     stance = "offensive"
     flee_count = 1
@@ -220,6 +223,7 @@ elsif Myname == "Bize"
     mobs = ["fanged rodent"]
     fleemobs = ["goblin"]
     rest = "3519"
+    rest2 = "park"
     huntarea = "5923"
     roomboundry = ["5922"]
     attack = "attack"
@@ -248,6 +252,7 @@ elsif Myname == "Woory"
     #huntarea = "5368"
     #roomboundry = ["5363"]
     rest = "landing"
+    rest2 = "park"
     attack = "attack"
     $CMAN = "cman feint"
     stance = "offensive"
@@ -269,6 +274,7 @@ elsif Myname == "Wardrob"
     mobs = ["thyril", "relnak"]
     fleemobs = ["wraith"]
     rest = "landing"
+    rest2 = "park"
     huntarea = "7545"
     roomboundry = ["7544"]
     attack = "attack"
@@ -291,6 +297,7 @@ elsif Myname == "Loods"
     mobs = ["giant ant"]
     fleemobs = ["nothing"]
     rest = "landing"
+    rest2 = "park"
     huntarea = "ants"
     roomboundry = [6766,6764,6776,6786]
     attack = "attack"
@@ -314,7 +321,12 @@ elsif Myname == "Wiiz"
     fleemobs = ["none2"]
     huntarea = "8470"
     roomboundry = ["8469","8495"]
+    #mobs = ["zombie"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7874"
+    #roomboundry = ["7873"]
     rest = "landing"
+    rest2 = "park"
     attack = "incant 904 channel"
     stance = "offensive"
     flee_count = 1
@@ -336,7 +348,7 @@ else
     exit
 end
 
-mybigshot_monitor = proc { |server_string|
+mybigshot_runner_monitor = proc { |server_string|
   if server_string =~ /obvious signs of someone hiding/i
     $obvious_hiding_player = true
   elsif server_string =~ /<a exist="\d+" noun="([a-zA-Z]*?)">[a-zA-Z]*?<\/a> leaps from hiding to attack!/i
@@ -517,6 +529,7 @@ hands_check = proc {
 sell = proc {
     if not $skipsale
         Script.run('poolparty')
+        Spell[1205].cast if Spell[1205].known? && Spell[1205].affordable?
         Script.run('sloot', "sell")
     end
     Script.run('waggle')
@@ -527,6 +540,7 @@ sell = proc {
     end
     if Myname == "Wiiz"
       Script.run('mytable')
+      Script.start('wiiz')
     end
     if Myname == "Aiss"
       Script.run('castany', "1")
@@ -801,7 +815,7 @@ attack_target = proc { |target|
 openlook.call()
 Script.run('checkbank')
 if percentmana() < 25
-  DownstreamHook.remove("mybigshot_monitor")
+  DownstreamHook.remove("mybigshot_runner_monitor")
   go2restbefore.call()
   go2rest.call()
   while percentmana() < 99
@@ -812,7 +826,7 @@ if percentmana() < 25
 end
 putawayweapon.call()
 empty_hands
-if Myname == "Wiiz" and Room.current.id.to_s =~ /^228$/
+if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$)/
     Script.run('bank')
 end
 getweapon.call()
@@ -820,7 +834,7 @@ start_watch()
 gohunt.call()
 $numhunts = $numhunts + 1
 global_vars()
-DownstreamHook.add("mybigshot_monitor", mybigshot_monitor)
+DownstreamHook.add("mybigshot_runner_monitor", mybigshot_runner_monitor)
 echo "BEGIN HUNTING" if $debug
 
 loop {
@@ -852,7 +866,7 @@ loop {
   check_standing.call()
   if $need_healing or $need_bless or $need_rest or $need_sale
     stop_active.call()
-    DownstreamHook.remove("mybigshot_monitor")
+    DownstreamHook.remove("mybigshot_runner_monitor")
     go2restbefore.call()
     go2rest.call()
     stop_watch()
@@ -877,6 +891,7 @@ loop {
         Script.run('useherbs', "--buy=on in my #{herbsack}")
       end
     end
+    Script.run('go2', "#{rest2}") if rest2
     if $need_bless
       getweapon.call()
       if $arrows
@@ -985,6 +1000,7 @@ loop {
       putawayweapon.call()
     end
     sell.call()
+    Script.run('go2', "#{rest2}") if rest2
     if defined?(med)
       fput "#{med}"
     end
@@ -1006,6 +1022,7 @@ loop {
     end
     if Myname == "Wiiz"
         Script.run('bank')
+        kill_script "krisloop"
     end
     getweapon.call()
     start_watch()

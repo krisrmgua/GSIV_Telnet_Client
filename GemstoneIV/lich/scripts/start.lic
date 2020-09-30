@@ -12,7 +12,7 @@ elsif Myname == "Wiiz"
   sleep 1
   Script.start('keepalive')
   Script.start('autoinvitefriends')
-  Script.start('wiiz')
+  #Script.start('wiiz')
   Script.start('krisloop')
 else
   kill_script "krisloop"

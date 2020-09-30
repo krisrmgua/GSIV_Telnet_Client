@@ -93,8 +93,8 @@ loop {
         end
     end
     if line =~ /Keyboard|AFK|waiting for you to|^(?!.*audible).*REPORT.*$/i
-        if line !~ /\[help\]|\[Help\]/
-          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"ALERT: #{line}\"") 
+        if line !~ /\[help\]|\[Help\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]/
+          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"(#{Myname}) ALERT: #{line}\"") 
         end
     end
     if line =~ /thinks, "Quitmana/

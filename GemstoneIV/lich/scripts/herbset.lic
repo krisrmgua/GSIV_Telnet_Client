@@ -1,6 +1,7 @@
 herbs = ["acantha leaf","basal moss","wolifrew lichen","ambrominas leaf","aloeas stem","ephlox moss","pothinir grass","torban leaf","haphip root","woth flower","sovyn clove"]
+arraylength = 12
 herbcount = 0
-while herbcount < 12
+while herbcount < arraylength
     count = 0
     fput "close my greatc"
     fput "get my #{herbs[herbcount]}"

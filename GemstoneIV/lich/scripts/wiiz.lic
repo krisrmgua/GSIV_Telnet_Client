@@ -15,7 +15,7 @@ waggle_it = proc { |target|
 }
 
 loop {
-    if Room.current.id.to_s =~ /^228$/ or Room.current.id.to_s =~ /^4142$/
+    if Room.current.id.to_s =~ /^228$/ or Room.current.id.to_s =~ /^4142$/ or Room.current.id.to_s =~ /^288$/
         waggle_it.call('Clu')
         waggle_it.call('Woory')
         waggle_it.call('Pristeen')

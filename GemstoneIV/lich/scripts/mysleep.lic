@@ -1,4 +1,11 @@
 if script.vars[1]
+  ntime = 0
   dtime = script.vars[1]
-  sleep dtime.to_i
+  dtime = dtime.to_i
+  while ntime < dtime
+      sleep 1
+      cdown = dtime - ntime
+      echo "#{cdown}"
+      ntime = ntime + 1
+  end
 end
