@@ -1,4 +1,4 @@
 loop {
   fput "quit" if percentmana() > 99
-  sleep 60
+  sleep 15
 }

@@ -54,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"Wiiz", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -184,6 +184,11 @@ loop {
         kill_script "mybigshot_runner"
         Script.run('go2', 'landing')
         fput "join #{joiny}"
+    end
+    if line =~ /.*Focused.*thinks\, \"Wiiz/
+        kill_script "mybigshot_runner"
+        Script.run('go2', 'park2')
+        fput "join wiiz"
     end
     if line =~ /.*Focused.*thinks\, \"Hunt/
         if line !~ /Focused to/

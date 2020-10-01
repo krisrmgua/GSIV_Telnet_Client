@@ -9,10 +9,10 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="FF0000" bg='3FCF00'>an inlaid gold ring</highlight>
 	<highlight fg="FF0000">(a|an) gold ring|(a|an) \w+ gold ring|(a|an) \w+ \w+ gold ring|a crystal amulet</highlight>
         <highlight fg="CE8C5C">(a|an) \w+?-?\w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
-        <highlight fg="9AF312">(a|an|some) (s\'|n\'|t\')?\w+?\s?\w+?\s?\w+\s(?:amethyst|cube|quartz|ruby|pearl|garnet|opal|sapphire|gem|amber|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)</highlight>
+        <highlight fg="9AF312">(a|an|some) (s\'|n\'|t\')?\w+?\s?\w+?\s?\w+\s(?:amethyst|cube|quartz|ruby|pearl|garnet|opal|sapphire|gem|amber|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)($| |,|\.)</highlight>
         <highlight fg="479B95">(a|an|some) \w+?\s?\w+?\s?\w+\s(?:lockpick|statue)</highlight>
-        <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone| a \w+?\s?\w+ coin|a \w+?\s?\w+ figurine</highlight>
-	<highlight fg="B8AA44">You gather the remaining (\d+) coins</highlight>
+        <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a \w+?\s?\w+ coin($| |,|\.)|a \w+?\s?\w+ figurine</highlight>
+	<highlight fg="B8AA44">You gather the remaining (\d+) coins|You feel intense satisfaction at a task well done.</highlight>
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
 	<highlight fg="F6931D">nods to|nods at|pokes you|taps you lightly on the shoulder|taps you</highlight>
 	<highlight fg="FF0000">the body of</highlight>
@@ -21,7 +21,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="48C014">is in good shape|Despite no apparent injuries|no apparent injuries\.</highlight>
 	<highlight fg='9090ff'>^.*remaining\. \]$</highlight>
 	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|You have no silver coins with you.|before sinking into their surface|appears to become incorporated into them|obvious signs of someone hiding|for a moment and then appears to become incorporated into it.|sinking into its surface.</highlight>
-	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
+	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a shackle-hewn leaf-etched diamond|a tree-shaped leaf-etched diamond|a cookie-shaped star-of-Tamzyrr diamond|a cookie-shaped blue sapphire|a cookie-shaped pink sapphire|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
 	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
@@ -31,14 +31,14 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='FFFF00'>GameMaster|GameHost</highlight>
 	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?!.*audible)(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
 	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]</highlight>
-	<highlight fg='00A2FF'>acantha leaf</highlight>
-	<highlight fg='00FFFF'>ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion</highlight>
-	<highlight fg='00FFFF' bg='282828'>pothinir grass|aloeas stem|bolmara potion|ephlox moss|tincture of pothinir|tincture of aloeas|tincture of ephlox</highlight>
-	<highlight fg='FFA200'>haphip root|cactacae spine|torban leaf|talneo potion</highlight>
-	<highlight fg='FFA200' bg='282828'>woth flower|brostheras potion|wingstem potion|sovyn clove|calamia fruit</highlight>
-	<highlight fg='282828' bg='FFA200'>roasted ratweed tea</highlight>
-	<highlight fg='282828' bg='A72020'>sticky lichen tea</highlight>
-	<highlight fg='282828' bg='D3D828'>crushed cavegrass tea</highlight>
+	<highlight fg='00A2FF'>(?i)(acantha leaf tea|acantha leaf|yabathilium fruit|Iceberry Tart|grey mushroom potion|green mushroom potion|tincture of acantha|Olak\'s Ol'style ale|sassafras tea|Bloody Krolvin)</highlight>
+	<highlight fg='00FFFF'>(?i)(Tundra Grass|Mama Dwarf's\'|Elk Horn Potion|Semak's Smooth\'|Leaftoe\'s Lichen Tart|Orc\'s Head\'|Dabbings Family Tart|Lost Dogwater|bubbling brown ale|chunky black ale|rusty red ale|thick foggy ale|tincture of ambrominas|tincture of basal|tincture of rose-marrow|tincture of wolifrew|ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion|sweetfern tea|gingko nut tea|feverfew tea|red lichen tea)</highlight>
+	<highlight fg='00FFFF' bg='282828'>(?i)(Musk Ox Tart|Ram\'s Bladder|Snowflake Elixer|Aged Schooner\'|Dark Swampwater\'|Kenar's Dropjaw\'|Frog\'s Bone Porr|Golden Goose|pothinir grass|aloeas stem|bolmara potion|ephlox moss|tincture of pothinir|tincture of bolmara|glowing mold tea|tincture of aloeas|tincture of ephlox|sweetfern potion|gingko nut potion|feverfew potion|red lichen potion)</highlight>
+	<highlight fg='FFA200'>(?i)(Elk Fat Gel|Bearded Ladies|Rock Lizard Potion|Gert's Homemade\'|Sparrowhawk Pie|Agrak's Amber\'|Ma Leaftoe\'s Special|Miner's Muddy\'|spotted toadstool ale|brown weedroot ale|dull crimson ale|dark frothing ale|manroot tea|wyrmwood root tea|pennyroyal tea|valerian root tea|tincture of cactacae|tincture of talneo|tincture of haphip|tincture of torban|haphip root|cactacae spine|torban leaf|talneo potion)</highlight>
+	<highlight fg='FFA200' bg='282828'>(?i)(Walrus Blubber|Ptarmigan Feather|Earthworm Potion|Starfish Potion|Polar Bear Fat Soup|Flower Shaped Tart|Mad Mutt Frothy|Captn\' Pegleg\'s|Wort\'s Winter\'|Volcano Vision\'|Reaper\'s Red\'|Dacra\'s Dream\'|woth flower|brostheras potion|wingstem potion|sovyn clove|calamia fruit|Bur-clover Potion|stalactite brew|grainy black potion|dirty crevice brew|dirty rat fur potion|stone soot brew|stalagmite brew|manroot potion|angelica root potion|wyrmwood root potion|daggit root potion|pennyroyal potion|valerian root potion|tincture of calamia|tincture of sovyn|tincture of wingstem|tincture of bur-clover|tincture of brostheras|tincture of woth)</highlight>
+	<highlight fg='282828' bg='FFA200'>(?i)(roasted ratweed tea)</highlight>
+	<highlight fg='282828' bg='A72020'>(?i)(sticky lichen tea)</highlight>
+	<highlight fg='282828' bg='D3D828'>(?i)(crushed cavegrass tea)</highlight>
 	<highlight fg="ff4444">Muscles bunching under its scaled flesh*</highlight>
 	<highlight fg='FF0000' bg='FFE800'>a billowing shadowy cloud|windy vortex</highlight>
 	<highlight fg='D46A6A'>

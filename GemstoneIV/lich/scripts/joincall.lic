@@ -1,5 +1,7 @@
 if script.vars[1] == "hunt"
   what = script.vars[1]
+elsif script.vars[1] == "wiiz"
+  what = script.vars[1]
 else
   what = "join " + script.vars[1]
 end
@@ -20,3 +22,5 @@ sleep 3 if what == "hunt"
 fput "think to wiiz #{what}" 
 sleep 3 if what == "hunt"
 fput "think to noce #{what}" 
+sleep 3 if what == "hunt"
+fput "think to aiss #{what}" 

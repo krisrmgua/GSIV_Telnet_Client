@@ -66,10 +66,14 @@ elsif Myname == "Pristeen"
     med = "med"
     $OOM = 25 
 elsif Myname == "Aiss"
-    mobs = ["zombie"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
+    mobs = ["nedum vereri"]
+    fleemobs = ["none2"]
+    huntarea = "8470"
+    roomboundry = ["8469","8495"]
+    #mobs = ["zombie"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7874"
+    #roomboundry = ["7873"]
     rest = "landing"
     $skipsale = false
     attack = "incant 1106 channel"
@@ -918,6 +922,8 @@ loop {
             $gothere = true
             if weapon2 or $arrows2
                 if $arrows2
+                    put "put my #{$arrows2} in my #{$arrowssheath}" if $blessarrow
+                    put "get my #{$arrows} from my #{$arrowssheath}" if $blessarrow
                     break if $blessarrow
                     fput "put my #{$arrows} in my #{$arrowssheath}"
                     fput "get my #{$arrows2} from my #{$arrowssheath}"
@@ -963,8 +969,8 @@ loop {
             if weapon2 or $arrows2
                  if $arrows2
                     break if $blessarrow
-                    fput "put my #{$arrows2} in my #{$arrowssheath}"
-                    fput "get my #{$arrows} from my #{$arrowssheath}"
+                    fput "put my #{$arrows} in my #{$arrowssheath}"
+                    fput "get my #{$arrows2} from my #{$arrowssheath}"
                     $blessarrow = true
                 else
                     fput "swap"
@@ -993,14 +999,14 @@ loop {
       $weapon_dead = false
       $weapon2_dead = false
       if $arrows
-          fput "put my #{$arrows} in my #{$arrowssheath}"
+          fput "put my #{$arrows2} in my #{$arrowssheath}"
           fput "ready ammo #{$arrows}"
           $arrows_cycled = true
       end
       putawayweapon.call()
     end
     sell.call()
-    Script.run('go2', "#{rest2}") if rest2
+    Script.run('go2', "#{rest2}") if rest2 and Myname != "Wiiz"
     if defined?(med)
       fput "#{med}"
     end

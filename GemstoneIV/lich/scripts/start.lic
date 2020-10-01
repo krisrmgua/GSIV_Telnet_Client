@@ -4,7 +4,7 @@ if Myname == "Aiss"
   sleep 1
   Script.start('getnames', '1')
   Script.start('my_heal_tracker')
-  Script.start('taptoheal')
+  #Script.start('taptoheal')
   Script.start('krisloop')
 #  Script.start('healbot')
 elsif Myname == "Wiiz"
