@@ -321,14 +321,14 @@ elsif Myname == "Loods"
     encumbrance = 5
     active_scripts = [""]
 elsif Myname == "Wiiz"
-    mobs = ["nedum vereri"]
-    fleemobs = ["none2"]
-    huntarea = "8470"
-    roomboundry = ["8469","8495"]
-    #mobs = ["zombie"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "7874"
-    #roomboundry = ["7873"]
+    #mobs = ["nedum vereri"]
+    #fleemobs = ["none2"]
+    #huntarea = "8470"
+    #roomboundry = ["8469","8495"]
+    mobs = ["zombie"]
+    fleemobs = ["tomb spider"]
+    huntarea = "7874"
+    roomboundry = ["7873"]
     rest = "landing"
     rest2 = "park"
     attack = "incant 904 channel"
@@ -337,9 +337,9 @@ elsif Myname == "Wiiz"
     swings = 1
     skipwaitattack = 1
     hideme = 0
-    shield = ""
-    weapon = "staff"
-    sheath = "sheath"
+    shield = "shield"
+    weapon = ""
+    sheath = ""
     backpack = "backpack"
     cloak = "backpack"
     herbsack = "satchel"
@@ -547,7 +547,7 @@ sell = proc {
       Script.start('wiiz')
     end
     if Myname == "Aiss"
-      Script.run('castany', "1")
+      #Script.run('castany', "1")
     end
 }
 
@@ -728,7 +728,17 @@ attack_target = proc { |target|
       waitcastrt?
       fput "stance #{stance}"
       if Myname == "Monker" 
-        Script.run('combo', "#{target}")
+        Script.start('combo', "#{target}")
+        runtime = 0
+        while runtime < 40
+            sleep 1
+            if running? "combo"
+                runtime = runtime + 1
+            else
+                runtime = 41
+                kill_script "combo"
+            end
+        end 
         line = matchtimeout 2, "You slap yourself"
         if line =~ /slap yourself/
           $need_bless = true
@@ -1032,7 +1042,9 @@ loop {
     end
     getweapon.call()
     start_watch()
-    Script.run('go2', "#{huntarea}")
+    gohunt.call()
+    #fput "boost loot minor"
+    DownstreamHook.add("mybigshot_runner_monitor", mybigshot_runner_monitor)
     $numhunts = $numhunts + 1
     if Room.current.id.to_s != "#{huntarea}"
       check_standing.call()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.36.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkListStore" id="hoard_lockers_store">
@@ -59,9 +59,6 @@
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <signal name="destroy" handler="on_destroy" swapped="no"/>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -1461,7 +1458,7 @@ Enter "(?:aquamarine|gold) wand" and "gold ring" as separate entries.</property>
                                     <property name="can_focus">True</property>
                                     <property name="adjustment">sell_locksmith_pool_tip_adjustment</property>
                                     <property name="numeric">True</property>
-                                    <property name="value">-2.2351741811588166e-10</property>
+                                    <property name="value">-0.00000000022351741812</property>
                                   </object>
                                   <packing>
                                     <property name="left_attach">1</property>
@@ -1772,26 +1769,26 @@ Enter "(?:aquamarine|gold) wand" and "gold ring" as separate entries.</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Skin sheath</property>
+                                    <property name="label" translatable="yes">Skin Weapon (blunt)</property>
                                   </object>
                                   <packing>
-                                    <property name="left_attach">1</property>
+                                    <property name="left_attach">2</property>
                                     <property name="top_attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="skin_sheath">
+                                  <object class="GtkEntry" id="skin_weapon_blunt">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="width_chars">20</property>
                                   </object>
                                   <packing>
-                                    <property name="left_attach">1</property>
+                                    <property name="left_attach">2</property>
                                     <property name="top_attach">1</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="skin_weapon">
+                                  <object class="GtkEntry" id="skin_sheath">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="width_chars">20</property>
@@ -1806,12 +1803,41 @@ Enter "(?:aquamarine|gold) wand" and "gold ring" as separate entries.</property>
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="halign">start</property>
-                                    <property name="label" translatable="yes">Skin weapon</property>
+                                    <property name="label" translatable="yes">Skin sheath</property>
                                   </object>
                                   <packing>
                                     <property name="left_attach">0</property>
                                     <property name="top_attach">0</property>
                                   </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Skin weapon</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkEntry" id="skin_weapon">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="width_chars">20</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                                 <child>
                                   <placeholder/>
@@ -2111,6 +2137,9 @@ Enter "(?:aquamarine|gold) wand" and "gold ring" as separate entries.</property>
           </packing>
         </child>
       </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
     </child>
   </object>
 </interface>

@@ -23,3 +23,5 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Monker > /tmp/Monker.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Bize > /tmp/Bize.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Noce > /tmp/Noce.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Holed > /tmp/Holed.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Heldr > /tmp/Heldr.txt

@@ -185,7 +185,7 @@ loop {
         Script.run('go2', 'landing')
         fput "join #{joiny}"
     end
-    if line =~ /.*Focused.*thinks\, \"Wiiz/
+    if line =~ /.*Focused.*thinks\, \"Wiiz2/
         kill_script "mybigshot_runner"
         Script.run('go2', 'park2')
         fput "join wiiz"

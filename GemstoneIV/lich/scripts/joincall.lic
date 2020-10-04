@@ -1,6 +1,6 @@
 if script.vars[1] == "hunt"
   what = script.vars[1]
-elsif script.vars[1] == "wiiz"
+elsif script.vars[1] == "wiiz2"
   what = script.vars[1]
 else
   what = "join " + script.vars[1]

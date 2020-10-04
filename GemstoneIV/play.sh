@@ -16,7 +16,9 @@ echo -e "\t12:\tLoads"
 echo -e "\t13:\tLoods"
 echo -e "\t14:\tItiems"
 echo -e "\t15:\tItemim"
-echo -e "\t16:\tWiiz"
+echo -e "\t16:\tHoled"
+echo -e "\t17:\tHeldr"
+echo -e "\t18:\tWiiz"
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
 
@@ -84,8 +86,16 @@ then
     port=8015
 elif [ $num -eq 16 ]
 then
-    character=Wiiz
+    character=Holed
     port=8016
+elif [ $num -eq 17 ]
+then
+    character=Heldr
+    port=8017
+elif [ $num -eq 18 ]
+then
+    character=Wiiz
+    port=8018
 else
     echo "BAD INPUT"
     exit
