@@ -66,14 +66,14 @@ elsif Myname == "Pristeen"
     med = "med"
     $OOM = 25 
 elsif Myname == "Aiss"
-    mobs = ["nedum vereri"]
-    fleemobs = ["none2"]
-    huntarea = "8470"
-    roomboundry = ["8469","8495"]
-    #mobs = ["zombie"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "7874"
-    #roomboundry = ["7873"]
+    #mobs = ["nedum vereri"]
+    #fleemobs = ["none2"]
+    #huntarea = "8470"
+    #roomboundry = ["8469","8495"]
+    mobs = ["zombie"]
+    fleemobs = ["tomb spider"]
+    huntarea = "7874"
+    roomboundry = ["7873"]
     rest = "landing"
     $skipsale = false
     attack = "incant 1106 channel"
@@ -82,9 +82,9 @@ elsif Myname == "Aiss"
     swings = 9
     skipwaitattack = 1
     hideme = 0
-    shield = ""
-    weapon = "runestaff"
-    sheath = "sheath"
+    shield = "shield"
+    weapon = ""
+    sheath = ""
     backpack = "backpack"
     cloak = "greatcloak"
     herbsack = "sack"
@@ -171,16 +171,16 @@ elsif Myname == "Sorci"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Monker"
-    #mobs = ["lesser mummy"]
-    #fleemobs = ["greater spider"]
-    #huntarea = "4144"
-    #roomboundry = ["4171","4143"]
+    #mobs = ["nedum vereri"]
+    #fleemobs = ["none2"]
+    #huntarea = "8470"
+    #roomboundry = ["8469","8495"]
     mobs = ["wraith"]
-    fleemobs = ["greater orc"]
-    rest = "landing"
-    rest2 = "park"
+    fleemobs = ["tomb spider"]
     huntarea = "4175"
     roomboundry = ["4195","4187","4181"]
+    rest = "landing"
+    rest2 = "park"
     attack = "attack"
     stance = "defensive"
     flee_count = 1
@@ -351,6 +351,11 @@ elsif Myname == "Wiiz"
 else
     exit
 end
+
+
+alert_dead_body = proc {
+  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} DEAD BODY FOUND AT LOCATION: #{Room.current.id.to_s} \"")
+}
 
 mybigshot_runner_monitor = proc { |server_string|
   if server_string =~ /obvious signs of someone hiding/i
@@ -580,6 +585,7 @@ check_for_people = proc {
        #$need_flee = true
        GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$/}
        echo "PERSON FOUND" if $debug and $need_flee
+       GameObj.pcs.each {|s| alert_dead_body.call() if s.status =~ /dead/}
    end
    if $obvious_hiding_player
        $obvious_hiding_player = false
@@ -855,6 +861,7 @@ loop {
   global_vars()
   start_active.call()
   bs_wander.call(roomboundry)
+  echo "Current Room ID: #{Room.current.id.to_s}" if $debug
   if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     echo "Need Healing" if $debug
     $need_healing = true
@@ -1038,7 +1045,7 @@ loop {
     end
     if Myname == "Wiiz"
         Script.run('bank')
-        kill_script "krisloop"
+        #kill_script "krisloop"
     end
     getweapon.call()
     start_watch()

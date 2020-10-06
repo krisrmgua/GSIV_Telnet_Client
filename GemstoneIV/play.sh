@@ -1,24 +1,25 @@
 
 $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh
 
-echo -e "\t1:\tAiss"
-echo -e "\t2:\tClu"
-echo -e "\t3:\tMonker"
-echo -e "\t4:\tTrenus"
-echo -e "\t5:\tSorci"
-echo -e "\t6:\tWoory"
-echo -e "\t7:\tBize"
-echo -e "\t8:\tNoce"
-echo -e "\t9:\tSluf"
-echo -e "\t10:\tPristeen"
-echo -e "\t11:\tWardrob"
-echo -e "\t12:\tLoads"
-echo -e "\t13:\tLoods"
-echo -e "\t14:\tItiems"
-echo -e "\t15:\tItemim"
-echo -e "\t16:\tHoled"
-echo -e "\t17:\tHeldr"
-echo -e "\t18:\tWiiz"
+echo -e "\t1:\tAiss (6)"
+echo -e "\t2:\tClu (14)"
+echo -e "\t3:\tMonker (15)"
+echo -e "\t4:\tTrenus (4)"
+echo -e "\t5:\tSorci (13)"
+echo -e "\t6:\tWoory (3)"
+echo -e "\t7:\tBize (16)"
+echo -e "\t8:\tNoce (17)"
+echo -e "\t9:\tSluf (5)"
+echo -e "\t10:\tPristeen (7)"
+echo -e "\t11:\tWardrob (9)"
+echo -e "\t12:\tLoads (10)"
+echo -e "\t13:\tLoods (8)"
+echo -e "\t14:\tItiems (11)"
+echo -e "\t15:\tItemim (12)"
+echo -e "\t16:\tHoled (18)"
+echo -e "\t17:\tHeldr (19)"
+echo -e "\t18:\tHelumb (20)"
+echo -e "\t19:\tWiiz (0)"
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
 
@@ -94,8 +95,12 @@ then
     port=8017
 elif [ $num -eq 18 ]
 then
-    character=Wiiz
+    character=Helumb
     port=8018
+elif [ $num -eq 19 ]
+then
+    character=Wiiz
+    port=8019
 else
     echo "BAD INPUT"
     exit

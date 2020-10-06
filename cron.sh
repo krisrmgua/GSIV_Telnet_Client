@@ -25,3 +25,4 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Noce > /tmp/Noce.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Holed > /tmp/Holed.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Heldr > /tmp/Heldr.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Helumb > /tmp/Helumb.txt

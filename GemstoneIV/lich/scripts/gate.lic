@@ -1,0 +1,12 @@
+if Spell[304].known? and Spell[304].affordable?
+    Spell[304].cast("gate")
+end
+if Spell[1604].known? and Spell[1604].affordable?
+    Spell[1604].cast("gate")
+end
+if Spell[1207].known? and Spell[1207].affordable?
+    Spell[1207].cast("gate")
+end
+if Spell[407].known? and Spell[407].affordable?
+    Spell[407].cast("gate")
+end

@@ -12,7 +12,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
         <highlight fg="9AF312">(a|an|some) (s\'|n\'|t\')?\w+?\s?\w+?\s?\w+\s(?:amethyst|cube|quartz|ruby|pearl|garnet|opal|sapphire|gem|amber|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)($| |,|\.)</highlight>
         <highlight fg="479B95">(a|an|some) \w+?\s?\w+?\s?\w+\s(?:lockpick|statue)</highlight>
         <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a \w+?\s?\w+ coin($| |,|\.)|a \w+?\s?\w+ figurine|a piece of \w+ glass|a \w+ piece of eight</highlight>
-	<highlight fg="B8AA44">You gather the remaining (\d+) coins|You feel intense satisfaction at a task well done.</highlight>
+	<highlight fg="B8AA44">You gather the remaining (\d+) coins|You manage to successfully place|You feel intense satisfaction at a task well done.</highlight>
 	<highlight fg="FFACDB">healing|healers|healer|heal|empath</highlight>
 	<highlight fg="F6931D">nods to|nods at|pokes you|taps you lightly on the shoulder|taps you</highlight>
 	<highlight fg="FF0000">the body of</highlight>
@@ -21,7 +21,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="48C014">is in good shape|Despite no apparent injuries|no apparent injuries\.</highlight>
 	<highlight fg='9090ff'>^.*remaining\. \]$</highlight>
 	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|You have no silver coins with you.|You sense that your soul has been bound to your body for|before sinking into their surface|appears to become incorporated into them|obvious signs of someone hiding|for a moment and then appears to become incorporated into it.|sinking into its surface.</highlight>
-	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a shackle-hewn leaf-etched diamond|a tree-shaped leaf-etched diamond|a cookie-shaped star-of-Tamzyrr diamond|a cookie-shaped blue sapphire|a cookie-shaped pink sapphire|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
+	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|vaalin and faenor turtle figure|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a shackle-hewn leaf-etched diamond|a tree-shaped leaf-etched diamond|a cookie-shaped star-of-Tamzyrr diamond|a cookie-shaped blue sapphire|a cookie-shaped pink sapphire|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
 	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
@@ -52,6 +52,33 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 		|^SEND.*
 	</highlight>
 	
+
+        <!--Death Tombstone-->
+        <highlight fg='959090' bg='393333'>smoky opaline glass sea star brooch</highlight>
+        <!--Death Remains Meat (Turn to toggle LOOK to see what)-->
+        <highlight fg='959090' bg='393333'>pearl-trimmed mekret teardrop pendant</highlight>
+
+        <!--Wizard Imbeded Items-->
+	<highlight fg='ffffff' bg='462A7D'>tarnished silver stud|small silver belt buckle|tri-stranded silver pinky ring|wide silver necklace</highlight>
+        <!--Cleric Holly Receptical Holder -->
+	<highlight fg='ECCFFA'>dainty silver bracelet</highlight>
+
+        <!--Fire Flare Weapons-->
+        <highlight fg='FC0000'>troll hide gauntlets|pyrothag hide shoes|drakar-edged vultite bodkin|etched ebon vultite cinquedea</highlight>
+        <!--Ice Flare Weapons-->
+        <highlight fg='00FCED'>wolverine pelt gauntlets|caribou hide shoes|cross-hilted misericord</highlight>
+        <!--Acid Flare Weapons-->
+        <highlight fg='22CA0B'>small eonake backsword</highlight>
+        <!--Earth Flare Weapons-->
+        <highlight fg='CAA10B'>roa\'ter skin gauntlets|thrak hide shoes</highlight>
+        <!--Lightning Flare Weapons-->
+        <highlight fg='D0DB21'>viper skin shoes|cobra skin gauntlets|zorchar-edged vultite basilard</highlight>
+	<!--Vacuum Flare Weapons-->
+	<highlight fg='9721DB'>rolton skin shoes|manticore hide gauntlets|matte black serpent-engraved forked dagger</highlight>
+	<!--NoFlare But Blessable Weapons-->
+        <highlight fg='FFFFFF' bg='19181A'>dark vultite kidney dagger with a scallop-edged pommel</highlight>
+
+
 	<!--Default Lich Channel Name-->
 	<highlight fg='00C851'>
 		^\[(.*?)\]
