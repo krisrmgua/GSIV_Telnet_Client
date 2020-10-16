@@ -1,0 +1,4 @@
+dname = script.vars[1]
+Script.run('go2name', "#{dname}")
+fput "hold #{dname}"
+fput "symbol of return"

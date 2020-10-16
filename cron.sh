@@ -26,3 +26,4 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Holed > /tmp/Holed.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Heldr > /tmp/Heldr.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Helumb > /tmp/Helumb.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Hudem > /tmp/Hudem.txt

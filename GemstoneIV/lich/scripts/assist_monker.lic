@@ -1,0 +1,26 @@
+group_check = proc {
+    fput "group"
+    line = matchtimeout 7, "is the leader", "You are not currently in a group"
+    if line =~ /You are not currently in a/
+        Script.run('mygo2name', 'monker')
+        fput "join monker"
+    end
+    fput "look"
+}
+
+loop{
+    line = matchtimeout 5, "Monker attempts"
+    if line =~ /Monker attempts/
+        keepon = true
+        while keepon
+            Script.run('c')
+            line = matchtimeout 3, "You do not"
+            if line =~ /You do not/
+                keepon = nil
+            end
+            waitrt?
+            waitcastrt?
+        end
+    end
+    group_check.call()
+}

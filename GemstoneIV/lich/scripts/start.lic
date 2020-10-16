@@ -6,6 +6,7 @@ if Myname == "Aiss"
   Script.start('my_heal_tracker')
   #Script.start('taptoheal')
   Script.start('krisloop')
+  Script.start('my_health_check')
 #  Script.start('healbot')
 elsif Myname == "Wiiz"
   kill_script "krisloop"
@@ -18,4 +19,5 @@ else
   kill_script "krisloop"
   sleep 1
   Script.start('krisloop')
+  Script.start('my_health_check')
 end

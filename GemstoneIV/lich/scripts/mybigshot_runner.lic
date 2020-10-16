@@ -4,6 +4,8 @@ $skipsale = false
 restbefore = nil
 $OOM = 5
 $CMAN = nil
+$CMAN_NAME = nil
+$MSTRIKE = nil
 $preattackdefspell = ""
 $preattackattspell = ""
 $numkilled = 0
@@ -41,6 +43,10 @@ if Myname == "Clu"
     encumbrance = 20
     active_scripts = [""]
 elsif Myname == "Pristeen"
+    #mobs = ["ghostly pooka"]
+    #huntarea = "4540"
+    #roomboundry = ["4541","4537","7325","7429"]
+    #fleemobs = ["tomb spider"]
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
     huntarea = "7319"
@@ -125,10 +131,14 @@ elsif Myname == "Sluf"
     active_scripts = ["surge"]
     $OOM = 0 
 elsif Myname == "Trenus"
-    mobs = ["zombie"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
+    #mobs = ["zombie"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7874"
+    #roomboundry = ["7873"]
     rest = "landing"
     rest2 = "park"
     attack = "incant 904 channel"
@@ -148,13 +158,18 @@ elsif Myname == "Trenus"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Sorci"
-    mobs = ["zombie"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
+    #mobs = ["zombie"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7874"
+    #roomboundry = ["7873"]
     rest = "landing"
     rest2 = "park"
-    attack = "incant 702 channel"
+    #attack = "incant 702 channel"
+    attack = "incant 705 channel"
     stance = "defensive"
     flee_count = 1
     swings = 1
@@ -187,6 +202,8 @@ elsif Myname == "Monker"
     swings = 1
     skipwaitattack = 1
     hideme = 0
+    $CMAN = "cman burst of swiftness"
+    $CMAN_NAME = "Burst of Swiftness"
     shield = ""
     weapon = ""
     boots = ""
@@ -247,18 +264,19 @@ elsif Myname == "Bize"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Woory"
-    mobs = ["zombie"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
-    #mobs = ["cyclops"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
+    #mobs = ["zombie"]
     #fleemobs = ["tomb spider"]
-    #huntarea = "5368"
-    #roomboundry = ["5363"]
-    rest = "landing"
+    #huntarea = "7874"
+    #roomboundry = ["7873"]
+    rest = "wgrave"
     rest2 = "park"
     attack = "attack"
     $CMAN = "cman feint"
+    $MSTRIKE = "mstrike"
     stance = "offensive"
     flee_count = 1
     swings = 9
@@ -274,13 +292,17 @@ elsif Myname == "Woory"
     skinsheath = "thigh-sheath"
     encumbrance = 35
     active_scripts = [""]
-elsif Myname == "Wardrob"
-    mobs = ["thyril", "relnak"]
+elsif Myname == "Hudem"
+    #mobs = ["thyril", "relnak"]
+    #fleemobs = ["wraith"]
+    #huntarea = "7545"
+    #roomboundry = ["7544"]
+    mobs = ["greater burrow orc","lesser burrow orc"]
     fleemobs = ["wraith"]
+    huntarea = "7950"
+    roomboundry = ["7949","7965"]
     rest = "landing"
     rest2 = "park"
-    huntarea = "7545"
-    roomboundry = ["7544"]
     attack = "attack"
     stance = "offensive"
     flee_count = 1
@@ -288,16 +310,16 @@ elsif Myname == "Wardrob"
     skipwaitattack = 0
     hideme = 0
     shield = "shield"
-    weapon = "broadsword"
+    weapon = "longsword"
     sheath = "sheath"
     backpack = "greatcloak"
-    cloak = "greatcloak"
+    cloak = "cloak"
     herbsack = "sack"
     skinknife = ""
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
-elsif Myname == "Loods"
+elsif Myname == "Hudem"
     mobs = ["giant ant"]
     fleemobs = ["nothing"]
     rest = "landing"
@@ -311,11 +333,11 @@ elsif Myname == "Loods"
     skipwaitattack = 0
     hideme = 0
     shield = "shield"
-    weapon = "sword"
+    weapon = "longsword"
     sheath = "sheath"
-    backpack = "jacket"
-    cloak = "jacket"
-    herbsack = "sack"
+    backpack = "pack"
+    cloak = "pack"
+    herbsack = "pack"
     skinknife = ""
     skinsheath = ""
     encumbrance = 5
@@ -353,8 +375,8 @@ else
 end
 
 
-alert_dead_body = proc {
-  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} DEAD BODY FOUND AT LOCATION: #{Room.current.id.to_s} \"")
+alert_dead_body = proc { |tmpname|
+  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
 }
 
 mybigshot_runner_monitor = proc { |server_string|
@@ -543,7 +565,7 @@ sell = proc {
     end
     Script.run('waggle')
     if not $skipsale
-        Script.run('mywiztable')
+        #Script.run('mywiztable')
         Script.run('checkbank')
         Script.run('yawn')
     end
@@ -585,7 +607,7 @@ check_for_people = proc {
        #$need_flee = true
        GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$/}
        echo "PERSON FOUND" if $debug and $need_flee
-       GameObj.pcs.each {|s| alert_dead_body.call() if s.status =~ /dead/}
+       GameObj.pcs.each {|s| alert_dead_body.call(s.noun) if s.status =~ /dead/}
    end
    if $obvious_hiding_player
        $obvious_hiding_player = false
@@ -665,11 +687,13 @@ print_stats = proc {
 }
 
 attack_target = proc { |target|
+  target = "orc" if target == "greater burrow orc"
+  target = "orc" if target == "lesser burrow orc"
   CMAN_EXE = nil
   if skipwaitattack == 0
-    line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
+    line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "slashes", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
   end
-  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
+  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line =~ /slashes with a .* you!/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
     loop = 0
     while loop < swings
       check_flee_count.call()
@@ -719,9 +743,21 @@ attack_target = proc { |target|
       break if $need_flee == true
       if $CMAN and not CMAN_EXE
         if checkstamina 30
-          fput "#{$CMAN} #{target}"
-          waitrt?
-          CMAN_EXE = true
+          echo "Running CMAN: #{$CMAN}" if $debug
+          if $CMAN_NAME
+              tmpcmanname = "#{$CMAN_NAME} Recovery"
+              if !Spell[$CMAN_NAME].active? and !Spell[tmpcmanname].active? 
+                  fput "#{$CMAN} #{target}"
+                  waitrt?
+                  CMAN_EXE = true
+              end
+          else
+              fput "#{$CMAN} #{target}"
+              waitrt?
+              CMAN_EXE = true
+          end
+        else
+            echo "Running CMAN: Not Enough Stamina" if $debug
         end
       end
       if $preattackattspell != ""
@@ -730,16 +766,37 @@ attack_target = proc { |target|
           Spell[$preattackattspell].cast(target) if Spell[$preattackattspell].affordable?
         end
       end
+      if $MSTRIKE
+        if checkstamina 30
+          if !Spell["Multi-Strike Recovery"].active?
+              fput "stance #{stance}"
+              fput "#{$MSTRIKE} #{target}"
+              line = matchtimeout 5, "your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
+              if line =~ /^You .* has no effect/
+                  waitrt?
+                  $need_bless = true
+                  echo "Need Bless" if $debug
+                  break
+              end
+          end
+        end
+      end
       waitrt?
       waitcastrt?
       fput "stance #{stance}"
       if Myname == "Monker" 
+        kill_script "combo" if running? "combo"
         Script.start('combo', "#{target}")
         runtime = 0
         while runtime < 40
             sleep 1
             if running? "combo"
                 runtime = runtime + 1
+                check_flee_count.call()
+                if $need_flee == true
+                    runtime = 41
+                    kill_script "combo"
+                end
             else
                 runtime = 41
                 kill_script "combo"
@@ -846,7 +903,7 @@ if percentmana() < 25
 end
 putawayweapon.call()
 empty_hands
-if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$)/
+if Room.current.id.to_s =~ /(^228$|^288$)/
     Script.run('bank')
 end
 getweapon.call()

@@ -270,11 +270,10 @@ class PoolPartyConfig
   def tip_type=(type)
     cleaned_type = type.downcase.strip.downcase
 
-    if cleaned_type != "percent" ||
-        cleaned_type != "silver"
+    if cleaned_type != "percent" and cleaned_type != "silver"
       raise ArgumentError.new("Tip Type argument exception: Only PERCENT or SILVER is allowed")
     end
-
+    CharSettings['tip_type'] = type
     @tip_type = CharSettings['tip_type']
   end
 

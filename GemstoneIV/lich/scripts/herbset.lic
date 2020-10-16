@@ -1,5 +1,5 @@
-herbs = ["acantha leaf","basal moss","wolifrew lichen","ambrominas leaf","aloeas stem","ephlox moss","pothinir grass","torban leaf","haphip root","woth flower","sovyn clove"]
-arraylength = 12
+herbs = ["acantha leaf", "acantha leaf", "basal moss","wolifrew lichen","ambrominas leaf","aloeas stem","ephlox moss","pothinir grass","calamia fruit", "cactacae spine", "torban leaf","haphip root","woth flower","sovyn clove"]
+arraylength = herbs.length
 herbcount = 0
 while herbcount < arraylength
     count = 0
@@ -11,7 +11,7 @@ while herbcount < arraylength
         exit
     end
     if line =~ /You remove/
-        while count < 49
+        while count < 50
             fput "bundle remove"
             line2 = matchtimeout 3, "You carefully", "You only", "You are not"
             if line2 =~ /You carefully/ or line2 =~ /You only/
@@ -31,12 +31,13 @@ while herbcount < arraylength
         fput "get #{herbs[herbcount]}"
         count = 1
         echo "#{herbs[herbcount]}: #{count}"
-        while count < 50
-           fput "get #{herbs[herbcount]}"
-           fput "bundle"
-           count = count + 1
-           echo "#{herbs[herbcount]}: #{count}"
-        end
+        #while count < 50
+        #   fput "get #{herbs[herbcount]}"
+        #   fput "bundle"
+        #   count = count + 1
+        #   echo "#{herbs[herbcount]}: #{count}"
+        #end
+        fput "gather #{herbs[herbcount]}"
         fput "open my greatc"
         fput "put #{herbs[herbcount]} in my greatcloak"
         fput "close my greatc"          

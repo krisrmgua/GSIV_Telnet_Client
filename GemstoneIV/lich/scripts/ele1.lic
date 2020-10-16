@@ -1,0 +1,25 @@
+waggle_it = proc { |target|
+  bodies = GameObj.pcs.select { |pc| pc.status =~ /dead/ }.map{ |pc| pc.name }
+  has_bodies = bodies.length > 0
+  bodies_regex = /(#{bodies.join('|')})/
+
+  bodies_regex = /(#{target})/
+  if bodies.include? "#{target}"
+    echo "#{target} is dead SKIPPING"
+    #echo bodies
+  else
+    Script.run('waggle', "--cast-list=401 --start-at=10 --stop-at=240 #{target}")
+    #echo "Does not have name"
+    #echo bodies
+  end
+}
+
+waggle_it.call('Clu')
+waggle_it.call('Woory')
+waggle_it.call('Pristeen')
+waggle_it.call('Sluf')
+waggle_it.call('Monker')
+waggle_it.call('Sorci')
+waggle_it.call('Noce')
+waggle_it.call('Aiss')
+waggle_it.call('Bize')

@@ -1,0 +1,7 @@
+name = script.vars[1]
+fput "think to #{name} WhereRUnow"
+line = matchtimeout 3, "IAMHERE"
+if line =~ /thinks\, \"IAMHERE (\d+)/
+   dlocc = $1
+   Script.run('go2', "#{dlocc}")
+end

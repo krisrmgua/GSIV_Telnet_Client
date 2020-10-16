@@ -1,6 +1,13 @@
-#Myname = Char.name
+Myname = Char.name
 Script.start('krisloop')
-Script.start('mybigshot_runner')
+if Myname == "Monker"
+  #Script.start('mybigshot_runner_monker')
+  Script.start('mybigshot_runner')
+elsif Myname == "Pristeen"
+  Script.start('mybigshot_group_runner')
+else
+  Script.start('mybigshot_runner')
+end
 Script.start('my_health_check')
 Script.start('log')
 #if Myname == "Clu"

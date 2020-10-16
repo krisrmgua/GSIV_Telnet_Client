@@ -85,6 +85,10 @@ scan_for_players = proc { |pro|
         CharSettings['known_players'].store("Monker", "kris")
         CharSettings['known_players'].delete("Wiiz")
         CharSettings['known_players'].store("Wiiz", "kris")
+        CharSettings['known_players'].delete("Please")
+        CharSettings['known_players'].delete("rephrase")
+        CharSettings['known_players'].delete("that")
+        CharSettings['known_players'].delete("command.")
 	#echo pro + " Scan Complete.***"
         echo "***Added #{number_of_players_added} new #{pro} to the list.***"
 }
@@ -103,12 +107,15 @@ read_names = proc {
 
 read_names.call()
 scan_for_players.call("warrior")
+sleep 1
 scan_for_players.call("rogue")
 scan_for_players.call("wizard")
 scan_for_players.call("cleric")
+sleep 2
 scan_for_players.call("empath")
 scan_for_players.call("sorcerer")
 scan_for_players.call("ranger")
+sleep 2
 scan_for_players.call("bard")
 scan_for_players.call("monk")
 scan_for_players.call("paladin")

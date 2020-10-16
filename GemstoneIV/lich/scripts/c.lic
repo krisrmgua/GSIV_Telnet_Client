@@ -14,16 +14,42 @@ change_stance = proc { |stance|
 Myname = Char.name
 waitrt?
 if Myname == "Trenus"
-    change_stance.call('offensive')
-    fput "incant 904 channel"
+    if Spell[904].known? and Spell[904].affordable?
+        change_stance.call('offensive')
+        fput "incant 904 channel"
+    else
+        echo "Out of Mana"
+        echo "You do not currently have a target"
+    end
 elsif Myname == "Wiiz"
-    change_stance.call('offensive')
-    fput "incant 904 channel"
+    if Spell[904].known? and Spell[904].affordable?
+        change_stance.call('offensive')
+        fput "incant 904 channel"
+    else
+        echo "Out of Mana"
+        echo "You do not currently have a target"
+    end
 elsif Myname == "Aiss"
-    fput "incant 1106 channel"
-    #fput "incant 1101 channel"
+    if Spell[1115].known? and Spell[1115].affordable?
+        #fput "incant 1106 channel"
+        #fput "incant 1101 channel"
+        fput "incant 1115 channel"
+    else
+        echo "Out of Mana"
+        echo "You do not currently have a target"
+    end
 elsif Myname == "Sorci"
-    fput "incant 702 channel"
+    if Spell[702].known? and Spell[702].affordable?
+        fput "incant 702 channel"
+    else
+        echo "Out of Mana"
+        echo "You do not currently have a target"
+    end
 elsif Myname == "Pristeen"
-    fput "incant 302 channel"
+    if Spell[302].known? and Spell[302].affordable?
+        fput "incant 302 channel"
+    else
+        echo "Out of Mana"
+        echo "You do not currently have a target"
+    end
 end

@@ -54,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"Wiiz", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -65,6 +65,14 @@ loop {
     #        #monitor_interaction()
     #    end
     #end
+    if line =~ /([A-Z,a-z]+) whispers, \"RUFULL/
+	whipserer = $1
+        if check_mind(100)
+            fput "whisper #{whipserer} IAMFULL"
+        else
+            fput "whisper #{whipserer} not yet"
+        end
+    end
     if line =~ /([A-Z,a-z]+) whispers, \"Bless/
 	healee = $1
         if Myname == "Pristeen"
@@ -155,13 +163,13 @@ loop {
       dlevel = $1
       system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
-    if line =~ /([A-Z,a-z]+) (quietly asks|quietly says|says|yells|asks|recites|join).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname == "Aiss"
-          dname = $1
-        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/
+    if line =~ /([A-Z,a-z]+) (quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
+        dname = $1
+        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Aiss|Wardrob/
           #fput "think to pristeen #{dname} casting Spells"
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
         end
-    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname == "Aiss"
+    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Aiss|Wardrob/
         if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/
           #fput "think to pristeen KRIS SPELLS"
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
@@ -179,11 +187,79 @@ loop {
             sleep 2
             fput "slap monker"
     end
-    if line =~ /.*Focused.*thinks\, \"Join ([A-Z,a-z]+)/ and Myname != "Bize"
+    if line =~ /.*Focused.*think.*\, \"Join ([A-Z,a-z,0-9]+)/ and Myname != "Bize"
         joiny = $1
+        if joiny == "pristeen" and Myname =~ /Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+            kill_script "mybigshot_runner"
+            kill_script "castany"
+            kill_script "assist"
+            Script.start('my_health_check')
+            Script.run('rem')
+            if Myname == "Trenus" and Room.current.id.to_s =~ /^228$|^288$/
+              sleep 10
+              Script.run('go2', 'opengate')
+              Script.run('gate')
+              Script.run('gate')
+            end
+            Script.run('go2name', 'pristeen')
+            fput "join pristeen"
+            Script.start('assist')
+            if Myname == "Aiss"
+              sleep 50
+              echo "Casting Trolls Blood"
+              Spell[1125].cast() if Spell[1125].affordable? 
+            end
+        elsif joiny == "pristeen2" and Myname =~ /Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+            kill_script "assist"
+            sleep 3
+            kill_script "assist"
+            Script.run('go2', 'park')
+            kill_script "assist"
+            wtime = rand(1..20)
+            sleep wtime
+            Script.run('wear')
+            kill_script "assist"
+            if Myname == "Aiss"
+                Script.run('sheal')
+            else
+                Script.run('askheal')
+            end
+            Script.run('useherbs', "in bin")
+            Script.run('useherbs', "on bench")
+            Script.run('useherbs', "under bench")
+            Script.run('useherbs', "--buy=on in my kit")
+            Script.run('go2', 'park')
+            Script.run('poolparty')
+            Script.run('sloot', 'sell')
+            Script.run('bank')
+            Script.run('waggle')
+            if Myname == "Aiss"
+                Script.start('castany', '1') 
+            end
+            fput "med" if Myname == "Aiss"
+        elsif joiny == "pristeen3" and Myname =~ /Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+            kill_script "assist"
+            Script.start('mybigshot_runner')
+        else
+            if joiny !~ /pristeen/
+                kill_script "mybigshot_runner"
+                kill_script "mybigshot_runner_monker"
+                kill_script "mybigshot_group_runner"
+                kill_script "assist"
+                kill_script "assist_monker"
+                Script.run('go2', 'landing')
+                fput "join #{joiny}"
+            end
+        end
+    end
+    if line =~ /.*Focused.*thinks\, \"Aiss2/
         kill_script "mybigshot_runner"
-        Script.run('go2', 'landing')
-        fput "join #{joiny}"
+        Script.run('go2', 'park2')
+        fput "join aiss"
+    end
+    if line =~ /.*Focused\] (\w+) thinks\, \"WhereRUnow/
+       thewho = $1
+       fput "think to #{thewho} IAMHERE #{Room.current.id.to_s}"
     end
     if line =~ /.*Focused.*thinks\, \"Wiiz2/
         kill_script "mybigshot_runner"

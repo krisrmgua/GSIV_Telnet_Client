@@ -1,4 +1,13 @@
 Myname = Char.name
+fput "stance off"
+if Myname == "Clu"
+  fput "fire"
+else
+  fput "attack"
+end
+exit
+
+
 goto "Start"
 Start:
   line = matchtimeout 15, "tries to bite you!", "charges at you!"
