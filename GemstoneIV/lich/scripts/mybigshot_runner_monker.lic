@@ -191,6 +191,10 @@ elsif Myname == "Monker"
     fleemobs = ["none2"]
     huntarea = "8470"
     roomboundry = ["8469","8495"]
+    #mobs = ["zombie"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7874"
+    #roomboundry = ["7873"]
     #mobs = ["wraith"]
     #fleemobs = ["tomb spider"]
     #huntarea = "4175"
@@ -673,7 +677,7 @@ check_for_pristeen = proc {
             test123 = true
         end
         if test123
-            sleep 6
+            sleep 14
             fput "group"
             line = matchtimeout 15, "Pristeen is following", "Your group status"
             if line =~ /Pristeen is following/
@@ -929,7 +933,7 @@ if percentmana() < 25
 end
 putawayweapon.call()
 empty_hands
-if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$)/
+if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$|^318$)/
     Script.run('bank')
 end
 getweapon.call()

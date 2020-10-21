@@ -4,12 +4,16 @@ group_check = proc {
     fput "group"
     line = matchtimeout 7, "is the leader", "You are not currently in a group"
     if line =~ /You are not currently in a/
-        Script.run('go2name', 'pristeen')
+        Script.run('mygo2name', 'pristeen')
         fput "join pristeen"
     end
 }
 
 loop {
+    #if check_mind(100) and Myname == "Monker"
+    #    fput "think to #{Myname} join pristeen2"
+    #    sleep 3
+    #end
     line = matchtimeout 7, "Pristeen channels"
     if line =~ /Pristeen channels/
        keepon = true
@@ -20,7 +24,7 @@ loop {
                if line =~ /You do not/
                    keepon = nil
                end
-           elsif Myname == "Sluf" or Myname == "Woory" or Myname == "Clu"
+           elsif Myname == "Sluf" or Myname == "Woory" or Myname == "Clu" or Myname == "Monker"
                Script.run('at')
                line = matchtimeout 3, "You do not", "You currently","your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
                if line =~ /^You .* has no effect|You fire .* but it has no effect/ and Myname =~ /Woory|Clu/
@@ -50,9 +54,10 @@ loop {
            GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
        end
        Script.run('sloot')
+       fput "stance def"
     end
     group_check.call()
-    if Room.current.id.to_s =~ /^228$/ or Room.current.id.to_s =~ /^288$/ 
+    if Room.current.id.to_s =~ /^228$/ or Room.current.id.to_s =~ /^288$/ or Room.current.id.to_s =~ /^318$/ 
         fput "think to #{Myname} join pristeen2"
     end
 }

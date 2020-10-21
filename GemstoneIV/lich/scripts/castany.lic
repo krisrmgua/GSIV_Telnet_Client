@@ -24,6 +24,9 @@ loop {
     if Room.current.id.to_s =~ /^288$/
         Script.run('go2', '297') 
     end
+    if Room.current.id.to_s =~ /^318$/
+        Script.run('go2', '291') 
+    end
     if GameObj.right_hand.name != "Empty"
         fput "stow ##{GameObj.right_hand.id}"
     end
@@ -52,6 +55,9 @@ loop {
     end
     if Room.current.id.to_s =~ /^297$/
         Script.run('go2', '288')
+    end
+    if Room.current.id.to_s =~ /^291$/
+        Script.run('go2', '318')
     end
     if Room.current.id.to_s =~ /^293$/
         Script.run('go2', '228')

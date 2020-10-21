@@ -1224,3 +1224,5 @@ else
       echo 'nothing to do'
    end
 end
+Myname = Char.name
+fput "TELL FAMILIAR to stay" if Room.current.id.to_s =~ /^228$|^288$|^318$/ and Myname == "Trenus"

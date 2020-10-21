@@ -1,0 +1,121 @@
+myleaf = true
+while myleaf == true
+    fput "get leaf from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop leaf"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get moss from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop moss"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get lichen from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop lichen"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get stem from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop stem"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get root from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop root"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get spine from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop spine"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get grass from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop grass"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get fruit from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop fruit"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get stem from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop stem"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get flower from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop flower"
+    end
+end
+myleaf = true
+while myleaf == true
+    fput "get clove from my kit"
+    line = matchtimeout 10, "Get what", "You remove", "You carefully remove"
+    if line =~ /Get what/
+        myleaf = nil
+    end
+    if line =~ /You remove/ or line =~ /You carefully remove/
+        fput "drop clove"
+    end
+end

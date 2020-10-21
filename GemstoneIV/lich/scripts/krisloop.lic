@@ -54,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -65,6 +65,9 @@ loop {
     #        #monitor_interaction()
     #    end
     #end
+    if line =~ /YOU HAVE BEEN IDLE TOO LONG/
+        fput "l"
+    end
     if line =~ /([A-Z,a-z]+) whispers, \"RUFULL/
 	whipserer = $1
         if check_mind(100)
@@ -189,19 +192,19 @@ loop {
     end
     if line =~ /.*Focused.*think.*\, \"Join ([A-Z,a-z,0-9]+)/ and Myname != "Bize"
         joiny = $1
-        if joiny == "pristeen" and Myname =~ /Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        if joiny == "pristeen" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
             kill_script "mybigshot_runner"
             kill_script "castany"
             kill_script "assist"
             Script.start('my_health_check')
             Script.run('rem')
-            if Myname == "Trenus" and Room.current.id.to_s =~ /^228$|^288$/
+            if Myname == "Trenus" and Room.current.id.to_s =~ /^228$|^288$|^318$/
               sleep 10
               Script.run('go2', 'opengate')
               Script.run('gate')
               Script.run('gate')
             end
-            Script.run('go2name', 'pristeen')
+            Script.run('mygo2name', 'pristeen')
             fput "join pristeen"
             Script.start('assist')
             if Myname == "Aiss"
@@ -209,15 +212,20 @@ loop {
               echo "Casting Trolls Blood"
               Spell[1125].cast() if Spell[1125].affordable? 
             end
-        elsif joiny == "pristeen2" and Myname =~ /Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        elsif joiny == "pristeen2" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
             kill_script "assist"
             sleep 3
             kill_script "assist"
-            Script.run('go2', 'park')
+            if Myname =~ /Monker|Sluf|Woory|Sorci/
+                Script.run('go2', 'park3')
+            else
+                Script.run('go2', 'park')
+            end
             kill_script "assist"
             wtime = rand(1..20)
             sleep wtime
             Script.run('wear')
+            Script.run('go2', 'landing')
             kill_script "assist"
             if Myname == "Aiss"
                 Script.run('sheal')
@@ -228,16 +236,20 @@ loop {
             Script.run('useherbs', "on bench")
             Script.run('useherbs', "under bench")
             Script.run('useherbs', "--buy=on in my kit")
-            Script.run('go2', 'park')
+            if Myname =~ /Monker|Sluf|Woory|Sorci/
+                Script.run('go2', 'park3')
+            else
+                Script.run('go2', 'park')
+            end
             Script.run('poolparty')
             Script.run('sloot', 'sell')
             Script.run('bank')
             Script.run('waggle')
             if Myname == "Aiss"
-                Script.start('castany', '1') 
+                #Script.start('castany', '1') 
             end
             fput "med" if Myname == "Aiss"
-        elsif joiny == "pristeen3" and Myname =~ /Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        elsif joiny == "pristeen3" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
             kill_script "assist"
             Script.start('mybigshot_runner')
         else

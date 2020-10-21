@@ -1,46 +1,95 @@
 herbs = ["acantha leaf", "acantha leaf", "basal moss","wolifrew lichen","ambrominas leaf","aloeas stem","ephlox moss","pothinir grass","calamia fruit", "cactacae spine", "torban leaf","haphip root","woth flower","sovyn clove"]
+$need_still = nil
 arraylength = herbs.length
-herbcount = 0
-while herbcount < arraylength
-    count = 0
-    fput "close my greatc"
-    fput "get my #{herbs[herbcount]}"
-    line = matchtimeout 3, "You remove", "Get what"
-    if line =~ /Get what/
-        echo "No more herbs"
-        exit
+$herbcount = 0
+kill_script "sorter"
+fput "open my backpack"
+fput "open my sack"
+$cast_herb = nil
+
+check_cloak = proc { |dherb|
+    $cast_herb = nil
+    fput "open my greatc"
+    fput "look in my greatc"
+    line = matchtimeout 3, "#{dherb}", "There is nothing"
+    if dherb == "acantha leaf"
+       if line =~ /some acantha leaf, some acantha leaf/ or line =~ /some acantha leaf and some acantha leaf/
+           $cast_herb = nil
+       elsif line =~ /some acantha leaf/
+           $cast_herb = "#{dherb}"
+       end
+       if line =~ /There is nothing/
+           $cast_herb = "#{dherb}"
+       end
+    else
+       if line =~ /#{dherb}/
+           $cast_herb = nil
+       else 
+           $cast_herb = "#{dherb}"
+       end
     end
-    if line =~ /You remove/
-        while count < 50
-            fput "bundle remove"
-            line2 = matchtimeout 3, "You carefully", "You only", "You are not"
-            if line2 =~ /You carefully/ or line2 =~ /You only/
-                fput "drop #{herbs[herbcount]}"
-                count = count + 1
-            end
-            if line2 =~ /You are not/
-                fput "get my #{herbs[herbcount]}"
-                line3 = matchtimeout 3, "You remove", "Get what"
-                if line3 =~ /Get what/
-                    echo "No more herbs"
-                    exit
+}
+
+while $herbcount < arraylength
+    check_cloak.call("#{herbs[$herbcount]}")
+    if $cast_herb
+        allout = nil
+        count = 0
+        fput "close my greatc"
+        echo "num is #{$herbcount} get my #{$cast_herb}"
+        fput "get my #{$cast_herb}"
+        line = matchtimeout 3, "You remove", "Get what"
+        if line =~ /Get what/
+            echo "No more herbs"
+            $need_still = $need_still + ", 50 more #{$cast_herb}"
+            $herbcount = $herbcount + 1
+        end
+        if line =~ /You remove/
+            while count < 50
+                fput "bundle remove"
+                line2 = matchtimeout 3, "You carefully", "You only", "You are not"
+                if line2 =~ /You carefully/ or line2 =~ /You only/
+                    fput "drop #{$cast_herb}"
+                    count = count + 1
+                end
+                if line2 =~ /You are not/
+                    fput "get my #{$cast_herb}"
+                    line3 = matchtimeout 3, "You remove", "Get what"
+                    if line3 =~ /Get what/
+                        echo "No more herbs"
+                        fput "get #{$cast_herb}"
+                        fput "gather #{$cast_herb}"
+                        line = matchtimeout 3, "Carefully" 
+                        bites = 0
+                        if line =~ /containing (\d+) bites/
+                            bites = $1
+                            bites = 50 - bites.to_i
+                        end
+                        bites.to_s
+                        fput "put #{$cast_herb} in my backpack"
+                        $need_still = $need_still + ", #{bites} #{$cast_herb}"
+                        allout = true
+                        count = 50
+                    end
                 end
             end
+            if not allout
+                fput "put #{$cast_herb} in my backpack"
+                fput "get #{$cast_herb}"
+                fput "gather #{$cast_herb}"
+                fput "open my greatc"
+                fput "put #{$cast_herb} in my greatcloak"
+                fput "close my greatc"          
+            end
+            allout = nil
+            $herbcount = $herbcount + 1
         end
-        fput "stow #{herbs[herbcount]}"
-        fput "get #{herbs[herbcount]}"
-        count = 1
-        echo "#{herbs[herbcount]}: #{count}"
-        #while count < 50
-        #   fput "get #{herbs[herbcount]}"
-        #   fput "bundle"
-        #   count = count + 1
-        #   echo "#{herbs[herbcount]}: #{count}"
-        #end
-        fput "gather #{herbs[herbcount]}"
-        fput "open my greatc"
-        fput "put #{herbs[herbcount]} in my greatcloak"
-        fput "close my greatc"          
-        herbcount = herbcount + 1
+    else
+        $herbcount = $herbcount + 1
     end
+end
+if $need_still
+    echo "!!!!! YOU NEED MORE#{$need_still} !!!!!!"
+else
+    echo "!!! YOU HAVE EVERYTHING! !!!"
 end

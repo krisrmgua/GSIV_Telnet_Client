@@ -1,0 +1,30 @@
+Myname = Char.name
+herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas stem","ephlox moss","pothinir grass","cactacae spine","calamia fruit","torban leaf","haphip root","woth flower","sovyn clove"]
+if not script.vars[1]
+    echo "Pass number of herbs with scirpt"
+    exit
+end
+Script.run('wear')
+respond "================================"
+respond "Type ;send # "
+respond "  1: acantha leaf"
+respond "  2: ambrominas leaf"
+respond "  3: basal moss"
+respond "  4: wolifrew lichen"
+respond "  5: aloeas stem"
+respond "  6: ephlox moss"
+respond "  7: pothinir grass"
+respond "  8: cactacae spine"
+respond "  9: calamia fruit"
+respond "  10: torban leaf"
+respond "  11: haphip root"
+respond "  12: woth flower"
+respond "  13: sovyn clove"
+respond "================================"
+line = get until line.strip =~ /^[0-9]+$/i
+if line =~ /(\d+)/ 
+  num = Integer($1)
+  num = num - 1
+  Spell["603"].cast() if Spell["603"].affordable? and Myname == "Clu"
+  Script.run('betazzherb', "#{herbs[num]} #{script.vars[1]}")
+end

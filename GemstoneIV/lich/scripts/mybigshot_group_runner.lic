@@ -8,7 +8,8 @@ $MSTRIKE = nil
 $preattackdefspell = ""
 $preattackattspell = ""
 $numkilled = 0
-$numhunts = 0;
+$numhunts = 0
+$lookwait = true
 @STORED_TIMES = Array.new
 @BIRTH_TIME   = Time.now.to_i
 @START_TIME   = 1
@@ -42,14 +43,16 @@ if Myname == "Clu"
     encumbrance = 20
     active_scripts = [""]
 elsif Myname == "Pristeen"
-    #mobs = ["ghostly pooka"]
-    #huntarea = "4540"
-    #roomboundry = ["4541","4537","7325","7429"]
-    #fleemobs = ["tomb spider"]
-    mobs = ["moaning spirit","night hound"]
+    mobs = ["ghostly pooka"]
+    huntarea = "4540"
+    roomboundry = ["4541","4537","7325","7429"]
     fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
+    #mobs = ["moaning spirit","night hound"]
+    ##mobs_monker = ["nedum vereri"]
+    ##mobs_monker = ["zombie"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7319"
+    #roomboundry = ["7318","7324"]
     rest = "park"
     rest2 = "park"
     attack = "incant 302 channel"
@@ -665,6 +668,19 @@ find_target = proc {
   target
 }
 
+find_target_monker = proc {
+  target = "0"
+  npcs = GameObj.npcs
+  mobs_monker.each do |i|
+    echo "looking for #{i}" if $debug
+    if GameObj.npcs.find { |npc| (npc.name =~ /^#{i}$/i or npc.noun =~ /^#{i}$/i) }
+      echo "target found #{i}" if $debug
+      target = i
+    end
+  end
+  target
+}
+
 start_active = proc {
   active_scripts.each do |i|
     if i.length > 1
@@ -684,6 +700,17 @@ stop_active = proc {
       end
     end
   end
+}
+
+ask_other_fried = proc {
+    fput "whisper sluf RUFULL"
+    line = matchtimeout 2, "IAMFULL", "What were you"
+    if line =~ /IAMFULL/
+        $need_rest = true
+    end
+    if line =~ /What were you/
+        $need_rest = true
+    end
 }
 
 print_stats = proc {
@@ -851,12 +878,8 @@ attack_target = proc { |target|
         hands_check.call()
         if checkfried 
           echo "FRIED" if checkfried and $debug
-          fput "whisper sluf RUFULL"
-          line = matchtimeout 2, "IAMFULL"
-          if line =~ /IAMFULL/
-              $need_rest = true
-              break
-          end
+          ask_other_fried.call()
+          break if $need_rest
         end
         if percentencumbrance > encumbrance
           echo "Encumbranced" if percentencumbrance > encumbrance and $debug
@@ -880,6 +903,13 @@ attack_target = proc { |target|
   end
 }
 
+take_a_look = proc {
+     fput "look"
+     line = matchtimeout 3, "a stunned", "who is immobilized", "Obvious exits"
+     if line =~ /a stunned/ or line =~ /who is immobilized/
+         $lookwait = true
+     end
+}
 
 openlook.call()
 Script.run('checkbank')
@@ -895,7 +925,7 @@ if percentmana() < 25
 end
 putawayweapon.call()
 empty_hands
-if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$)/
+if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$|^318$)/
     Script.run('bank')
 end
 getweapon.call()
@@ -915,6 +945,9 @@ loop {
   check_for_people.call()
   tmp_target = find_target.call()
   check_flee_count.call()
+  $lookwait = nil
+  take_a_look.call()
+  tmp_target = "1" if $lookwait
   echo "Got #{tmp_target} and flee is: #{$need_flee}"
   bs_wander.call(roomboundry) if tmp_target == "0" or $need_flee 
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
@@ -967,6 +1000,12 @@ loop {
         Script.run('useherbs', "under bench")
         Script.run('useherbs', "--buy=on in my #{herbsack}")
       end
+    else
+        Script.run('askheal')
+        Script.run('useherbs', "in bin")
+        Script.run('useherbs', "on bench")
+        Script.run('useherbs', "under bench")
+        Script.run('useherbs', "--buy=on in my #{herbsack}")
     end
     Script.run('go2', "#{rest2}") if rest2
     if $need_bless
@@ -1081,12 +1120,13 @@ loop {
     sell.call()
     Script.run('go2', "#{rest2}") if rest2 and Myname != "Wiiz"
     if defined?(med)
-      #fput "#{med}"
-      getweapon.call()
-      fput "join monker"
-      Script.start("assist_monker")
+      fput "#{med}"
+      #getweapon.call()
+      #fput "join monker"
+      #Script.start("assist_monker")
     end
-    while checkmind(4)
+    #while checkmind(2)
+    while percentmind() > 25
       echo "Mind Still to High" if $debug
       display_watch_current()
       display_watch_average()
@@ -1106,7 +1146,12 @@ loop {
         Script.run('bank')
         #kill_script "krisloop"
     end
-    kill_script "assist_monker"
+    #kill_script "assist_monker"
+    #tmp_target = find_target_monker.call()
+    #while tmp_target != "0"
+    #    tmp_target = find_target_monker.call()
+    #    sleep 1
+    #end
     getweapon.call()
     start_watch()
     gohunt.call()

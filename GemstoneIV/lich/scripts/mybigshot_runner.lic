@@ -297,20 +297,24 @@ elsif Myname == "Hudem"
     #fleemobs = ["wraith"]
     #huntarea = "7545"
     #roomboundry = ["7544"]
-    mobs = ["greater burrow orc","lesser burrow orc"]
+    #mobs = ["greater burrow orc"]
+    #fleemobs = ["wraith"]
+    #huntarea = "7950"
+    #roomboundry = ["7949","7965"]
+    mobs = ["giant marmot", "dark orc"]
     fleemobs = ["wraith"]
-    huntarea = "7950"
-    roomboundry = ["7949","7965"]
+    huntarea = "6888"
+    roomboundry = ["6879", "6897"]
     rest = "landing"
     rest2 = "park"
     attack = "attack"
     stance = "offensive"
     flee_count = 1
-    swings = 1
+    swings = 4
     skipwaitattack = 0
     hideme = 0
     shield = "shield"
-    weapon = "longsword"
+    weapon = "broadsword"
     sheath = "sheath"
     backpack = "greatcloak"
     cloak = "cloak"
@@ -687,13 +691,15 @@ print_stats = proc {
 }
 
 attack_target = proc { |target|
+  echo "Starting Attack Run" if $debug
   target = "orc" if target == "greater burrow orc"
   target = "orc" if target == "lesser burrow orc"
   CMAN_EXE = nil
   if skipwaitattack == 0
+    echo "Waiting for attack ..." if $debug
     line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "slashes", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
   end
-  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line =~ /slashes with a .* you!/ or line=~ /swings a \w+ at you!/ or line=~ /stomps at you/ or line=~ /swings a \w+ \w+ at you!/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
+  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line =~ /slashes with a .* you!/ or line=~ /swings a .* at you!/ or line=~ /stomps at you/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
     loop = 0
     while loop < swings
       check_flee_count.call()
@@ -903,7 +909,7 @@ if percentmana() < 25
 end
 putawayweapon.call()
 empty_hands
-if Room.current.id.to_s =~ /(^228$|^288$)/
+if Room.current.id.to_s =~ /(^228$|^288$|^318$)/
     Script.run('bank')
 end
 getweapon.call()

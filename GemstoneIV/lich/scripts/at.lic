@@ -2,6 +2,8 @@ Myname = Char.name
 fput "stance off"
 if Myname == "Clu"
   fput "fire"
+elsif Myname == "Monker"
+  fput "punch"
 else
   fput "attack"
 end

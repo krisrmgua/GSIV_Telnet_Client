@@ -2,7 +2,16 @@ group_check = proc {
     fput "group"
     line = matchtimeout 7, "is the leader", "You are not currently in a group"
     if line =~ /You are not currently in a/
-        Script.run('mygo2name', 'monker')
+        fput "think to monker WhereRUnow"
+        line = matchtimeout 3, "IAMHERE", "Think to whom"
+        if line =~ /thinks\, \"IAMHERE (\d+)/
+            dlocc = $1
+            Script.run('go2', "#{dlocc}")
+        end
+        if line =~ /Think to whom/
+            Script.run('go2', "park")
+            exit 
+        end
         fput "join monker"
     end
     fput "look"
