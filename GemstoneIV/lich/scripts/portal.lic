@@ -1,0 +1,1 @@
+Spell["930"].cast() if Spell["930"].affordable?

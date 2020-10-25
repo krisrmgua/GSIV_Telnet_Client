@@ -7,31 +7,22 @@ elsif script.vars[1] == "aiss2"
 else
   what = "join " + script.vars[1]
 end
-fput "think to trenus #{what}" 
-sleep 3 if what == "hunt"
-sleep 1 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
-fput "think to sluf #{what}" 
-sleep 3 if what == "hunt"
-sleep 2 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
-fput "think to pristeen #{what}" 
-sleep 3 if what == "hunt"
-sleep 1 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
-fput "think to clu #{what}" 
-sleep 3 if what == "hunt"
-sleep 2 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
-fput "think to sorci #{what}" 
-sleep 3 if what == "hunt"
-sleep 1 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
 fput "think to woory #{what}" 
-sleep 3 if what == "hunt"
-sleep 2 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
-fput "think to monker #{what}" 
-sleep 3 if what == "hunt"
-sleep 1 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
+sleep 2
+fput "think to trenus #{what}" 
+sleep 1
+fput "think to sluf #{what}" 
+sleep 2
+fput "think to pristeen #{what}" 
+sleep 1
+fput "think to clu #{what}" 
+sleep 2
+fput "think to sorci #{what}" 
+sleep 1
 fput "think to aiss #{what}" 
-sleep 3 if what == "hunt"
-sleep 2 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
+sleep 2
+fput "think to monker #{what}" 
+sleep 1
 fput "think to noce #{what}" 
-sleep 3 if what == "hunt"
-sleep 1 if what == "join pristeen2" or what == "join pristeen" or what == "join pristeen3"
+sleep 1
 fput "think to wiiz #{what}" 

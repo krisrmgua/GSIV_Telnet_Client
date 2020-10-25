@@ -8,7 +8,9 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="FF0000" bg='1DE2D6'>a wide gold ring</highlight>
 	<highlight fg="FF0000" bg='3FCF00'>an inlaid gold ring</highlight>
 	<highlight fg="FF0000">(a|an) gold ring|(a|an) \w+ gold ring|(a|an) \w+ \w+ gold ring|a crystal amulet</highlight>
+        <highlight fg="E8FF00">a filigreed silver chest plated with electrum skeleton keys|a filigreed silver chest</highlight>
         <highlight fg="CE8C5C">(a|an) \w+?-?\w+?\s?\w+?\s?\w+\s(?:trunk|chest|coffer|box|strongbox)</highlight>
+        <highlight fg="E8FF00">a filigreed silver chest plated with electrum skeleton keys|a filigreed silver chest</highlight>
         <highlight fg="9AF312">(a|an|some) (s\'|n\'|t\')?\w+?\s?\w+?\s?\w+\s(?:amethyst|cube|quartz|ruby|pearl|garnet|opal|sapphire|gem|amber|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)($| |,|\.)</highlight>
         <highlight fg="479B95">(a|an|some) \w+?\s?\w+?\s?\w+\s(?:lockpick|statue)</highlight>
         <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a (\w+?\s?\w+ coin)($| |,|\.)|a \w+?\s?\w+ figurine|a piece of \w+ glass|a \w+ piece of eight</highlight>
@@ -21,7 +23,9 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg="48C014">is in good shape|Despite no apparent injuries|no apparent injuries\.</highlight>
 	<highlight fg='9090ff'>^.*remaining\. \]$</highlight>
 	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|(an|a) engraved \w+ token|The odd feeling of depression leaves you.|The leaden feeling lifts from your limbs.|You have no silver coins with you.|You feel weakened as a blood red haze forms around you|You sense that your soul has been bound to your body for|before sinking into their surface|appears to become incorporated into them|obvious signs of someone hiding|for a moment and then appears to become incorporated into it.|sinking into its surface.</highlight>
-	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|vaalin and faenor turtle figure|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a cookie-shaped black pearl|a pie-shaped rook-etched ruby|a dog-shaped emerald|a star-shaped yellow diamond|a shackle-hewn leaf-etched diamond|a tree-shaped leaf-etched diamond|a cookie-shaped star-of-Tamzyrr diamond|a cookie-shaped blue sapphire|a cookie-shaped pink sapphire|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
+	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|vaalin and faenor turtle figure|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar|a cookie-shaped leaf-etched diamond|a bell-shaped leaf-etched diamond|a cookie-shaped black pearl|a pie-shaped rook-etched ruby|a dog-shaped emerald|a star-shaped yellow diamond|a shackle-hewn leaf-etched diamond|a tree-shaped leaf-etched diamond|a cookie-shaped star-of-Tamzyrr diamond|a cookie-shaped blue sapphire|a cookie-shaped pink sapphire|a dog-shaped diamond|a cookie-shaped leaf-dotted emerald|a wolf-inset diamond</highlight>
+        <highlight fg='D064FF'>(?i)^\[Merchant\]-GSIV|(?i)^\[Help\]-GSIV|(?i)^\[General\]-GSIV</highlight>
+        <highlight fg='43EA25'>(?i)^\[Merchant\] |(?i)^\[Help\] |(?i)^\[General\] </highlight>
 	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>

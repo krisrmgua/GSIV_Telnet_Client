@@ -8,6 +8,12 @@ if Myname == "Aiss"
   Script.start('krisloop')
   Script.start('my_health_check')
 #  Script.start('healbot')
+elsif Myname == "Trenus"
+  Script.start('familiar')
+  kill_script "krisloop"
+  sleep 1
+  Script.start('krisloop')
+  Script.start('my_health_check')
 elsif Myname == "Wiiz"
   kill_script "krisloop"
   sleep 1

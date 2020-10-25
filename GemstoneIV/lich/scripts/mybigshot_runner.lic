@@ -564,6 +564,7 @@ hands_check = proc {
 sell = proc {
     if not $skipsale
         Script.run('poolparty')
+        #Script.run('poolparty','deposit')
         Spell[1205].cast if Spell[1205].known? && Spell[1205].affordable?
         Script.run('sloot', "sell")
     end
