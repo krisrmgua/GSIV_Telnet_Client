@@ -1,0 +1,4 @@
+loop {
+    Script.run('mindsave')
+    sleep 60
+}

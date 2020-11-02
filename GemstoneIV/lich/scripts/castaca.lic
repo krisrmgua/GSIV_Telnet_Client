@@ -16,10 +16,16 @@ end
 loop {
     wait_until { percentmana == 100 }
     if Room.current.id.to_s =~ /^2300$/
-        Script.run('go2', '3233') 
+        Script.run('go2', '3233')
     end
     if Room.current.id.to_s =~ /^228$/
-        Script.run('go2', '293') 
+        Script.run('go2', '293')
+    end
+    if Room.current.id.to_s =~ /^288$/
+        Script.run('go2', '297')
+    end
+    if Room.current.id.to_s =~ /^318$/
+        Script.run('go2', '291')
     end
     if GameObj.right_hand.name != "Empty"
         fput "stow ##{GameObj.right_hand.id}"
@@ -44,6 +50,12 @@ loop {
     Script.run('bundleall')
     if Room.current.id.to_s =~ /^3233$/
         Script.run('go2', '2300')
+    end
+    if Room.current.id.to_s =~ /^297$/
+        Script.run('go2', '288')
+    end
+    if Room.current.id.to_s =~ /^291$/
+        Script.run('go2', '318')
     end
     if Room.current.id.to_s =~ /^293$/
         Script.run('go2', '228')

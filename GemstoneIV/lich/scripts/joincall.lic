@@ -7,22 +7,22 @@ elsif script.vars[1] == "aiss2"
 else
   what = "join " + script.vars[1]
 end
-fput "think to woory #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Woory'}, "#{what}")
 sleep 2
-fput "think to trenus #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Trenus'}, "#{what}")
 sleep 1
-fput "think to sluf #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Sluf'}, "#{what}")
 sleep 2
-fput "think to pristeen #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Pristeen'}, "#{what}")
 sleep 1
-fput "think to clu #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Clu'}, "#{what}")
 sleep 2
-fput "think to sorci #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Sorci'}, "#{what}")
 sleep 1
-fput "think to aiss #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Aiss'}, "#{what}")
 sleep 2
-fput "think to monker #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Monker'}, "#{what}")
 sleep 1
-fput "think to noce #{what}" 
-sleep 1
-fput "think to wiiz #{what}" 
+LNet.send_message(attr={'type'=>'private', 'to'=>'Bize'}, "#{what}")
+#sleep 1
+#LNet.send_message(attr={'type'=>'private', 'to'=>'Noce'}, "#{what}")

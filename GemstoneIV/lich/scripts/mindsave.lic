@@ -1,0 +1,4 @@
+Myname = Char.name
+mymind = percentmind
+filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.mind"
+File.write(filename, "#{mymind}")

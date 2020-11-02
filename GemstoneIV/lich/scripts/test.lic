@@ -1,16 +1,1 @@
-$obvious_hiding_player = false
-mybigshot_monitor = proc { |server_string|
-  if server_string =~ /obvious signs of someone hiding/i
-    $obvious_hiding_player = true
-  end
-  server_string
-}
-DownstreamHook.add("mybigshot_monitor", mybigshot_monitor)
-loop {
-    if $obvious_hiding_player
-        echo "YES"
-    end
-    sleep 0.3
-}
-
-DownstreamHook.remove("mybigshot_monitor")
+LNet.send_message(attr={'type'=>'private', 'to'=>'Aisss'}, "hi there")

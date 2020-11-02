@@ -1,0 +1,28 @@
+if script.vars[1] == "hunt"
+  what = script.vars[1]
+elsif script.vars[1] == "wiiz2"
+  what = script.vars[1]
+elsif script.vars[1] == "aiss2"
+  what = script.vars[1]
+else
+  what = "join " + script.vars[1]
+end
+fput "think to woory #{what}" 
+sleep 2
+fput "think to trenus #{what}" 
+sleep 1
+fput "think to sluf #{what}" 
+sleep 2
+fput "think to pristeen #{what}" 
+sleep 1
+fput "think to clu #{what}" 
+sleep 2
+fput "think to sorci #{what}" 
+sleep 1
+fput "think to aiss #{what}" 
+sleep 2
+fput "think to monker #{what}" 
+sleep 1
+fput "think to noce #{what}" 
+#sleep 1
+#fput "think to bize #{what}" 

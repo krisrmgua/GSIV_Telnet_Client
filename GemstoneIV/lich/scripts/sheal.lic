@@ -276,9 +276,11 @@ heal_down = proc {
     end
     
     heal_blood.call()
+    Script.start('my_health_check')
 }
 
 heal_target = proc { |target, imprint = false|
+    kill_script "my_health_check"
     target = target.downcase.strip
     fput "say ::#{target} just a moment" if target !~ /^sluf$|^pristeen$|^woory$|^sorci$|^trenus$|^monker$|^aiss$|^wiiz$|^clu$/
     $dolink = false

@@ -1,0 +1,32 @@
+Name: Peggyanne Race: Giantman  Profession: Paladin
+Gender: Female    Age: 0    Expr: 1445626    Level:  36
+Normal (Bonus)  ...  Enhanced (Bonus)
+Strength (STR):   100 (40)    ...  100 (40)
+Constitution (CON):    87 (10)    ...   87 (10)
+Dexterity (DEX):    80 (10)    ...   80 (10)
+Agility (AGI):    89 ( 5)    ...   89 ( 5)
+Discipline (DIS):    77 ( 4)    ...   77 ( 4)
+Aura (AUR):    67 ( 3)    ...   67 ( 3)
+Logic (LOG):    56 (-2)    ...   56 (-2)
+Intuition (INT):    54 ( 2)    ...   54 ( 2)
+Wisdom (WIS):   100 (25)    ...  100 (25)
+Influence (INF):    64 (12)    ...   64 (12)
+Mana:  178
+
+Peggyanne:                                                      
+Skill Name                         | Current Current
+                                   |   Bonus   Ranks          
+Armor Use..........................|     176      76          
+Shield Use.........................|     176      76          
+Combat Maneuvers...................|     132      36          
+Polearm Weapons....................|     174      74          
+Multi Opponent Combat..............|     132      36          
+Physical Fitness...................|     132      36          
+Harness Power......................|     132      36          
+Spiritual Lore - Summoning.........|      50      10          
+Perception.........................|      82      18          
+Climbing...........................|      82      18          
+Swimming...........................|      82      18          
+                                                                             
+Spell Lists                                                     
+Paladin............................|              35

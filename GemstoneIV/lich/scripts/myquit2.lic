@@ -9,16 +9,16 @@
 
 Myname = Char.name
 where = "landing"
-where = "park" if Myname == "Clu" 
-where = "park2" if Myname == "Monker" 
-where = "park3" if Myname == "Trenus" 
-where = "284" if Myname == "Sorci" 
-where = "285" if Myname == "Woory" 
-where = "227" if Myname == "Sluf" 
-where = "park" if Myname == "Pristeen" 
+where = "park" if Myname == "Clu"
+where = "park2" if Myname == "Monker"
+where = "park3" if Myname == "Trenus"
+where = "284" if Myname == "Sorci"
+where = "285" if Myname == "Woory"
+where = "227" if Myname == "Sluf"
+where = "park" if Myname == "Pristeen"
 mynum = 1
 mynum = 30 if Myname == "Clu"
-mytime=`/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/checktime2.pl`
+mytime=`/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/checktime.pl`
 echo "the time is #{mytime}"
 sleep mytime.to_i
 Script.run('mystop')

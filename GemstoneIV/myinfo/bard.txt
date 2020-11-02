@@ -1,0 +1,130 @@
+http://forum.gsplayers.com/showthread.php?81587-Polearm-OHE-Pure-THW-Bard-Information-amp-Bard-Guide
+
+
+The Polearm Bard
+
+Why Polearms?
+A lot of support for polearm bards actually lies within racial selection, which will be later on in this guide. Polearms have the highest Damage Factors at the cost of the highest DEX/AGL to use them without hindrance. Since they're also fairly heavy weapons in terms of poundage, the Sonic alternative is enhanced by offering the near weightless alternative. Given the eventual potency of tonic song, you're looking at swinging the highest DF weapon available in the minimum amount of time possible. It's basically an iWin button. Ohh... and the flares are nice too.
+
+Polearm Bard Core Training
+Very light, all things considered:
+1x Combat Maneuvers (8/4)
+2x Polearm Weapons (18/3)
+1x Physical Fitness (4/0)
+1x Dodging (6/6)
+1x Harness Power (0/5)
+1x Spell Research (0/17)
+Total: (36/35)... which leaves a bit of wiggle room for additional training
+
+Polearm Bard Discrete Training
+1x Air Lore
+60 Ranks in Armor Use
+1x Perception
+25 Ranks Mental Lore - Telepathy
+Elemental & Mental Mana Control (subjective goals)
+50 Ranks Climbing
+50 Ranks Swimming
+30/55 Multi-Opponent Combat Ranks
+MIU
+
+Polearm Bard Discrete Training Prioritization
+Why didn't I just go in the order and add these notes above? Because screw you, that's why.
+
+I recommend starting with the 25 ranks of Telepathy. Telepathy will increase spellsong duration by 3 seconds a rank. At level retarded, your spellsong duration is gonna suck... this is gonna make it not suck a little more quickly. Ohh... and 1007 AS boost, that's why we're stopping at 25.
+
+But since you can only single in Mental Lores, you need something else to work on! While working on this, I recommend doing Armor Use up to 60 ranks. Having studied WAY too much about the damage equations, the impacts of armor, and therefore becoming an all around interesting guy at office parties, having good armor early on is the best thing you can do for yourself. 60 ranks in Armor will train off as much as you can for RT, Maneuver, and Bard Hinderance for Augmented Chain (ASG15). Also, it adds a LOT of potential for you to spend money on good armor ASAP, and settles down any variables for putting 1014 on yourself.
+
+This will take you to your 40s or so on training. After this, I'd recommend powering in spell research until you unlock both 1020 and 430... These will likely be the highest return you can do for these levels for TPs.
+
+At this point, training branches subjectively depending on your weapon, where you're hunting, and what you'd like to do.
+If you don't have a good weapon, and you're using sonic gear, start on the Air Lore
+If you're hunting in Rivers Rest, or Solhaven's tower, you may want to pick up Climbing/Swimming a bit earlier
+If you're hunting things with maneuvers, it's probably a good time to start working on Perception
+Multi-Op is fun... but it's more of a nice-to-have rather than a major training requirement.
+
+
+
+
+
+
+The Pure Bard
+
+Why Pure?
+Melt... faces... With Instruments. Imagine playing the intro to Dragonforce: Through the Fire and Flames in a room of 50 Ithzir in OTF... BAM, their heads explode... Yes... that can be YOU! Also, the heavy training in Manipulation lore to be able to achieve this build without an instrument has the fringe benefit of bolstering the effects of 1004... Longer purification sessions for more silvers! Why not!
+
+Pure Bard Core Training
+2x Shield Use (15/0)
+1x Dodge (6/6)
+1x Physical Fitness (4/0)
+1x Harness Power (0/5)
+1x Spell Research (0/17)
+Total: (25/22)
+
+Pure Bard Discrete Training
+75 Ranks Mental Lore - Manipulation
+60 Ranks in Armor Use
+Moar Spell Research!
+75 Ranks Elemental Lore - Air
+25 Mental Mana Control (subjective goals)
+50 Ranks Climbing
+50 Ranks Swimming
+1x Perception
+2x Brawling
+Magic Item Use
+
+Pure... Shield versus Runestaff
+Alright, simmer down. I read quite a few threads here about Shield versus runestaff. If you want to use a Runestaff, you can, but you'll need more magical ranks per level to make it comparable. The best training/TP would be obtained through MIU and AS. However, you're going to be training heavily into mental stuff, so you're looking at running an MTP deficit. One rank of Arcane Symbols, and 1 rank of MIU is gonna end up costing 16/0. It's cheaper to get 2 ranks in shield use by 1 PTP. Additionally, from the pure bards I've talked to, while runestaff flares are nice and badass, the high crit-kill rate of 1030 renders the flares less effective.
+
+The Air lore is for Sonic Shield's size reduction to maximize dodge training.
+
+When to Pure
+I get asked this a lot... Here's what I would recommend...
+Once you have the TP to have 1030, 430, 60 ranks in Armor, while also being up to level in the core training and lores, you're probably good to convert over. If your stats are placed for mid tier growth (like, start to max out around 50-60 range), you can likely pull it off as early as level 40. Be warned though... your mana pool is gonna suck... big time.
+
+The Mental Mana Control will help you last a little longer by utilizing Song of Unraveling (1013) on some magic items for more mana. But it makes a low level wizard look like a mana mine. Plus, not too many others besides Empaths would be trained in MMC, so finding a battery may be difficult.
+
+Probably safest to wait til 60.
+
+Pure CS Calculation and MnE versus Bard
+Up to your level, Bard circle grants +1 CS
++1 to +20 over your level Bard circle grants +.75 CS
+From +21 to +60, Bard Circle grants +.5 CS
+
+425 adds +.5 CS Per rank up to 75 ranks.
+Up to 2/3rd your level, and before 75 ranks, MnE grants .83 CS (.33 CS + .5 from 425)
+From 2/3rd up to your level, MnE grants .6 CS (.1 CS + .5 from 425)
+
+
+
+
+
+
+
+The Sword and Board Bard
+Why Sword and Board?
+Much higher DS than a THW Build! Plus, Bard's Sonic Shield, even if we don't have shield maneuvers, are some generally overpowered, awesome shit. Tower Shield's blocking, but with the evasion reduction of a small shield (eventually)... that's badass.
+A single weapon gives you the ability to do a small main hand weapon, and pimp out of air flares for the real damage.
+
+Sword and Board Bard Core Training
+1x Combat Maneuvers (8/4)
+2x Edged Weapons (9/3)
+1x Shield Use (5/0)
+1x Physical Fitness (4/0)
+1x Dodging (6/6)
+1x Harness Power (0/5)
+1x Spell Research (0/17)
+1x Air Lore (0/8)
+Total: (32/43)
+
+Sword and Board Bard Discrete Training
+60 Ranks in Armor Use
+25 Ranks Mental Lore - Telepathy
+1x Perception
+Elemental & Mental Mana Control (subjective goals)
+50 Ranks Climbing
+50 Ranks Swimming
+30/55 Multi-Opponent Combat Ranks
+MIU
+
+Sword and Board Training Differences from Sword/Board and Polearm
+Most of the training is similar. I still recommend the same overall prioritization in the Discrete training... However, 1x Air Lore made Core Training due to the relative strength of sonic shield's air lore mechanic, and the reliance on air flares from a weapon for kill speed. Therefore it will take longer for the telepathy ranks relative to other builds.

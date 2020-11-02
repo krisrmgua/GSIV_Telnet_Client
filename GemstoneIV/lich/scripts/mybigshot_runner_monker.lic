@@ -246,27 +246,31 @@ elsif Myname == "Noce"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Bize"
-    mobs = ["fanged rodent"]
-    fleemobs = ["goblin"]
-    rest = "3519"
+    #mobs = ["lesser mummy"]
+    #fleemobs = ["greater spider"]
+    #huntarea = "4144"
+    #roomboundry = ["4171","4143"]
+    mobs = ["wraith"]
+    fleemobs = ["tomb spider"]
+    huntarea = "4175"
+    roomboundry = ["4195","4187","4181"]
+    rest = "landing"
     rest2 = "park"
-    huntarea = "5923"
-    roomboundry = ["5922"]
     attack = "attack"
     stance = "offensive"
     flee_count = 1
     swings = 2
-    skipwaitattack = 0
+    skipwaitattack = 1
     hideme = 0
-    shield = "shield"
-    weapon = "falchion"
-    sheath = "pack"
+    shield = ""
+    weapon = "spear"
+    sheath = "leather sheath"
     backpack = "pack"
-    cloak = "pack"
-    herbsack = "pack"
+    cloak = "cloak"
+    herbsack = "sack"
     skinknife = "knife"
     skinsheath = "wrist sheath"
-    encumbrance = 35
+    encumbrance = 65
     active_scripts = [""]
 elsif Myname == "Woory"
     mobs = ["moaning spirit","night hound"]
@@ -497,7 +501,10 @@ go2restbefore = proc {
 
 go2rest = proc {
     if Room.current.id.to_s != "#{rest}"
+      Script.run('go2', "4141")
+      Script.run('mysaveloc')
       Script.run('go2', "#{rest}")
+      Script.run('mysaveloc')
     end
     if rest == "wgrave"
         Script.run('gogate')
@@ -565,6 +572,7 @@ hands_check = proc {
 sell = proc {
     if not $skipsale
         Script.run('poolparty')
+        #Script.run('poolparty', 'deposit')
         Spell[1205].cast if Spell[1205].known? && Spell[1205].affordable?
         Script.run('sloot', "sell")
     end
@@ -633,7 +641,10 @@ check_flee_count = proc {
 }
 
 gohunt = proc {
+  Script.run('go2', "4140")
+  Script.run('mysaveloc')
   Script.run('go2', "#{huntarea}")
+  Script.run('mysaveloc')
 }
 
 check_standing = proc {
@@ -933,6 +944,11 @@ if percentmana() < 25
 end
 putawayweapon.call()
 empty_hands
+$WAIT_PRISTEEN = true
+while $WAIT_PRISTEEN == true
+    check_for_pristeen.call()
+    sleep 10
+end
 if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$|^318$)/
     Script.run('bank')
 end
@@ -948,6 +964,7 @@ loop {
   global_vars()
   start_active.call()
   bs_wander.call(roomboundry)
+  Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
   if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     echo "Need Healing" if $debug
@@ -1002,6 +1019,7 @@ loop {
       end
     end
     Script.run('go2', "#{rest2}") if rest2
+    Script.run('mysaveloc')
     if $need_bless
       getweapon.call()
       if $arrows
@@ -1113,6 +1131,7 @@ loop {
     end
     sell.call()
     Script.run('go2', "#{rest2}") if rest2 and Myname != "Wiiz"
+    Script.run('mysaveloc')
     if defined?(med)
       fput "#{med}"
     end
@@ -1132,6 +1151,7 @@ loop {
       print_stats.call()
       sleep 15 
     end
+    $WAIT_PRISTEEN = true
     while $WAIT_PRISTEEN == true
         check_for_pristeen.call()
         sleep 10

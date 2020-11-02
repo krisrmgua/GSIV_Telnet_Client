@@ -241,24 +241,24 @@ elsif Myname == "Noce"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Bize"
-    mobs = ["fanged rodent"]
-    fleemobs = ["goblin"]
-    rest = "3519"
+    mobs = ["lesser mummy"]
+    fleemobs = ["greater spider"]
+    huntarea = "4144"
+    roomboundry = ["4171","4143"]
+    rest = "landing"
     rest2 = "park"
-    huntarea = "5923"
-    roomboundry = ["5922"]
     attack = "attack"
     stance = "offensive"
-    flee_count = 1
+    flee_count = 2
     swings = 2
-    skipwaitattack = 0
+    skipwaitattack = 1
     hideme = 0
-    shield = "shield"
-    weapon = "falchion"
-    sheath = "pack"
+    shield = ""
+    weapon = "spear"
+    sheath = "leather sheath"
     backpack = "pack"
-    cloak = "pack"
-    herbsack = "pack"
+    cloak = "cloak"
+    herbsack = "sack"
     skinknife = "knife"
     skinsheath = "wrist sheath"
     encumbrance = 35
@@ -925,6 +925,7 @@ loop {
   global_vars()
   start_active.call()
   bs_wander.call(roomboundry)
+  Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
   if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     echo "Need Healing" if $debug

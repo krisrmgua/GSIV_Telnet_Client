@@ -1,0 +1,134 @@
+Myname = Char.name
+
+random_talk = proc {
+    random_text = Array[
+        "Bard are way more powerful than monks id say",
+        "You guys have no idea what your even talking about",
+        "Clerics are hard core is all im going to say",
+        "Your not even a cleric, so you cant talk",
+        "Please dont even try to speak up now",
+        "I know one thing me and my weapon are the most feared in all the lands",
+        "Being powerful is not hard",
+        "Its all about how you use your power",
+        "I like being evil, its more fun",
+        "You just a baby who cries alot",
+        "You cant even hit these guys, and you think your powerful",
+        "I need more treasure is all i gotta say",
+        "Im getting hungry guys",
+        "My mind is not fillin up fast enough these days",
+        "Cant wait to level",
+        "You guys drive me nuts",
+        "What happened to you guys get stung by bees",
+        "I hate it when i fall",
+        "Getting stunned sucks",
+        "Mana come to me, please oh mana come to me",
+        "Bring out your dead! I mean living dead bring them out!",
+        "Sometimes I wish i was a wizzard",
+        "I need a endless supply of mana bread that auto feeds into my mouth",
+        "Smells like dead horse",
+        "I hate how hard it is to get to this place and get out",
+        "As long as we dont die here everything is ok",
+        "I need to train my firstaid so herbs dont take so long to heal",
+        "Im working off all the candy ive been eating lately",
+        "Lets finish up here as fast as possible this place give me the creeps",
+        "horses horses horses horses",
+        "swing and a miss",
+        "come out come out where ever you are",
+        "almost time for a bath",
+        "these things alive or undead, oh wait does not matter all going to be dead no matter what",
+        "group hunting is the best",
+        "i love you guys",
+        "give me the biggest box of treasure ever please oh please",
+        "Clu and his arrows",
+        "Nice huting wiht a clerc got blesses all around",
+        "Empaths are great to hunt with, heals and all",
+        "I feel so strong now",
+        "no one can stop us",
+        "creatures beware",
+        "I need to learn how to fish",
+        "Cant wait for what ever the next event is",
+        "good one little grasshopper",
+        "the sky is falling",
+        "these guys like to have a staring contest",
+        "to bad wizards can just portal in and out of this area",
+        "when i get really old i wanna come back here and just one hit kill all these guys just to feel good",
+        "these guys are not very good for making money",
+        "we kill them fast i love it",
+        "and they are all going to die",
+        "everyone be quiet your driving me crazy",
+        "just stop talking already",
+        "blah blah blah",
+        "need some mstrike here",
+        "sing us a song please",
+        "are we done yet",
+        "faster faster faster!",
+        "we are the champions my friends",
+        "getting close to break time, but not yet",
+        "dont feed the pigeons",
+        "I think I taste like hay",
+        "nasty taste in my mouth",
+        "come on baby light them on fire",
+        "i would dance but not the right place or time id say",
+        "did i see a panda or a mouse",
+        "I wish empaths had a spell for the graveyard gate sadly they dont same with rangers",
+        "spoooky",
+        "burr cold",
+        "hold me back, hold me back",
+        "im a nut, im a nut, im a nut",
+        "im a little acorn round lying on the cold cold ground, everbody steps on me, that is why im cracked you see",
+        "i may need to change my pants",
+        "your not funny, I am",
+        "i cant hear you"
+    ]
+    random_text.sample
+}
+
+if Myname == "Pristeen"
+    sleep 60
+    text = random_talk.call()
+    fput "say #{text}"
+end
+
+loop {
+    if Myname == "Pristeen"
+        line = matchwait "Aiss says"
+        sleep 10
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Sluf"
+        line = matchwait "Pristeen says"
+        sleep 15
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Woory"
+        line = matchwait "Sluf says"
+        sleep 20
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Sorci"
+        line = matchwait "Woory says"
+        sleep 25
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Trenus"
+        line = matchwait "Sorci says"
+        sleep 10
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Monker"
+        line = matchwait "Trenus says"
+        sleep 15
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Clu"
+        line = matchwait "Monker says"
+        sleep 20
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Aiss"
+        line = matchwait "Clu says"
+        sleep 25
+        text = random_talk.call()
+        fput "say #{text}"
+    end
+}

@@ -1,3 +1,5 @@
+kill_script "assist_monker"
+$checkmindother = nil
 Myname = Char.name
 $debug = true
 $skipsale = false
@@ -14,35 +16,7 @@ $lookwait = true
 @BIRTH_TIME   = Time.now.to_i
 @START_TIME   = 1
 
-if Myname == "Clu"
-    mobs = ["zombie"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
-    rest = "landing"
-    rest2 = "park"
-    attack = "fire"
-    $preattackdefspell = "608"
-    stance = "offensive"
-    flee_count = 1
-    swings = 2
-    skipwaitattack = 1
-    hideme = 1
-    shield = "shortbow"
-    weapon = ""
-    $arrows = "wyrwood arrows"
-    $arrows2 = "wooden arrows"
-    $arrows_cycled = true
-    $arrowssheath = "satchel"
-    sheath = ""
-    backpack = "pack"
-    cloak = "greatcloak"
-    herbsack = "kit"
-    skinknife = "knife"
-    skinsheath = "shirt"
-    encumbrance = 20
-    active_scripts = [""]
-elsif Myname == "Pristeen"
+if Myname == "Pristeen"
     mobs = ["ghostly pooka"]
     huntarea = "4540"
     roomboundry = ["4541","4537","7325","7429"]
@@ -61,8 +35,8 @@ elsif Myname == "Pristeen"
     swings = 9
     skipwaitattack = 1
     hideme = 0
-    shield = ""
-    weapon = "runestaff"
+    shield = "aegis"
+    weapon = ""
     sheath = ""
     backpack = "backpack"
     cloak = "cloak"
@@ -71,36 +45,7 @@ elsif Myname == "Pristeen"
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
-    med = "med"
     $OOM = 25 
-elsif Myname == "Aiss"
-    #mobs = ["nedum vereri"]
-    #fleemobs = ["none2"]
-    #huntarea = "8470"
-    #roomboundry = ["8469","8495"]
-    mobs = ["zombie"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
-    rest = "landing"
-    $skipsale = false
-    attack = "incant 1106 channel"
-    stance = "defensive"
-    flee_count = 1
-    swings = 9
-    skipwaitattack = 1
-    hideme = 0
-    shield = "shield"
-    weapon = ""
-    sheath = ""
-    backpack = "backpack"
-    cloak = "greatcloak"
-    herbsack = "sack"
-    skinknife = ""
-    skinsheath = ""
-    encumbrance = 35
-    active_scripts = [""]
-    med = "med"
 elsif Myname == "Sluf"
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
@@ -132,240 +77,6 @@ elsif Myname == "Sluf"
     encumbrance = 35
     active_scripts = ["surge"]
     $OOM = 0 
-elsif Myname == "Trenus"
-    mobs = ["moaning spirit","night hound"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
-    #mobs = ["zombie"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "7874"
-    #roomboundry = ["7873"]
-    rest = "landing"
-    rest2 = "park"
-    attack = "incant 904 channel"
-    stance = "offensive"
-    flee_count = 1
-    swings = 1
-    skipwaitattack = 1
-    hideme = 0
-    shield = "aegis"
-    weapon = ""
-    sheath = ""
-    backpack = "backpack"
-    cloak = "cloak"
-    herbsack = "kit"
-    skinknife = "knife"
-    skinsheath = "thigh-sheath"
-    encumbrance = 35
-    active_scripts = [""]
-elsif Myname == "Sorci"
-    mobs = ["moaning spirit","night hound"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
-    #mobs = ["zombie"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "7874"
-    #roomboundry = ["7873"]
-    rest = "landing"
-    rest2 = "park"
-    #attack = "incant 702 channel"
-    attack = "incant 705 channel"
-    stance = "defensive"
-    flee_count = 1
-    swings = 1
-    skipwaitattack = 1
-    hideme = 0
-    shield = "shield"
-    weapon = ""
-    sheath = ""
-    backpack = "pack"
-    cloak = "cloak"
-    herbsack = "kit"
-    skinknife = "knife"
-    skinsheath = "wrist sheath"
-    encumbrance = 35
-    active_scripts = [""]
-elsif Myname == "Monker"
-    mobs = ["nedum vereri"]
-    fleemobs = ["none2"]
-    huntarea = "8470"
-    roomboundry = ["8469","8495"]
-    #mobs = ["wraith"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "4175"
-    #roomboundry = ["4195","4187","4181"]
-    rest = "landing"
-    rest2 = "park"
-    attack = "attack"
-    stance = "defensive"
-    flee_count = 1
-    swings = 1
-    skipwaitattack = 1
-    hideme = 0
-    shield = ""
-    weapon = ""
-    boots = ""
-    sheath = "satchel"
-    backpack = "pack"
-    cloak = "cloak"
-    herbsack = "kit"
-    skinknife = "knife"
-    skinsheath = "wrist sheath"
-    encumbrance = 35
-    med = "med GRAPPLE"
-    active_scripts = [""]
-elsif Myname == "Noce"
-    mobs = ["lesser mummy"]
-    fleemobs = ["greater spider"]
-    huntarea = "4144"
-    roomboundry = ["4171","4143"]
-    rest = "landing"
-    rest2 = "park"
-    attack = "attack"
-    stance = "offensive"
-    flee_count = 1
-    swings = 2
-    skipwaitattack = 0
-    hideme = 0
-    shield = ""
-    weapon = "dagger"
-    weapon2 = "knife"
-    sheath = "ankle sheath"
-    backpack = "pack"
-    cloak = "satchel"
-    herbsack = "sack"
-    skinknife = ""
-    skinsheath = ""
-    encumbrance = 35
-    active_scripts = [""]
-elsif Myname == "Bize"
-    mobs = ["fanged rodent"]
-    fleemobs = ["goblin"]
-    rest = "3519"
-    rest2 = "park"
-    huntarea = "5923"
-    roomboundry = ["5922"]
-    attack = "attack"
-    stance = "offensive"
-    flee_count = 1
-    swings = 2
-    skipwaitattack = 0
-    hideme = 0
-    shield = "shield"
-    weapon = "falchion"
-    sheath = "pack"
-    backpack = "pack"
-    cloak = "pack"
-    herbsack = "pack"
-    skinknife = "knife"
-    skinsheath = "wrist sheath"
-    encumbrance = 35
-    active_scripts = [""]
-elsif Myname == "Woory"
-    mobs = ["moaning spirit","night hound"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
-    #mobs = ["zombie"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "7874"
-    #roomboundry = ["7873"]
-    rest = "wgrave"
-    rest2 = "park"
-    attack = "attack"
-    $CMAN = "cman feint"
-    $MSTRIKE = "mstrike"
-    stance = "offensive"
-    flee_count = 1
-    swings = 9
-    skipwaitattack = 1
-    hideme = 0
-    shield = ""
-    weapon = "axe"
-    sheath = "sheath"
-    backpack = "backpack"
-    cloak = "cloak"
-    herbsack = "kit"
-    skinknife = "knife"
-    skinsheath = "thigh-sheath"
-    encumbrance = 35
-    active_scripts = [""]
-elsif Myname == "Wardrob"
-    mobs = ["thyril", "relnak"]
-    fleemobs = ["wraith"]
-    rest = "landing"
-    rest2 = "park"
-    huntarea = "7545"
-    roomboundry = ["7544"]
-    attack = "attack"
-    stance = "offensive"
-    flee_count = 1
-    swings = 1
-    skipwaitattack = 0
-    hideme = 0
-    shield = "shield"
-    weapon = "broadsword"
-    sheath = "sheath"
-    backpack = "greatcloak"
-    cloak = "greatcloak"
-    herbsack = "sack"
-    skinknife = ""
-    skinsheath = ""
-    encumbrance = 35
-    active_scripts = [""]
-elsif Myname == "Hudem"
-    mobs = ["giant ant"]
-    fleemobs = ["nothing"]
-    rest = "landing"
-    rest2 = "park"
-    huntarea = "ants"
-    roomboundry = [6766,6764,6776,6786]
-    attack = "attack"
-    stance = "offensive"
-    flee_count = 1
-    swings = 1
-    skipwaitattack = 0
-    hideme = 0
-    shield = "shield"
-    weapon = "longsword"
-    sheath = "sheath"
-    backpack = "pack"
-    cloak = "pack"
-    herbsack = "pack"
-    skinknife = ""
-    skinsheath = ""
-    encumbrance = 5
-    active_scripts = [""]
-elsif Myname == "Wiiz"
-    #mobs = ["nedum vereri"]
-    #fleemobs = ["none2"]
-    #huntarea = "8470"
-    #roomboundry = ["8469","8495"]
-    mobs = ["zombie"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
-    rest = "landing"
-    rest2 = "park"
-    attack = "incant 904 channel"
-    stance = "offensive"
-    flee_count = 1
-    swings = 1
-    skipwaitattack = 1
-    hideme = 0
-    shield = "shield"
-    weapon = ""
-    sheath = ""
-    backpack = "backpack"
-    cloak = "backpack"
-    herbsack = "satchel"
-    skinknife = ""
-    skinsheath = ""
-    encumbrance = 35
-    active_scripts = [""]
-    $OOM = 3 
 else
     exit
 end
@@ -483,15 +194,20 @@ bs_wander = proc { |roomboundry|
 go2restbefore = proc {
     if Room.current.id.to_s != "#{rest}" and restbefore
       Script.run('go2', "#{restbefore}")
+      Script.run('mysaveloc')
     end
 }
 
 go2rest = proc {
     fput "say fried heading home"
     sleep 1
+    #Script.run('joincall2', 'pristeen2')
     Script.run('joincall', 'pristeen2')
+    sleep 2
     if Room.current.id.to_s != "#{rest}"
       Script.run('go2', "#{rest}")
+      Script.run('mysaveloc')
+      kill_script "randomtalk" 
     end
     if rest == "wgrave"
         Script.run('gogate')
@@ -558,8 +274,8 @@ hands_check = proc {
 
 sell = proc {
     if not $skipsale
-        #Script.run('poolparty')
-        Script.run('poolparty', 'deposit')
+        Script.run('poolparty')
+        #Script.run('poolparty', 'deposit')
         Spell[1205].cast if Spell[1205].known? && Spell[1205].affordable?
         Script.run('sloot', "sell")
     end
@@ -637,6 +353,9 @@ check_flee_count = proc {
 
 gohunt = proc {
   Script.run('go2', "#{huntarea}")
+  Script.run('mysaveloc')
+  Script.run('randomtalk')
+  #Script.run('joincall2', "pristeen")
   Script.run('joincall', "pristeen")
 }
 
@@ -703,15 +422,48 @@ stop_active = proc {
   end
 }
 
+ask_other_empty = proc {
+    runame = "Sluf"
+    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
+    file = File.open(filename)
+    file_data = file.read
+    file.close
+    echo "Checking #{runame} Mind is Empty... its at #{file_data}"
+    if file_data.to_i == 0
+        echo "YES"
+        $checkmindother = true
+    end
+    #LNet.send_message(attr={'type'=>'private', 'to'=>'Trenus'}, "RUEMPTY")
+    ##fput "think to trenus RUEMPTY"
+    #line = matchtimeout 2, "IAMEMPTY", "What were you", "no user named"
+    #if line =~ /IAMEMPTY/
+    #    $checkmindother = true
+    #end
+    #if line =~ /What were you|no user named/
+    #    $checkmindother = true
+    #end
+}
+
 ask_other_fried = proc {
-    fput "whisper sluf RUFULL"
-    line = matchtimeout 2, "IAMFULL", "What were you"
-    if line =~ /IAMFULL/
+    runame = "Sluf"
+    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
+    file = File.open(filename)
+    file_data = file.read
+    file.close
+    echo "Checking #{runame} Mind is Full... its at #{file_data}"
+    if file_data.to_i == 100
+        echo "YES"
         $need_rest = true
     end
-    if line =~ /What were you/
-        $need_rest = true
-    end
+    #LNet.send_message(attr={'type'=>'private', 'to'=>'Trenus'}, "RUFULL")
+    #fput "whisper trenus RUFULL"
+    #line = matchtimeout 2, "IAMFULL", "What were you", "no user named"
+    #if line =~ /IAMFULL/
+    #    $need_rest = true
+    #end
+    #if line =~ /What were you|no user named/
+    #    $need_rest = true
+    #end
 }
 
 print_stats = proc {
@@ -869,7 +621,8 @@ attack_target = proc { |target|
       end
       waitrt?
       waitcastrt?
-      if checkfried
+      #if checkfried
+      if percentmind() > 50
           ask_other_fried.call()
       end
       check_standing.call()
@@ -881,7 +634,8 @@ attack_target = proc { |target|
         Script.run('sloot')
         print_stats.call()
         hands_check.call()
-        if checkfried 
+        #if checkfried 
+        if percentmind() > 50
           echo "FRIED" if checkfried and $debug
           ask_other_fried.call()
           break if $need_rest
@@ -955,6 +709,7 @@ loop {
   tmp_target = "1" if $lookwait
   echo "Got #{tmp_target} and flee is: #{$need_flee}"
   bs_wander.call(roomboundry) if tmp_target == "0" or $need_flee 
+  Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
   if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     echo "Need Healing" if $debug
@@ -1013,6 +768,7 @@ loop {
         Script.run('useherbs', "--buy=on in my #{herbsack}")
     end
     Script.run('go2', "#{rest2}") if rest2
+    Script.run('mysaveloc')
     if $need_bless
       getweapon.call()
       if $arrows
@@ -1124,12 +880,15 @@ loop {
     end
     sell.call()
     Script.run('go2', "#{rest2}") if rest2 and Myname != "Wiiz"
+    Script.run('mysaveloc')
     if defined?(med)
       fput "#{med}"
-      #getweapon.call()
+      getweapon.call()
       #fput "join monker"
       #Script.start("assist_monker")
     end
+    getweapon.call()
+    Script.start("assist_monker")
     #while checkmind(2)
     while percentmind() > 25
       echo "Mind Still to High" if $debug
@@ -1139,7 +898,13 @@ loop {
       print_stats.call()
       sleep 15 
     end
-    while percentmana() < 85
+    $checkmindother = nil
+    while $checkmindother == nil
+        echo "CALLING FRIEND"
+        ask_other_empty.call()
+        sleep 30
+    end
+    while percentmana() < 80
       echo "Mana Below 100%" if $debug
       display_watch_current()
       display_watch_average()
@@ -1151,7 +916,7 @@ loop {
         Script.run('bank')
         #kill_script "krisloop"
     end
-    #kill_script "assist_monker"
+    kill_script "assist_monker"
     #tmp_target = find_target_monker.call()
     #while tmp_target != "0"
     #    tmp_target = find_target_monker.call()

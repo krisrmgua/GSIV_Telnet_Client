@@ -54,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -67,6 +67,30 @@ loop {
     #end
     if line =~ /YOU HAVE BEEN IDLE TOO LONG/
         fput "l"
+    end
+    if line =~ /.*Private.*GSIV:([A-Z,a-z,0-9]+): \"RUEMPTY/
+        whipserer = $1
+        if check_mind(0)
+            LNet.send_message(attr={'type'=>'private', 'to'=>"#{whipserer}"}, "IAMEMPTY")
+        else
+            LNet.send_message(attr={'type'=>'private', 'to'=>"#{whipserer}"}, "not yet")
+        end
+    end
+    if line =~ /([A-Z,a-z]+) thinks, "RUEMPTY/
+        whipserer = $1
+        if check_mind(0)
+            fput "think to #{whipserer} IAMEMPTY"
+        else
+            fput "think to #{whipserer} not yet"
+        end
+    end
+    if line =~ /.*Private.*GSIV:([A-Z,a-z,0-9]+): \"RUFULL/
+        whipserer = $1
+        if check_mind(100)
+            LNet.send_message(attr={'type'=>'private', 'to'=>"#{whipserer}"}, "IAMFULL")
+        else
+            LNet.send_message(attr={'type'=>'private', 'to'=>"#{whipserer}"}, "not yet")
+        end
     end
     if line =~ /([A-Z,a-z]+) whispers, \"RUFULL/
 	whipserer = $1
@@ -103,11 +127,13 @@ loop {
             end
         end
     end
-    if line =~ /$([A-Z,a-z]+) whispers, \"(.*)\"$/
+    if line =~ /^([A-Z,a-z]+) whispers, \"(.*)\"$/
        dwho = $1
-       if dwho !~ /Pristeen|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob/
-           dwhat = $2
-           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"(#{dwho}) Whispers to #{Myname}: #{dwhat}\"") 
+       dwhat = $2
+       dwhat.gsub(/(')/, '')
+       if dwho !~ /Pristeen|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob|Bize/
+           echo "Got Whisper sending out text now."
+           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl WHISPER \"#{dwho} whispers to #{Myname}: #{dwhat}\"") 
        end
     end
     if line =~ /Keyboard|AFK|waiting for you to|^(?!.*audible).*REPORT.*$/i
@@ -173,15 +199,19 @@ loop {
       dlevel = $1
       system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
-    if line =~ /([A-Z,a-z]+) (quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
+    if line =~ /([A-Z,a-z]+) (softly asks|softly says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
         dname = $1
-        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Aiss|Wardrob/
+        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob/
           #fput "think to pristeen #{dname} casting Spells"
-          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
+          if dname !~ /Some|some|Suddenly|suddenly/
+              echo "SPELL MESSAGE #{line}"
+              system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
+          end
         end
-    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Aiss|Wardrob/
-        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/
+    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Wardrob/
+        if line !~ /hours|Hours|suddenly|Suddenly|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please|GSIV|:/
           #fput "think to pristeen KRIS SPELLS"
+          echo "SPELL MESSAGE #{line}"
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
         end
     end
@@ -197,12 +227,16 @@ loop {
             sleep 2
             fput "slap monker"
     end
-    if line =~ /.*Focused.*think.*\, \"Join ([A-Z,a-z,0-9]+)/ and Myname != "Bize"
-        joiny = $1
+    if line =~ /.*Focused.*think.*\, \"Join ([A-Z,a-z,0-9]+)|.*Private.*GSIV.*\"Join ([A-Z,a-z,0-9]+)|.*Private.*GSIV.* \"join ([A-Z,a-z,0-9]+)/ and Myname != "Bize"
+        joiny = $1 if $1
+        joiny = $2 if $2
+        joiny = $3 if $3
         if joiny == "pristeen" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+            kill_script "runmindcheck"
             kill_script "mybigshot_runner"
             kill_script "castany"
             kill_script "assist"
+            Script.start('randomtalk')
             Script.start('my_health_check')
             Script.run('rem')
             if Myname == "Trenus" and Room.current.id.to_s =~ /^228$|^288$|^318$/
@@ -211,15 +245,23 @@ loop {
               Script.run('gate')
               Script.run('gate')
             end
-            Script.run('mygo2name', 'pristeen')
+            #Script.run('mygo2name', 'pristeen')
+            #Script.run('go2name', 'pristeen')
+            Script.run('mygo2loc', 'Pristeen')
             fput "join pristeen"
             Script.start('assist')
+            if Myname == "Trenus"
+              sleep 50
+              Script.run('1')
+            end
             if Myname == "Aiss"
               sleep 50
               echo "Casting Trolls Blood"
               Spell[1125].cast() if Spell[1125].affordable? 
+              Script.run('1')
             end
         elsif joiny == "pristeen2" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+            kill_script "randomtalk"
             kill_script "assist"
             sleep 3
             kill_script "assist"
@@ -231,6 +273,7 @@ loop {
             kill_script "assist"
             wtime = rand(1..20)
             sleep wtime
+            Script.start('runmindcheck') 
             Script.run('wear')
             Script.run('go2', 'landing')
             kill_script "assist"
@@ -243,12 +286,13 @@ loop {
             Script.run('useherbs', "on bench")
             Script.run('useherbs', "under bench")
             Script.run('useherbs', "--buy=on in my kit")
-            if Myname =~ /Monker|Sluf|Woory|Sorci/
+            if Myname =~ /Monker|Trenus|Woory|Sorci/
                 Script.run('go2', 'park3')
             else
                 Script.run('go2', 'park')
             end
-            Script.run('poolparty', 'deposit')
+            Script.run('poolparty')
+            #Script.run('poolparty', 'deposit')
             Script.run('sloot', 'sell')
             Script.run('bank')
             Script.run('waggle')

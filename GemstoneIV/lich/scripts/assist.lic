@@ -2,9 +2,12 @@ Myname = Char.name
 
 group_check = proc {
     fput "group"
-    line = matchtimeout 7, "is the leader", "You are not currently in a group"
+    line = matchtimeout 3, "is the leader", "You are not currently in a group"
     if line =~ /You are not currently in a/
-        Script.run('mygo2name', 'pristeen')
+        Script.run('mygo2loc', 'Pristeen')
+        #Script.run('mygo2name', 'pristeen')
+        #Script.run('go2name', 'pristeen')
+        sleep 0.3
         fput "join pristeen"
     end
 }
@@ -14,7 +17,14 @@ loop {
     #    fput "think to #{Myname} join pristeen2"
     #    sleep 3
     #end
-    line = matchtimeout 7, "Pristeen channels"
+    #if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
+    if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0
+        #fput "think to #{Myname} join pristeen2"
+        LNet.send_message(attr={'type'=>'private', 'to'=>"#{Myname}"}, "join pristeen2")
+        sleep 10
+    end
+    Script.run('mindsave')
+    line = matchtimeout 3, "Pristeen channels"
     if line =~ /Pristeen channels/
        keepon = true
        while keepon

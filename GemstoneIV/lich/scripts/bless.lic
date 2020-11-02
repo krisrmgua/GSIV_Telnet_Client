@@ -1,3 +1,6 @@
 if Spell[304].known? and Spell[304].affordable?
     Spell[304].cast(script.vars[1])
 end
+if Spell[1604].known? and Spell[1604].affordable?
+    Spell[1604].cast(script.vars[1])
+end
