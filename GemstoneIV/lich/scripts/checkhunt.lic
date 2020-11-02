@@ -1,0 +1,80 @@
+$last_state = "off"
+Myname = Char.name
+loop {
+    runame = "Pristeen"
+    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.hunt"
+    file = File.open(filename)
+    file_data = file.read
+    file.close
+    if file_data == "on" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
+        $last_state = "on"
+        kill_script "runmindcheck"
+        kill_script "mybigshot_runner"
+        kill_script "castany"
+        kill_script "assist"
+        Script.start('randomtalk')
+        Script.start('my_health_check')
+        Script.run('rem')
+        if Myname == "Trenus" and Room.current.id.to_s =~ /^228$|^288$|^318$/
+          sleep 10
+          Script.run('go2', 'opengate')
+          Script.run('gate')
+          Script.run('gate')
+        end
+        Script.run('mygo2loc', 'Pristeen')
+        fput "join pristeen"
+        Script.start('assist')
+        if Myname == "Trenus"
+          sleep 50
+          Script.run('1')
+        end
+        if Myname == "Aiss"
+          sleep 50
+          echo "Casting Trolls Blood"
+          Spell[1125].cast() if Spell[1125].affordable?
+          Script.run('1')
+        end
+    elsif file_data == "off" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "off"
+        $last_state = "off"
+        kill_script "randomtalk"
+        kill_script "assist"
+        sleep 3
+        kill_script "assist"
+        if Myname =~ /Monker|Sluf|Woory|Sorci/
+            Script.run('go2', 'park3')
+        else
+            Script.run('go2', 'park')
+        end
+        kill_script "assist"
+        Script.start('runmindcheck')
+        wtime = rand(1..30)
+        sleep wtime
+        Script.run('wear')
+        Script.run('go2', 'landing')
+        kill_script "assist"
+        if Myname == "Aiss"
+            Script.run('sheal')
+        else
+            Script.run('askheal')
+        end
+        Script.run('useherbs', "in bin")
+        Script.run('useherbs', "on bench")
+        Script.run('useherbs', "under bench")
+        Script.run('useherbs', "--buy=on in my kit")
+        if Myname =~ /Monker|Trenus|Woory|Sorci/
+            Script.run('go2', 'park3')
+        else
+            Script.run('go2', 'park')
+        end
+        Script.run('poolparty')
+        #Script.run('poolparty', 'deposit')
+        Script.run('sloot', 'sell')
+        Script.run('bank')
+        Script.run('waggle')
+        if Myname == "Aiss"
+            #Script.start('castany', '1')
+        end
+        fput "med" if Myname == "Aiss"
+    end
+    sleep 5
+}
