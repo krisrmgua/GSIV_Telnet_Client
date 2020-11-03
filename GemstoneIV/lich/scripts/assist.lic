@@ -5,8 +5,6 @@ group_check = proc {
     line = matchtimeout 3, "is the leader", "You are not currently in a group"
     if line =~ /You are not currently in a/
         Script.run('mygo2loc', 'Pristeen')
-        #Script.run('mygo2name', 'pristeen')
-        #Script.run('go2name', 'pristeen')
         sleep 0.3
         fput "join pristeen"
     end

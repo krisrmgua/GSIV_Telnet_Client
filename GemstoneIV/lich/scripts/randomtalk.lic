@@ -78,6 +78,9 @@ random_talk = proc {
         "im a little acorn round lying on the cold cold ground, everbody steps on me, that is why im cracked you see",
         "i may need to change my pants",
         "your not funny, I am",
+        "I feel so strong!",
+        "There so fluffy!",
+        "I want money, lots and lots of money",
         "i cant hear you"
     ]
     random_text.sample
@@ -92,42 +95,42 @@ end
 loop {
     if Myname == "Pristeen"
         line = matchwait "Aiss says"
-        sleep 10
+        sleep 20
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Sluf"
         line = matchwait "Pristeen says"
-        sleep 15
+        sleep 25
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Woory"
         line = matchwait "Sluf says"
-        sleep 20
+        sleep 30
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Sorci"
         line = matchwait "Woory says"
-        sleep 25
+        sleep 35
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Trenus"
         line = matchwait "Sorci says"
-        sleep 10
+        sleep 40
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Monker"
         line = matchwait "Trenus says"
-        sleep 15
+        sleep 20
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Clu"
         line = matchwait "Monker says"
-        sleep 20
+        sleep 25
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Aiss"
         line = matchwait "Clu says"
-        sleep 25
+        sleep 30
         text = random_talk.call()
         fput "say #{text}"
     end

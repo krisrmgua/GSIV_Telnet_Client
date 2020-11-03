@@ -27,7 +27,7 @@ if Myname == "Pristeen"
     #fleemobs = ["tomb spider"]
     #huntarea = "7319"
     #roomboundry = ["7318","7324"]
-    rest = "park"
+    rest = "landing"
     rest2 = "park"
     attack = "incant 302 channel"
     stance = "defensive"
@@ -202,8 +202,9 @@ go2rest = proc {
     fput "say fried heading home"
     sleep 1
     #Script.run('joincall2', 'pristeen2')
-    Script.run('joincall', 'pristeen2')
-    sleep 2
+    #Script.run('joincall', 'pristeen2')
+    Script.run('sethunt', 'off')
+    sleep 8
     if Room.current.id.to_s != "#{rest}"
       Script.run('go2', "#{rest}")
       Script.run('mysaveloc')
@@ -325,6 +326,7 @@ check_for_people = proc {
        line = matchtimeout 15, "Bluey is following", "Your group status"
        if line =~ /Bluey is following/
            echo "Bluey is with you"
+           kill_script "randomtalk" 
            GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$|^Bluey$/}
        else
            echo "Only my guys"
@@ -354,9 +356,10 @@ check_flee_count = proc {
 gohunt = proc {
   Script.run('go2', "#{huntarea}")
   Script.run('mysaveloc')
-  Script.run('randomtalk')
+  Script.start('randomtalk')
   #Script.run('joincall2', "pristeen")
-  Script.run('joincall', "pristeen")
+  #Script.run('joincall', "pristeen")
+  Script.run('sethunt', 'on')
 }
 
 check_standing = proc {

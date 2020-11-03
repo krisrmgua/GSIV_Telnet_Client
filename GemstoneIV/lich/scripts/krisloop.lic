@@ -54,7 +54,7 @@ def monitor_interaction()
 end
 Myname = Char.name
 loop {
-    line = matchtimeout 10, "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "Focused", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -215,7 +215,7 @@ loop {
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
         end
     end
-    if line =~ /^(\w+) offers you/ and Myname == "Aiss"
+    if line =~ /^(\w+) offers you/ and Myname == "Aiss2"
         wname = $1
         sleep 5
         fput "whisper " + wname + " no thanks!"
@@ -227,7 +227,7 @@ loop {
             sleep 2
             fput "slap monker"
     end
-    if line =~ /.*Focused.*think.*\, \"Join ([A-Z,a-z,0-9]+)|.*Private.*GSIV.*\"Join ([A-Z,a-z,0-9]+)|.*Private.*GSIV.* \"join ([A-Z,a-z,0-9]+)/ and Myname != "Bize"
+    if line =~ /.*Focused.*thinks.*\"Join ([A-Z,a-z,0-9]+)|.*Private.*GSIV.*\"Join ([A-Z,a-z,0-9]+)|.*Private.*GSIV.* \"join ([A-Z,a-z,0-9]+)/
         joiny = $1 if $1
         joiny = $2 if $2
         joiny = $3 if $3

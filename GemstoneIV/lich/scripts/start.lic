@@ -27,3 +27,12 @@ else
   Script.start('krisloop')
   Script.start('my_health_check')
 end
+if Myname == "Pristeen"
+  Script.run('sethunt', 'off')
+end
+if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
+  kill_script "checkhunt"
+  sleep 1
+  Script.start('checkhunt')
+end
+Script.start('log')
