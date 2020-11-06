@@ -72,7 +72,24 @@ random_talk = proc {
         "did i see a panda or a mouse",
         "I wish empaths had a spell for the graveyard gate sadly they dont same with rangers",
         "spoooky",
+        "i taste like hay",
+        "a fly got in my mouth",
+        "cant trust anyone",
+        "its as simple as that",
+        "your asking me to risk my life",
+        "you go what you came for",
+        "wait for my signal",
+        "going to give them what I promissed",
+        "and it begins",
+        "drop it like its hot",
+        "I have fallen and I cant get up",
+        "not good enough",
+        "i feel like someone is watching",
+        "i have chosen my target",
+        "we shall not fail",
+        "mmm steak",
         "burr cold",
+        "always come crawling back",
         "hold me back, hold me back",
         "im a nut, im a nut, im a nut",
         "im a little acorn round lying on the cold cold ground, everbody steps on me, that is why im cracked you see",
@@ -87,49 +104,49 @@ random_talk = proc {
 }
 
 if Myname == "Pristeen"
-    sleep 60
+    sleep 90
     text = random_talk.call()
     fput "say #{text}"
 end
 
 loop {
     if Myname == "Pristeen"
-        line = matchwait "Aiss says"
+        line = matchwait "Aiss says", "Aiss exclaims"
         sleep 20
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Sluf"
-        line = matchwait "Pristeen says"
+        line = matchwait "Pristeen says", "Pristeen exclaims"
         sleep 25
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Woory"
-        line = matchwait "Sluf says"
+        line = matchwait "Sluf says", "Sluf exclaims"
         sleep 30
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Sorci"
-        line = matchwait "Woory says"
+        line = matchwait "Woory says", "Woory exclaims"
         sleep 35
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Trenus"
-        line = matchwait "Sorci says"
+        line = matchwait "Sorci says", "Sorci exclaims"
         sleep 40
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Monker"
-        line = matchwait "Trenus says"
+        line = matchwait "Trenus says", "Trenus exclaims"
         sleep 20
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Clu"
-        line = matchwait "Monker says"
+        line = matchwait "Monker says", "Monker exclaims"
         sleep 25
         text = random_talk.call()
         fput "say #{text}"
     elsif Myname == "Aiss"
-        line = matchwait "Clu says"
+        line = matchwait "Clu says", "Clu exclaims"
         sleep 30
         text = random_talk.call()
         fput "say #{text}"

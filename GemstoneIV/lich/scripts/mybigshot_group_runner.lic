@@ -433,7 +433,6 @@ ask_other_empty = proc {
     file.close
     echo "Checking #{runame} Mind is Empty... its at #{file_data}"
     if file_data.to_i == 0
-        echo "YES"
         $checkmindother = true
     end
     #LNet.send_message(attr={'type'=>'private', 'to'=>'Trenus'}, "RUEMPTY")
