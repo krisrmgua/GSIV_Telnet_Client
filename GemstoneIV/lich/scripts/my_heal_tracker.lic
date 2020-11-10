@@ -1,5 +1,10 @@
 @debug   = true;
-@FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
+Myname = Char.name
+if Myname == "Aiss"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
+else
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list2.txt"
+end
 def new_healed(target) 
   echo "Saving name #{target} to heal list!"
   dfile = @FILENAME

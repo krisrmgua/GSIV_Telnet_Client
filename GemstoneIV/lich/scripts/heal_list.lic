@@ -1,4 +1,8 @@
-@FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
+if Myname == "Aiss"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
+else
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list2.txt"
+end
 x = 0
 File.readlines(@FILENAME).reverse_each{ |s|
    x = x + 1
