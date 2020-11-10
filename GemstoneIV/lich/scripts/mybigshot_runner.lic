@@ -2,6 +2,7 @@ Myname = Char.name
 $debug = true
 $skipsale = false
 restbefore = nil
+$max_silver = 4999
 $OOM = 5
 $CMAN = nil
 $CMAN_NAME = nil
@@ -93,7 +94,7 @@ elsif Myname == "Aiss"
     sheath = ""
     backpack = "backpack"
     cloak = "greatcloak"
-    herbsack = "sack"
+    herbsack = "kit"
     skinknife = ""
     skinsheath = ""
     encumbrance = 35
@@ -323,6 +324,29 @@ elsif Myname == "Hudem"
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
+elsif Myname == "Hoedo"
+    mobs = ["giant ant"]
+    fleemobs = ["nothing"]
+    rest = "landing"
+    rest2 = "park"
+    huntarea = "ants"
+    roomboundry = ["7534","292"]
+    attack = "incant 1700 channel"
+    stance = "defensive"
+    flee_count = 1
+    swings = 9
+    skipwaitattack = 1
+    hideme = 0
+    shield = "shield"
+    weapon = ""
+    sheath = ""
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
 elsif Myname == "Hudem"
     mobs = ["giant ant"]
     fleemobs = ["nothing"]
@@ -487,6 +511,21 @@ bs_wander = proc { |roomboundry|
   end
 }
 
+check_silver = proc {
+    fput "silver"
+    line = matchtimeout 2, "coins with you"
+    if line =~ /You have (.*) coins with you/
+        coins = $1
+        coins = coins.gsub(/[\s,]/ ,"")
+        if coins != "nosilver"
+            if coins.to_i > $max_silver
+                echo "To many coins, you have #{coins}"
+                $need_sale = true
+            end
+        end
+    end
+}
+
 
 go2restbefore = proc {
     if Room.current.id.to_s != "#{rest}" and restbefore
@@ -509,7 +548,7 @@ putawayweapon = proc {
         fput "wear my #{shield}"
         fput "put my #{$arrows} in my #{$arrowssheath}"
         fput "put my #{$arrows2} in my #{$arrowssheath}"
-    elsif Myname == "Pristeen" or Myname == "Monker"
+    elsif Myname == "Pristeen" or Myname == "Monker" or Myname == "Hoedo"
         Script.run('wear')
     else
         if "#{shield}" != ""
@@ -525,7 +564,7 @@ putawayweapon = proc {
 }
 
 getweapon = proc {
-    if Myname == "Pristeen" or Myname == "Monker" 
+    if Myname == "Pristeen" or Myname == "Monker" or Myname == "Hoedo" 
         Script.run('rem')
     else
         if "#{shield}" != ""
@@ -855,6 +894,7 @@ attack_target = proc { |target|
           if dead
             go_defensive.call()
             Script.run('sloot')
+            check_silver.call()
             $numkilled = $numkilled + 1;
             print_stats.call()
             hands_check.call()
@@ -870,6 +910,7 @@ attack_target = proc { |target|
         go_defensive.call()
         $numkilled = $numkilled + 1;
         Script.run('sloot')
+        check_silver.call()
         print_stats.call()
         hands_check.call()
         if checkfried or percentencumbrance > encumbrance

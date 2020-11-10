@@ -20,6 +20,7 @@ echo -e "\t16:\tHoled (18)"
 echo -e "\t17:\tHeldr (19)"
 echo -e "\t18:\tHelumb (20)"
 echo -e "\t19:\tHudem (21)"
+echo -e "\t20:\tHoedo (22)"
 #echo -e "\t20:\tWiiz (0)"
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
@@ -102,6 +103,10 @@ elif [ $num -eq 19 ]
 then
     character=Hudem
     port=8019
+elif [ $num -eq 20 ]
+then
+    character=Hoedo
+    port=8020
 #elif [ $num -eq 20 ]
 #then
 #    character=Wiiz

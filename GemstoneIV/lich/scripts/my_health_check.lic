@@ -13,5 +13,5 @@ quit_health = proc {
 loop {
     quit_dead.call() if checkdead
     quit_health.call() if percenthealth <= 40
-    sleep 3
+    sleep 2
 }

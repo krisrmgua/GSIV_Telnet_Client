@@ -262,7 +262,7 @@ elsif Myname == "Bize"
     swings = 2
     skipwaitattack = 1
     hideme = 0
-    shield = ""
+    shield = "shield"
     weapon = "spear"
     sheath = "leather sheath"
     backpack = "pack"

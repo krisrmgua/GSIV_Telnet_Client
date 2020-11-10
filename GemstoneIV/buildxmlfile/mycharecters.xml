@@ -1,4 +1,4 @@
         <!--My Characters-->
         <highlight fg='000000' bg='D2E329'>
-                \b(?:Munkie|Aiss|Pristeen|Bize|Noce|Clu|Wardrob|Trenus|Sorci|Woory|Sluf|Monker|Wiiz)\b
+                \b(?:Munkie|Aiss|Pristeen|Bize|Noce|Clu|Wardrob|Trenus|Sorci|Woory|Sluf|Hoedo|Monker|Wiiz)\b
         </highlight>

@@ -21,6 +21,8 @@ loop {
           Script.run('gate')
           Script.run('gate')
         end
+        sleep 4 if Myname == "Sluf"
+        sleep 2 if Myname == "Woory"
         Script.run('mygo2loc', 'Pristeen')
         fput "join pristeen"
         Script.start('assist')
@@ -29,7 +31,7 @@ loop {
           Script.run('1')
         end
         if Myname == "Aiss"
-          sleep 50
+          sleep 80
           echo "Casting Trolls Blood"
           Spell[1125].cast() if Spell[1125].affordable?
           Script.run('1')

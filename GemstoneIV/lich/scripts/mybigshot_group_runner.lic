@@ -4,6 +4,7 @@ Myname = Char.name
 $debug = true
 $skipsale = false
 restbefore = nil
+$max_silver = 4999
 $OOM = 5
 $CMAN = nil
 $MSTRIKE = nil
@@ -95,6 +96,21 @@ mybigshot_runner_monitor = proc { |server_string|
     $obvious_hiding_player = true
   end
   server_string
+}
+
+check_silver = proc {
+    fput "silver"
+    line = matchtimeout 2, "coins with you"
+    if line =~ /You have (.*) coins with you/
+        coins = $1
+        coins = coins.gsub(/[\s,]/ ,"")
+        if coins != "nosilver"
+            if coins.to_i > $max_silver
+                echo "To many coins, you have #{coins}"
+                $need_sale = true
+            end
+        end
+    end
 }
 
 def message(text)
@@ -426,7 +442,7 @@ stop_active = proc {
 }
 
 ask_other_empty = proc {
-    runame = "Sluf"
+    runame = "Monker"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
@@ -447,7 +463,7 @@ ask_other_empty = proc {
 }
 
 ask_other_fried = proc {
-    runame = "Sluf"
+    runame = "Monker"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
@@ -614,6 +630,7 @@ attack_target = proc { |target|
           if dead
             go_defensive.call()
             Script.run('sloot')
+            check_silver.call()
             $numkilled = $numkilled + 1;
             print_stats.call()
             hands_check.call()
@@ -624,7 +641,8 @@ attack_target = proc { |target|
       waitrt?
       waitcastrt?
       #if checkfried
-      if percentmind() > 50
+      tmpnpcs = GameObj.npcs
+      if percentmind() > 25 and not tmpnpcs.size
           ask_other_fried.call()
       end
       check_standing.call()
@@ -634,10 +652,12 @@ attack_target = proc { |target|
         go_defensive.call()
         $numkilled = $numkilled + 1;
         Script.run('sloot')
+        check_silver.call()
         print_stats.call()
         hands_check.call()
         #if checkfried 
-        if percentmind() > 50
+        tmp2npcs = GameObj.npcs
+        if percentmind() > 25 and not tmp2npcs.size
           echo "FRIED" if checkfried and $debug
           ask_other_fried.call()
           break if $need_rest

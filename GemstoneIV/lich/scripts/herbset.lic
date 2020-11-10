@@ -4,7 +4,7 @@ arraylength = herbs.length
 $herbcount = 0
 kill_script "sorter"
 fput "open my backpack"
-fput "open my sack"
+fput "open my kit"
 $cast_herb = nil
 
 check_cloak = proc { |dherb|
@@ -38,13 +38,13 @@ while $herbcount < arraylength
         fput "close my greatc"
         echo "num is #{$herbcount} get my #{$cast_herb}"
         fput "get my #{$cast_herb}"
-        line = matchtimeout 3, "You remove", "Get what"
+        line = matchtimeout 3, "You remove", "Get what", "You carefully"
         if line =~ /Get what/
             echo "No more herbs"
             $need_still = $need_still + ", 50 more #{$cast_herb}"
             $herbcount = $herbcount + 1
         end
-        if line =~ /You remove/
+        if line =~ /You remove/ or line =~ /You carefully/
             while count < 50
                 fput "bundle remove"
                 line2 = matchtimeout 3, "You carefully", "You only", "You are not"
@@ -54,7 +54,7 @@ while $herbcount < arraylength
                 end
                 if line2 =~ /You are not/
                     fput "get my #{$cast_herb}"
-                    line3 = matchtimeout 3, "You remove", "Get what"
+                    line3 = matchtimeout 3, "You remove", "Get what", "You carefully"
                     if line3 =~ /Get what/
                         echo "No more herbs"
                         fput "get #{$cast_herb}"
