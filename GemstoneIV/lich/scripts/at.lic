@@ -2,7 +2,7 @@ Myname = Char.name
 fput "stance off"
 if Myname == "Clu"
   fput "fire"
-elsif Myname == "Monker"
+elsif Myname == "Monker" or Myname == "Piie"
   fput "punch"
 else
   fput "attack"

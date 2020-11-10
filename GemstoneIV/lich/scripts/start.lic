@@ -8,6 +8,13 @@ if Myname == "Aiss"
   Script.start('krisloop')
   Script.start('my_health_check')
 #  Script.start('healbot')
+elsif Myname == "Hili"
+  kill_script "krisloop"
+  sleep 1
+  Script.start('my_heal_tracker')
+  Script.start('taptoheal')
+  Script.start('krisloop')
+  Script.start('my_health_check')
 elsif Myname == "Trenus"
   Script.start('familiar')
   kill_script "krisloop"
@@ -38,7 +45,7 @@ end
 if Myname == "Hoedo"
   Script.run('sethunt', 'off')
 end
-if Myname =~ /Piie|Noce|Bize/
+if Myname =~ /Piie|Noce|Bize|Hili/
   kill_script "checkhunt"
   sleep 1
   Script.start('checkhunt', "Hoedo")

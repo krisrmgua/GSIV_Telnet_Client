@@ -63,6 +63,8 @@ scan_for_players = proc { |pro|
         CharSettings['known_players'].store("Thailmore", "empath")
         CharSettings['known_players'].delete("Aiss")
         CharSettings['known_players'].store("Aiss", "kris")
+        CharSettings['known_players'].delete("Hili")
+        CharSettings['known_players'].store("Hili", "kris")
         CharSettings['known_players'].delete("Pristeen")
         CharSettings['known_players'].store("Pristeen", "kris")
         CharSettings['known_players'].delete("Bize")

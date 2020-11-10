@@ -369,10 +369,10 @@ check_for_people = proc {
        if line =~ /Bluey is following/
            echo "Bluey is with you"
            kill_script "randomtalk" 
-           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$|^Hoedo$|^Piie$|^Noce$|^Bize$|^Bluey$/}
+           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$|^Hoedo$|^Piie$|^Hili$|^Noce$|^Bize$|^Bluey$/}
        else
            echo "Only my guys"
-           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Hoedo$|^Piie$|^Noce$|^Bize$|^Clu$/}
+           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Hoedo$|^Piie$|^Hili$|^Noce$|^Bize$|^Clu$/}
        end
        echo "PERSON FOUND" if $debug and $need_flee
        GameObj.pcs.each {|s| alert_dead_body.call(s.noun) if s.status =~ /dead/}

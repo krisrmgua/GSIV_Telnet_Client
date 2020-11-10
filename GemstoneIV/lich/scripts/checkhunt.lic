@@ -7,7 +7,7 @@ loop {
     file = File.open(filename)
     file_data = file.read
     file.close
-    if file_data == "on" and Myname =~ /Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
+    if file_data == "on" and Myname =~ /Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
         $last_state = "on"
         kill_script "runmindcheck"
         kill_script "mybigshot_runner"
@@ -37,7 +37,7 @@ loop {
           Spell[1125].cast() if Spell[1125].affordable?
           Script.run('1')
         end
-    elsif file_data == "off" and Myname =~ /Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "off"
+    elsif file_data == "off" and Myname =~ /Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "off"
         $last_state = "off"
         kill_script "randomtalk"
         kill_script "assist"

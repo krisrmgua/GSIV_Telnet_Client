@@ -52,7 +52,7 @@ loop {
                if line =~ /You do no|You currently/
                    keepon = nil
                end
-           elsif Myname == "Heodo"
+           elsif Myname == "Heodo" or Myname == "Hili"
                sleep 1
                Script.run('c')
                line = matchtimeout 3, "You do not"
