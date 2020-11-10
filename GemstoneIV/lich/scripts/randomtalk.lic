@@ -150,5 +150,7 @@ loop {
         sleep 30
         text = random_talk.call()
         fput "say #{text}"
+    else
+        exit
     end
 }

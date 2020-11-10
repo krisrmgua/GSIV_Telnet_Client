@@ -29,3 +29,4 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Hudem > /tmp/Hudem.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Hoedo > /tmp/Hoedo.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Piie > /tmp/Piie.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Hili > /tmp/Hili.txt

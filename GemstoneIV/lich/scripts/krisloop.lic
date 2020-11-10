@@ -249,7 +249,7 @@ loop {
             #Script.run('go2name', 'pristeen')
             Script.run('mygo2loc', 'Pristeen')
             fput "join pristeen"
-            Script.start('assist')
+            Script.start('assist', "Pristeen")
             if Myname == "Trenus"
               sleep 50
               Script.run('1')

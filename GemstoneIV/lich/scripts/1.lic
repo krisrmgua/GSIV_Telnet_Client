@@ -29,4 +29,7 @@ if Spell[401].known? or Spell[101].known?
     waggle_it.call('Bize')
     waggle_it.call('Trenus')
     waggle_it.call('Bluey')
+    waggle_it.call('Hoedo')
+    waggle_it.call('Noce')
+    waggle_it.call('Bize')
 end

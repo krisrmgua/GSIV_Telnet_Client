@@ -33,6 +33,14 @@ end
 if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   kill_script "checkhunt"
   sleep 1
-  Script.start('checkhunt')
+  Script.start('checkhunt', "Pristeen")
+end
+if Myname == "Hoedo"
+  Script.run('sethunt', 'off')
+end
+if Myname =~ /Piie|Noce|Bize/
+  kill_script "checkhunt"
+  sleep 1
+  Script.start('checkhunt', "Hoedo")
 end
 Script.start('log')

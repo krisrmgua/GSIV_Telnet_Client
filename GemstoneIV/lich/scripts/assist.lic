@@ -1,29 +1,24 @@
 Myname = Char.name
+runame = script.vars[1]
 
 group_check = proc {
     fput "group"
     line = matchtimeout 3, "is the leader", "You are not currently in a group"
     if line =~ /You are not currently in a/
-        Script.run('mygo2loc', 'Pristeen')
+        Script.run('mygo2loc', "#{runame}")
         sleep 0.3
-        fput "join pristeen"
+        fput "join #{runame}"
     end
 }
 
 loop {
-    #if check_mind(100) and Myname == "Monker"
-    #    fput "think to #{Myname} join pristeen2"
-    #    sleep 3
-    #end
-    #if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0
-        #fput "think to #{Myname} join pristeen2"
         LNet.send_message(attr={'type'=>'private', 'to'=>"#{Myname}"}, "join pristeen2")
         sleep 10
     end
     Script.run('mindsave')
-    line = matchtimeout 3, "Pristeen channels"
-    if line =~ /Pristeen channels/
+    line = matchtimeout 3, "Pristeen channels", "Hoedo channels", "Hoedo gestures"
+    if line =~ /Pristeen channels|Hoedo channels|Hoedo gestures/
        keepon = true
        while keepon
            if Myname == "Sorci" or Myname == "Trenus" or Myname == "Aiss"
@@ -57,6 +52,29 @@ loop {
                if line =~ /You do no|You currently/
                    keepon = nil
                end
+           elsif Myname == "Heodo"
+               sleep 1
+               Script.run('c')
+               line = matchtimeout 3, "You do not"
+               if line =~ /You do not/
+                   keepon = nil
+               end
+           elsif Myname == "Bize" or Myname == "Noce" or Myname == "Piie"
+               sleep 0.5 if not Myname == "Sluf"
+               Script.run('at')
+               line = matchtimeout 3, "You do not", "You currently","your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
+               if line =~ /^You .* has no effect|You fire .* but it has no effect/ and Myname =~ /Piie|Bize|Noce/
+                   waitrt?
+                   waitcastrt?
+                   fput "swap" if Myname == "Noce"
+                   fput "whisper hoedo bless me" if Myname == "Noce"
+                   sleep 2 if Myname == "Noce"
+                   fput "swap" if Myname == "Noce"
+                   fput "whisper hoedo bless me"
+               end
+               if line =~ /You do no|You currently/
+                   keepon = nil
+               end
            end
            waitrt?
            waitcastrt?
@@ -68,6 +86,6 @@ loop {
     end
     group_check.call()
     if Room.current.id.to_s =~ /^228$/ or Room.current.id.to_s =~ /^288$/ or Room.current.id.to_s =~ /^318$/ 
-        fput "think to #{Myname} join pristeen2"
+        fput "think to #{Myname} join #{runame}"
     end
 }

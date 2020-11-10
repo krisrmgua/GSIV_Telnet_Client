@@ -16,6 +16,7 @@ $lookwait = true
 @STORED_TIMES = Array.new
 @BIRTH_TIME   = Time.now.to_i
 @START_TIME   = 1
+$MYFRIED = 99
 
 if Myname == "Pristeen"
     mobs = ["ghostly pooka"]
@@ -47,6 +48,7 @@ if Myname == "Pristeen"
     encumbrance = 35
     active_scripts = [""]
     $OOM = 25 
+    $MYFRIED = 25
 elsif Myname == "Sluf"
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
@@ -78,6 +80,30 @@ elsif Myname == "Sluf"
     encumbrance = 35
     active_scripts = ["surge"]
     $OOM = 0 
+elsif Myname == "Hoedo"
+    mobs = ["giant ant"]
+    fleemobs = ["nothing"]
+    rest = "landing"
+    rest2 = "park"
+    huntarea = "ants"
+    roomboundry = ["7534","292"]
+    attack = "incant 1700 channel"
+    stance = "defensive"
+    flee_count = 8
+    swings = 9
+    skipwaitattack = 1
+    hideme = 0
+    shield = "shield"
+    weapon = ""
+    sheath = ""
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
+    $OOM = 25
 else
     exit
 end
@@ -237,7 +263,7 @@ putawayweapon = proc {
         fput "wear my #{shield}"
         fput "put my #{$arrows} in my #{$arrowssheath}"
         fput "put my #{$arrows2} in my #{$arrowssheath}"
-    elsif Myname == "Pristeen" or Myname == "Monker"
+    elsif Myname == "Hoedo" or Myname == "Pristeen" or Myname == "Monker"
         Script.run('wear')
     else
         if "#{shield}" != ""
@@ -253,7 +279,7 @@ putawayweapon = proc {
 }
 
 getweapon = proc {
-    if Myname == "Pristeen" or Myname == "Monker" 
+    if Myname == "Pristeen" or Myname == "Hoedo" or Myname == "Monker" 
         Script.run('rem')
     else
         if "#{shield}" != ""
@@ -343,10 +369,10 @@ check_for_people = proc {
        if line =~ /Bluey is following/
            echo "Bluey is with you"
            kill_script "randomtalk" 
-           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$|^Bluey$/}
+           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$|^Hoedo$|^Piie$|^Noce$|^Bize$|^Bluey$/}
        else
            echo "Only my guys"
-           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$/}
+           GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Hoedo$|^Piie$|^Noce$|^Bize$|^Clu$/}
        end
        echo "PERSON FOUND" if $debug and $need_flee
        GameObj.pcs.each {|s| alert_dead_body.call(s.noun) if s.status =~ /dead/}
@@ -642,8 +668,8 @@ attack_target = proc { |target|
       waitcastrt?
       #if checkfried
       tmpnpcs = GameObj.npcs
-      if percentmind() > 25 and not tmpnpcs.size
-          ask_other_fried.call()
+      if percentmind() > $MYFRIED and not tmpnpcs.size
+          ask_other_fried.call() if Myname == "Pristeen"
       end
       check_standing.call()
       loop += 1
@@ -657,9 +683,10 @@ attack_target = proc { |target|
         hands_check.call()
         #if checkfried 
         tmp2npcs = GameObj.npcs
-        if percentmind() > 25 and not tmp2npcs.size
+        if percentmind() > $MYFRIED and not tmp2npcs.size
           echo "FRIED" if checkfried and $debug
-          ask_other_fried.call()
+          ask_other_fried.call() if Myname == "Pristeen"
+          $need_rest = true if checkfried and Myname != "Pristeen"
           break if $need_rest
         end
         if percentencumbrance > encumbrance
@@ -694,7 +721,7 @@ take_a_look = proc {
 
 openlook.call()
 Script.run('checkbank')
-if percentmana() < 25
+if percentmana() < $MYFRIED
   DownstreamHook.remove("mybigshot_runner_monitor")
   go2restbefore.call()
   go2rest.call()
@@ -921,9 +948,10 @@ loop {
       sleep 15 
     end
     $checkmindother = nil
+    $checkmindother = 1 if Myname != "Pristeen"
     while $checkmindother == nil
         echo "CALLING FRIEND"
-        ask_other_empty.call()
+        ask_other_empty.call() if Myname == "Pristeen"
         sleep 30
     end
     while percentmana() < 80

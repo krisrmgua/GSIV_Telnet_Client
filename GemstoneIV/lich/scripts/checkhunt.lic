@@ -1,12 +1,13 @@
 $last_state = "off"
 Myname = Char.name
+runame = script.vars[1]
 loop {
-    runame = "Pristeen"
+    #runame = "Pristeen"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.hunt"
     file = File.open(filename)
     file_data = file.read
     file.close
-    if file_data == "on" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
+    if file_data == "on" and Myname =~ /Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
         $last_state = "on"
         kill_script "runmindcheck"
         kill_script "mybigshot_runner"
@@ -23,10 +24,10 @@ loop {
         end
         sleep 4 if Myname == "Sluf"
         sleep 2 if Myname == "Woory"
-        Script.run('mygo2loc', 'Pristeen')
-        fput "join pristeen"
-        Script.start('assist')
-        if Myname == "Trenus"
+        Script.run('mygo2loc', "#{runame}")
+        fput "join #{runame}"
+        Script.start('assist', "#{runame}")
+        if Myname == "Trenus" or Myname == "Piie"
           sleep 50
           Script.run('1')
         end
@@ -36,7 +37,7 @@ loop {
           Spell[1125].cast() if Spell[1125].affordable?
           Script.run('1')
         end
-    elsif file_data == "off" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "off"
+    elsif file_data == "off" and Myname =~ /Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "off"
         $last_state = "off"
         kill_script "randomtalk"
         kill_script "assist"

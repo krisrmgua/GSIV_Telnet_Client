@@ -21,6 +21,8 @@ echo -e "\t17:\tHeldr (19)"
 echo -e "\t18:\tHelumb (20)"
 echo -e "\t19:\tHudem (21)"
 echo -e "\t20:\tHoedo (22)"
+echo -e "\t21:\tPiie (23)"
+echo -e "\t22:\tHili (24)"
 #echo -e "\t20:\tWiiz (0)"
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
@@ -107,10 +109,14 @@ elif [ $num -eq 20 ]
 then
     character=Hoedo
     port=8020
-#elif [ $num -eq 20 ]
-#then
-#    character=Wiiz
-#    port=8020
+elif [ $num -eq 21 ]
+then
+    character=Piie
+    port=8021
+elif [ $num -eq 22 ]
+then
+    character=Hili
+    port=8022
 else
     echo "BAD INPUT"
     exit
