@@ -23,8 +23,9 @@ drawer = proc {
                 else
                   $count = $count + 1
                 end
+            else
+                fput "bundle remove"
             end
-            fput "bundle remove"
         end
         result3 = dothistimeout "put #{$herbs[$count]} in drawer", 5, /You put|Your/
         if result3 =~ /Your .* won/

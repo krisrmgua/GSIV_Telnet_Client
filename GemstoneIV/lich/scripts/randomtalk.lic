@@ -108,6 +108,11 @@ if Myname == "Pristeen"
     text = random_talk.call()
     fput "say #{text}"
 end
+if Myname == "Hoedo"
+    sleep 90
+    text = random_talk.call()
+    fput "say #{text}"
+end
 
 loop {
     if Myname == "Pristeen"
@@ -148,6 +153,26 @@ loop {
     elsif Myname == "Aiss"
         line = matchwait "Clu says", "Clu exclaims"
         sleep 30
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Hoedo"
+        line = matchwait "Hili says", "Hili exclaims"
+        sleep 20
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Noce"
+        line = matchwait "Hoedo says", "Hoedo exclaims"
+        sleep 25
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Piie"
+        line = matchwait "Noce says", "Noce exclaims"
+        sleep 30
+        text = random_talk.call()
+        fput "say #{text}"
+    elsif Myname == "Hili"
+        line = matchwait "Piie says", "Piie exclaims"
+        sleep 35
         text = random_talk.call()
         fput "say #{text}"
     else

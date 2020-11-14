@@ -1,0 +1,5 @@
+if Spell[1700].known? and Spell[1700].affordable?
+    fput "incant 1700 channel"
+else
+    echo "Out of Mana/Or spell not known"
+end

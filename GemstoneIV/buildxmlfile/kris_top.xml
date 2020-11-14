@@ -32,7 +32,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='90FF8B'>^\[Private(?:To)?\]|^\[Focused(?:to)?\]|Also here:</highlight>
 	<highlight fg='FFFFFF' bg='FF0000'>.*(recites|says|asks|yells).*(blurs|Blurs|BLURS|guards|Guards|GUARDS|colors|Colors|COLORS|hues|Hues|HUES).*</highlight>
 	<highlight fg='008000'>^\[code\]</highlight>
-	<highlight fg='FFFF00'>GameMaster|GameHost</highlight>
+	<highlight fg='FF0000'>GameMaster|GameHost</highlight>
 	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?!.*audible)(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
 	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]|\[healbot.*$|\[mybigshot_group_runner.*\]</highlight>
 	<highlight fg='00A2FF'>(?i)(acantha leaf tea|acantha leaf|yabathilium fruit|Iceberry Tart|grey mushroom potion|green mushroom potion|tincture of acantha|Olak\'s Ol'style ale|sassafras tea|Bloody Krolvin)</highlight>

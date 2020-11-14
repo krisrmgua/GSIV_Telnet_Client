@@ -9,3 +9,9 @@ fput "think to woory get bank"
 sleep 0.3
 fput "think to sluf get bank"
 fput "think to pristeen get bank"
+sleep 2
+fput "think to hoedo get bank"
+fput "think to piie get bank"
+sleep 0.3
+fput "think to noce get bank"
+fput "think to hili get bank"

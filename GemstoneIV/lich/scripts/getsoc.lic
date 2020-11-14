@@ -12,5 +12,11 @@ fput "think to pristeen getsoc"
 sleep 0.3
 fput "think to aiss getsoc"
 fput "think to noce getsoc"
-sleep 0.3
+sleep 2
 fput "think to bize getsoc"
+fput "think to noce getsoc"
+sleep 0.3
+fput "think to hoedo getsoc"
+fput "think to piie getsoc"
+sleep 0.3
+fput "think to hili getsoc"

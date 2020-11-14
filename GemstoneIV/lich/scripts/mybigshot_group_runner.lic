@@ -17,6 +17,7 @@ $lookwait = true
 @BIRTH_TIME   = Time.now.to_i
 @START_TIME   = 1
 $MYFRIED = 99
+$mindhunt = 25
 
 if Myname == "Pristeen"
     mobs = ["ghostly pooka"]
@@ -31,7 +32,8 @@ if Myname == "Pristeen"
     #roomboundry = ["7318","7324"]
     rest = "landing"
     rest2 = "park"
-    attack = "incant 302 channel"
+    #attack = "incant 302 channel"
+    attack = "incant 1700 channel"
     stance = "defensive"
     flee_count = 8
     swings = 9
@@ -81,13 +83,26 @@ elsif Myname == "Sluf"
     active_scripts = ["surge"]
     $OOM = 0 
 elsif Myname == "Hoedo"
-    mobs = ["giant ant"]
-    fleemobs = ["nothing"]
+    #huntarea = "4141"
+    #roomboundry = ["4140","7172","7184","4142"]
+    #mobs = ["phantom", "lesser ghoul", "goblin", "skeleton"]
+    #fleemobs = ["greater spider"]
+    mobs = ["lesser mummy"]
+    fleemobs = ["greater spider"]
+    huntarea = "4144"
+    roomboundry = ["4171","4143"]
+    #mobs = ["thyril", "relnak"]
+    #fleemobs = ["wraith"]
+    #huntarea = "7545"
+    #roomboundry = ["7544"]
+    #mobs = ["giant ant"]
+    #fleemobs = ["nothing"]
+    #huntarea = "ants"
+    #roomboundry = ["7534","292"]
     rest = "landing"
     rest2 = "park"
-    huntarea = "ants"
-    roomboundry = ["7534","292"]
-    attack = "incant 1700 channel"
+    #attack = "incant 1700 channel"
+    attack = "incant 302 channel"
     stance = "defensive"
     flee_count = 8
     swings = 9
@@ -101,9 +116,11 @@ elsif Myname == "Hoedo"
     herbsack = "sack"
     skinknife = ""
     skinsheath = ""
-    encumbrance = 35
+    encumbrance = 50
     active_scripts = [""]
     $OOM = 25
+    $MYFRIED = 101
+    $mindhunt = 89
 else
     exit
 end
@@ -401,6 +418,7 @@ gohunt = proc {
   Script.start('randomtalk')
   #Script.run('joincall2', "pristeen")
   #Script.run('joincall', "pristeen")
+  echo "Seting Hunt ON"
   Script.run('sethunt', 'on')
 }
 
@@ -468,13 +486,14 @@ stop_active = proc {
 }
 
 ask_other_empty = proc {
-    runame = "Monker"
+    #runame = "Monker"
+    runame = "Sluf"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
     file.close
     echo "Checking #{runame} Mind is Empty... its at #{file_data}"
-    if file_data.to_i == 0
+    if file_data.to_i < 26
         $checkmindother = true
     end
     #LNet.send_message(attr={'type'=>'private', 'to'=>'Trenus'}, "RUEMPTY")
@@ -489,7 +508,8 @@ ask_other_empty = proc {
 }
 
 ask_other_fried = proc {
-    runame = "Monker"
+    #runame = "Monker"
+    runame = "Sluf"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
@@ -670,6 +690,7 @@ attack_target = proc { |target|
       tmpnpcs = GameObj.npcs
       if percentmind() > $MYFRIED and not tmpnpcs.size
           ask_other_fried.call() if Myname == "Pristeen"
+          $need_rest = true if checkfried and Myname != "Pristeen"
       end
       check_standing.call()
       loop += 1
@@ -721,7 +742,7 @@ take_a_look = proc {
 
 openlook.call()
 Script.run('checkbank')
-if percentmana() < $MYFRIED
+if percentmana() < 70
   DownstreamHook.remove("mybigshot_runner_monitor")
   go2restbefore.call()
   go2rest.call()
@@ -932,14 +953,11 @@ loop {
     Script.run('mysaveloc')
     if defined?(med)
       fput "#{med}"
-      getweapon.call()
-      #fput "join monker"
-      #Script.start("assist_monker")
     end
-    getweapon.call()
-    Script.start("assist_monker")
+    #getweapon.call()
+    #Script.start("assist_monker")
     #while checkmind(2)
-    while percentmind() > 25
+    while percentmind() > $mindhunt
       echo "Mind Still to High" if $debug
       display_watch_current()
       display_watch_average()

@@ -7,23 +7,25 @@ echo -e "\t3:\tMonker (15)"
 echo -e "\t4:\tTrenus (4)"
 echo -e "\t5:\tSorci (13)"
 echo -e "\t6:\tWoory (3)"
-echo -e "\t7:\tBize (16)"
-echo -e "\t8:\tNoce (17)"
-echo -e "\t9:\tSluf (5)"
-echo -e "\t10:\tPristeen (7)"
-echo -e "\t11:\tWardrob (9)"
-echo -e "\t12:\tLoads (10)"
-echo -e "\t13:\tLoods (8)"
-echo -e "\t14:\tItiems (11)"
-echo -e "\t15:\tItemim (12)"
-echo -e "\t16:\tHoled (18)"
-echo -e "\t17:\tHeldr (19)"
-echo -e "\t18:\tHelumb (20)"
-echo -e "\t19:\tHudem (21)"
-echo -e "\t20:\tHoedo (22)"
-echo -e "\t21:\tPiie (23)"
-echo -e "\t22:\tHili (24)"
-#echo -e "\t20:\tWiiz (0)"
+echo -e "\t7:\tSluf (5)"
+echo -e "\t8:\tPristeen (7)"
+echo -e " "
+echo -e "\t9:\tHoedo (22)"
+echo -e "\t10:\tNoce (17)"
+echo -e "\t11:\tPiie (23)"
+echo -e "\t12:\tHili (24)"
+echo -e "\t13:\tBize (16)"
+echo -e " "
+echo -e "\t14:\tWardrob (9)"
+echo -e "\t15:\tLoads (10)"
+echo -e "\t16:\tLoods (8)"
+echo -e "\t17:\tItiems (11)"
+echo -e "\t18:\tItemim (12)"
+echo -e "\t19:\tHoled (18)"
+echo -e "\t20:\tHeldr (19)"
+echo -e "\t21:\tHelumb (20)"
+echo -e "\t22:\tHudem (21)"
+
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
 
@@ -55,67 +57,67 @@ then
     port=8006
 elif [ $num -eq 7 ]
 then
-    character=Bize
+    character=Sluf
     port=8007
 elif [ $num -eq 8 ]
 then
-    character=Noce
+    character=Pristeen
     port=8008
 elif [ $num -eq 9 ]
 then
-    character=Sluf
+    character=Hoedo
     port=8009
 elif [ $num -eq 10 ]
 then
-    character=Pristeen
+    character=Noce
     port=8010
 elif [ $num -eq 11 ]
 then
-    character=Wardrob
+    character=Piie
     port=8011
 elif [ $num -eq 12 ]
 then
-    character=Loads
+    character=Hili
     port=8012
 elif [ $num -eq 13 ]
 then
-    character=Loods
+    character=Bize
     port=8013
 elif [ $num -eq 14 ]
 then
-    character=Itiems
+    character=Wardrob
     port=8014
 elif [ $num -eq 15 ]
 then
-    character=Itemim
+    character=Loads
     port=8015
 elif [ $num -eq 16 ]
 then
-    character=Holed
+    character=Loods
     port=8016
 elif [ $num -eq 17 ]
 then
-    character=Heldr
+    character=Itiems
     port=8017
 elif [ $num -eq 18 ]
 then
-    character=Helumb
+    character=Itemim
     port=8018
 elif [ $num -eq 19 ]
 then
-    character=Hudem
+    character=Holed
     port=8019
 elif [ $num -eq 20 ]
 then
-    character=Hoedo
+    character=Heldr
     port=8020
 elif [ $num -eq 21 ]
 then
-    character=Piie
+    character=Helumb
     port=8021
 elif [ $num -eq 22 ]
 then
-    character=Hili
+    character=Hudem
     port=8022
 else
     echo "BAD INPUT"

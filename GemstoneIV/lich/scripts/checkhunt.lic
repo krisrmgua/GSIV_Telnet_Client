@@ -15,6 +15,8 @@ loop {
         kill_script "assist"
         Script.start('randomtalk')
         Script.start('my_health_check')
+        Script.run('wear')
+        empty_hands
         Script.run('rem')
         if Myname == "Trenus" and Room.current.id.to_s =~ /^228$|^288$|^318$/
           sleep 10
@@ -31,7 +33,7 @@ loop {
           sleep 50
           Script.run('1')
         end
-        if Myname == "Aiss"
+        if Myname == "Aiss" or Myname == "Hili"
           sleep 80
           echo "Casting Trolls Blood"
           Spell[1125].cast() if Spell[1125].affordable?
@@ -45,6 +47,8 @@ loop {
         kill_script "assist"
         if Myname =~ /Monker|Sluf|Woory|Sorci/
             Script.run('go2', 'park3')
+        elsif Myname =~ /Hili|Aiss/
+            Script.run('go2', 'landing')
         else
             Script.run('go2', 'park')
         end
@@ -64,8 +68,11 @@ loop {
         Script.run('useherbs', "on bench")
         Script.run('useherbs', "under bench")
         Script.run('useherbs', "--buy=on in my kit")
+        Script.run('useherbs', "--buy=on in my sack")
         if Myname =~ /Monker|Trenus|Woory|Sorci/
             Script.run('go2', 'park3')
+        elsif Myname =~ /Hili|Aiss/
+            Script.run('go2', 'landing')
         else
             Script.run('go2', 'park')
         end
@@ -75,7 +82,7 @@ loop {
         Script.run('bank')
         Script.run('waggle')
         if Myname == "Aiss"
-            #Script.start('castany', '1')
+            #Script.run('castany')
         end
         fput "med" if Myname == "Aiss"
     end
