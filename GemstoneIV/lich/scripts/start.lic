@@ -36,6 +36,7 @@ else
 end
 if Myname == "Pristeen"
   Script.run('sethunt', 'off')
+  Script.run('mysaveloc')
 end
 if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   kill_script "checkhunt"
@@ -44,6 +45,7 @@ if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
 end
 if Myname == "Hoedo"
   Script.run('sethunt', 'off')
+  Script.run('mysaveloc')
 end
 if Myname =~ /Piie|Noce|Bize|Hili/
   kill_script "checkhunt"

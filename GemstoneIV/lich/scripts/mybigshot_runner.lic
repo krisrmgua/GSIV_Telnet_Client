@@ -231,8 +231,8 @@ elsif Myname == "Noce"
     skipwaitattack = 0
     hideme = 0
     shield = ""
-    weapon = "dagger"
-    weapon2 = "knife"
+    weapon = "vul dagger"
+    weapon2 = "vul dagger"
     sheath = "ankle sheath"
     backpack = "pack"
     cloak = "satchel"
@@ -548,7 +548,7 @@ putawayweapon = proc {
         fput "wear my #{shield}"
         fput "put my #{$arrows} in my #{$arrowssheath}"
         fput "put my #{$arrows2} in my #{$arrowssheath}"
-    elsif Myname == "Pristeen" or Myname == "Monker" or Myname == "Hoedo"
+    elsif Myname == "Pristeen" or Myname == "Noce" or Myname == "Monker" or Myname == "Hoedo"
         Script.run('wear')
     else
         if "#{shield}" != ""
@@ -564,7 +564,7 @@ putawayweapon = proc {
 }
 
 getweapon = proc {
-    if Myname == "Pristeen" or Myname == "Monker" or Myname == "Hoedo" 
+    if Myname == "Pristeen" or Myname == "Monker" or Myname == "Noce"  or Myname == "Hoedo" 
         Script.run('rem')
     else
         if "#{shield}" != ""

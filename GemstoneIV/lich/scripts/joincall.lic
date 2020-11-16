@@ -24,5 +24,11 @@ sleep 2
 LNet.send_message(attr={'type'=>'private', 'to'=>'Monker'}, "#{what}")
 sleep 1
 LNet.send_message(attr={'type'=>'private', 'to'=>'Bize'}, "#{what}")
-#sleep 1
-#LNet.send_message(attr={'type'=>'private', 'to'=>'Noce'}, "#{what}")
+sleep 1
+LNet.send_message(attr={'type'=>'private', 'to'=>'Hoedo'}, "#{what}")
+sleep 2
+LNet.send_message(attr={'type'=>'private', 'to'=>'Noce'}, "#{what}")
+sleep 1
+LNet.send_message(attr={'type'=>'private', 'to'=>'Piie'}, "#{what}")
+sleep 1
+LNet.send_message(attr={'type'=>'private', 'to'=>'Hili'}, "#{what}")

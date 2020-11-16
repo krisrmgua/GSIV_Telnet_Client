@@ -17,8 +17,9 @@ check_cloak = proc { |dherb|
            $cast_herb = nil
        elsif line =~ /some acantha leaf/
            $cast_herb = "#{dherb}"
-       end
-       if line =~ /There is nothing/
+       elsif line =~ /There is nothing/
+           $cast_herb = "#{dherb}"
+       else
            $cast_herb = "#{dherb}"
        end
     else

@@ -12,7 +12,7 @@ if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 
        end
     end
     if line =~ /What were you referring to/ or askothers
-        mynum = rand(1..9)
+        mynum = rand(1..15)
         if mynum == 1
             fput "say Can I get some healing please?"
         elsif mynum == 2
@@ -31,6 +31,18 @@ if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 
             fput "say Any empaths able to heal me please"
         elsif mynum == 9
             fput "say Could anyone please give me some healing?"
+        elsif mynum == 10
+            fput "say I could use some healing"
+        elsif mynum == 11
+            fput "say empath able to heal me?"
+        elsif mynum == 12
+            fput "say I need an empath"
+        elsif mynum == 13
+            fput "say Healing?"
+        elsif mynum == 14
+            fput "say Im looking for some healing"
+        elsif mynum == 15
+            fput "say Can a healer heal me?"
         else
             fput "say Anyone healing?"
         end

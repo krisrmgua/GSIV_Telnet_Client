@@ -59,7 +59,7 @@ loop {
                end
            elsif Myname == "Aiss"
                sleep 1
-               Script.run('v')
+               Script.run('c')
                line = matchtimeout 3, "You do not"
                if line =~ /You do not/
                    keepon = nil

@@ -55,11 +55,12 @@ loop {
         kill_script "assist"
         Script.start('runmindcheck')
         wtime = rand(1..30)
+        echo "Sleeping #{wtime}"
         sleep wtime
         Script.run('wear')
         Script.run('go2', 'landing')
         kill_script "assist"
-        if Myname == "Aiss"
+        if Myname == "Aiss" or Myname == "Hili"
             Script.run('sheal')
         else
             Script.run('askheal')
