@@ -50,7 +50,7 @@ if Myname == "Pristeen"
     encumbrance = 35
     active_scripts = [""]
     $OOM = 25 
-    $MYFRIED = 25
+    $MYFRIED = 24
 elsif Myname == "Sluf"
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
@@ -83,24 +83,21 @@ elsif Myname == "Sluf"
     active_scripts = ["surge"]
     $OOM = 0 
 elsif Myname == "Hoedo"
-    #huntarea = "4141"
-    #roomboundry = ["4140","7172","7184","4142"]
-    #mobs = ["phantom", "lesser ghoul", "goblin", "skeleton"]
+    mobs = ["greater spider","death dirge","greater ghoul","revenant","hobgoblin","cobra"]
+    fleemobs = ["big budda"]
+    huntarea = "7252"
+    roomboundry = ["7198","7196","7260"]
+    #mobs = ["lesser mummy"]
     #fleemobs = ["greater spider"]
-    mobs = ["lesser mummy"]
-    fleemobs = ["greater spider"]
-    huntarea = "4144"
-    roomboundry = ["4171","4143"]
-    #mobs = ["thyril", "relnak"]
-    #fleemobs = ["wraith"]
-    #huntarea = "7545"
-    #roomboundry = ["7544"]
-    #mobs = ["giant ant"]
-    #fleemobs = ["nothing"]
-    #huntarea = "ants"
-    #roomboundry = ["7534","292"]
+    #huntarea = "4144"
+    #roomboundry = ["4171","4143"]
+    #mobs = ["wraith"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "4175"
+    #roomboundry = ["4195","4187","4181"]
     rest = "landing"
     rest2 = "park"
+    rest3 = "wgrave"
     #attack = "incant 1700 channel"
     attack = "incant 302 channel"
     stance = "defensive"
@@ -487,7 +484,7 @@ stop_active = proc {
 
 ask_other_empty = proc {
     #runame = "Monker"
-    runame = "Sluf"
+    runame = "Woory"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
@@ -509,7 +506,7 @@ ask_other_empty = proc {
 
 ask_other_fried = proc {
     #runame = "Monker"
-    runame = "Sluf"
+    runame = "Woory"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
@@ -734,7 +731,7 @@ attack_target = proc { |target|
 
 take_a_look = proc {
      fput "look"
-     line = matchtimeout 3, "a stunned", "who is immobilized", "Obvious exits"
+     line = matchtimeout 1, "a stunned", "who is immobilized", "Obvious exits"
      if line =~ /a stunned/ or line =~ /who is immobilized/
          $lookwait = true
      end
@@ -742,7 +739,7 @@ take_a_look = proc {
 
 openlook.call()
 Script.run('checkbank')
-if percentmana() < 70
+if percentmana() < 60
   DownstreamHook.remove("mybigshot_runner_monitor")
   go2restbefore.call()
   go2rest.call()
@@ -796,7 +793,7 @@ loop {
   check_for_people.call()
   if $need_flee != true
     target = find_target.call()
-    sleep 0.5
+    sleep 0.3
     check_for_people.call()
     while target != "0" and not $need_flee and not $need_rest and not $need_sale and not $need_healing and not $need_bless
       attack_target.call(target)
@@ -950,6 +947,7 @@ loop {
     end
     sell.call()
     Script.run('go2', "#{rest2}") if rest2 and Myname != "Wiiz"
+    Script.run('go2', "#{rest3}") if rest3 and Myname != "Wiiz"
     Script.run('mysaveloc')
     if defined?(med)
       fput "#{med}"

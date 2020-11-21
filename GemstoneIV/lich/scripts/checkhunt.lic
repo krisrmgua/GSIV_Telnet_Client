@@ -29,7 +29,7 @@ loop {
         Script.run('mygo2loc', "#{runame}")
         fput "join #{runame}"
         Script.start('assist', "#{runame}")
-        if Myname == "Trenus" or Myname == "Piie"
+        if Myname == "Trenus" or Myname == "Bize"
           sleep 50
           Script.run('1')
         end
@@ -72,7 +72,7 @@ loop {
         Script.run('useherbs', "--buy=on in my sack")
         if Myname =~ /Monker|Trenus|Woory|Sorci/
             Script.run('go2', 'park3')
-        elsif Myname =~ /Hili|Aiss/
+        elsif Myname =~ /Aiss/
             Script.run('go2', 'landing')
         else
             Script.run('go2', 'park')
@@ -81,6 +81,10 @@ loop {
         #Script.run('poolparty', 'deposit')
         Script.run('sloot', 'sell')
         Script.run('bank')
+        if Myname =~ /Hoedo|Noce|Piie|Hili|Bize/
+            sleep 40 if Myname == "Hoedo"
+            Script.run('go2', 'wgrave')
+        end
         Script.run('waggle')
         if Myname == "Aiss"
             #Script.run('castany')
