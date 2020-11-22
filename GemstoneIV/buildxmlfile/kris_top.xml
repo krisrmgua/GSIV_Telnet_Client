@@ -13,7 +13,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
         <highlight fg="E8FF00">a filigreed silver chest plated with electrum skeleton keys|a filigreed silver chest</highlight>
         <highlight fg="9AF312">(a|an|some) (s\'|n\'|t\')?\w+?\s?\w+?\s?\w+\s(?:amethyst|lapis lazuli|cube|quartz|ruby|pearl|garnet|opal|sapphire|gem|amber|coral|wand|crystal|jasper|spinel|diopside|stone|flask|topaz|zircon|tourmaline)($| |,|\.)</highlight>
         <highlight fg="479B95">(a|an|some) \w+?\s?\w+?\s?\w+\s(?:lockpick|statue)</highlight>
-        <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a (\w+?\s?\w+ coin)($| |,|\.)|a \w+?\s?\w+ figurine|a piece of \w+ glass|a \w+ piece of eight</highlight>
+        <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a (\w+?\s?\w+ coin)($| |,|\.)|a handful of silver flakes|a \w+?\s?\w+ figurine|a piece of \w+ glass|a \w+ piece of eight</highlight>
 	<highlight fg="B8AA44">You gather the remaining (\d+) coins|You manage to successfully place|You feel intense satisfaction at a task well done.</highlight>
 	<highlight fg="FFACDB">(?i)(^|\s|\")(healing|healers|healer|heal|empath)($|\s|,|\.)</highlight>
 	<highlight fg="F6931D">nods to|nods at|pokes you|taps you lightly on the shoulder|taps you</highlight>
@@ -33,6 +33,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='FFFFFF' bg='FF0000'>.*(recites|says|asks|yells).*(blurs|Blurs|BLURS|guards|Guards|GUARDS|colors|Colors|COLORS|hues|Hues|HUES).*</highlight>
 	<highlight fg='008000'>^\[code\]</highlight>
 	<highlight fg='FF0000'>GameMaster|GameHost</highlight>
+	<highlight fg='FF0000' bg='FFE800'>.*Use the RECOVER ITEM.*</highlight>
 	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?!.*audible)(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
 	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]|\[healbot.*$|\[mybigshot_group_runner.*\]</highlight>
 	<highlight fg='00A2FF'>(?i)(acantha leaf tea|acantha leaf|yabathilium fruit|Iceberry Tart|grey mushroom potion|green mushroom potion|tincture of acantha|Olak\'s Ol'style ale|sassafras tea|Bloody Krolvin)</highlight>
@@ -77,7 +78,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='ECCFFA'>dainty silver bracelet</highlight>
 
         <!--Fire Flare Weapons-->
-        <highlight fg='FC0000'>onyx-hilted warped rolaren falchion|elegant rowan-hilted rolaren falchion|troll hide gauntlets|pyrothag hide shoes|drakar-edged vultite bodkin|etched ebon vultite cinquedea</highlight>
+        <highlight fg='FC0000'>onyx-hilted warped rolaren falchion|elegant rowan-hilted rolaren falchion|troll hide gauntlets|pyrothag hide shoes|ornately etched triple-fullered ebon vultite cinquedea|drakar-edged vultite bodkin|etched ebon vultite cinquedea</highlight>
         <!--Ice Flare Weapons-->
         <highlight fg='00FCED'>glittering golden falchion|wolverine pelt gauntlets|caribou hide shoes|cross-hilted misericord</highlight>
         <!--Acid Flare Weapons-->
