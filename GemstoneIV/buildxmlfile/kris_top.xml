@@ -35,7 +35,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='FF0000'>GameMaster|GameHost</highlight>
 	<highlight fg='FF0000' bg='FFE800'>.*Use the RECOVER ITEM.*</highlight>
 	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?!.*audible)(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
-	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]|\[healbot.*$|\[mybigshot_group_runner.*\]</highlight>
+	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]|\[assist.*\]|\[healbot.*$|\[mybigshot_group_runner.*\]</highlight>
 	<highlight fg='00A2FF'>(?i)(acantha leaf tea|acantha leaf|yabathilium fruit|Iceberry Tart|grey mushroom potion|green mushroom potion|tincture of acantha|Olak\'s Ol'style ale|sassafras tea|Bloody Krolvin)</highlight>
 	<highlight fg='00FFFF'>(?i)(Tundra Grass|Mama Dwarf's\'|Elk Horn Potion|Semak's Smooth\'|Leaftoe\'s Lichen Tart|Orc\'s Head\'|Dabbings Family Tart|Lost Dogwater|bubbling brown ale|chunky black ale|rusty red ale|thick foggy ale|tincture of ambrominas|tincture of basal|tincture of rose-marrow|tincture of wolifrew|ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion|sweetfern tea|gingko nut tea|feverfew tea|red lichen tea)</highlight>
 	<highlight fg='00FFFF' bg='282828'>(?i)(Musk Ox Tart|Ram\'s Bladder|Snowflake Elixer|Aged Schooner\'|Dark Swampwater\'|Kenar's Dropjaw\'|Frog\'s Bone Porr|Golden Goose|pothinir grass|aloeas stem|bolmara potion|ephlox moss|tincture of pothinir|a cup of aloeas tea|a cup of ephlox tea|a cup of pothinir tea|tincture of bolmara|glowing mold tea|tincture of aloeas|tincture of ephlox|sweetfern potion|gingko nut potion|feverfew potion|red lichen potion)</highlight>

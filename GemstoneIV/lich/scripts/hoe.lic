@@ -1,0 +1,15 @@
+loop{
+    line = matchtimeout 8, "Noce swings", "Noce thrust"
+    if line =~ /Noce swings|Noce thrust/
+        keepon = true
+        while keepon
+            Script.run('c')
+            line = matchtimeout 3, "You do not"
+            if line =~ /You do not/
+                keepon = nil
+            end
+            waitrt?
+            waitcastrt?
+        end
+    end
+}

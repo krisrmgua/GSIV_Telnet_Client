@@ -86,8 +86,9 @@ loop {
             Script.run('go2', 'wgrave')
         end
         Script.run('waggle')
+        Script.run('waggle_bard')
         if Myname == "Aiss"
-            #Script.run('castany')
+            Script.run('castany', '1')
         end
         fput "med" if Myname == "Aiss"
     end

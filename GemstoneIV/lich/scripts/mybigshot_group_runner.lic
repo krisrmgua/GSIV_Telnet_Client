@@ -1,4 +1,6 @@
 kill_script "assist_monker"
+Script.start('krisloop')
+Script.start('my_health_check')
 $checkmindother = nil
 Myname = Char.name
 $debug = true
@@ -83,14 +85,10 @@ elsif Myname == "Sluf"
     active_scripts = ["surge"]
     $OOM = 0 
 elsif Myname == "Hoedo"
-    mobs = ["greater spider","death dirge","greater ghoul","revenant","hobgoblin","cobra"]
+    mobs = ["greater spider","death dirge"]
     fleemobs = ["big budda"]
     huntarea = "7252"
     roomboundry = ["7198","7196","7260"]
-    #mobs = ["lesser mummy"]
-    #fleemobs = ["greater spider"]
-    #huntarea = "4144"
-    #roomboundry = ["4171","4143"]
     #mobs = ["wraith"]
     #fleemobs = ["tomb spider"]
     #huntarea = "4175"
@@ -116,8 +114,10 @@ elsif Myname == "Hoedo"
     encumbrance = 50
     active_scripts = [""]
     $OOM = 25
-    $MYFRIED = 101
-    $mindhunt = 89
+    #$MYFRIED = 101
+    #$mindhunt = 89
+    $MYFRIED = 100
+    $mindhunt = 25
 else
     exit
 end
@@ -483,8 +483,8 @@ stop_active = proc {
 }
 
 ask_other_empty = proc {
-    #runame = "Monker"
-    runame = "Woory"
+    runame = "Monker"
+    #runame = "Woory"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
@@ -505,8 +505,8 @@ ask_other_empty = proc {
 }
 
 ask_other_fried = proc {
-    #runame = "Monker"
-    runame = "Woory"
+    runame = "Monker"
+    #runame = "Woory"
     filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
@@ -532,8 +532,16 @@ print_stats = proc {
     echo "Number of Kills: #{$numkilled}"
 }
 
+save_attack = proc { |dstate|
+    Myname = Char.name
+    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.attack"
+    echo "Setting Attack to #{dstate}"
+    File.write(filename, "#{dstate}")
+}
+
 attack_target = proc { |target|
   CMAN_EXE = nil
+  save_attack.call("on")
   if skipwaitattack == 0
     line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
   end
@@ -724,6 +732,7 @@ attack_target = proc { |target|
       check_flee_count.call()
       echo "Fleeing" if $need_flee == true and $debug
       break if $need_flee == true
+      Script.run('mysaveloc')
     end
     go_defensive.call()
   end
@@ -767,7 +776,7 @@ loop {
   $need_flee = false
   start_active.call()
   tmp_target = find_target.call()
-  sleep 8 if tmp_target == "0"
+  #sleep 8 if tmp_target == "0"
   check_for_people.call()
   tmp_target = find_target.call()
   check_flee_count.call()
@@ -795,10 +804,15 @@ loop {
     target = find_target.call()
     sleep 0.3
     check_for_people.call()
+    verytmp = "0"
     while target != "0" and not $need_flee and not $need_rest and not $need_sale and not $need_healing and not $need_bless
+      verytmp = "1"
       attack_target.call(target)
       target = find_target.call()
     end
+    save_attack.call("off")
+    echo "Sleeping 9" if verytmp == "1"
+    sleep 9 if verytmp == "1"
   end
   check_standing.call()
   if $need_healing or $need_bless or $need_rest or $need_sale

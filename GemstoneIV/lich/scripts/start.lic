@@ -3,6 +3,7 @@ if Myname == "Aiss"
   kill_script "krisloop"
   sleep 1
   Script.start('getnames', '1')
+  Script.start('autoinvitefriends')
   Script.start('my_heal_tracker')
   #Script.start('taptoheal')
   Script.start('krisloop')

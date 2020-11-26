@@ -11,6 +11,7 @@ else
     echo -e "\t7:\tMiniLap"
     echo -e "\t8:\tWide Split"
     echo -e "\t9:\t3 Wide Split"
+    echo -e "\t10:\t3 Wide Split no monitor"
     echo -e " "
     echo -e "ENTER SELECTOIN NUMBER: "
 
@@ -163,6 +164,24 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_3_wide_split.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
+elif [ $num -eq 10 ]
+then
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_top.xml > ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/bard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/empath.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/cleric.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/monk.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/paladin.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/ranger.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/rogue.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/sorcerer.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/warrior.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_3_wide_split_no_mon.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
 else
     echo "BAD INPUT"

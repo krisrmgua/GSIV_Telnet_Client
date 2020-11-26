@@ -31,7 +31,7 @@ group_check = proc {
 
 loop {
     $silver = false
-    if percentencumbrance > 40
+    if percentencumbrance > 60
        $silver = true
     end
     if silcheck > 50
@@ -45,10 +45,15 @@ loop {
         if Myname == "Hoedo" or Myname == "Noce" or Myname == "Piie" or Myname == "Hili" or Myname == "Bize"
             Script.run('go2', "wgrave")
             Script.run('wear')
-            Script.run('useherbs', "in my sack")
-            Script.run('useherbs', "in my kit")
+            if Myname == "Hili"
+              Script.run('sheal')
+            else
+              Script.run('useherbs', "in my sack")
+              Script.run('useherbs', "in my kit")
+            end
             waitrt?
             waitcastrt?
+            sleep 120 if $silver
             Script.run('rem')
             group_check.call()
         else
@@ -57,8 +62,14 @@ loop {
         end
     end
     Script.run('mindsave')
-    line = matchtimeout 3, "Pristeen channels", "Pristeen gestures", "Hoedo channels", "Hoedo gestures"
-    if line =~ /Pristeen channels|Pristeen gestures|Hoedo channels|Hoedo gestures/
+    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.attack"
+    file = File.open(filename)
+    file_data = file.read
+    file.close
+    if file_data == "on"
+        echo "Attack is set to ON"
+    #line = matchtimeout 3, "Pristeen channels", "Pristeen gestures", "Hoedo channels", "Hoedo gestures"
+    #if line =~ /Pristeen channels|Pristeen gestures|Hoedo channels|Hoedo gestures/
        keepon = true
        while keepon
            if Myname == "Sorci" or Myname == "Trenus"
@@ -130,6 +141,9 @@ loop {
        end
        Script.run('sloot')
        fput "stance def"
+    else
+        echo "Attack is set to Off"
+        sleep 1
     end
     group_check.call()
     if Room.current.id.to_s =~ /^228$/ or Room.current.id.to_s =~ /^288$/ or Room.current.id.to_s =~ /^318$/ 

@@ -206,7 +206,7 @@ loop {
       dlevel = $1
       system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
-    if line =~ /([A-Z,a-z]+) (softly asks|weakly asks|weakly says|softly says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
+    if line =~ /([A-Z,a-z]+) (softly asks|weakly asks|weakly says|softly says|heartily asks|heartily says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
         dname = $1
         if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob|Hili/
           #fput "think to pristeen #{dname} casting Spells"
