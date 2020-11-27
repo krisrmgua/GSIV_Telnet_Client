@@ -15,6 +15,7 @@ my $monks = "";
 my $paladins = "";
 my $enemiess = "";
 my $kris = "";
+my $fam = "";
 
 open(FH, '<', $filename) or die $!;
 while(<FH>){
@@ -93,6 +94,12 @@ while(<FH>){
       }else{
           $kris = $kris . "|$list[0]";
       }
+   }elsif ($list[1] eq "fam") {
+      if ($fam eq ""){
+          $fam = "$list[0]";
+      }else{
+          $fam = $fam . "|$list[0]";
+      }
    } 
    #print Dumper(\%warrior_hash);
 }
@@ -134,8 +141,12 @@ my $enemy_file_top = '        <!--Enemy Characters-->
 my $kris_file_top = '        <!--My Characters-->
         <highlight fg=\'000000\' bg=\'D2E329\'>
                 \b(?:';
+my $fam_file_top = '        <!--Fam Characters-->
+        <highlight fg=\'000000\' bg=\'0091C2\'>
+                \b(?:';
 my $file_end = ')\b
-        </highlight>';
+        </highlight>
+';
 
 my $comb_warrior_file = $warrior_file_top . $warriors . $file_end;
 my $comb_rogue_file = $rogue_file_top . $rogues . $file_end;
@@ -149,6 +160,7 @@ my $comb_monk_file = $monk_file_top . $monks . $file_end;
 my $comb_paladin_file = $paladin_file_top . $paladins . $file_end;
 my $comb_enemy_file = $enemy_file_top . $enemiess . $file_end;
 my $comb_kris_file = $kris_file_top . $kris . $file_end;
+my $comb_fam_file = $fam_file_top . $fam . $file_end;
 
 
 my $war_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/warrior.xml';
@@ -209,4 +221,9 @@ close(FH);
 my $kris_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml';
 open(FH, '>', $kris_file) or die $!;
 print FH $comb_kris_file;
+close(FH);
+
+my $fam_file = '/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml';
+open(FH, '>', $fam_file) or die $!;
+print FH $comb_fam_file;
 close(FH);

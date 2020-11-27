@@ -15,6 +15,7 @@ my $bards = "";
 my $monks = "";
 my $paladins = "";
 my $kris = "";
+my $fam = "";
 my $enemy = "";
 
 open(FH, '<', $filename) or die $!;
@@ -93,6 +94,12 @@ while(<FH>){
           $kris = "          <h color=\"\@89\" bgcolor=\"\@35\" text=\"" . $list[0] . "\"/>\n";
       }else{
           $kris = $kris . "          <h color=\"\@89\" bgcolor=\"\@35\" text=\"" . $list[0] . "\"/>\n";
+      }
+   }elsif ($list[1] eq "fam") {
+      if ($fam eq ""){
+          $fam = "          <h color=\"\@89\" bgcolor=\"\@25\" text=\"" . $list[0] . "\"/>\n";
+      }else{
+          $fam = $fam . "          <h color=\"\@89\" bgcolor=\"\@25\" text=\"" . $list[0] . "\"/>\n";
       }
    } 
    #print Dumper(\%warrior_hash);
@@ -231,7 +238,7 @@ my $file_bottom = '     </names>
 
 </settings>';
 
-my $complete = $file_top . $kris . $warriors . $rogues . $wizards . $clerics . $empaths . $sorcerers . $rangers . $bards . $monks . $paladins . $enemy . $file_bottom;
+my $complete = $file_top . $kris . $fam . $warriors . $rogues . $wizards . $clerics . $empaths . $sorcerers . $rangers . $bards . $monks . $paladins . $enemy . $file_bottom;
 
 open(FH, '>', $outfile) or die $!;
 print FH $complete;

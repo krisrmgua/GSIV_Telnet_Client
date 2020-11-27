@@ -33,6 +33,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_tall.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -51,6 +52,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_wide.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -69,6 +71,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_normal.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -90,6 +93,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_msi.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -108,6 +112,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_mini.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -126,6 +131,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_mini2.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -144,6 +150,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_wide_split.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -162,6 +169,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_3_wide_split.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
@@ -180,6 +188,7 @@ then
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/wizard.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/enemy.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/mycharecters.xml >> ~/.profanity/kris.xml
+    cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/fam.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_middle.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_lap_3_wide_split_no_mon.xml >> ~/.profanity/kris.xml
     cat $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/kris_bottom.xml >> ~/.profanity/kris.xml
