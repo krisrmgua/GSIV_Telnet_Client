@@ -226,7 +226,8 @@ if script.vars[1]
    mypercent = Integer(((remain) / exp_needed.to_f) * 100)
    mypercent = 100 - mypercent
    xpnNLT = remain
-   echo "Next Level for #{dname}"
+   dcurlvl = dlevel - 1
+   echo "#{dname}: Level #{dcurlvl}"
    print_bar.call(newstyle, mypercent, xpnNLT)
    exit
 end
