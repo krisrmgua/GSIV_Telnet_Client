@@ -1,0 +1,145 @@
+Myname = Char.name
+runame = script.vars[1]
+$silver = false
+$max_silver = 4000
+silcheck = 0
+
+check_silver = proc {
+    fput "silver"
+    line = matchtimeout 2, "coins with you"
+    if line =~ /You have (.*) coins with you/
+        coins = $1
+        coins = coins.gsub(/[\s,]/ ,"")
+        if coins != "nosilver"
+            if coins.to_i > $max_silver
+                echo "To many coins, you have #{coins}"
+                $silver = true
+            end
+        end
+    end
+}
+
+group_check = proc {
+    fput "group"
+    line = matchtimeout 3, "is the leader", "You are not currently in a group"
+    if line =~ /You are not currently in a/
+        Script.run('go2name', "honkmonk")
+        sleep 0.3
+        fput "join honkmonk"
+    end
+}
+
+loop {
+    $silver = false
+    if percentencumbrance > 60
+       $silver = true
+    end
+    if silcheck > 50
+        check_silver.call()
+        silcheck = 0
+    end
+    silcheck = silcheck + 1
+    echo "Checking Health"
+    if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or $silver
+        echo "Im Hurt"
+        if Myname == "Hoedo" or Myname == "Noce" or Myname == "Piie" or Myname == "Hili" or Myname == "Bize"
+            Script.run('go2', "wgrave")
+            Script.run('wear')
+            if Myname == "Hili"
+              Script.run('sheal')
+            else
+              Script.run('useherbs', "in my sack")
+              Script.run('useherbs', "in my kit")
+            end
+            waitrt?
+            waitcastrt?
+            sleep 120 if $silver
+            Script.run('rem')
+            group_check.call()
+        else
+            LNet.send_message(attr={'type'=>'private', 'to'=>"#{Myname}"}, "join pristeen2")
+            sleep 10
+        end
+    end
+    Script.run('mindsave')
+    line = matchtimeout 10, "Honksalot swings", "Honkmonk swings", "Honkmonk slashes"
+    if line =~ /Honksalot swings|Honkmonk swings|Honkmonk slashes/
+       keepon = true
+       fput "stance off" if Myname == "Trenus" or Myname == "Honkme"
+       while keepon
+           if Myname == "Sorci" or Myname == "Trenus" or Myname == "Hoedo" or Myname == "Honkme"
+               sleep 1
+               Script.run('c')
+               line = matchtimeout 3, "You do not"
+               if line =~ /You do not/
+                   keepon = nil
+               end
+           elsif Myname == "Aiss"
+               sleep 1
+               Script.run('c')
+               line = matchtimeout 3, "You do not"
+               if line =~ /You do not/
+                   keepon = nil
+               end
+           elsif Myname == "Sluf" or Myname == "Woory" or Myname == "Clu" or Myname == "Monker"
+               sleep 0.5 if not Myname == "Sluf"
+               Script.run('at')
+               line = matchtimeout 3, "You do not", "You currently","your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
+               if line =~ /^You .* has no effect|You fire .* but it has no effect/ and Myname =~ /Woory|Clu/
+                   waitrt?
+                   waitcastrt?
+                   fput "swap" if Myname == "Clu"
+                   fput "whisper sluf bless me"
+                   sleep 8
+                   fput "whisper pristeen bless me"
+                   sleep 5 if Myname == "Clu"
+                   fput "swap" if Myname == "Clu"
+                   if Myname == "Clu"
+                       fput "hands"
+                       line = matchtimeout 3, "shortbow in your left hand", "shortbow in your right hand"
+                       if line =~ /shortbow in your right hand/
+                           fput "swap"
+                       end
+                   end
+               end
+               if line =~ /You do no|You currently/
+                   keepon = nil
+               end
+           elsif Myname == "Heodo" or Myname == "Hili"
+               sleep 1
+               Script.run('c')
+               line = matchtimeout 3, "You do not"
+               if line =~ /You do not/
+                   keepon = nil
+               end
+           elsif Myname == "Bize" or Myname == "Noce" or Myname == "Piie"
+               sleep 0.5 if not Myname == "Sluf"
+               Script.run('at')
+               line = matchtimeout 3, "You do not", "You currently","your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
+               if line =~ /^You .* has no effect|You fire .* but it has no effect/ and Myname =~ /Piie|Bize|Noce|Hili/
+                   waitrt?
+                   waitcastrt?
+                   fput "swap" if Myname == "Noce"
+                   fput "whisper hoedo bless me" if Myname == "Noce"
+                   sleep 2 if Myname == "Noce"
+                   fput "swap" if Myname == "Noce"
+                   fput "whisper hoedo bless me"
+               end
+               if line =~ /You do no|You currently/
+                   keepon = nil
+               end
+           end
+           waitrt?
+           waitcastrt?
+           group_check.call()
+           GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
+       end
+       fput "stance def" if Myname == "Trenus" or Myname == "Honkme"
+       #Script.run('sloot')
+       fput "stance def"
+    end
+    group_check.call()
+    if Room.current.id.to_s =~ /^228$/ or Room.current.id.to_s =~ /^288$/ or Room.current.id.to_s =~ /^318$/ 
+        #fput "think to #{Myname} join #{runame}"
+    end
+}

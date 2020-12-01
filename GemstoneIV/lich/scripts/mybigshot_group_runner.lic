@@ -5,6 +5,7 @@ $checkmindother = nil
 Myname = Char.name
 $debug = true
 $skipsale = false
+$skiploot = false
 restbefore = nil
 $max_silver = 4999
 $OOM = 5
@@ -22,6 +23,7 @@ $MYFRIED = 99
 $mindhunt = 25
 
 if Myname == "Pristeen"
+    $skiploot = true
     mobs = ["ghostly pooka"]
     huntarea = "4540"
     roomboundry = ["4541","4537","7325","7429"]
@@ -680,7 +682,7 @@ attack_target = proc { |target|
           dead = GameObj.dead
           if dead
             go_defensive.call()
-            Script.run('sloot')
+            Script.run('sloot') if not $skiploot
             check_silver.call()
             $numkilled = $numkilled + 1;
             print_stats.call()
@@ -703,7 +705,7 @@ attack_target = proc { |target|
       if dead
         go_defensive.call()
         $numkilled = $numkilled + 1;
-        Script.run('sloot')
+        Script.run('sloot') if not $skiploot 
         check_silver.call()
         print_stats.call()
         hands_check.call()

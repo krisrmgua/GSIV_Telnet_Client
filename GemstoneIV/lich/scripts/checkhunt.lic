@@ -88,7 +88,7 @@ loop {
         Script.run('waggle')
         Script.run('waggle_bard')
         if Myname == "Aiss"
-            Script.run('castany', '1')
+            #Script.run('castany', '1')
         end
         fput "med" if Myname == "Aiss"
     end

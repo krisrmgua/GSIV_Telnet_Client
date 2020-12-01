@@ -12,6 +12,15 @@ change_stance = proc { |stance|
 }
 
 Myname = Char.name
+
+save_attack = proc { |dstate|
+    Myname = Char.name
+    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.attack"
+    echo "Setting Attack to #{dstate}"
+    File.write(filename, "#{dstate}")
+}
+
+
 waitrt?
 if Myname == "Trenus"
     if Spell[904].known? and Spell[904].affordable?
@@ -68,10 +77,13 @@ elsif Myname == "Sorci"
         echo "You do not currently have a target"
     end
 elsif Myname == "Pristeen" or Myname == "Hoedo"
+    save_attack.call("on")
     if Spell[302].known? and Spell[302].affordable?
         fput "incant 302 channel"
     else
         echo "Out of Mana"
         echo "You do not currently have a target"
     end
+    sleep 3
+    save_attack.call("off")
 end

@@ -1,3 +1,4 @@
+Myname = Char.name
 if Myname == "Aiss"
     @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
 else

@@ -43,6 +43,32 @@ if Myname == "Clu"
     skinsheath = "shirt"
     encumbrance = 20
     active_scripts = [""]
+elsif Myname == "Honkme"
+    mobs = ["greater burrow orc", "lesser burrow orc"]
+    fleemobs = ["tomb spider"]
+    huntarea = "7950"
+    roomboundry = ["7949","7965"]
+    rest = "landing"
+    rest2 = "landing"
+    attack = "incant 904 channel"
+    #attack = "incant 1700 channel"
+    stance = "offensive"
+    #stance = "defensive"
+    flee_count = 3
+    swings = 9
+    skipwaitattack = 1
+    hideme = 0
+    shield = ""
+    weapon = "staff"
+    sheath = "sheath"
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
+    $OOM = 25
 elsif Myname == "Pristeen"
     #mobs = ["ghostly pooka"]
     #huntarea = "4540"
@@ -649,7 +675,7 @@ check_for_people = proc {
    if ppl.size
        go_defensive.call()
        #$need_flee = true
-       GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$/}
+       GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Honkmonk$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$/}
        echo "PERSON FOUND" if $debug and $need_flee
        GameObj.pcs.each {|s| alert_dead_body.call(s.noun) if s.status =~ /dead/}
    end
@@ -893,6 +919,7 @@ attack_target = proc { |target|
           dead = GameObj.dead
           if dead
             go_defensive.call()
+            sleep 8 if Myname == "Honkme"
             Script.run('sloot')
             check_silver.call()
             $numkilled = $numkilled + 1;
@@ -909,6 +936,7 @@ attack_target = proc { |target|
       if dead
         go_defensive.call()
         $numkilled = $numkilled + 1;
+        sleep 8 if Myname == "Honkme"
         Script.run('sloot')
         check_silver.call()
         print_stats.call()

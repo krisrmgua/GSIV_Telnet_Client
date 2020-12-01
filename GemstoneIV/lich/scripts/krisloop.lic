@@ -135,7 +135,7 @@ loop {
        dwho = $1
        dwhat = $2
        dwhat.gsub(/(')/, '')
-       if dwho !~ /Pristeen|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob|Bize|Hoedo|Hili|Piie|Noce/
+       if dwho !~ /Pristeen|Honkmonk|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob|Bize|Hoedo|Hili|Piie|Noce/
            echo "Got Whisper sending out text now."
            system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl WHISPER \"#{dwho} whispers to #{Myname}: #{dwhat}\"") 
        end

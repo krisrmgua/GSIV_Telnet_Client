@@ -1,0 +1,5 @@
+while percentmind() > 1
+    echo "waiting for mind to get to 0"
+    sleep 15
+end
+fput "quit"
