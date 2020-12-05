@@ -1,18 +1,8 @@
-$max_silver = 4999
-
-check_silver = proc {
-    fput "silver"
-    line = matchtimeout 2, "coins with you"
-    if line =~ /You have (.*) coins with you/
-        coins = $1
-        coins = coins.gsub(/[\s,]/ ,"")
-        if coins != "nosilver"
-            if coins.to_i > $max_silver
-                echo "To many coins, you have #{coins}"
-                $need_sale = true
-            end
-        end
-    end
+loop {
+   line = matchtimeout 20, "kappa", "kappa"
+   if line =~ /kappa/
+       Script.run('c')
+       Script.run('sloot')
+   end
+   line = nil
 }
-
-check_silver.call()

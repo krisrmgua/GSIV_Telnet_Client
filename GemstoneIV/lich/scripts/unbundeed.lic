@@ -61,4 +61,5 @@ while not $all_done
 end
 fput "go door"
 fill_hands if done_empty_hand
+sleep 2
 Script.run('go2', start_room)

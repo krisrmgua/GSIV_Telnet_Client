@@ -1,0 +1,11 @@
+Script.run('getexp', 'Pristeen')
+Script.run('getexp', 'Sluf')
+sleep 1
+Script.run('getexp', 'Woory')
+Script.run('getexp', 'Trenus')
+sleep 1
+Script.run('getexp', 'Sorci')
+Script.run('getexp', 'Monker')
+sleep 1
+Script.run('getexp', 'Clu')
+Script.run('getexp', 'Aiss')

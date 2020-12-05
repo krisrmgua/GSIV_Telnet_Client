@@ -40,6 +40,7 @@ settings['imprint']          ||= true
 
 $sheal_imprints ||= []
 $sheal_imprint_timers ||= {}
+Script.start('krisloop')
 
 # cleanup expired folks
 $sheal_imprints.delete_if { |name| !$sheal_imprint_timers[name] or Time.now.to_i > $sheal_imprint_timers[name] }

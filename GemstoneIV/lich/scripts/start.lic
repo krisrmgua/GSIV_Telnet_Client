@@ -4,7 +4,7 @@ if Myname == "Aiss"
   sleep 1
   Script.start('getnames', '1')
   Script.start('autoinvitefriends')
-  Script.start('my_heal_tracker')
+  #Script.start('my_heal_tracker')
   #Script.start('taptoheal')
   Script.start('krisloop')
   Script.start('my_health_check')
@@ -12,7 +12,7 @@ if Myname == "Aiss"
 elsif Myname == "Hili"
   kill_script "krisloop"
   sleep 1
-  Script.start('my_heal_tracker')
+  #Script.start('my_heal_tracker')
   Script.start('taptoheal')
   Script.start('krisloop')
   Script.start('my_health_check')

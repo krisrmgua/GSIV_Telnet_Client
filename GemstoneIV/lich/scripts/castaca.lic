@@ -14,18 +14,23 @@ if GameObj.left_hand.name != "Empty"
 end
 
 loop {
+    $go = nil
     wait_until { percentmana == 100 }
     if Room.current.id.to_s =~ /^2300$/
         Script.run('go2', '3233')
+        $go = true
     end
     if Room.current.id.to_s =~ /^228$/
         Script.run('go2', '293')
+        $go = true
     end
     if Room.current.id.to_s =~ /^288$/
         Script.run('go2', '297')
+        $go = true
     end
     if Room.current.id.to_s =~ /^318$/
         Script.run('go2', '291')
+        $go = true
     end
     if GameObj.right_hand.name != "Empty"
         fput "stow ##{GameObj.right_hand.id}"
@@ -33,21 +38,23 @@ loop {
     if GameObj.left_hand.name != "Empty"
         fput "stow ##{GameObj.left_hand.id}"
     end
-    while Spell[1118].affordable?
-        fput "prepare 1118"
-        sleep 1
-        fput "summon acantha leaf"
-        while line = get               
-            if line =~ /Some (.*) suddenly appears at your feet\./
-                herb = $1.strip
-                break
+    if $go
+        while Spell[1118].affordable?
+            fput "prepare 1118"
+            sleep 1
+            fput "summon acantha leaf"
+            while line = get               
+                if line =~ /Some (.*) suddenly appears at your feet\./
+                    herb = $1.strip
+                    break
+                end
             end
+            fput "get #{herb}"
+            fput "stow #{herb}"
+            sleep 3
         end
-        fput "get #{herb}"
-        fput "stow #{herb}"
-        sleep 3
+        Script.run('bundleall')
     end
-    Script.run('bundleall')
     if Room.current.id.to_s =~ /^3233$/
         Script.run('go2', '2300')
     end

@@ -1,3 +1,4 @@
+@debug   = true;
 get_bless_woory = proc { 
     Script.run('go2', 'landing')
     fput "open my sheath"
@@ -53,11 +54,36 @@ def monitor_interaction()
     )
 end
 Myname = Char.name
+@FILENAME = ""
+if Myname == "Aiss"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
+elsif Myname == "Hili"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list2.txt"
+elsif Myname == "Pristeen"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/rez_list.txt"
+elsif Myname == "Hoedo"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/rez_list2.txt"
+end
+def new_healed(target)
+  echo "Saving name #{target} to heal list!"
+  dfile = @FILENAME
+  system("sed -i '1d' #{dfile}")
+  open(@FILENAME, 'a') { |f|
+      f.puts "#{target}\n"
+  }
+  Script.run('heal_list')
+end
 loop {
-    line = matchtimeout 10, "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "energy rushes forth from your fingertips and into", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
+    end
+    if line =~ /You sense your empathic link with ([A-Z,a-z]+) fade away/i
+        new_healed($1)
+    end
+    if line =~ /energy rushes forth from your fingertips and into ([A-Z,a-z]+)/i
+        new_healed($1)
     end
     #if line =~ /the body of/
     #    if Room.current.id.to_s !~ /^228$/
@@ -141,7 +167,8 @@ loop {
        end
     end
     if line =~ /Keyboard|AFK|waiting for you to|^(?!.*audible).*REPORT.*$/i
-        if line !~ /\[help\]|\[Help\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]/
+        if line !~ /\[help\]|\[Help\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]|Rheteger|The guard/
+          line.gsub! /"/, ' '
           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"(#{Myname}) ALERT: #{line}\"") 
         end
     end
@@ -206,9 +233,9 @@ loop {
       dlevel = $1
       system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
     end
-    if line =~ /([A-Z,a-z]+) (softly asks|weakly asks|weakly says|softly says|heartily asks|heartily says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
+    if line =~ /([A-Z,a-z]+) (softly asks|weakly asks|huskily says|weakly says|softly says|heartily asks|heartily says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
         dname = $1
-        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob|Hili/
+        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thank|thank|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob|Hili/
           #fput "think to pristeen #{dname} casting Spells"
           if dname !~ /Some|some|Suddenly|suddenly/
               echo "SPELL MESSAGE #{line}"

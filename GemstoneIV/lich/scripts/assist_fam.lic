@@ -3,6 +3,13 @@ runame = script.vars[1]
 $silver = false
 $max_silver = 4000
 silcheck = 0
+$cast_stun = false
+
+#$wfollow = "honkmonk"
+$wfollow = "honkme"
+if script.vars[1]
+  $wfollow = script.vars[1]
+end
 
 check_silver = proc {
     fput "silver"
@@ -23,13 +30,19 @@ group_check = proc {
     fput "group"
     line = matchtimeout 3, "is the leader", "You are not currently in a group"
     if line =~ /You are not currently in a/
-        Script.run('go2name', "honkmonk")
+        Script.run('go2name', "#{$wfollow}")
         sleep 0.3
-        fput "join honkmonk"
+        fput "join #{$wfollow}"
+    end
+    if Room.current.id.to_s =~ /^4140$|^4141$/
+        fput "join #{$wfollow}"
+        Script.run('gate')
+        fput "join #{$wfollow}"
     end
 }
 
 loop {
+    GameObj.pcs.each {|s| $cast_stun = true if s.status =~ /stunned/}
     $silver = false
     if percentencumbrance > 60
        $silver = true
@@ -62,8 +75,8 @@ loop {
         end
     end
     Script.run('mindsave')
-    line = matchtimeout 10, "Honksalot swings", "Honkmonk swings", "Honkmonk slashes"
-    if line =~ /Honksalot swings|Honkmonk swings|Honkmonk slashes/
+    line = matchtimeout 10, "Honkme channels", "Honkme gestures", "Honksalot swings", "Honkmonk swings", "Honkmonk slashes"
+    if line =~ /Honksalot swings|Honkmonk swings|Honkme channels|Honkme gestures|Honkmonk slashes/
        keepon = true
        fput "stance off" if Myname == "Trenus" or Myname == "Honkme"
        while keepon

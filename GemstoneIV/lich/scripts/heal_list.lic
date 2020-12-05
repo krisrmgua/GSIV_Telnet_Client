@@ -1,8 +1,12 @@
 Myname = Char.name
 if Myname == "Aiss"
     @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
-else
+elsif Myname == "Hili"
     @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list2.txt"
+elsif Myname == "Pristeen"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/rez_list.txt"
+elsif Myname == "Hoedo"
+    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/rez_list2.txt"
 end
 x = 0
 File.readlines(@FILENAME).reverse_each{ |s|
