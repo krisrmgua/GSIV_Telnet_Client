@@ -48,13 +48,14 @@ loop {
         if Myname =~ /Monker|Sluf|Woory|Sorci/
             Script.run('go2', 'park3')
         elsif Myname =~ /Hili|Aiss/
-            Script.run('go2', 'landing')
+            #Script.run('go2', 'landing')
+            Script.run('go2', 'park3')
         else
             Script.run('go2', 'park')
         end
         kill_script "assist"
         Script.start('runmindcheck')
-        wtime = rand(1..30)
+        wtime = rand(1..90)
         echo "Sleeping #{wtime}"
         sleep wtime
         Script.run('wear')
@@ -73,7 +74,8 @@ loop {
         if Myname =~ /Monker|Trenus|Woory|Sorci/
             Script.run('go2', 'park3')
         elsif Myname =~ /Aiss/
-            Script.run('go2', 'landing')
+            #Script.run('go2', 'landing')
+            Script.run('go2', 'park')
         else
             Script.run('go2', 'park')
         end

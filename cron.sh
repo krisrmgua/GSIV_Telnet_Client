@@ -31,3 +31,4 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Piie > /tmp/Piie.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Hili > /tmp/Hili.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Honkme > /tmp/Honkme.txt
+/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Honkmonk > /tmp/Honkmonk.txt

@@ -1,8 +1,10 @@
 loop {
-   line = matchtimeout 20, "kappa", "kappa"
-   if line =~ /kappa/
+   line = matchtimeout 20, "A gnoll", "a gnoll"
+   if line =~ /A gnoll|a gnoll/
        Script.run('c')
-       Script.run('sloot')
+       sleep 3
+       #Script.run('sloot')
+       fput "loot"
    end
    line = nil
 }

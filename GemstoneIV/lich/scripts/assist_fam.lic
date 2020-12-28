@@ -75,8 +75,8 @@ loop {
         end
     end
     Script.run('mindsave')
-    line = matchtimeout 10, "Honkme channels", "Honkme gestures", "Honksalot swings", "Honkmonk swings", "Honkmonk slashes"
-    if line =~ /Honksalot swings|Honkmonk swings|Honkme channels|Honkme gestures|Honkmonk slashes/
+    line = matchtimeout 10, "Honkme hurls a hissing", "Pristeen channels", "Pristeen gestures", "Honkme channels", "orase runestaff glows intensely", "Honkme gestures", "Honksalot swings", "Honkmonk swings", "Honkmonk slashes"
+    if line =~ /Honksalot swings|Honkmonk swings|Pristeen gestures|Pristeen channels|Honkme hurls a hissing|Honkme channels|Honkme gestures|orase runestaff glows intensely|Honkmonk slashes/
        keepon = true
        fput "stance off" if Myname == "Trenus" or Myname == "Honkme"
        while keepon

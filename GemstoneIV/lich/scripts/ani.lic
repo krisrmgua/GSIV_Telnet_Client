@@ -1,0 +1,9 @@
+player=script.vars[1]
+fput "hold #{player}"
+if Spell[730].known? and Spell[730].affordable?
+    Spell[730].cast(script.vars[1])
+end
+waitrt?
+waitcastrt?
+fput "tell animate to follow"
+echo "###### TYPE -------> UNLINK ANIMATION <----- to release them #############"

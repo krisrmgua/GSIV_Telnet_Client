@@ -27,6 +27,7 @@ echo -e "\t21:\tHelumb (20)"
 echo -e "\t22:\tHudem (21)"
 echo -e " "
 echo -e "\t23:\tHonkme (25)"
+echo -e "\t24:\tHonkmonk"
 
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
@@ -125,6 +126,10 @@ elif [ $num -eq 23 ]
 then
     character=Honkme
     port=8023
+elif [ $num -eq 24 ]
+then
+    character=Honkmonk
+    port=8024
 else
     echo "BAD INPUT"
     exit

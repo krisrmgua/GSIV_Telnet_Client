@@ -1,0 +1,7 @@
+Script.run('wear')
+fput "kneel"
+fput "search"
+waitrt?
+waitcastrt?
+fput "stand"
+Script.run('rem')

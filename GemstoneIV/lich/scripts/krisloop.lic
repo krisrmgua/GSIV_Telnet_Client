@@ -74,7 +74,16 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "energy rushes forth from your fingertips and into", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    if line =~ /Joinme ([0-9]+)/
+        kill_script "go2"
+        echo "JOININ"
+        sleep 2
+        Script.run('go2', $1)
+    end
+    if line =~ /whispers, \"Sh\./
+        Script.run('sh')
+    end
     if line =~ /your current room was not found/
       fput "move west"
       fput "crawl west"
@@ -239,14 +248,14 @@ loop {
           #fput "think to pristeen #{dname} casting Spells"
           if dname !~ /Some|some|Suddenly|suddenly/
               echo "SPELL MESSAGE #{line}"
-              system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
+              #system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
           end
         end
     elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Wardrob|Hili/
         if line !~ /hours|Hours|suddenly|Suddenly|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please|GSIV|:/
           #fput "think to pristeen KRIS SPELLS"
           echo "SPELL MESSAGE #{line}"
-          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
+          #system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
         end
     end
     if line =~ /^(\w+) offers you/ and Myname == "Aiss2"

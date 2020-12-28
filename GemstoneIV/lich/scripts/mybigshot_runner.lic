@@ -243,6 +243,29 @@ elsif Myname == "Monker"
     encumbrance = 35
     med = "med GRAPPLE"
     active_scripts = [""]
+elsif Myname == "Honkmonk"
+    mobs = ["lesser mummy"]
+    fleemobs = ["greater spider"]
+    huntarea = "4144"
+    roomboundry = ["4171","4143"]
+    rest = "landing"
+    rest2 = "park"
+    attack = "attack"
+    stance = "defensive"
+    flee_count = 1
+    swings = 1
+    skipwaitattack = 1
+    hideme = 0
+    shield = ""
+    weapon = ""
+    sheath = "backpack"
+    backpack = "backpack"
+    cloak = "backpack"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
 elsif Myname == "Noce"
     mobs = ["lesser mummy"]
     fleemobs = ["greater spider"]
@@ -763,9 +786,9 @@ attack_target = proc { |target|
   CMAN_EXE = nil
   if skipwaitattack == 0
     echo "Waiting for attack ..." if $debug
-    line = matchtimeout 15, "waddles", "struts", "arrived", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "slashes", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
+    line = matchtimeout 15, "waddles", "struts", "arrived", "tries to ensnare", "thrusts with", "shuffles", "darts", "tries to bite you!", "tries to ensnare you!", "slashes", "claws at you!", "charges at you!", "hurls a", "swings a", "attacks you", "stomps at you"
   end
-  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line =~ /slashes with a .* you!/ or line=~ /swings a .* at you!/ or line=~ /stomps at you/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
+  if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~/tries to ensnare/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line =~ /slashes with a .* you!/ or line=~ /swings a .* at you!/ or line=~ /stomps at you/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
     loop = 0
     while loop < swings
       check_flee_count.call()
@@ -846,9 +869,18 @@ attack_target = proc { |target|
               line = matchtimeout 5, "your attack has no effect", "but it has no effect!", "You do not currently have a target", "I could not find what"
               if line =~ /^You .* has no effect/
                   waitrt?
-                  $need_bless = true
-                  echo "Need Bless" if $debug
-                  break
+                  if Myname == "Honkmonk"
+                      echo "Honk Neds Bless"
+                      fput "whisper Hoedo bless me"
+                      sleep 3
+                      fput "swap"
+                      fput "whisper Hoedo bless me"
+                  else 
+                      echo "NEED BLESS1"
+                      $need_bless = true
+                      echo "Need Bless" if $debug
+                      break
+                  end
               end
           end
         end
@@ -856,7 +888,7 @@ attack_target = proc { |target|
       waitrt?
       waitcastrt?
       fput "stance #{stance}"
-      if Myname == "Monker" 
+      if Myname == "Monker" or Myname == "Honkmonk"
         kill_script "combo" if running? "combo"
         Script.start('combo', "#{target}")
         runtime = 0
@@ -899,15 +931,35 @@ attack_target = proc { |target|
                    end
                   if line =~ /#{weapon2}/
                       $weapon2_dead = true
-                      fput "get my #{weapon} from my #{sheath}"
-                      fput "swap"
-                       $need_bless = true
-                       break
+                      if Myname == "Honkmonk"
+                          fput "get my #{weapon} from my #{sheath}"
+                          fput "get my #{weapon2} from my #{sheath}"
+                          fput "whisper Hoedo bless me"
+                          sleep 3
+                          fput "swap"
+                          fput "whisper Hoedo bless me"
+                          $weapon_dead = false
+                          $weapon2_dead = false
+                      else 
+                          fput "get my #{weapon} from my #{sheath}"
+                          fput "swap"
+                           $need_bless = true
+                           break
+                      end
                    end
                    if $weapon_dead and $weapon2_dead
-                       $need_bless = true
-                       echo "Need Bless" if $debug
-                       break
+                       if Myname == "Honkmonk"
+                          fput "whisper Hoedo bless me"
+                          sleep 3
+                          fput "swap"
+                          fput "whisper Hoedo bless me"
+                          $weapon_dead = false
+                          $weapon2_dead = false
+                      else 
+                           $need_bless = true
+                           echo "Need Bless" if $debug
+                           break
+                      end
                    end
               else
                   $need_bless = true

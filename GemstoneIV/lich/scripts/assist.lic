@@ -3,6 +3,7 @@ runame = script.vars[1]
 $silver = false
 $max_silver = 4000
 silcheck = 0
+$attack_check = "off"
 
 check_silver = proc {
     fput "silver"
@@ -27,6 +28,13 @@ group_check = proc {
         sleep 0.3
         fput "join #{runame}"
     end
+}
+
+attack_check = proc {
+    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.attack"
+    file = File.open(filename)
+    $attack_check = file.read
+    file.close
 }
 
 loop {
@@ -62,11 +70,8 @@ loop {
         end
     end
     Script.run('mindsave')
-    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.attack"
-    file = File.open(filename)
-    file_data = file.read
-    file.close
-    if file_data == "on"
+    attack_check.call()
+    if $attack_check == "on"
         echo "Attack is set to ON"
     #line = matchtimeout 3, "Pristeen channels", "Pristeen gestures", "Hoedo channels", "Hoedo gestures"
     #if line =~ /Pristeen channels|Pristeen gestures|Hoedo channels|Hoedo gestures/
@@ -138,8 +143,10 @@ loop {
            waitcastrt?
            group_check.call()
            GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
+           attack_check.call()
+           keepon = nil if $attack_check == "off"
        end
-       Script.run('sloot')
+       Script.run('sloot') if Myname =~ /Aiss|Clu|Monker/
        fput "stance def"
     else
         echo "Attack is set to Off"

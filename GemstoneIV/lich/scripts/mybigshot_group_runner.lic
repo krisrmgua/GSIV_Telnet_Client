@@ -257,14 +257,16 @@ go2restbefore = proc {
 }
 
 go2rest = proc {
-    fput "say fried heading home"
+    fput "say fried heading home" if Room.current.id.to_s !~ /228|288/
     sleep 1
     #Script.run('joincall2', 'pristeen2')
     #Script.run('joincall', 'pristeen2')
     Script.run('sethunt', 'off')
     sleep 8
+    fput "disban"
     if Room.current.id.to_s != "#{rest}"
       Script.run('go2', "#{rest}")
+      fput "group open"
       Script.run('mysaveloc')
       kill_script "randomtalk" 
     end
@@ -765,6 +767,7 @@ empty_hands
 if Myname == "Wiiz" and Room.current.id.to_s =~ /(^228$|^288$|^318$)/
     Script.run('bank')
 end
+fput "group open"
 getweapon.call()
 start_watch()
 gohunt.call()
