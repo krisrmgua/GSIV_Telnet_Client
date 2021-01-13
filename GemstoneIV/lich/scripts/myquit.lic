@@ -21,6 +21,7 @@ mynum = 30 if Myname == "Clu"
 mytime=`/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/checktime2.pl`
 echo "the time is #{mytime}"
 sleep mytime.to_i
+echo "ROOM #{Room.current.id.to_s}"
 Script.run('mystop')
 Script.run('go2', 'park')
 sleep mynum

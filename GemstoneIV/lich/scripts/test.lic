@@ -1,10 +1,3 @@
-loop {
-   line = matchtimeout 20, "A gnoll", "a gnoll"
-   if line =~ /A gnoll|a gnoll/
-       Script.run('c')
-       sleep 3
-       #Script.run('sloot')
-       fput "loot"
-   end
-   line = nil
-}
+      time = Time.new
+       time1 = time.strftime("%Y-%m-%d %H:%M:%S")
+       echo "#{time1} ITEM LOST HERE"

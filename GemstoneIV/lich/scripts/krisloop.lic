@@ -104,7 +104,9 @@ loop {
         fput "l"
     end
     if line =~ /Use the RECOVER ITEM/
-       echo "ITEM LOST HERE #{Room.current.id.to_s}"
+       time = Time.new
+       time1 = time.strftime("%Y-%m-%d %H:%M:%S")
+       echo "#{time1} ITEM LOST HERE #{Room.current.id.to_s}"
        system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} lost weapon in room num: #{Room.current.id.to_s}\"") 
     end
     if line =~ /.*Private.*GSIV:([A-Z,a-z,0-9]+): \"RUEMPTY/

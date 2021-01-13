@@ -1,0 +1,3 @@
+  Script.run('mysaveloc')
+  echo "Seting Hunt ON"
+  Script.run('sethunt', 'on')

@@ -1,0 +1,4 @@
+Script.run('go2', script.vars[1])
+fput "kneel"
+fput "recover item"
+Script.run('go2', 'landing')

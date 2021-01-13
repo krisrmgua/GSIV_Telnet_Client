@@ -48,8 +48,8 @@ loop {
         if Myname =~ /Monker|Sluf|Woory|Sorci/
             Script.run('go2', 'park3')
         elsif Myname =~ /Hili|Aiss/
-            #Script.run('go2', 'landing')
-            Script.run('go2', 'park3')
+            Script.run('go2', 'landing')
+            #Script.run('go2', 'park3')
         else
             Script.run('go2', 'park')
         end
@@ -86,6 +86,10 @@ loop {
         if Myname =~ /Hoedo|Noce|Piie|Hili|Bize/
             sleep 40 if Myname == "Hoedo"
             Script.run('go2', 'wgrave')
+        end
+        if Myname =~ /Trenus/
+            Script.run('go2', 'wgrave')
+            Script.run('go2', 'park3')
         end
         Script.run('waggle')
         Script.run('waggle_bard')
