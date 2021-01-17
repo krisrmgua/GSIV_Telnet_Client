@@ -424,10 +424,14 @@ elsif Myname == "Wiiz"
     #fleemobs = ["none2"]
     #huntarea = "8470"
     #roomboundry = ["8469","8495"]
-    mobs = ["zombie"]
+    ##mobs = ["zombie"]
+    ##fleemobs = ["tomb spider"]
+    ##huntarea = "7874"
+    ##roomboundry = ["7873"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
-    huntarea = "7874"
-    roomboundry = ["7873"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
     rest = "landing"
     rest2 = "park"
     attack = "incant 904 channel"
@@ -453,7 +457,7 @@ end
 
 
 alert_dead_body = proc { |tmpname|
-  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
+  system("scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
 }
 
 mybigshot_runner_monitor = proc { |server_string|

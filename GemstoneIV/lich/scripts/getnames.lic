@@ -1,5 +1,6 @@
 CharSettings['known_players'] = Hash.new unless CharSettings['known_players']
-filename = "/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/names.txt"
+#filename = "/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/names.txt"
+filename = "../buildXMLstorm/names.txt"
 
 #from title.lic
 squelch_who = proc{
@@ -135,9 +136,12 @@ File.open(filename, 'w') {|file| file.truncate(0) }
 CharSettings['known_players'].each do |k,v|
   File.open(filename, 'a'){|f| f.puts k + " " + v}
 end
-system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build_names.pl")
-system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh 6")
-system("/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/build.pl")
+#system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build_names.pl")
+system("../buildxmlfile/build_names.pl")
+#system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh 6")
+system("../buildxmlfile/build.sh 6")
+#system("/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/build.pl")
+system("../buildXMLstorm/build.pl")
 
 
 
@@ -159,9 +163,12 @@ if script.vars[1]
     CharSettings['known_players'].each do |k,v|
       File.open(filename, 'a'){|f| f.puts k + " " + v}
     end
-    system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build_names.pl")
-    system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh 6")
-    system("/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/build.pl")
+    #system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build_names.pl")
+    system("../buildxmlfile/build_names.pl")
+    #system("/root/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh 6")
+    system("../buildxmlfile/build.sh 6")
+    #system("/root/GSIV_Telnet_Client/GemstoneIV/buildXMLstorm/build.pl")
+    system("../buildXMLstorm/build.pl")
     
   }
 end

@@ -33,4 +33,5 @@ if Spell[401].known? or Spell[101].known?
     waggle_it.call('Noce')
     waggle_it.call('Bize')
     waggle_it.call('Hili')
+    waggle_it.call('Wiiz')
 end

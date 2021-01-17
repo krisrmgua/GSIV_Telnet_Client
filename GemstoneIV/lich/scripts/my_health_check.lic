@@ -1,11 +1,11 @@
 Myname = Char.name
 quit_dead = proc {
-  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} DEAD\"")
+  system("scripts/levelup.pl STATUS \"#{Myname} DEAD\"")
   echo "YOUR DEAD! ROOM NUM: #{Room.current.id.to_s}"
   fput "quit"
 }
 quit_health = proc {
-  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} HEALTH LOW -- ROOM NUM: #{Room.current.id.to_s}\"")
+  system("scripts/levelup.pl STATUS \"#{Myname} HEALTH LOW -- ROOM NUM: #{Room.current.id.to_s}\"")
   echo "HEALTH LOW! ROOM NUM: #{Room.current.id.to_s}"
   fput "quit"
 }

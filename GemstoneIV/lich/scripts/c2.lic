@@ -15,7 +15,7 @@ Myname = Char.name
 
 save_attack = proc { |dstate|
     Myname = Char.name
-    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.attack"
+    filename = "data/#{Myname}.attack"
     echo "Setting Attack to #{dstate}"
     File.write(filename, "#{dstate}")
 }

@@ -56,13 +56,13 @@ end
 Myname = Char.name
 @FILENAME = ""
 if Myname == "Aiss"
-    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list.txt"
+    @FILENAME = "scripts/heal_list.txt"
 elsif Myname == "Hili"
-    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/heal_list2.txt"
+    @FILENAME = "scripts/heal_list2.txt"
 elsif Myname == "Pristeen"
-    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/rez_list.txt"
+    @FILENAME = "scripts/rez_list.txt"
 elsif Myname == "Hoedo"
-    @FILENAME = "/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/rez_list2.txt"
+    @FILENAME = "scripts/rez_list2.txt"
 end
 def new_healed(target)
   echo "Saving name #{target} to heal list!"
@@ -74,7 +74,7 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /Joinme ([0-9]+)/
         kill_script "go2"
         echo "JOININ"
@@ -83,6 +83,16 @@ loop {
     end
     if line =~ /whispers, \"Sh\./
         Script.run('sh')
+    end
+    if line =~ /First Elanith Secured Bank in the amount of\s+(\d+(,\d+)*(\.\d+)?)/
+        amount = $1
+        filename = "data/#{Myname}.bank"
+        File.write(filename, "#{amount}")
+    end
+    if line =~ /First Elanith Secured Bank\:\s+(\d+(,\d+)*(\.\d+)?)/
+        amount = $1
+        filename = "data/#{Myname}.bank"
+        File.write(filename, "#{amount}")
     end
     if line =~ /your current room was not found/
       fput "move west"
@@ -107,7 +117,7 @@ loop {
        time = Time.new
        time1 = time.strftime("%Y-%m-%d %H:%M:%S")
        echo "#{time1} ITEM LOST HERE #{Room.current.id.to_s}"
-       system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} lost weapon in room num: #{Room.current.id.to_s}\"") 
+       system("scripts/levelup.pl STATUS \"#{Myname} lost weapon in room num: #{Room.current.id.to_s}\"") 
     end
     if line =~ /.*Private.*GSIV:([A-Z,a-z,0-9]+): \"RUEMPTY/
         whipserer = $1
@@ -174,13 +184,13 @@ loop {
        dwhat.gsub(/(')/, '')
        if dwho !~ /Pristeen|Honkmonk|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob|Bize|Hoedo|Hili|Piie|Noce/
            echo "Got Whisper sending out text now."
-           system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl WHISPER \"#{dwho} whispers to #{Myname}: #{dwhat}\"") 
+           system("scripts/levelup.pl WHISPER \"#{dwho} whispers to #{Myname}: #{dwhat}\"") 
        end
     end
     if line =~ /Keyboard|AFK|waiting for you to|^(?!.*audible).*REPORT.*$/i
         if line !~ /\[help\]|\[Help\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]|Rheteger|The guard/
           line.gsub! /"/, ' '
-          system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"(#{Myname}) ALERT: #{line}\"") 
+          system("scripts/levelup.pl STATUS \"(#{Myname}) ALERT: #{line}\"") 
         end
     end
     if line =~ /thinks, "Quitall/
@@ -238,11 +248,11 @@ loop {
     if line =~ /([A-Z,a-z]+) thinks, "I am now level (\d+)/
         dname = $1
         dlevel = $2
-        system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{dname} #{dlevel}") 
+        system("scripts/levelup.pl #{dname} #{dlevel}") 
     end
     if line =~ /You are now level (\d+)/
       dlevel = $1
-      system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl #{Myname} #{dlevel}") 
+      system("scripts/levelup.pl #{Myname} #{dlevel}") 
     end
     if line =~ /([A-Z,a-z]+) (softly asks|weakly asks|huskily says|weakly says|softly says|heartily asks|heartily says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
         dname = $1
@@ -250,14 +260,14 @@ loop {
           #fput "think to pristeen #{dname} casting Spells"
           if dname !~ /Some|some|Suddenly|suddenly/
               echo "SPELL MESSAGE #{line}"
-              #system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
+              system("scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
           end
         end
     elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Wardrob|Hili/
         if line !~ /hours|Hours|suddenly|Suddenly|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please|GSIV|:/
           #fput "think to pristeen KRIS SPELLS"
           echo "SPELL MESSAGE #{line}"
-          #system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS SPELLS") 
+          system("scripts/levelup.pl STATUS SPELLS") 
         end
     end
     if line =~ /^(\w+) offers you/ and Myname == "Aiss2"

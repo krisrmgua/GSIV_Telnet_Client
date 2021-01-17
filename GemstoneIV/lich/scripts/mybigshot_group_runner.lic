@@ -135,7 +135,7 @@ end
 
 
 alert_dead_body = proc { |tmpname|
-  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
+  system("scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
 }
 
 mybigshot_runner_monitor = proc { |server_string|
@@ -351,7 +351,7 @@ sell = proc {
     end
     Script.run('waggle')
     if not $skipsale
-        #Script.run('mywiztable')
+        Script.run('mywiztable')
         Script.run('checkbank')
         Script.run('yawn')
     end
@@ -499,7 +499,7 @@ stop_active = proc {
 ask_other_empty = proc {
     runame = "Monker"
     #runame = "Woory"
-    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
+    filename = "data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
     file.close
@@ -521,7 +521,7 @@ ask_other_empty = proc {
 ask_other_fried = proc {
     runame = "Monker"
     #runame = "Woory"
-    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.mind"
+    filename = "data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
     file.close
@@ -548,7 +548,7 @@ print_stats = proc {
 
 save_attack = proc { |dstate|
     Myname = Char.name
-    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.attack"
+    filename = "data/#{Myname}.attack"
     echo "Setting Attack to #{dstate}"
     File.write(filename, "#{dstate}")
 }
@@ -838,8 +838,8 @@ loop {
       target = find_target.call()
     end
     save_attack.call("off")
-    echo "Sleeping 9" if verytmp == "1"
-    sleep 9 if verytmp == "1"
+    echo "Sleeping 9" if verytmp == "1" and $need_rest != true
+    sleep 9 if verytmp == "1" and $need_rest != true
   end
   check_standing.call()
   if $need_healing or $need_bless or $need_rest or $need_sale

@@ -1,3 +1,0 @@
-      time = Time.new
-       time1 = time.strftime("%Y-%m-%d %H:%M:%S")
-       echo "#{time1} ITEM LOST HERE"

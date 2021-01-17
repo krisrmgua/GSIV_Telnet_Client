@@ -1,17 +1,27 @@
-fput "think to wiiz get bank"
-fput "think to monker get bank"
-sleep 0.3
-fput "think to trenus get bank"
-fput "think to sorci get bank"
-sleep 0.3
-fput "think to clu get bank"
-fput "think to woory get bank"
-sleep 0.3
-fput "think to sluf get bank"
-fput "think to pristeen get bank"
-sleep 2
-fput "think to hoedo get bank"
-fput "think to piie get bank"
-sleep 0.3
-fput "think to noce get bank"
-fput "think to hili get bank"
+#fput "think to wiiz get bank"
+#fput "think to monker get bank"
+#sleep 0.3
+#fput "think to trenus get bank"
+#fput "think to sorci get bank"
+#sleep 0.3
+#fput "think to clu get bank"
+#fput "think to woory get bank"
+#sleep 0.3
+#fput "think to sluf get bank"
+#fput "think to pristeen get bank"
+#leep 2
+#fput "think to hoedo get bank"
+#fput "think to piie get bank"
+#sleep 0.3
+#fput "think to noce get bank"
+#fput "think to hili get bank"
+
+names = ["Aiss", "Clu", "Monker", "Trenus", "Sorci", "Woory", "Sluf", "Pristeen"]
+
+names.each { |item|
+  filename = "data/#{item}.bank"
+  file = File.open(filename)
+  file_data = file.read
+  file.close
+  echo "#{item}: #{file_data}"
+}

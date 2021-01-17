@@ -1,4 +1,5 @@
 Myname = Char.name
 text = script.vars[1]
-filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.hunt"
+#filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.hunt"
+filename = "data/#{Myname}.hunt"
 File.write(filename, "#{text}")

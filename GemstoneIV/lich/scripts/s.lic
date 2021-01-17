@@ -1,4 +1,4 @@
 Myname = Char.name
 myloc = Room.current.id.to_s
-filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{Myname}.loc"
+filename = "data/#{Myname}.loc"
 File.write(filename, "#{myloc}")

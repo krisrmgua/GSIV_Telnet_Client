@@ -5,8 +5,6 @@
 #sleep 14400 #4 hours
 #sleep 18000 #5 hours
 
-
-
 Myname = Char.name
 where = "landing"
 where = "park" if Myname == "Clu"
@@ -16,12 +14,21 @@ where = "284" if Myname == "Sorci"
 where = "285" if Myname == "Woory"
 where = "227" if Myname == "Sluf"
 where = "park" if Myname == "Pristeen"
+
 mynum = 1
-mynum = 30 if Myname == "Clu"
-mytime=`scripts/checktime.pl`
-echo "the time is #{mytime}"
-sleep mytime.to_i
-Script.run('mystop')
-Script.run('go2', 'park')
-sleep mynum
-fput "quit"
+passedtime = script.vars[1]
+passedtime = passedtime.to_i * 60
+echo "Sleep time left: #{passedtime}"
+loop {
+  if mynum > passedtime.to_i 
+    Script.run('mystop')
+    Script.run('go2', 'park')
+    sleep mynum
+    fput "quit"
+  end
+  sleep 60
+  mynum = mynum + 1
+  newtime = mynum.to_i * 60
+  newtime = passedtime.to_i - newtime.to_i
+  echo "Sleep time left: #{newtime}"
+}

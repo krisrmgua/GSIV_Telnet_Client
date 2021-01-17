@@ -18,7 +18,7 @@ where = "227" if Myname == "Sluf"
 where = "park" if Myname == "Pristeen"
 mynum = 1
 mynum = 30 if Myname == "Clu"
-mytime=`/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/checktime3.pl`
+mytime=`scripts/checktime3.pl`
 echo "the time is #{mytime}"
 sleep mytime.to_i
 Script.run('mystop')

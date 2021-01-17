@@ -31,7 +31,7 @@ group_check = proc {
 }
 
 attack_check = proc {
-    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.attack"
+    filename = "data/#{runame}.attack"
     file = File.open(filename)
     $attack_check = file.read
     file.close

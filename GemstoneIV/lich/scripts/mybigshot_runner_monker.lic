@@ -385,7 +385,7 @@ end
 
 
 alert_dead_body = proc { |tmpname|
-  system("/root/GSIV_Telnet_Client/GemstoneIV/lich/scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
+  system("scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
 }
 
 mybigshot_runner_monitor = proc { |server_string|

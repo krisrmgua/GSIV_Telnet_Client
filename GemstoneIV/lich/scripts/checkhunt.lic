@@ -3,7 +3,7 @@ Myname = Char.name
 runame = script.vars[1]
 loop {
     #runame = "Pristeen"
-    filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{runame}.hunt"
+    filename = "data/#{runame}.hunt"
     file = File.open(filename)
     file_data = file.read
     file.close
@@ -48,8 +48,8 @@ loop {
         if Myname =~ /Monker|Sluf|Woory|Sorci/
             Script.run('go2', 'park3')
         elsif Myname =~ /Hili|Aiss/
-            Script.run('go2', 'landing')
-            #Script.run('go2', 'park3')
+            #Script.run('go2', 'landing')
+            Script.run('go2', 'park3')
         else
             Script.run('go2', 'park')
         end
@@ -83,6 +83,15 @@ loop {
         #Script.run('poolparty', 'deposit')
         Script.run('sloot', 'sell')
         Script.run('bank')
+        Script.run('mywiztable')
+       if Myname =~ /Monker|Trenus|Woory|Sorci/
+            Script.run('go2', 'park3')
+        elsif Myname =~ /Aiss/
+            #Script.run('go2', 'landing')
+            Script.run('go2', 'park')
+        else
+            Script.run('go2', 'park')
+        end
         if Myname =~ /Hoedo|Noce|Piie|Hili|Bize/
             sleep 40 if Myname == "Hoedo"
             Script.run('go2', 'wgrave')
@@ -95,6 +104,7 @@ loop {
         Script.run('waggle_bard')
         if Myname == "Aiss"
             #Script.run('castany', '1')
+            #Script.run('go2', 'landing')
         end
         fput "med" if Myname == "Aiss"
     end

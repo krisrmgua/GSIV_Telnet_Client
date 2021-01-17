@@ -8,7 +8,8 @@ waggle_it = proc { |target|
     echo "#{target} is dead SKIPPING"
     #echo bodies
   else
-    Script.run('waggle', "#{target}")
+    #Script.run('waggle', "#{target}")
+    Script.run('waggle', "--start-at=10 --stop-at=120 #{target}")
     #echo "Does not have name"
     #echo bodies
   end
@@ -30,7 +31,8 @@ loop {
         line = matchtimeout 20, "just arrived", "arrives at"
         if line =~ /([A-Z,a-z]+) arrives at/
             castee = $1
-            Script.run('waggle', "#{castee}")
+            #Script.run('waggle', "#{castee}")
+            Script.run('waggle', "--start-at=60 --stop-at=120 #{castee}")
         end
     end
 }

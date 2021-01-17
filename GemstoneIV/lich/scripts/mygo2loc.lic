@@ -1,5 +1,5 @@
 name = script.vars[1]
-filename = "/root/GSIV_Telnet_Client/GemstoneIV/lich/data/#{name}.loc"
+filename = "data/#{name}.loc"
 file = File.open(filename)
 file_data = file.read
 file.close
