@@ -1,4 +1,4 @@
         <!--Fam Characters-->
         <highlight fg='000000' bg='0091C2'>
-                \b(?:Honkeysimons|Honkmonk|Honksalot)\b
+                \b(?:Honkmonk|Honksalot)\b
         </highlight>
