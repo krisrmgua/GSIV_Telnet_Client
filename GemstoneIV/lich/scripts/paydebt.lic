@@ -1,0 +1,8 @@
+fput "silver"
+line = matchtimeout 10, "debt of"
+if line =~ /debt of (\d+(,\d+)*(\.\d+)?) silver/
+  amnt = $1
+  Script.run('go2', '7970')  
+  fput "pay #{amnt}"
+  Script.run('go2', 'landing')  
+end

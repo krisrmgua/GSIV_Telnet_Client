@@ -6,7 +6,8 @@ silcheck = 0
 $cast_stun = false
 
 #$wfollow = "honkmonk"
-$wfollow = "honkme"
+#$wfollow = "honkme"
+$wfollow = "Wiiz"
 if script.vars[1]
   $wfollow = script.vars[1]
 end
@@ -75,12 +76,12 @@ loop {
         end
     end
     Script.run('mindsave')
-    line = matchtimeout 10, "Honkme hurls a hissing", "Pristeen channels", "Pristeen gestures", "Honkme channels", "orase runestaff glows intensely", "Honkme gestures", "Honksalot swings", "Honkmonk swings", "Honkmonk slashes"
-    if line =~ /Honksalot swings|Honkmonk swings|Pristeen gestures|Pristeen channels|Honkme hurls a hissing|Honkme channels|Honkme gestures|orase runestaff glows intensely|Honkmonk slashes/
+    line = matchtimeout 10, "Honkme hurls a hissing", "Wiiz channels", "Wiiz gestures", "Pristeen channels", "Pristeen gestures", "Honkme channels", "orase runestaff glows intensely", "Honkme gestures", "Honksalot swings", "Honkmonk swings", "Honkmonk slashes"
+    if line =~ /Honksalot swings|Honkmonk swings|Wiiz gestures|Wiiz channels|Pristeen gestures|Pristeen channels|Honkme hurls a hissing|Honkme channels|Honkme gestures|orase runestaff glows intensely|Honkmonk slashes/
        keepon = true
        fput "stance off" if Myname == "Trenus" or Myname == "Honkme"
        while keepon
-           if Myname == "Sorci" or Myname == "Trenus" or Myname == "Hoedo" or Myname == "Honkme"
+           if Myname == "Sorci" or Myname == "Trenus" or Myname == "Hoedo" or Myname == "Honkme" or Myname == "Pristeen"
                sleep 1
                Script.run('c')
                line = matchtimeout 3, "You do not"

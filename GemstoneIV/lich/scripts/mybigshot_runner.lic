@@ -428,15 +428,28 @@ elsif Myname == "Wiiz"
     ##fleemobs = ["tomb spider"]
     ##huntarea = "7874"
     ##roomboundry = ["7873"]
+    ######
+
+    #mobs = ["shelfae soldier","shelfae chieftain"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7654"
+    #roomboundry = ["7604"]
+    #flee_count = 10
+    #$skipsale = true
+
+    ###
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
     huntarea = "7319"
     roomboundry = ["7318","7324"]
+    flee_count = 1
+    ###
+
+    ######
     rest = "landing"
     rest2 = "park"
     attack = "incant 904 channel"
     stance = "offensive"
-    flee_count = 1
     swings = 1
     skipwaitattack = 1
     hideme = 0

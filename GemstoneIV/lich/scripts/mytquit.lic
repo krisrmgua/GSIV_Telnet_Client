@@ -15,12 +15,13 @@ where = "285" if Myname == "Woory"
 where = "227" if Myname == "Sluf"
 where = "park" if Myname == "Pristeen"
 
-mynum = 1
+newtime = 1
+mynum = 0
 passedtime = script.vars[1]
 passedtime = passedtime.to_i * 60
 echo "Sleep time left: #{passedtime}"
 loop {
-  if mynum > passedtime.to_i 
+  if newtime <= 0 
     Script.run('mystop')
     Script.run('go2', 'park')
     sleep mynum
