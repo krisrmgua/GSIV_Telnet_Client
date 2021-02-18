@@ -26,6 +26,10 @@ loop {
         waggle_it.call('Noce')
         waggle_it.call('Aiss')
         waggle_it.call('Bize')
+        waggle_it.call('Hili')
+        waggle_it.call('Piie')
+        waggle_it.call('Noce')
+        waggle_it.call('Hoedo')
         Script.run('waggle')
         sleep 60
     else

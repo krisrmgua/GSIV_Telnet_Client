@@ -1,0 +1,15 @@
+loop{
+  if(File.exist?("data/#{Myname}.runthis"))
+    Myname = Char.name
+    filename = "data/#{Myname}.runthis"
+    file = File.open(filename)
+    file_data = file.read
+    file.close
+    if file_data != ""
+      echo "Running: #{file_data}"
+      Script.start("#{file_data}")
+      File.write(filename, "")
+    end
+  end
+  sleep 15
+}

@@ -303,10 +303,12 @@ deposit = proc {
       Script.run('go2', 'bank --disable-confirm')
       if XMLData.room_title == '[Pinefar, Depository]'
          if GameObj.npcs.any? { |npc| npc.noun == 'banker' }
-            fput "give banker #{check_silvers.call} silvers"
+            #fput "give banker #{check_silvers.call} silvers"
+            fput "deposit all"
          end
       else
-         fput "deposit #{check_silvers.call}"
+         #fput "deposit #{check_silvers.call}"
+         fput "deposit all"
       end
    end
 }

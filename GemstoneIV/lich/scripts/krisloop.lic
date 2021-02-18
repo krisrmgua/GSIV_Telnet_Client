@@ -117,6 +117,8 @@ loop {
        time = Time.new
        time1 = time.strftime("%Y-%m-%d %H:%M:%S")
        echo "#{time1} ITEM LOST HERE #{Room.current.id.to_s}"
+        filename = "data/#{Myname}.recover"
+        File.write(filename, "#{Room.current.id.to_s}")
        system("scripts/levelup.pl STATUS \"#{Myname} lost weapon in room num: #{Room.current.id.to_s}\"") 
     end
     if line =~ /.*Private.*GSIV:([A-Z,a-z,0-9]+): \"RUEMPTY/
@@ -188,7 +190,7 @@ loop {
        end
     end
     if line =~ /Keyboard|AFK|waiting for you to|^(?!.*audible).*REPORT.*$/i
-        if line !~ /\[help\]|\[Help\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]|Rheteger|The guard/
+        if line !~ /\[help\]|\[Help\]|\[OOC\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]|Rheteger|The guard/
           line.gsub! /"/, ' '
           system("scripts/levelup.pl STATUS \"(#{Myname}) ALERT: #{line}\"") 
         end
@@ -256,14 +258,14 @@ loop {
     end
     if line =~ /([A-Z,a-z]+) (softly asks|weakly asks|huskily says|weakly says|softly says|heartily asks|heartily says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
         dname = $1
-        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thank|thank|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob|Hili/
+        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thank|thank|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob/
           #fput "think to pristeen #{dname} casting Spells"
           if dname !~ /Some|some|Suddenly|suddenly/
               echo "SPELL MESSAGE #{line}"
               system("scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
           end
         end
-    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Wardrob|Hili/
+    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Wardrob/
         if line !~ /hours|Hours|suddenly|Suddenly|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please|GSIV|:/
           #fput "think to pristeen KRIS SPELLS"
           echo "SPELL MESSAGE #{line}"

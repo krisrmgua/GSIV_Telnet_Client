@@ -25,7 +25,7 @@ $hunt_start_time = DateTime.now
 $stop_hunt_time = 4000
 
 if Myname == "Pristeen"
-    $skiploot = true
+    #$skiploot = true
     #mobs = ["shan cleric", "shan ranger", "shan wizard", "shan warrior", "mammoth arachnid"]
     #huntarea = "5331"
     #roomboundry = ["5329","5390","5337"]
@@ -96,14 +96,14 @@ elsif Myname == "Sluf"
     active_scripts = ["surge"]
     $OOM = 0 
 elsif Myname == "Hoedo"
-    mobs = ["greater spider","death dirge"]
-    fleemobs = ["big budda"]
-    huntarea = "7252"
-    roomboundry = ["7198","7196","7260"]
-    #mobs = ["wraith"]
-    #fleemobs = ["tomb spider"]
-    #huntarea = "4175"
-    #roomboundry = ["4195","4187","4181"]
+    #mobs = ["greater spider","death dirge"]
+    #fleemobs = ["big budda"]
+    #huntarea = "7252"
+    #roomboundry = ["7198","7196","7260"]
+    mobs = ["wraith"]
+    fleemobs = ["tomb spider"]
+    huntarea = "4175"
+    roomboundry = ["4195","4187","4181"]
     rest = "landing"
     rest2 = "park"
     rest3 = "wgrave"
@@ -994,7 +994,8 @@ loop {
       fput "#{med}"
     end
     #getweapon.call()
-    #Script.start("assist_monker")
+    Script.run('rem') if Myname == "Pristeen"
+    Script.start("assist_monker") if Myname == "Pristeen"
     #while checkmind(2)
     while percentmind() > $mindhunt
       echo "Mind Still to High" if $debug

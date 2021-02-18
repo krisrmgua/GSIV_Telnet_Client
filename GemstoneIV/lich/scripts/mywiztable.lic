@@ -1,5 +1,4 @@
 Myname = Char.name
-exit if Myname == "Bize"
 exit if Myname == "Wiiz"
 exit if Myname == "Trenus"
 sleep = 1

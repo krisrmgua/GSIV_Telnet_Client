@@ -7,7 +7,7 @@ loop {
     file = File.open(filename)
     file_data = file.read
     file.close
-    if file_data == "on" and Myname =~ /Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
+    if file_data == "on" and Myname =~ /Wiiz|Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
         $last_state = "on"
         kill_script "runmindcheck"
         kill_script "mybigshot_runner"
@@ -39,7 +39,7 @@ loop {
           Spell[1125].cast() if Spell[1125].affordable?
           Script.run('1')
         end
-    elsif file_data == "off" and Myname =~ /Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "off"
+    elsif file_data == "off" and Myname =~ /Wiiz|Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "off"
         $last_state = "off"
         kill_script "randomtalk"
         kill_script "assist"
@@ -83,6 +83,7 @@ loop {
         #Script.run('poolparty', 'deposit')
         Script.run('sloot', 'sell')
         Script.run('bank')
+        fput "bank acc"
         Script.run('mywiztable')
        if Myname =~ /Monker|Trenus|Woory|Sorci/
             Script.run('go2', 'park3')
@@ -92,7 +93,7 @@ loop {
         else
             Script.run('go2', 'park')
         end
-        if Myname =~ /Hoedo|Noce|Piie|Hili|Bize/
+        if Myname =~ /Hoedo|Noce|Piie|Hili|Bize|Wiiz/
             sleep 40 if Myname == "Hoedo"
             Script.run('go2', 'wgrave')
         end

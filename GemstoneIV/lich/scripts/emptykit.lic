@@ -1,5 +1,6 @@
 Myname = Char.name
 kit = "kit"
+kit = "sat" if Myname == "Wiiz"
 kit = "sack" if Myname == "Hoedo" or Myname == "Piie" or Myname == "Hili"
 myleaf = true
 while myleaf == true

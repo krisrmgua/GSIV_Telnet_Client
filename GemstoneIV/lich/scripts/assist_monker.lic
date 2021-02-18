@@ -1,22 +1,11 @@
+$WHO = "Wiiz"
 $myloop = 0
 group_check = proc {
     fput "group"
     line = matchtimeout 7, "is the leader", "You are not currently in a group"
     if line =~ /You are not currently in a/
-        Script.run('mygo2loc', 'Bize')
-     
-        #Script.run('go2name', "Bize")
-        #fput "think to bize WhereRUnow"
-        #line = matchtimeout 3, "IAMHERE", "Think to whom"
-        #if line =~ /thinks\, \"IAMHERE (\d+)/
-        #    dlocc = $1
-        #    Script.run('go2', "#{dlocc}")
-        #end
-        #if line =~ /Think to whom/
-        #    Script.run('go2', "park")
-        #    exit 
-        #end
-        put "join bize"
+        Script.run('mygo2loc', "#{$WHO}")
+        put "join #{$WHO}"
         $myloop = $myloop + 1
         sleep 1
         if $myloop > 4
@@ -31,17 +20,19 @@ group_check = proc {
     end
     fput "look"
     if Room.current.id.to_s =~ /^4140$|^4141$/
-        fput "join Bize"
+        fput "join #{$WHO}"
         Script.run('gate')
-        fput "join Bize"
+        fput "join #{$WHO}"
     end
 }
 
 loop{
-    line = matchtimeout 8, "Bize swings", "Bize thrust"
-    if line =~ /Bize swings|Bize thrust/
+    GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
+    line = matchtimeout 8, "#{$WHO} swings", "#{$WHO} thrust", "#{$WHO} channels", "#{$WHO} gestures"
+    if line =~ /#{$WHO} swings|#{$WHO} thrust|#{$WHO} channels|#{$WHO} gestures/
         keepon = true
         while keepon
+            GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
             Script.run('c')
             line = matchtimeout 3, "You do not"
             if line =~ /You do not/
@@ -49,6 +40,7 @@ loop{
             end
             waitrt?
             waitcastrt?
+            GameObj.pcs.each {|s| if s.status =~ /kneeling|sitting|^lying|prone/;fput "pull #{s.noun}";end;} if GameObj.npcs.any? {|s| s.type =~ /aggressive npc/}
         end
     end
     group_check.call()

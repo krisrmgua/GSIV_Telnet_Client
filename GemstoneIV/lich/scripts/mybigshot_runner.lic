@@ -448,7 +448,7 @@ elsif Myname == "Wiiz"
     ######
     rest = "landing"
     rest2 = "park"
-    attack = "incant 904 channel"
+    attack = "incant 904 CHANNEL EVOKE"
     stance = "offensive"
     swings = 1
     skipwaitattack = 1
@@ -575,6 +575,7 @@ bs_wander = proc { |roomboundry|
   else
     way.call
   end
+  Script.run('mysaveloc')
 }
 
 check_silver = proc {
@@ -596,6 +597,7 @@ check_silver = proc {
 go2restbefore = proc {
     if Room.current.id.to_s != "#{rest}" and restbefore
       Script.run('go2', "#{restbefore}")
+      Script.run('mysaveloc')
     end
 }
 
@@ -606,6 +608,7 @@ go2rest = proc {
     if rest == "wgrave"
         Script.run('gogate')
         Script.run('go2', "landing")
+        Script.run('mysaveloc')
     end
 }
 
@@ -682,6 +685,7 @@ sell = proc {
     if Myname == "Wiiz"
       Script.run('mytable')
       Script.start('wiiz')
+      Script.run('mysaveloc')
     end
     if Myname == "Aiss"
       #Script.run('castany', "1")
@@ -739,6 +743,7 @@ check_flee_count = proc {
 
 gohunt = proc {
   Script.run('go2', "#{huntarea}")
+  Script.run('mysaveloc')
 }
 
 check_standing = proc {
@@ -1116,6 +1121,7 @@ loop {
       end
     end
     Script.run('go2', "#{rest2}") if rest2
+    Script.run('mysaveloc')
     if $need_bless
       getweapon.call()
       if $arrows
@@ -1227,6 +1233,7 @@ loop {
     end
     sell.call()
     Script.run('go2', "#{rest2}") if rest2 and Myname != "Wiiz"
+    Script.run('mysaveloc')
     if defined?(med)
       fput "#{med}"
     end
@@ -1262,6 +1269,7 @@ loop {
       fput "w"
       sleep 1
       Script.run('go2', "#{huntarea}")
+      Script.run('mysaveloc')
     end
   end
 }

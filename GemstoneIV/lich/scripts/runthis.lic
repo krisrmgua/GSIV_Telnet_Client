@@ -1,0 +1,11 @@
+names = ["Piie","Hoedo","Hili","Noce","Bize","Wiiz", "Aiss", "Clu", "Monker", "Trenus", "Sorci", "Woory", "Sluf", "Pristeen"]
+if not script.vars[1]
+    echo "YOU MUST PASS COMMAND"
+else
+    names.each { |item|
+        filename = "data/#{item}.runthis"
+        File.write(filename, "#{script.vars[1]}")
+    }
+end
+sleep 15
+echo "ALL RAN"

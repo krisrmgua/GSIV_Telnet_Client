@@ -1,0 +1,5 @@
+who = ["Woory","Sorci","Trenus","Monker","Clu","Pristeen","Aiss","Sluf","Piie","Hoedo","Noce","Hili","Bize"]
+who.each { |person|
+    fput "hold #{person}"
+    sleep 0.5
+}

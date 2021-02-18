@@ -1,4 +1,13 @@
-Script.run('go2', script.vars[1])
+Myname = Char.name
+if not script.vars[1]
+  filename = "data/#{Myname}.recover"
+  file = File.open(filename)
+  file_data = file.read
+  file.close
+  Script.run('go2', "#{file_data}")
+else
+  Script.run('go2', script.vars[1])
+end
 fput "kneel"
 fput "recover item"
 Script.run('go2', 'landing')

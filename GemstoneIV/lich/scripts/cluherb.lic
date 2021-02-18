@@ -1,0 +1,41 @@
+herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas stem","ephlox moss","pothinir grass","cactacae spine","calamia fruit","torban leaf","haphip root","woth flower","sovyn clove"]
+Script.run('wear')
+if not script.vars[1]
+    respond "================================"
+    respond "Type ;send # "
+    respond "  1: acantha leaf"
+    respond "  2: ambrominas leaf"
+    respond "  3: basal moss"
+    respond "  4: wolifrew lichen"
+    respond "  5: aloeas stem"
+    respond "  6: ephlox moss"
+    respond "  7: pothinir grass"
+    respond "  8: cactacae spine"
+    respond "  9: calamia fruit"
+    respond "  10: torban leaf"
+    respond "  11: haphip root"
+    respond "  12: woth flower"
+    respond "  13: sovyn clove"
+    respond "================================"
+    line = get until line.strip =~ /^[0-9]+$/i
+    if line =~ /(\d+)/
+      num = Integer($1)
+      num = num - 1
+      respond "  How Many? 1-15:"
+      sleep 1
+      line2 = get until line2.strip =~ /^[0-9]+$/i
+      if line2 =~ /(\d+)/
+          num2 = Integer($1)
+          Script.run('betazzherb', "#{herbs[num]} #{num2}")
+      end
+    end
+else
+  if not script.vars[2]
+      num = Integer(script.vars[1])
+      num = num - 1
+      num2 = Integer(script.vars[2])
+      Script.run('betazzherb', "#{herbs[num]} #{num2}")
+  else
+      respond "you must pass herbname and quantity"
+  end
+end

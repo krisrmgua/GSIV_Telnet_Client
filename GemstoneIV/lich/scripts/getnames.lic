@@ -102,6 +102,7 @@ scan_for_players = proc { |pro|
         CharSettings['known_players'].delete("command.")
         CharSettings['known_players'].delete("...wait")
         CharSettings['known_players'].delete("1")
+        CharSettings['known_players'].delete("5")
         CharSettings['known_players'].delete("seconds.")
         CharSettings['known_players'].delete("Piie")
         CharSettings['known_players'].store("Piie", "kris")
