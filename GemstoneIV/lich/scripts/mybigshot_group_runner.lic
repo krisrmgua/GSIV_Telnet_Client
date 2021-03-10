@@ -25,17 +25,20 @@ $hunt_start_time = DateTime.now
 $stop_hunt_time = 4000
 
 if Myname == "Pristeen"
-    #$skiploot = true
+    $skiploot = true
     #mobs = ["shan cleric", "shan ranger", "shan wizard", "shan warrior", "mammoth arachnid"]
     #huntarea = "5331"
     #roomboundry = ["5329","5390","5337"]
     #spectral miner
-    mobs = ["spectral miner", "ghostly pooka", "spectral miner"]
-    huntarea = "7393"
-    roomboundry = ["7328"]
+    ##mobs = ["spectral miner", "ghostly pooka", "spectral miner"]
+    ##huntarea = "7393"
+    ##roomboundry = ["7328"]
     #hourses pooh
     #huntarea = "4540"
     #roomboundry = ["4541","4537","7325","7429"]
+    mobs = ["shadow mare", "shadow steed", "night mare"]
+    huntarea = "7332"
+    roomboundry = ["7329"]
     fleemobs = ["tomb spider"]
     #mobs = ["moaning spirit","night hound"]
     ##mobs_monker = ["nedum vereri"]
@@ -63,7 +66,7 @@ if Myname == "Pristeen"
     encumbrance = 35
     active_scripts = [""]
     $OOM = 25 
-    $MYFRIED = 24
+    $MYFRIED = 1
 elsif Myname == "Sluf"
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
@@ -100,13 +103,17 @@ elsif Myname == "Hoedo"
     #fleemobs = ["big budda"]
     #huntarea = "7252"
     #roomboundry = ["7198","7196","7260"]
-    mobs = ["wraith"]
+    ####mobs = ["wraith"]
+    ####fleemobs = ["tomb spider"]
+    ####huntarea = "4175"
+    ####roomboundry = ["4195","4187","4181"]
+    mobs = ["nedum vereri"]
     fleemobs = ["tomb spider"]
-    huntarea = "4175"
-    roomboundry = ["4195","4187","4181"]
+    huntarea = "8470"
+    roomboundry = ["8469","8495"]
     rest = "landing"
     rest2 = "park"
-    rest3 = "wgrave"
+    rest3 = "park"
     #attack = "incant 1700 channel"
     attack = "incant 302 channel"
     stance = "defensive"
@@ -125,9 +132,8 @@ elsif Myname == "Hoedo"
     encumbrance = 50
     active_scripts = [""]
     $OOM = 25
-    #$MYFRIED = 101
     #$mindhunt = 89
-    $MYFRIED = 100
+    $MYFRIED = 99
     $mindhunt = 25
 else
     exit
@@ -703,6 +709,7 @@ attack_target = proc { |target|
             go_defensive.call()
             Script.run('sloot') if not $skiploot
             check_silver.call()
+            sleep 1
             $numkilled = $numkilled + 1;
             print_stats.call()
             hands_check.call()
@@ -811,6 +818,10 @@ loop {
   take_a_look.call()
   tmp_target = "1" if $lookwait
   echo "Got #{tmp_target} and flee is: #{$need_flee}"
+  if percentmind() > $MYFRIED
+       ask_other_fried.call() if Myname == "Pristeen"
+       $need_rest = true if checkfried and Myname != "Pristeen"
+  end
   bs_wander.call(roomboundry) if tmp_target == "0" or $need_flee 
   Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug

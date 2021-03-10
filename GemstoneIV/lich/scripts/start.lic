@@ -8,7 +8,10 @@ if Myname == "Aiss"
   #Script.start('taptoheal')
   Script.start('krisloop')
   Script.start('my_health_check')
+  Script.start('aiss')
 #  Script.start('healbot')
+elsif Myname == "Gemii"
+  Script.start('acceptit')
 elsif Myname == "Hili"
   kill_script "krisloop"
   sleep 1
@@ -38,8 +41,9 @@ end
 if Myname == "Pristeen"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
+  Script.run('acceptit')
 end
-if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
+if Myname =~ /Wiiz|Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   kill_script "checkhunt"
   sleep 1
   Script.start('checkhunt', "Pristeen")
@@ -48,7 +52,7 @@ if Myname == "Hoedo"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
 end
-if Myname =~ /Piie|Noce|Bize|Hili|Wiiz/
+if Myname =~ /Piie|Noce|Bize|Hili/
   kill_script "checkhunt"
   sleep 1
   Script.start('checkhunt', "Hoedo")

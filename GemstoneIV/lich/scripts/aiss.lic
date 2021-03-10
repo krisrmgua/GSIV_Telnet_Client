@@ -1,0 +1,23 @@
+loop {
+line = matchtimeout 10, "offers you"
+if line =~ /^([A-Z,a-z]+) offers you/ and Myname == "Aiss"
+    uname = $1
+    fput "accept"
+    fput "hands"
+    line2 = matchtimeout 5, "sack", "kit", "satchel"
+    if line2 =~ /sack/
+       dkit = "sack"
+    elsif line2 =~ /satchel/
+       dkit = "satchel"
+    elsif line2 =~ /kit/
+       dkit = "kit"
+    end
+    fput "remove my greatc"
+    fput "open my greatc"
+    fput "empty my greatc into my #{dkit}"
+    waitrt?
+    waitcastrt?
+    fput "wear my greatc"
+    fput "give #{uname}"
+end
+}

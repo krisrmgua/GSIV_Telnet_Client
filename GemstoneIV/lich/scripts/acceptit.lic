@@ -1,0 +1,13 @@
+  fput "open my cloak"
+  fput "open my greatc"
+  fput "open my backpack"
+  fput "open my pack"
+loop {
+  line = matchtimeout 10, "offers you"
+  if line =~ /^([A-Z,a-z]+) offers you/
+    uname = $1
+    fput "accept"
+    fput "stow right"
+  end
+}
+

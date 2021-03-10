@@ -1,0 +1,38 @@
+start_room = Room.current.id.to_s
+Script.run('bank', '1500')
+Script.run('go2', '7970')
+fput "pay 1500"
+Script.run('go2', '3855')
+fput "open locker"
+loop {
+   fput "get my uncut emerald"
+   line = matchtimeout 5, "Get what", "You remove", "You already have"
+        if line =~ /You remove/
+            fput "put my uncut emerald in locker"
+        end
+        if line =~ /You already have/
+            Script.run('go2', '3855')
+            fput "open locker"
+            fput "put my uncut emerald in locker"
+        end
+        if line =~ /Get what/
+            break
+        end
+}
+loop {
+   fput "get my uncut diamond"
+   line = matchtimeout 5, "Get what", "You remove", "You already have"
+        if line =~ /You remove/
+            fput "put my uncut diamond in locker"
+        end
+        if line =~ /You already have/
+            Script.run('go2', '3855')
+            fput "open locker"
+            fput "put my uncut diamond in locker"
+        end
+        if line =~ /Get what/
+            break
+        end
+}
+fput "close locker"
+Script.run('go2', start_room)

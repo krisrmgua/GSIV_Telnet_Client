@@ -51,7 +51,8 @@ loop {
     if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or $silver
         echo "Im Hurt"
         if Myname == "Hoedo" or Myname == "Noce" or Myname == "Piie" or Myname == "Hili" or Myname == "Bize"
-            Script.run('go2', "wgrave")
+            #Script.run('go2', "wgrave")
+            Script.run('go2', "park")
             Script.run('wear')
             if Myname == "Hili"
               Script.run('sheal')
@@ -120,7 +121,12 @@ loop {
                if line =~ /You do no|You currently/
                    keepon = nil
                end
-           elsif Myname == "Heodo" or Myname == "Hili" or Myname == "Piie"  or Myname == "Bize" or Myname == "Wiiz"
+           elsif Myname == "Wiiz"
+               Script.run('c')
+               waitrt?
+               waitcastrt?
+               Script.run('sloot')
+           elsif Myname == "Heodo" or Myname == "Hili" or Myname == "Piie" or Myname == "Bize"
                sleep 1
                sleep 3 if Myname == "Wiiz"
                Script.run('c')
@@ -153,7 +159,8 @@ loop {
            keepon = nil if $attack_check == "off"
        end
        #Script.run('sloot') if Myname =~ /Aiss|Clu|Monker/
-       Script.run('sloot') if Myname !~ /Clu/
+       #Script.run('sloot') if Myname !~ /Clu/
+       Script.run('sloot') if Myname =~ /Wiiz/
        fput "stance def"
     else
         echo "Attack is set to Off"

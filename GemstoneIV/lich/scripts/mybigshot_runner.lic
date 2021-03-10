@@ -396,25 +396,25 @@ elsif Myname == "Hoedo"
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
-elsif Myname == "Hudem"
+elsif Myname == "Itchiy"
     mobs = ["giant ant"]
     fleemobs = ["nothing"]
     rest = "landing"
     rest2 = "park"
     huntarea = "ants"
-    roomboundry = [6766,6764,6776,6786]
-    attack = "attack"
-    stance = "offensive"
+    roomboundry = ["7534","292"]
+    attack = "incant 1700 channel"
+    stance = "defensive"
     flee_count = 1
-    swings = 1
-    skipwaitattack = 0
+    swings = 19
+    skipwaitattack = 1
     hideme = 0
-    shield = "shield"
-    weapon = "longsword"
+    shield = ""
+    weapon = "staff"
     sheath = "sheath"
-    backpack = "pack"
-    cloak = "pack"
-    herbsack = "pack"
+    backpack = "backpack"
+    cloak = "cloak"
+    herbsack = "sack"
     skinknife = ""
     skinsheath = ""
     encumbrance = 5
@@ -438,12 +438,17 @@ elsif Myname == "Wiiz"
     #$skipsale = true
 
     ###
-    mobs = ["moaning spirit","night hound"]
-    fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
-    flee_count = 1
+    #mobs = ["moaning spirit","night hound"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7319"
+    #roomboundry = ["7318","7324"]
+    #flee_count = 1
     ###
+    mobs = ["ghostly pooka"]
+    huntarea = "4540"
+    roomboundry = ["4541","4537","7325","7429"]
+    fleemobs = ["tomb spider"]
+    flee_count = 1
 
     ######
     rest = "landing"
@@ -470,6 +475,7 @@ end
 
 
 alert_dead_body = proc { |tmpname|
+  echo "!!!!!!!!!!!!!!!!!!!!!! DEAD BODY FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!"
   system("scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
 }
 
@@ -674,6 +680,7 @@ sell = proc {
         Script.run('poolparty')
         #Script.run('poolparty','deposit')
         Spell[1205].cast if Spell[1205].known? && Spell[1205].affordable?
+        Script.run('wiizgem') if Myname == "Wiiz"
         Script.run('sloot', "sell")
     end
     Script.run('waggle')

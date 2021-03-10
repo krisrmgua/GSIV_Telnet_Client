@@ -28,10 +28,11 @@ elsif Myname == "Wiiz"
     else
         echo "Out of Mana"
         echo "You do not currently have a target"
+        fput "incant 1700 channel" 
     end
 elsif Myname == "Piie"
-    #if Spell[1012].known? and Spell[1016].affordable?
-    if percentmana() > 14
+    #if Spell[1012].known? and Spell[1025].affordable?
+    if percentmana() > 16
         change_stance.call('guarded')
         fput "incant 1008"
     else
@@ -39,8 +40,8 @@ elsif Myname == "Piie"
         echo "You do not currently have a target"
     end
 elsif Myname == "Bize"
-    #if Spell[1012].known? and Spell[1016].affordable?
-    if percentmana() > 14
+    #if Spell[1012].known? and Spell[1025].affordable?
+    if percentmana() > 16
         change_stance.call('guarded')
         fput "incant 1008"
     else

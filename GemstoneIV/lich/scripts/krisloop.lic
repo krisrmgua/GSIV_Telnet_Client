@@ -74,12 +74,21 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /Joinme ([0-9]+)/
         kill_script "go2"
         echo "JOININ"
         sleep 2
         Script.run('go2', $1)
+    end
+    if line =~ /^([A-Z,a-z]+) offers you some manna bread/
+        Script.run('wear')
+        fput "accept"
+        fput "gobble bread"
+        fput "gobble bread"
+    end
+    if line =~ /air seems to thicken and hold you back/
+        kill_script "go2"
     end
     if line =~ /whispers, \"Sh\./
         Script.run('sh')
@@ -153,6 +162,10 @@ loop {
             fput "whisper #{whipserer} not yet"
         end
     end
+    if line =~ /([A-Z,a-z]+) whispers, \"Breadme/
+	whipserer = $1
+        Script.run('bread', "#{whipserer}")
+    end
     if line =~ /([A-Z,a-z]+) whispers, \"Bless/
 	healee = $1
         if Myname == "Pristeen" or Myname == "Hoedo"
@@ -184,7 +197,7 @@ loop {
        dwho = $1
        dwhat = $2
        dwhat.gsub(/(')/, '')
-       if dwho !~ /Pristeen|Honkmonk|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob|Bize|Hoedo|Hili|Piie|Noce/
+       if dwho !~ /Pristeen|Honkmonk|Wiiz|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob|Bize|Hoedo|Hili|Piie|Noce/
            echo "Got Whisper sending out text now."
            system("scripts/levelup.pl WHISPER \"#{dwho} whispers to #{Myname}: #{dwhat}\"") 
        end

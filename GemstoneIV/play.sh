@@ -34,6 +34,8 @@ echo -e "\t26:\tOguo"
 echo -e "\t27:\tClergi"
 echo -e "\t28:\tKrisalan"
 echo -e "\t29:\tZrik"
+echo -e "\t30:\tGemii"
+echo -e "\t31:\tItchiy"
 
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
@@ -140,6 +142,30 @@ elif [ $num -eq 25 ]
 then
     character=Wiiz
     port=8025
+elif [ $num -eq 26 ]
+then
+    character=Ogou
+    port=8026
+elif [ $num -eq 27 ]
+then
+    character=Clergi
+    port=8027
+elif [ $num -eq 28 ]
+then
+    character=Krisalan
+    port=8028
+elif [ $num -eq 29 ]
+then
+    character=Zrik
+    port=8029
+elif [ $num -eq 30 ]
+then
+    character=Gemii
+    port=8030
+elif [ $num -eq 31 ]
+then
+    character=Itchiy
+    port=8031
 else
     echo "BAD INPUT"
     exit
