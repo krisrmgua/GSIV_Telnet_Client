@@ -12,6 +12,8 @@ if Myname == "Aiss"
 #  Script.start('healbot')
 elsif Myname == "Gemii"
   Script.start('acceptit')
+elsif Myname == "Gemb"
+  Script.start('acceptit')
 elsif Myname == "Hili"
   kill_script "krisloop"
   sleep 1
@@ -41,7 +43,7 @@ end
 if Myname == "Pristeen"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
-  Script.run('acceptit')
+  Script.start('acceptit')
 end
 if Myname =~ /Wiiz|Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   kill_script "checkhunt"

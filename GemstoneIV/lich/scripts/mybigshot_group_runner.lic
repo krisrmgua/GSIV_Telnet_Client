@@ -25,7 +25,7 @@ $hunt_start_time = DateTime.now
 $stop_hunt_time = 4000
 
 if Myname == "Pristeen"
-    $skiploot = true
+    $skiploot = false
     #mobs = ["shan cleric", "shan ranger", "shan wizard", "shan warrior", "mammoth arachnid"]
     #huntarea = "5331"
     #roomboundry = ["5329","5390","5337"]

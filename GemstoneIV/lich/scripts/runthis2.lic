@@ -1,0 +1,7 @@
+name = script.vars[1]
+if not script.vars[1]
+    echo "YOU MUST PASS COMMAND"
+else
+        filename = "data/#{name}.runthis"
+        File.write(filename, "#{script.vars[2]}")
+end

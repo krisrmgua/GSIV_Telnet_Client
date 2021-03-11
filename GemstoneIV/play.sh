@@ -36,6 +36,7 @@ echo -e "\t28:\tKrisalan"
 echo -e "\t29:\tZrik"
 echo -e "\t30:\tGemii"
 echo -e "\t31:\tItchiy"
+echo -e "\t32:\tGemb"
 
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
@@ -166,6 +167,10 @@ elif [ $num -eq 31 ]
 then
     character=Itchiy
     port=8031
+elif [ $num -eq 32 ]
+then
+    character=Gemb
+    port=8032
 else
     echo "BAD INPUT"
     exit

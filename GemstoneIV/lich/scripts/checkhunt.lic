@@ -7,7 +7,31 @@ loop {
     file = File.open(filename)
     file_data = file.read
     file.close
-    if file_data == "on" and Myname =~ /Wiiz|Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
+    if percentencumbrance > 50
+        $last_state = "off"
+        kill_script "randomtalk"
+        kill_script "assist"
+        sleep 3
+        kill_script "assist"
+        Script.run('go2', 'landing')
+        Script.run('wear')
+        if Myname == "Aiss" or Myname == "Hili"
+            Script.run('sheal')
+        else
+            Script.run('askheal')
+        end
+        Script.run('useherbs', "in bin")
+        Script.run('useherbs', "on bench")
+        Script.run('useherbs', "under bench")
+        Script.run('useherbs', "--buy=on in my satchel") if Myname =~ /Wiiz/
+        Script.run('useherbs', "--buy=on in my sack") if Myname =~ /Piie|Hoedo/
+        Script.run('useherbs', "--buy=on in my kit")
+        Script.run('poolparty')
+        Script.run('sloot', 'sell')
+        Script.run('bank')
+        fput "bank acc"
+        Script.run('go2', 'park')
+    elsif file_data == "on" and Myname =~ /Wiiz|Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
         $last_state = "on"
         kill_script "runmindcheck"
         kill_script "mybigshot_runner"

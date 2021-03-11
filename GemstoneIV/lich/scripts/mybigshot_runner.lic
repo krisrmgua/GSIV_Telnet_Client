@@ -397,12 +397,16 @@ elsif Myname == "Hoedo"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Itchiy"
-    mobs = ["giant ant"]
-    fleemobs = ["nothing"]
+    #mobs = ["giant ant"]
+    #fleemobs = ["nothing"]
+    #huntarea = "ants"
+    #roomboundry = ["7534","292"]
+    mobs = ["thyril", "relnak"]
+    fleemobs = ["wraith"]
+    huntarea = "7545"
+    roomboundry = ["7544"]
     rest = "landing"
     rest2 = "park"
-    huntarea = "ants"
-    roomboundry = ["7534","292"]
     attack = "incant 1700 channel"
     stance = "defensive"
     flee_count = 1
