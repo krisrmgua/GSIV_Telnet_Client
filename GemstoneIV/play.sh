@@ -25,18 +25,20 @@ echo -e "\t19:\tHoled (18)"
 echo -e "\t20:\tHeldr (19)"
 echo -e "\t21:\tHelumb (20)"
 echo -e "\t22:\tHudem (21)"
+echo -e "\t23:\tGemii (26)"
+echo -e "\t24:\tGemb (28)"
 echo -e " "
-echo -e "\t23:\tHonkme (25)"
-echo -e "\t24:\tHonkmonk"
+echo -e "\t25:\tWiiz ()"
 echo -e " "
-echo -e "\t25:\tWiiz"
-echo -e "\t26:\tOguo"
-echo -e "\t27:\tClergi"
-echo -e "\t28:\tKrisalan"
-echo -e "\t29:\tZrik"
-echo -e "\t30:\tGemii"
-echo -e "\t31:\tItchiy"
-echo -e "\t32:\tGemb"
+echo -e "\t26:\tOguo (2)"
+echo -e "\t27:\tClergi (2)"
+echo -e "\t28:\tKrisalan (2)"
+echo -e "\t29:\tZrik (2)"
+echo -e " "
+echo -e "\t30:\tItchiy (27)"
+echo -e " "
+echo -e "\t31:\tHonkme (25)"
+echo -e "\t32:\tHonkmonk"
 
 echo -e " "
 echo -e "ENTER SELECTOIN NUMBER: "
@@ -133,11 +135,11 @@ then
     port=8022
 elif [ $num -eq 23 ]
 then
-    character=Honkme
+    character=Gemii
     port=8023
 elif [ $num -eq 24 ]
 then
-    character=Honkmonk
+    character=Gemb
     port=8024
 elif [ $num -eq 25 ]
 then
@@ -161,15 +163,15 @@ then
     port=8029
 elif [ $num -eq 30 ]
 then
-    character=Gemii
+    character=Itchiy
     port=8030
 elif [ $num -eq 31 ]
 then
-    character=Itchiy
+    character=Honkme
     port=8031
 elif [ $num -eq 32 ]
 then
-    character=Gemb
+    character=Honkmonk
     port=8032
 else
     echo "BAD INPUT"
