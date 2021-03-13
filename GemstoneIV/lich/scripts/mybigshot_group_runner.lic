@@ -23,6 +23,7 @@ $MYFRIED = 99
 $mindhunt = 25
 $hunt_start_time = DateTime.now
 $stop_hunt_time = 4000
+$make_fire = false
 
 if Myname == "Pristeen"
     $skiploot = false
@@ -36,18 +37,25 @@ if Myname == "Pristeen"
     #hourses pooh
     #huntarea = "4540"
     #roomboundry = ["4541","4537","7325","7429"]
-    mobs = ["shadow mare", "shadow steed", "night mare"]
-    huntarea = "7332"
-    roomboundry = ["7329"]
-    fleemobs = ["tomb spider"]
+    #mobs = ["shadow mare", "shadow steed", "night mare"]
+    #huntarea = "7332"
+    #roomboundry = ["7329"]
+    #fleemobs = ["tomb spider"]
     #mobs = ["moaning spirit","night hound"]
     ##mobs_monker = ["nedum vereri"]
     ##mobs_monker = ["zombie"]
     #fleemobs = ["tomb spider"]
     #huntarea = "7319"
     #roomboundry = ["7318","7324"]
+
+    mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth"]
+    huntarea = "2760"
+    roomboundry = ["2761", "2746"]
+    fleemobs = ["tomb spider"]
+
     rest = "landing"
     rest2 = "park"
+    rest3 = "pinefar"
     attack = "incant 302 channel"
     #attack = "incant 1700 channel"
     stance = "defensive"
@@ -355,6 +363,8 @@ sell = proc {
         Spell[1205].cast if Spell[1205].known? && Spell[1205].affordable?
         Script.run('sloot', "sell")
     end
+    fput "ask inv for spells"
+    sleep 3
     Script.run('waggle')
     if not $skipsale
         Script.run('mywiztable')
@@ -503,14 +513,15 @@ stop_active = proc {
 }
 
 ask_other_empty = proc {
-    runame = "Monker"
+    runame = "Clu"
+    #runame = "Monker"
     #runame = "Woory"
     filename = "data/#{runame}.mind"
     file = File.open(filename)
     file_data = file.read
     file.close
     echo "Checking #{runame} Mind is Empty... its at #{file_data}"
-    if file_data.to_i < 26
+    if file_data.to_i < 25
         $checkmindother = true
     end
     #LNet.send_message(attr={'type'=>'private', 'to'=>'Trenus'}, "RUEMPTY")
@@ -525,7 +536,8 @@ ask_other_empty = proc {
 }
 
 ask_other_fried = proc {
-    runame = "Monker"
+    runame = "Clu"
+    #runame = "Monker"
     #runame = "Woory"
     filename = "data/#{runame}.mind"
     file = File.open(filename)
@@ -533,6 +545,7 @@ ask_other_fried = proc {
     file.close
     echo "Checking #{runame} Mind is Full... its at #{file_data}"
     if file_data.to_i == 100
+    #if file_data.to_i > 25
         echo "YES"
         $need_rest = true
     end
@@ -999,14 +1012,17 @@ loop {
     end
     sell.call()
     Script.run('go2', "#{rest2}") if rest2 and Myname != "Wiiz"
+    Script.run('rem') if rest3 and Myname != "Wiiz"
     Script.run('go2', "#{rest3}") if rest3 and Myname != "Wiiz"
+    Script.run('wear') if rest3 and Myname != "Wiiz"
+    Script.run('makefire') if rest3 and Myname != "Wiiz"
     Script.run('mysaveloc')
     if defined?(med)
       fput "#{med}"
     end
     #getweapon.call()
-    Script.run('rem') if Myname == "Pristeen"
-    Script.start("assist_monker") if Myname == "Pristeen"
+    ####Script.run('rem') if Myname == "Pristeen"
+    ####Script.start("assist_monker") if Myname == "Pristeen"
     #while checkmind(2)
     while percentmind() > $mindhunt
       echo "Mind Still to High" if $debug

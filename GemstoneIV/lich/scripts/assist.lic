@@ -159,8 +159,9 @@ loop {
            keepon = nil if $attack_check == "off"
        end
        #Script.run('sloot') if Myname =~ /Aiss|Clu|Monker/
-       #Script.run('sloot') if Myname !~ /Clu/
-       Script.run('sloot') if Myname =~ /Wiiz/
+       Script.run('sloot') if Myname !~ /Clu/
+       #Script.run('sloot') if Myname =~ /Wiiz/
+       #Script.run('sloot') 
        fput "stance def"
     else
         echo "Attack is set to Off"

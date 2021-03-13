@@ -21,41 +21,45 @@ if not script.vars[1]
     if line =~ /(\d+)/ 
       num = Integer($1)
       num = num - 1
-      fput "prepare 1118"
-      waitrt?
-      waitcastrt?
-      fput "summon #{herbs[num]}"
-      line = matchtimeout 3, "appears at your feet"
-      if line =~ /appears at your feet/
-          fput "get #{herbs[num]}"
-          #fput "put #{herbs[num]} in my back"
-          fput "stow #{herbs[num]}"
-      end
-    end
-else
-      num = Integer(script.vars[1])
-      numc = num
-      num = num - 1
-      fput "prepare 1118"
-      waitrt?
-      waitcastrt?
-      if numc.to_i == 0
-        fput "cast"
-        line = matchtimeout 3, "appears at your feet"
-        if line =~ /([A-Z,a-z]+) ([A-Z,a-z]+) suddenly appears at your feet/
-            h1 = $1
-            h2 = $2
-            fput "get #{h1} #{h2}"
-            fput "stow #{h1} #{h2}"
-            #fput "put #{h1} #{h2} in my back"
-        end
-      else
+      if Spell[1125].known? and Spell[1125].affordable?
+        fput "prepare 1118"
+        waitrt?
+        waitcastrt?
         fput "summon #{herbs[num]}"
         line = matchtimeout 3, "appears at your feet"
         if line =~ /appears at your feet/
             fput "get #{herbs[num]}"
             #fput "put #{herbs[num]} in my back"
             fput "stow #{herbs[num]}"
+        end
+      end
+    end
+else
+      num = Integer(script.vars[1])
+      numc = num
+      num = num - 1
+      if Spell[1125].known? and Spell[1125].affordable?
+        fput "prepare 1118"
+        waitrt?
+        waitcastrt?
+        if numc.to_i == 0
+          fput "cast"
+          line = matchtimeout 3, "appears at your feet"
+          if line =~ /([A-Z,a-z]+) ([A-Z,a-z]+) suddenly appears at your feet/
+              h1 = $1
+              h2 = $2
+              fput "get #{h1} #{h2}"
+              fput "stow #{h1} #{h2}"
+              #fput "put #{h1} #{h2} in my back"
+          end
+        else
+          fput "summon #{herbs[num]}"
+          line = matchtimeout 3, "appears at your feet"
+          if line =~ /appears at your feet/
+              fput "get #{herbs[num]}"
+              #fput "put #{herbs[num]} in my back"
+              fput "stow #{herbs[num]}"
+          end
         end
       end
 end

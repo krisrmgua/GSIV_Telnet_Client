@@ -1,5 +1,5 @@
 #0 2 * * * /root/GSIV_Telnet_Client/cron.sh
-/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Wiiz > /tmp/Wiiz.txt
+#/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Wiiz > /tmp/Wiiz.txt
 #/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Oguo > /tmp/Oguo.txt
 #/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Bardi > /tmp/Bardi.txt
 #/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Clergi > /tmp/Clergi.txt
@@ -33,4 +33,3 @@
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Honkme > /tmp/Honkme.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Honkmonk > /tmp/Honkmonk.txt
 /root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Itchiy > /tmp/Itchiy.txt
-/root/GSIV_Telnet_Client/play_gemstoneiv_daily.pl Gemii > /tmp/Gemii.txt

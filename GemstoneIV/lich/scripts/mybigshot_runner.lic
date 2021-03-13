@@ -407,7 +407,8 @@ elsif Myname == "Itchiy"
     roomboundry = ["7544"]
     rest = "landing"
     rest2 = "park"
-    attack = "incant 1700 channel"
+    #attack = "incant 1700 channel"
+    attack = "incant 1106 channel"
     stance = "defensive"
     flee_count = 1
     swings = 19
@@ -423,6 +424,7 @@ elsif Myname == "Itchiy"
     skinsheath = ""
     encumbrance = 5
     active_scripts = [""]
+    $OOM = 9
 elsif Myname == "Wiiz"
     #mobs = ["nedum vereri"]
     #fleemobs = ["none2"]
@@ -1113,7 +1115,7 @@ loop {
     openlook.call()
     putawayweapon.call()
     if $need_healing
-      if Myname != "Aiss"
+      if Myname !~ /Aiss|Itchiy/
           Script.run('askheal')
           Script.run('useherbs', "in bin")
           Script.run('useherbs', "on bench")

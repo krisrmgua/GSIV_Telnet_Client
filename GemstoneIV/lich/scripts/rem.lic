@@ -74,4 +74,6 @@ elsif Myname == "Sluf"
     fput "put my trail knife in my wrist sheath"
     fput "remove my aegis"
     fput "get my spear"
+elsif Myname == "Itchiy"
+    fput "get my staff"
 end

@@ -45,4 +45,6 @@ elsif Myname == "Bize"
 elsif Myname == "Sluf"
     fput "wear my aegis"
     fput "put my spear in my trimmed sheath"
+elsif Myname == "Itchiy"
+    fput "put my staff in my sheath"
 end

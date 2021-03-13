@@ -73,6 +73,9 @@ if($charecter){
 }
 #print Dumper(%HIGHLIGHT_ITEMS);
 $GLOBALS{'password'} = "kas\@072578";
+if ($charecter eq "Honkmonk") {
+    $GLOBALS{'password'} = "8207925s";
+}
 my $session_key = play_gemstoneiv_data::Main::get_session_key(\%GLOBALS);
 my $current_dir_name = dirname(__FILE__);
 play_gemstoneiv_data::Main::save_command_file("",$current_dir_name,\%GLOBALS);

@@ -14,6 +14,12 @@ elsif Myname == "Gemii"
   Script.start('acceptit')
 elsif Myname == "Gemb"
   Script.start('acceptit')
+elsif Myname == "Itchiy"
+  kill_script "krisloop"
+  sleep 1
+  Script.start('taptoheal')
+  Script.start('krisloop')
+  Script.start('my_health_check')
 elsif Myname == "Hili"
   kill_script "krisloop"
   sleep 1
@@ -48,7 +54,7 @@ end
 if Myname =~ /Wiiz|Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   kill_script "checkhunt"
   sleep 1
-  Script.start('checkhunt', "Pristeen")
+  #Script.start('checkhunt', "Pristeen")
 end
 if Myname == "Hoedo"
   Script.run('sethunt', 'off')

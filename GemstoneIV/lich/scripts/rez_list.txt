@@ -1,4 +1,3 @@
-Monker
 Trenus
 Trenus
 Clu
@@ -8,3 +7,4 @@ Aiss
 Bize
 Trenus
 Bize
+Wiiz
