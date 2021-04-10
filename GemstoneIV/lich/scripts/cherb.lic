@@ -21,7 +21,7 @@ if not script.vars[1]
     if line =~ /(\d+)/ 
       num = Integer($1)
       num = num - 1
-      if Spell[1125].known? and Spell[1125].affordable?
+      if Spell[1118].known? and Spell[1118].affordable?
         fput "prepare 1118"
         waitrt?
         waitcastrt?
@@ -38,7 +38,7 @@ else
       num = Integer(script.vars[1])
       numc = num
       num = num - 1
-      if Spell[1125].known? and Spell[1125].affordable?
+      if Spell[1118].known? and Spell[1118].affordable?
         fput "prepare 1118"
         waitrt?
         waitcastrt?

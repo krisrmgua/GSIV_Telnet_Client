@@ -11,6 +11,7 @@ $preattackdefspell = ""
 $preattackattspell = ""
 $numkilled = 0
 $numhunts = 0;
+$mindhunt = 25
 @STORED_TIMES = Array.new
 @BIRTH_TIME   = Time.now.to_i
 @START_TIME   = 1
@@ -397,18 +398,31 @@ elsif Myname == "Hoedo"
     encumbrance = 35
     active_scripts = [""]
 elsif Myname == "Itchiy"
+    mobs = ["wraith"]
+    fleemobs = ["tomb spider"]
+    huntarea = "4175"
+    roomboundry = ["4195","4187","4181"]
+    #mobs = ["death dirge"]
+    #fleemobs = ["greater spider"]
+    #huntarea = "7252"
+    #roomboundry = ["7198","7196","7260"]
     #mobs = ["giant ant"]
     #fleemobs = ["nothing"]
     #huntarea = "ants"
     #roomboundry = ["7534","292"]
-    mobs = ["thyril", "relnak"]
-    fleemobs = ["wraith"]
-    huntarea = "7545"
-    roomboundry = ["7544"]
+    #mobs = ["thyril", "relnak"]
+    #fleemobs = ["wraith"]
+    #huntarea = "7545"
+    #roomboundry = ["7544"]
+    ##mobs = ["lesser mummy"]
+    ##fleemobs = ["greater spider"]
+    ##huntarea = "4144"
+    ##roomboundry = ["4171","4143"]
     rest = "landing"
     rest2 = "park"
+    attack = "incant 1115 channel"
     #attack = "incant 1700 channel"
-    attack = "incant 1106 channel"
+    #attack = "incant 1106 channel"
     stance = "defensive"
     flee_count = 1
     swings = 19
@@ -424,7 +438,7 @@ elsif Myname == "Itchiy"
     skinsheath = ""
     encumbrance = 5
     active_scripts = [""]
-    $OOM = 9
+    $OOM = 10
 elsif Myname == "Wiiz"
     #mobs = ["nedum vereri"]
     #fleemobs = ["none2"]
@@ -479,6 +493,10 @@ else
     exit
 end
 
+set_invoker = proc { |state|
+  filename = "data/#{Myname}.invoker"
+  File.write(filename, "#{state}")
+}
 
 alert_dead_body = proc { |tmpname|
   echo "!!!!!!!!!!!!!!!!!!!!!! DEAD BODY FOUND !!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -622,6 +640,7 @@ go2rest = proc {
         Script.run('go2', "landing")
         Script.run('mysaveloc')
     end
+    fput "ask invo for spells"
 }
 
 putawayweapon = proc {
@@ -689,6 +708,7 @@ sell = proc {
         Script.run('wiizgem') if Myname == "Wiiz"
         Script.run('sloot', "sell")
     end
+    fput "ask inv for spells"
     Script.run('waggle')
     if not $skipsale
         #Script.run('mywiztable')
@@ -755,6 +775,9 @@ check_flee_count = proc {
 }
 
 gohunt = proc {
+  Myname = Char.name
+  set_invoker.call('off')
+  fput "ask invo for spells"
   Script.run('go2', "#{huntarea}")
   Script.run('mysaveloc')
 }
@@ -1063,6 +1086,10 @@ if percentmana() < 25
     print_stats.call()
     sleep 10
   end
+  if Room.current.id.to_s =~ /^228$|^288$/
+    fput "move w"
+    fput "move e"
+  end
 end
 putawayweapon.call()
 empty_hands
@@ -1081,6 +1108,14 @@ loop {
   global_vars()
   start_active.call()
   bs_wander.call(roomboundry)
+  filename = "data/#{Myname}.invoker"
+  file = File.open(filename)
+  file_data = file.read
+  file.close
+  if file_data == "on"
+    set_invoker.call('off')
+    $need_rest = true
+  end
   Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
   if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
@@ -1123,6 +1158,10 @@ loop {
           Script.run('useherbs', "--buy=on in my #{herbsack}")
       else
           Script.run('sheal')
+          Script.run('useherbs', "in bin")
+          Script.run('useherbs', "on bench")
+          Script.run('useherbs', "under bench")
+          Script.run('useherbs', "--buy=on in my #{herbsack}")
       end
       while checkdisease or checkpoison
         echo "Poisoned or Diseased" if $debug
@@ -1135,6 +1174,7 @@ loop {
     end
     Script.run('go2', "#{rest2}") if rest2
     Script.run('mysaveloc')
+    fput "ask invo for spells"
     if $need_bless
       getweapon.call()
       if $arrows
@@ -1250,7 +1290,8 @@ loop {
     if defined?(med)
       fput "#{med}"
     end
-    while checkmind(4)
+    #while checkmind(4)
+    while percentmind() > $mindhunt
       echo "Mind Still to High" if $debug
       display_watch_current()
       display_watch_average()
@@ -1269,6 +1310,10 @@ loop {
     if Myname == "Wiiz"
         Script.run('bank')
         #kill_script "krisloop"
+    end
+    if Room.current.id.to_s =~ /^228$|^288$/
+        fput "move w"
+        fput "move e"
     end
     getweapon.call()
     start_watch()

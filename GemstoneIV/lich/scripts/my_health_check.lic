@@ -1,10 +1,18 @@
 Myname = Char.name
 quit_dead = proc {
+  if Myname == "Pristeen" or Myname == "Hoedo"
+    Script.run('sethunt', 'off')
+    Script.run('mysaveloc')
+  end
   system("scripts/levelup.pl STATUS \"#{Myname} DEAD\"")
   echo "YOUR DEAD! ROOM NUM: #{Room.current.id.to_s}"
   fput "quit"
 }
 quit_health = proc {
+  if Myname == "Pristeen" or Myname == "Hoedo"
+    Script.run('sethunt', 'off')
+    Script.run('mysaveloc')
+  end
   system("scripts/levelup.pl STATUS \"#{Myname} HEALTH LOW -- ROOM NUM: #{Room.current.id.to_s}\"")
   echo "HEALTH LOW! ROOM NUM: #{Room.current.id.to_s}"
   fput "quit"

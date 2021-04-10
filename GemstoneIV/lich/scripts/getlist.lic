@@ -1,0 +1,17 @@
+Myname = Char.name
+if Myname == "Aiss"
+    @FILENAME = "scripts/heal_list.txt"
+elsif Myname == "Hili"
+    @FILENAME = "scripts/heal_list2.txt"
+elsif Myname == "Itchiy"
+    @FILENAME = "scripts/heal_list3.txt"
+elsif Myname == "Pristeen"
+    @FILENAME = "scripts/rez_list.txt"
+elsif Myname == "Hoedo"
+    @FILENAME = "scripts/rez_list2.txt"
+end
+x = 0
+File.readlines(@FILENAME).reverse_each{ |s|
+   x = x + 1
+   respond  "#{x}: #{s}"
+}

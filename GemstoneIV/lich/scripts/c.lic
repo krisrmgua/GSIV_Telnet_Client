@@ -32,7 +32,7 @@ elsif Myname == "Wiiz"
     end
 elsif Myname == "Piie"
     #if Spell[1012].known? and Spell[1025].affordable?
-    if percentmana() > 16
+    if percentmana() > 17
         change_stance.call('guarded')
         fput "incant 1008"
     else
@@ -41,7 +41,7 @@ elsif Myname == "Piie"
     end
 elsif Myname == "Bize"
     #if Spell[1012].known? and Spell[1025].affordable?
-    if percentmana() > 16
+    if percentmana() > 17
         change_stance.call('guarded')
         fput "incant 1008"
     else

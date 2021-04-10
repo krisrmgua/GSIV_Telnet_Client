@@ -82,6 +82,7 @@ loop {
     #line = matchtimeout 3, "Pristeen channels", "Pristeen gestures", "Hoedo channels", "Hoedo gestures"
     #if line =~ /Pristeen channels|Pristeen gestures|Hoedo channels|Hoedo gestures/
        keepon = true
+       fput "target wraith" if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen/
        while keepon
            if Myname == "Sorci" or Myname == "Trenus"
                sleep 1

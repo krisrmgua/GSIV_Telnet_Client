@@ -1,5 +1,6 @@
 kill_script "assist_monker"
 Script.start('krisloop')
+Script.start('group_ajar')
 Script.start('my_health_check')
 $checkmindother = nil
 Myname = Char.name
@@ -11,6 +12,7 @@ $max_silver = 4999
 $OOM = 5
 $CMAN = nil
 $MSTRIKE = nil
+$got_fogged = nil
 $preattackdefspell = ""
 $preattackattspell = ""
 $numkilled = 0
@@ -55,11 +57,11 @@ if Myname == "Pristeen"
 
     rest = "landing"
     rest2 = "park"
-    rest3 = "pinefar"
+    #rest3 = "pinefar"
     attack = "incant 302 channel"
     #attack = "incant 1700 channel"
     stance = "defensive"
-    flee_count = 8
+    flee_count = 3
     swings = 9
     skipwaitattack = 1
     hideme = 0
@@ -115,17 +117,25 @@ elsif Myname == "Hoedo"
     ####fleemobs = ["tomb spider"]
     ####huntarea = "4175"
     ####roomboundry = ["4195","4187","4181"]
-    mobs = ["nedum vereri"]
+    #mobs = ["nedum vereri"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "8470"
+    #roomboundry = ["8469","8495"]
+    #mobs = ["(?:a |afflicted |apt |barbed |flashy |blurry |flashy |dazzling |canny |enraged |ethereal |flickering |flinty |frenzied |ghostly |gleaming |glittering |gory |hardy |huge |indistinct |keen |luminous |muculent |nebulous |oozing |pestilent |putrid |radiant |raging |ready |robust |rune-covered |scintillating |shadowy |shifting |shimmering |shining |sickly-green |slimy |slime |sparkling |spiny |stalwart |stately |stout |tattooed |tenebrous |tough |twinkling |wavering |wispy )zombie", "zombie"]
+    #fleemobs = ["tomb spider"]
+    #huntarea = "7874"
+    #roomboundry = ["7873"]
+    mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
-    huntarea = "8470"
-    roomboundry = ["8469","8495"]
+    huntarea = "7319"
+    roomboundry = ["7318","7324"]
     rest = "landing"
     rest2 = "park"
     rest3 = "park"
     #attack = "incant 1700 channel"
     attack = "incant 302 channel"
     stance = "defensive"
-    flee_count = 8
+    flee_count = 3
     swings = 9
     skipwaitattack = 1
     hideme = 0
@@ -147,6 +157,10 @@ else
     exit
 end
 
+set_invoker = proc { |state|
+  filename = "data/#{Myname}.invoker"
+  File.write(filename, "#{state}")
+}
 
 alert_dead_body = proc { |tmpname|
   system("scripts/levelup.pl STATUS \"#{Myname} BODY OF #{tmpname} FOUND AT LOCATION: #{Room.current.id.to_s} \"")
@@ -159,6 +173,8 @@ mybigshot_runner_monitor = proc { |server_string|
     $obvious_hiding_player = true
   elsif server_string =~ /flies out of the shadows toward/i
     $obvious_hiding_player = true
+  elsif server_string =~ /Your surroundings blur into a white fog . . ./i
+    $got_fogged = 1
   end
   server_string
 }
@@ -297,6 +313,7 @@ go2rest = proc {
         Script.run('gogate')
         Script.run('go2', "landing")
     end
+    fput "ask invo for spells"
 }
 
 putawayweapon = proc {
@@ -418,6 +435,7 @@ check_for_people = proc {
            GameObj.pcs.each {|s| $need_flee = true if s.noun !~ /^Sluf$|^Pristeen$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Hoedo$|^Piie$|^Hili$|^Noce$|^Bize$|^Clu$/}
        end
        echo "PERSON FOUND" if $debug and $need_flee
+       s = nil
        GameObj.pcs.each {|s| alert_dead_body.call(s.noun) if s.status =~ /dead/}
    end
    if $obvious_hiding_player
@@ -425,6 +443,10 @@ check_for_people = proc {
        go_defensive.call()
        $need_flee = true
        echo "HIDDEN PERSON FOUND" if $debug
+   end
+   if $got_fogged
+       $need_rest = true
+       $got_fogged = nil
    end
 }
 
@@ -439,14 +461,28 @@ check_flee_count = proc {
 }
 
 gohunt = proc {
-  Script.run('go2', "#{huntarea}")
-  $hunt_start_time = DateTime.now
-  Script.run('mysaveloc')
-  Script.start('randomtalk')
-  #Script.run('joincall2', "pristeen")
-  #Script.run('joincall', "pristeen")
-  echo "Seting Hunt ON"
-  Script.run('sethunt', 'on')
+  Myname = Char.name
+  set_invoker.call('off')
+  fput "ask invo for spells"
+  if Myname == "Pristeen"
+      Script.run('go2', "pinefar2") ## 2788 pinefar2
+      Script.run('mysaveloc')
+      echo "Seting Hunt ON"
+      Script.run('sethunt', 'on')
+      sleep 200
+      Script.start('randomtalk')
+      Script.run('go2', "#{huntarea}")
+      $hunt_start_time = DateTime.now
+  else
+      Script.run('go2', "#{huntarea}")
+      $hunt_start_time = DateTime.now
+      Script.run('mysaveloc')
+      Script.start('randomtalk')
+      #Script.run('joincall2', "pristeen")
+      #Script.run('joincall', "pristeen")
+      echo "Seting Hunt ON"
+      Script.run('sethunt', 'on')
+  end
 }
 
 check_standing = proc {
@@ -662,6 +698,9 @@ attack_target = proc { |target|
       waitrt?
       waitcastrt?
       fput "stance #{stance}"
+      if Myname == "Pristeen" 
+           fput "incant 301 channel #{target}"
+      end
       if Myname == "Monker" 
         kill_script "combo" if running? "combo"
         Script.start('combo', "#{target}")
@@ -813,6 +852,7 @@ fput "group open"
 getweapon.call()
 start_watch()
 gohunt.call()
+fput "group close"
 $numhunts = $numhunts + 1
 global_vars()
 DownstreamHook.add("mybigshot_runner_monitor", mybigshot_runner_monitor)
@@ -836,6 +876,14 @@ loop {
        $need_rest = true if checkfried and Myname != "Pristeen"
   end
   bs_wander.call(roomboundry) if tmp_target == "0" or $need_flee 
+  filename = "data/#{Myname}.invoker"
+  file = File.open(filename)
+  file_data = file.read
+  file.close
+  if file_data == "on"
+    set_invoker.call('off')
+    $need_rest = true
+  end
   Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
   if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
@@ -900,6 +948,7 @@ loop {
         Script.run('useherbs', "--buy=on in my #{herbsack}")
     end
     Script.run('go2', "#{rest2}") if rest2
+    fput "ask invo for spells" if rest2
     Script.run('mysaveloc')
     if $need_bless
       getweapon.call()
@@ -1015,7 +1064,7 @@ loop {
     Script.run('rem') if rest3 and Myname != "Wiiz"
     Script.run('go2', "#{rest3}") if rest3 and Myname != "Wiiz"
     Script.run('wear') if rest3 and Myname != "Wiiz"
-    Script.run('makefire') if rest3 and Myname != "Wiiz"
+    Script.run('makefire') if rest3 and Myname !~ /Wiiz|Hoedo/
     Script.run('mysaveloc')
     if defined?(med)
       fput "#{med}"
@@ -1057,6 +1106,10 @@ loop {
     #    tmp_target = find_target_monker.call()
     #    sleep 1
     #end
+    if Room.current.id.to_s =~ /^228$|^288$/
+        fput "move w"
+        fput "move e"
+    end
     getweapon.call()
     start_watch()
     gohunt.call()

@@ -13,6 +13,7 @@ random_talk = proc {
         "Its all about how you use your power",
         "I like being evil, its more fun",
         "You just a baby who cries alot",
+        "kicking them while they are down",
         "You guys are the bestest ever",
         "You cant even hit these guys, and you think your powerful",
         "I need more treasure is all i gotta say",
@@ -28,6 +29,8 @@ random_talk = proc {
         "Sometimes I wish i was a wizzard",
         "I need a endless supply of mana bread that auto feeds into my mouth",
         "Smells like dead horse",
+        "no one can keep us down",
+        "do you guys smell something?",
         "I hate how hard it is to get to this place and get out",
         "As long as we dont die here everything is ok",
         "I need to train my firstaid so herbs dont take so long to heal",
@@ -107,7 +110,7 @@ random_talk = proc {
 }
 
 if Myname == "Pristeen"
-    sleep 90
+    sleep 50
     text = random_talk.call()
     fput "say #{text}"
 end

@@ -1,9 +1,16 @@
 Myname = Char.name
 res = dothistimeout "bank account", 2, /in the amount of/
 if res =~ /in the amount of (9\d,\d\d\d) silvers/
-    system("scripts/levelup.pl STATUS \"#{Myname} BANK ACCOUNT FULL\"")
-    loop {
-        echo "keyboard"
-        sleep 1
-    }
+   Script.run('go2', 'park')
+   Script.run('bank', '50000')
+   fput "give wardrob 50000"
+   Script.run('bank')
+   res2 = dothistimeout "bank account", 2, /in the amount of/
+   if res2 =~ /in the amount of (9\d,\d\d\d) silvers/
+      system("scripts/levelup.pl STATUS \"#{Myname} BANK ACCOUNT FULL\"")
+      loop {
+         echo "keyboard"
+         sleep 1
+       }
+   end
 end

@@ -10,10 +10,14 @@ if Myname == "Aiss"
   Script.start('my_health_check')
   Script.start('aiss')
 #  Script.start('healbot')
+elsif Myname == "Wardrob"
+  Script.start('autodeposit')
+  Script.start('krisloop')
+  Script.start('keepalive')
 elsif Myname == "Gemii"
-  Script.start('acceptit')
+  Script.start('krisloop')
 elsif Myname == "Gemb"
-  Script.start('acceptit')
+  Script.start('krisloop')
 elsif Myname == "Itchiy"
   kill_script "krisloop"
   sleep 1
@@ -28,7 +32,7 @@ elsif Myname == "Hili"
   Script.start('krisloop')
   Script.start('my_health_check')
 elsif Myname == "Trenus"
-  Script.start('familiar')
+  #Script.start('familiar')
   kill_script "krisloop"
   sleep 1
   Script.start('krisloop')
@@ -49,12 +53,11 @@ end
 if Myname == "Pristeen"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
-  Script.start('acceptit')
 end
-if Myname =~ /Wiiz|Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
+if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   kill_script "checkhunt"
   sleep 1
-  #Script.start('checkhunt', "Pristeen")
+  Script.start('checkhunt', "Pristeen")
 end
 if Myname == "Hoedo"
   Script.run('sethunt', 'off')
@@ -65,5 +68,6 @@ if Myname =~ /Piie|Noce|Bize|Hili/
   sleep 1
   Script.start('checkhunt', "Hoedo")
 end
+Script.start('askinv')
 Script.start('log')
 Script.start('runthischeck')

@@ -3,14 +3,34 @@ $need_still = nil
 arraylength = herbs.length
 $herbcount = 0
 kill_script "sorter"
-fput "open my backpack"
-fput "open my kit"
+Myname = Char.name
+
+if Myname == "Aiss"
+  $backpack = "backpack"
+  $kit = "kit"
+  $cloak = "greatcloak"
+end
+
+if Myname == "Hili"
+  $backpack = "pack"
+  $kit = "sack"
+  $cloak = "cloak"
+end
+
+if Myname == "Itchiy"
+  $backpack = "backpack"
+  $kit = "sack"
+  $cloak = "cloak"
+end
+
+fput "open my #{$backpack}"
+fput "open my #{$kit}"
 $cast_herb = nil
 
 check_cloak = proc { |dherb|
     $cast_herb = nil
-    fput "open my greatc"
-    fput "look in my greatc"
+    fput "open my #{$cloak}"
+    fput "look in my #{$cloak}"
     line = matchtimeout 3, "#{dherb}", "There is nothing"
     if dherb == "acantha leaf"
        if line =~ /some acantha leaf, some acantha leaf/ or line =~ /some acantha leaf and some acantha leaf/
@@ -36,7 +56,7 @@ while $herbcount < arraylength
     if $cast_herb
         allout = nil
         count = 0
-        fput "close my greatc"
+        fput "close my #{$cloak}"
         echo "num is #{$herbcount} get my #{$cast_herb}"
         fput "get my #{$cast_herb}"
         line = matchtimeout 3, "You remove", "Get what", "You carefully"
@@ -67,7 +87,7 @@ while $herbcount < arraylength
                             bites = 50 - bites.to_i
                         end
                         bites.to_s
-                        fput "put #{$cast_herb} in my backpack"
+                        fput "put #{$cast_herb} in my #{$backpack}"
                         $need_still = $need_still + ", #{bites} #{$cast_herb}"
                         allout = true
                         count = 50
@@ -75,12 +95,12 @@ while $herbcount < arraylength
                 end
             end
             if not allout
-                fput "put #{$cast_herb} in my backpack"
+                fput "put #{$cast_herb} in my #{$backpack}"
                 fput "get #{$cast_herb}"
                 fput "gather #{$cast_herb}"
-                fput "open my greatc"
-                fput "put #{$cast_herb} in my greatcloak"
-                fput "close my greatc"          
+                fput "open my #{$cloak}"
+                fput "put #{$cast_herb} in my #{$cloak}"
+                fput "close my #{$cloak}"          
             end
             allout = nil
             $herbcount = $herbcount + 1

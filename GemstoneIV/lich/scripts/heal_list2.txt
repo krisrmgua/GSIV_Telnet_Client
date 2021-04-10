@@ -1,5 +1,3 @@
-Geovekn
-Vandele
 Crazened
 Stormhawk
 Brandilor
@@ -8,3 +6,5 @@ Hours
 Wiiz
 Trenus
 Glases
+Randro
+Bize

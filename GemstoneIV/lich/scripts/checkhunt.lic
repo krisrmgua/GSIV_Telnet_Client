@@ -1,6 +1,12 @@
 $last_state = "off"
 Myname = Char.name
 runame = script.vars[1]
+Script.start('runmindcheck')
+sleep 3
+kill_script "runmindcheck"
+sleep 1
+kill_script "runmindcheck"
+Script.run('mindsave')
 loop {
     #runame = "Pristeen"
     filename = "data/#{runame}.hunt"
@@ -30,18 +36,27 @@ loop {
         Script.run('sloot', 'sell')
         Script.run('bank')
         fput "bank acc"
+        Script.run('checkbank')
         Script.run('go2', 'park')
-        fput "ask inv for spells" if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        Script.start('runmindcheck')
         Script.run('rem') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
-        Script.run('go2', 'pinefar') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
-        Script.run('wear') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        fput "tell fam to stay" if Myname =~ /Trenus/
+        #Script.run('go2', 'pinefar') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        #Script.run('wear') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
     elsif file_data == "on" and Myname =~ /Wiiz|Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
         $last_state = "on"
         kill_script "runmindcheck"
         kill_script "mybigshot_runner"
         kill_script "castany"
         kill_script "assist"
-        fput "ask inv for spells"
+        wtime = rand(1..20)
+        echo "Sleeping #{wtime}"
+        sleep wtime
+        fput "ask invo for spells"
+        if Room.current.id.to_s =~ /^228$|^288$/
+            fput "w"
+            fput "e"
+        end
         Script.start('randomtalk')
         Script.start('my_health_check')
         Script.run('wear')
@@ -86,6 +101,7 @@ loop {
         kill_script "assist"
         Script.start('runmindcheck')
         wtime = rand(1..90)
+        fput "ask invo for spells"
         echo "Sleeping #{wtime}"
         sleep wtime
         Script.run('wear')
@@ -116,6 +132,7 @@ loop {
         Script.run('sloot', 'sell')
         Script.run('bank')
         fput "bank acc"
+        Script.run('checkbank')
         Script.run('mywiztable')
        if Myname =~ /Monker|Trenus|Woory|Sorci/
             #Script.run('go2', 'park3')
@@ -136,7 +153,6 @@ loop {
             #Script.run('go2', 'park3')
             Script.run('go2', 'park')
         end
-        fput "ask inv for spells" if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
         sleep 3
         Script.run('waggle')
         Script.run('waggle_bard')
@@ -145,9 +161,10 @@ loop {
             #Script.run('go2', 'landing')
         end
         fput "med" if Myname == "Aiss"
-        Script.run('rem') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
-        Script.run('go2', 'pinefar') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
-        Script.run('wear') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        fput "tell fam to stay" if Myname =~ /Trenus/
+        #Script.run('rem') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        #Script.run('go2', 'pinefar') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        #Script.run('wear') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
     end
     sleep 5
 }

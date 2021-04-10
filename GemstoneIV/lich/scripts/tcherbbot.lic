@@ -1,0 +1,43 @@
+Script.run('wear')
+$iran = nil
+loop { 
+  echo "Running TC-HERB-BOT..."
+  $iran = nil
+  while Spell[1118].known? and Spell[1118].affordable? and Room.current.id.to_s =~ /^228$/
+    $iran = 1
+    waitrt?
+    waitcastrt?
+    fput "prepare 1118"
+    waitrt?
+    waitcastrt?
+    fput "cast"
+    line = matchtimeout 3, "appears at your feet"
+    if line =~ /([A-Z,a-z]+) ([A-Z,a-z]+) suddenly appears at your feet/
+      h1 = $1
+      h2 = $2
+      fput "get #{h1} #{h2}"
+      fput "put #{h1} #{h2} in bin"
+      line2 = matchtimeout 3, "It looks like there are", "you bundle", "You bundle"
+      if line2 =~ /It looks like there are plenty of healing items like your (.*) already there\./
+          fput "put #{h1} #{h2} on bench"
+          line3 = matchtimeout 3, "It looks like there are", "you bundle", "You bundle"
+          if line3 =~ /It looks like there are plenty of healing items like your (.*) already there\./
+              fput "stow #{h1} #{h2}"
+          end
+      end
+    end
+  end
+  waitrt?
+  waitcastrt?
+  if $iran
+    fput "stand"
+    fput "sw"
+    fput "s"
+    fput "s"
+    Script.run('bundleall')
+    fput "n"
+    fput "n"
+    fput "ne"
+  end
+  sleep 200
+}

@@ -23,7 +23,7 @@ my $givenDate2 =  DateTime->new(
       month      => $mon,
       day        => $mday,
       hour       => 23,
-      minute     => 00,
+      minute     => 59,
       second     => 0,
 
       time_zone  => 'America/Boise',

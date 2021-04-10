@@ -15,7 +15,7 @@ end
 
 loop {
     $go = nil
-    wait_until { percentmana == 100 }
+    wait_until { percentmana >= 80 }
     if Room.current.id.to_s =~ /^2300$/
         Script.run('go2', '3233')
         $go = true

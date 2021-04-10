@@ -1,0 +1,7 @@
+loop {
+  sleep 2000
+  fput "w"
+  fput "e"
+  Script.run('bank')
+  Script.run('go2', 'park')
+}

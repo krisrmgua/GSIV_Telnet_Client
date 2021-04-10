@@ -15,8 +15,7 @@ if line =~ /^([A-Z,a-z]+) offers you/ and Myname == "Aiss"
     fput "remove my greatc"
     fput "open my greatc"
     fput "empty my greatc into my #{dkit}"
-    waitrt?
-    waitcastrt?
+    sleep 3
     fput "wear my greatc"
     fput "give #{uname}"
 end

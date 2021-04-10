@@ -21,8 +21,12 @@ mynum = 30 if Myname == "Clu"
 mytime=`scripts/checktime2.pl`
 echo "the time is #{mytime}"
 sleep mytime.to_i
+sleep 480
 echo "ROOM #{Room.current.id.to_s}"
 Script.run('mystop')
 Script.run('go2', 'park')
 sleep mynum
+wtime = rand(1..100)
+echo "Sleeping #{wtime}"
+sleep wtime
 fput "quit"

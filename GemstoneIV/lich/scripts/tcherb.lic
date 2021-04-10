@@ -1,0 +1,25 @@
+herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas stem","ephlox moss","pothinir grass","cactacae spine","calamia fruit","torban leaf","haphip root","woth flower","sovyn clove"]
+Script.run('wear')
+while Spell[1118].known? and Spell[1118].affordable?
+  waitrt?
+  waitcastrt?
+  fput "prepare 1118"
+  waitrt?
+  waitcastrt?
+  fput "cast"
+  line = matchtimeout 3, "appears at your feet"
+  if line =~ /([A-Z,a-z]+) ([A-Z,a-z]+) suddenly appears at your feet/
+    h1 = $1
+    h2 = $2
+    fput "get #{h1} #{h2}"
+    fput "put #{h1} #{h2} in bin"
+    line2 = matchtimeout 3, "It looks like there are", "you bundle", "You bundle", "I could not", "You can't"
+    if line2 =~ /It looks like there are plenty of healing items like your (.*) already there\.|I could not|You can\'t/
+        fput "put #{h1} #{h2} on bench"
+        line3 = matchtimeout 3, "It looks like there are", "you bundle", "You bundle", "I could not", "You can't"
+        if line3 =~ /It looks like there are plenty of healing items like your (.*) already there\.|I could not|You can\'t/
+            fput "stow #{h1} #{h2}"
+        end
+    end
+  end
+end

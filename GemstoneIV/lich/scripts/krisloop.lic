@@ -76,18 +76,49 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
+    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname == "Wardrob"
+        kill_script "invcountdown"
+        sleep 2
+        kill_script "invcountdown"
+        filename = "data/Pristeen.invoker"
+        File.write(filename, "on")
+        filename = "data/Hoedo.invoker"
+        File.write(filename, "on")
+        filename = "data/Itchiy.invoker"
+        File.write(filename, "on")
+        Script.start('invcountdown')
+        system("scripts/levelup.pl STATUS \"Invoker has arrived\"") 
+    end
     if line =~ /Joinme ([0-9]+)/
         kill_script "go2"
         echo "JOININ"
         sleep 2
         Script.run('go2', $1)
     end
-    if line =~ /^([A-Z,a-z]+) offers you some manna bread/
-        Script.run('wear')
-        fput "accept"
-        fput "gobble bread"
-        fput "gobble bread"
+    if line =~ /Ramiell tried to join your group/
+       system("scripts/levelup.pl STATUS \"#{Myname} Ramiell tried to join your group\"") 
+    end
+    if line =~ /^([A-Z,a-z]+) offers you/
+        uname = $1
+        if line =~ /^([A-Z,a-z]+) offers you (some manna bread|pumpkin spice muffin|a disk of black olive-laden bread|brownie)/
+            Script.run('wear')
+            fput "accept"
+            fput "gobble bread"
+            fput "gobble bread"
+        elsif line =~ /Aiss offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit)/
+            fput "accept"
+            fput "wear my kit"
+            fput "wear my sack"
+            fput "wear my sat"
+        elsif line =~ /^([A-Z,a-z]+) offers you (bundle of pigs)/
+            fput "say Wow"
+        elsif Myname =~ /Aiss/
+            echo "SKIPPING ACCEPT"
+        else
+            fput "accept"
+            fput "stow right"
+        end
     end
     if line =~ /air seems to thicken and hold you back/
         kill_script "go2"
@@ -156,6 +187,12 @@ loop {
             LNet.send_message(attr={'type'=>'private', 'to'=>"#{whipserer}"}, "not yet")
         end
     end
+    if line =~ /([A-Z,a-z]+) whispers, \"Giveme ([0-9]+).\"/
+	whisperer = $1
+        amount = $2
+        Script.run('bank', "#{amount}")
+        fput "give #{whisperer} #{amount}"
+    end
     if line =~ /([A-Z,a-z]+) whispers, \"RUFULL/
 	whipserer = $1
         if check_mind(100)
@@ -199,7 +236,7 @@ loop {
        dwho = $1
        dwhat = $2
        dwhat.gsub(/(')/, '')
-       if dwho !~ /Pristeen|Honkmonk|Wiiz|Sluf|Clu|Aiss|Trenus|Sorci|Monker|Woory|Wardrob|Bize|Hoedo|Hili|Piie|Noce/
+       if dwho !~ /Pristeen|Honkmonk|Wiiz|Sluf|Clu|Aiss|Trenus|Sorci|Itchiy|Monker|Woory|Wardrob|Bize|Hoedo|Hili|Piie|Noce/
            echo "Got Whisper sending out text now."
            system("scripts/levelup.pl WHISPER \"#{dwho} whispers to #{Myname}: #{dwhat}\"") 
        end
@@ -273,14 +310,14 @@ loop {
     end
     if line =~ /([A-Z,a-z]+) (softly asks|weakly asks|huskily says|weakly says|softly says|heartily asks|heartily says|quietly asks|quietly says|says|yells|asks|recites).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/
         dname = $1
-        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thank|thank|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob/
+        if line !~ /hours|Hours|HOURS|4|miss|wiiz|Wiiz|thanks|Thank|thank|Thanks|THANKS|Anyone able|anyone able|please|Please/ and Myname =~ /Wardrob2|Honkme/
           #fput "think to pristeen #{dname} casting Spells"
           if dname !~ /Some|some|Suddenly|suddenly/
               echo "SPELL MESSAGE #{line}"
               system("scripts/levelup.pl STATUS \"#{dname} casting SPELLS\"") 
           end
         end
-    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Wardrob/
+    elsif line =~ /join.*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)|(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS).*join|(Casting|casting).*(hues|Hues|HUES|colors|Colors|COLORS|blurs|Blurs|BLURS|guards|Guards|GUARDS)/ and Myname =~ /Wardrob2|Honkme/
         if line !~ /hours|Hours|suddenly|Suddenly|HOURS|4|miss|wiiz|Wizz|thanks|Thanks|THANKS|Anyone able|anyone able|please|Please|GSIV|:/
           #fput "think to pristeen KRIS SPELLS"
           echo "SPELL MESSAGE #{line}"
