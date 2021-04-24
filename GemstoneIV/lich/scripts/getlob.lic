@@ -1,0 +1,27 @@
+if (script.vars[1])
+  echo "got it"
+else
+  echo "NEED TO PASS CLOAK"
+end
+cloak = script.vars[1]
+cloak2 = script.vars[2]
+fput "open my #{cloak}"
+fput "open my #{cloak2}"
+fput "open cage"
+loop {
+  fput "get lob from cage"
+  line = matchtimeout 2, "Get what", "You carefully grab", "You grab up the last"
+  if line =~ /You carefully grab|You grab up the last/
+    fput "put lob in my #{cloak}"
+    line2 = matchtimeout 2, "you put", "You put", "Your lobster won't"
+    if line2 =~ /Your lobster won't/
+        fput "close my #{cloak}"
+        cloak = script.vars[2]
+        fput "put lob in my #{cloak}"
+    end
+  end
+  if line =~ /Get what/
+    break
+  end
+}
+fput "close my #{cloak}"

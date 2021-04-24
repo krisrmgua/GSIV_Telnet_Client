@@ -15,7 +15,7 @@ drawer = proc {
     loop {
         result = dothistimeout 'bundle remove', 3, /You carefully|You only|You are not/
         if result =~ /You are not/ 
-            result2 = dothistimeout "get #{$herbs[$count]} from my #{$sack}", 5, /You remove|Get what|I could not/
+            result2 = dothistimeout "get #{$herbs[$count]} from my #{$sack}", 2, /You remove|Get what|I could not/
             if result2 =~ /Get what|I could not/
                 if $count == 11
                   $all_done = true
@@ -27,7 +27,7 @@ drawer = proc {
                 fput "bundle remove"
             end
         end
-        result3 = dothistimeout "put #{$herbs[$count]} in drawer", 5, /You put|Your/
+        result3 = dothistimeout "put #{$herbs[$count]} in drawer", 2, /You put|Your/
         if result3 =~ /Your .* won/
             fput "bundle"
             fput "put my #{$herbs[$count]} in my #{$sack}"

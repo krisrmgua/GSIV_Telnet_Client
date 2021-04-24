@@ -22,8 +22,10 @@ elsif Myname == "Itchiy"
   kill_script "krisloop"
   sleep 1
   Script.start('taptoheal')
+  Script.start('autoinvitefriends')
   Script.start('krisloop')
   Script.start('my_health_check')
+  Script.start('itchiy')
 elsif Myname == "Hili"
   kill_script "krisloop"
   sleep 1

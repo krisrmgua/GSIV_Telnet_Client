@@ -54,6 +54,8 @@ loop {
         sleep wtime
         fput "ask invo for spells"
         if Room.current.id.to_s =~ /^228$|^288$/
+            fput "stand" if Myname == "Aiss"
+            sleep 3 if Myname == "Aiss"
             fput "w"
             fput "e"
         end

@@ -226,11 +226,14 @@ heal_blood = proc {
     while health? <= 80 or percenthealth < 51
 		if mana?((maxhealth - health?) / 10)
 			fput "cure"
-			
+                        sleep 1
 			waitcastrt?
 			waitrt?
 		elsif checkmana(1)
 		    fput "cure blood"
+                        sleep 1
+			waitcastrt?
+			waitrt?
         else
             echo "-- waiting on mana for blood before continuing"
             wait_until { checkmana(1) }

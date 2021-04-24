@@ -14,6 +14,18 @@ loop {
     Script.run('cherb', '0')
     waitrt?
     waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
     Script.run('go2', '297')
     Script.run('bundleall')
     Script.run('go2', 'park')

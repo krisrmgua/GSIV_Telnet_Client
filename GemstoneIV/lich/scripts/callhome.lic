@@ -1,0 +1,6 @@
+filename = "data/Pristeen.invoker"
+File.write(filename, "on")
+filename = "data/Hoedo.invoker"
+File.write(filename, "on")
+filename = "data/Itchiy.invoker"
+File.write(filename, "on")

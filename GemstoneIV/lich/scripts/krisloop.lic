@@ -101,19 +101,30 @@ loop {
     end
     if line =~ /^([A-Z,a-z]+) offers you/
         uname = $1
-        if line =~ /^([A-Z,a-z]+) offers you (some manna bread|pumpkin spice muffin|a disk of black olive-laden bread|brownie)/
+        if line =~ /^([A-Z,a-z]+) offers you (some manna bread|a pumpkin spice muffin with maple cream frosting|a dense seed-encrusted honey cake|pumpkin spice muffin|a disk of black olive-laden bread|brownie)/
             Script.run('wear')
             fput "accept"
-            fput "gobble bread"
-            fput "gobble bread"
-        elsif line =~ /Aiss offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit)/
+            if line =~ /cake/
+               fput "gobble cake"
+               fput "gobble cake"
+               fput "gobble cake"
+            elsif line =~ /muffin/
+               fput "gobble muffin"
+               fput "gobble muffin"
+               fput "gobble muffin"
+            else
+               fput "gobble bread"
+               fput "gobble bread"
+               fput "gobble bread"
+            end
+        elsif line =~ /(Aiss|Itchiy) offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/
             fput "accept"
             fput "wear my kit"
             fput "wear my sack"
             fput "wear my sat"
         elsif line =~ /^([A-Z,a-z]+) offers you (bundle of pigs)/
             fput "say Wow"
-        elsif Myname =~ /Aiss/
+        elsif Myname =~ /Aiss|Itchiy/
             echo "SKIPPING ACCEPT"
         else
             fput "accept"

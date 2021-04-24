@@ -162,6 +162,11 @@ end
 	
 loop {	
 		CheckHealth()
+
+                ## KRIS ADDED THESE 3 LINES
+                scars_1 = true
+                scars_2 = true
+                scars_3 = true
 		
 		if wounds_3 then CheckWoundsOfLevel(3,5) end
 		if wounds_2 then CheckWoundsOfLevel(2,5) end

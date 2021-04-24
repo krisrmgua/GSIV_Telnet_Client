@@ -1,5 +1,10 @@
 herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas stem","ephlox moss","pothinir grass","cactacae spine","calamia fruit","torban leaf","haphip root","woth flower","sovyn clove"]
 Script.run('wear')
+stop = 1
+if script.vars[1]
+  stop = nil
+end
+loop {
 while Spell[1118].known? and Spell[1118].affordable?
   waitrt?
   waitcastrt?
@@ -18,8 +23,16 @@ while Spell[1118].known? and Spell[1118].affordable?
         fput "put #{h1} #{h2} on bench"
         line3 = matchtimeout 3, "It looks like there are", "you bundle", "You bundle", "I could not", "You can't"
         if line3 =~ /It looks like there are plenty of healing items like your (.*) already there\.|I could not|You can\'t/
-            fput "stow #{h1} #{h2}"
+            #fput "stow #{h1} #{h2}"
+            fput "put #{h1} #{h2} in barrel"
         end
     end
   end
 end
+if stop
+    break
+end
+while percentmana() < 99
+    sleep 5
+end
+}

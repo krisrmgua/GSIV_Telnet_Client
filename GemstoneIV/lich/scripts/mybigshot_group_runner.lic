@@ -26,6 +26,12 @@ $mindhunt = 25
 $hunt_start_time = DateTime.now
 $stop_hunt_time = 4000
 $make_fire = false
+$mysleeping = 200
+if not script.vars[1]
+    $mysleeping = 200
+else
+    $mysleeping = script.vars[1].to_i
+end
 
 if Myname == "Pristeen"
     $skiploot = false
@@ -49,19 +55,21 @@ if Myname == "Pristeen"
     #fleemobs = ["tomb spider"]
     #huntarea = "7319"
     #roomboundry = ["7318","7324"]
-
+    ##mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth"]
+    ##huntarea = "2760"
+    ##roomboundry = ["2761", "2746"]
+    ##fleemobs = ["tomb spider"]
     mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth"]
-    huntarea = "2760"
-    roomboundry = ["2761", "2746"]
+    huntarea = "2744"
+    roomboundry = ["2746", "2709"]
     fleemobs = ["tomb spider"]
-
     rest = "landing"
     rest2 = "park"
     #rest3 = "pinefar"
     attack = "incant 302 channel"
     #attack = "incant 1700 channel"
     stance = "defensive"
-    flee_count = 3
+    flee_count = 9
     swings = 9
     skipwaitattack = 1
     hideme = 0
@@ -125,10 +133,14 @@ elsif Myname == "Hoedo"
     #fleemobs = ["tomb spider"]
     #huntarea = "7874"
     #roomboundry = ["7873"]
-    mobs = ["moaning spirit","night hound"]
+    ###mobs = ["moaning spirit","night hound"]
+    ###fleemobs = ["tomb spider"]
+    ###huntarea = "7319"
+    ###roomboundry = ["7318","7324"]
+    mobs = ["ghostly pooka"]
+    huntarea = "4540"
+    roomboundry = ["4541","4537","7325","7429"]
     fleemobs = ["tomb spider"]
-    huntarea = "7319"
-    roomboundry = ["7318","7324"]
     rest = "landing"
     rest2 = "park"
     rest3 = "park"
@@ -469,7 +481,7 @@ gohunt = proc {
       Script.run('mysaveloc')
       echo "Seting Hunt ON"
       Script.run('sethunt', 'on')
-      sleep 200
+      sleep $mysleeping
       Script.start('randomtalk')
       Script.run('go2', "#{huntarea}")
       $hunt_start_time = DateTime.now
@@ -557,18 +569,9 @@ ask_other_empty = proc {
     file_data = file.read
     file.close
     echo "Checking #{runame} Mind is Empty... its at #{file_data}"
-    if file_data.to_i < 25
+    if file_data.to_i <= 25
         $checkmindother = true
     end
-    #LNet.send_message(attr={'type'=>'private', 'to'=>'Trenus'}, "RUEMPTY")
-    ##fput "think to trenus RUEMPTY"
-    #line = matchtimeout 2, "IAMEMPTY", "What were you", "no user named"
-    #if line =~ /IAMEMPTY/
-    #    $checkmindother = true
-    #end
-    #if line =~ /What were you|no user named/
-    #    $checkmindother = true
-    #end
 }
 
 ask_other_fried = proc {
@@ -699,7 +702,9 @@ attack_target = proc { |target|
       waitcastrt?
       fput "stance #{stance}"
       if Myname == "Pristeen" 
-           fput "incant 301 channel #{target}"
+           fput "incant 110 #{target}"
+           waitrt?
+           waitcastrt?
       end
       if Myname == "Monker" 
         kill_script "combo" if running? "combo"
