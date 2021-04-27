@@ -1,3 +1,14 @@
+echo -e "\t This a screen?"
+read yorn
+if [ $yorn = "y" ]
+then
+   export TERM=screen-256color
+elif [ $yorn = "yes" ]
+then
+   export TERM=screen-256color
+else
+   echo "NOT SCREEN"
+fi
 
 $HOME/GSIV_Telnet_Client/GemstoneIV/buildxmlfile/build.sh
 
