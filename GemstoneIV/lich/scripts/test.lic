@@ -1,2 +1,6 @@
-#Script.run('go2', '3743')
-fput "ask inv for spells"
+
+if script.vars[1]
+   dname = script.vars[1]
+   dinfo = LNet.get_data(dname, 'status')
+   echo "#{dinfo}"
+end

@@ -504,6 +504,9 @@ class LNet
 						echo "rejecting request from #{name} for skills..."
 						LNet.send_data(attr={'type'=>type, 'to'=>name}, nil)
 					end
+				elsif type == 'mind'
+						echo "sending stats to #{XMLData.mind_value}..."
+						LNet.send_data(attr={'type'=>type, 'to'=>name}, "#{XMLData.name}: #{XMLData.mind_value}")
 				elsif type == 'info'
 					if LNet.allow?('info', name)
 						echo "sending stats to #{name}..."
@@ -894,6 +897,10 @@ class LNet
 							respond output
 						end
 					end
+				elsif (@active_attributes.last['type'] == 'mind') and (name = @active_attributes.last['from'])
+                                        output = String.new
+                                        output.concat "#{data}"
+					respond output
 				elsif (@active_attributes.last['type'] == 'info') and (name = @active_attributes.last['from'])
 					unless LNet.ignored?(name)
 						if data.nil?
@@ -1112,7 +1119,7 @@ LNet.script = Script.self
 script_name = script.name.dup
 action = proc { |client_string|
 	begin
-		if client_string =~ /^(?:<c>)?#{$lich_char}(,|chat |reply |who|locate |spells |info |skills |health |bounty |tune |untune |channels?)(.*)/
+		if client_string =~ /^(?:<c>)?#{$lich_char}(,|chat |reply |who|locate |spells |mind |info |skills |health |bounty |tune |untune |channels?)(.*)/
 			cmd, extra = $1, $2
 			cmd = 'chat ' if cmd == ','
 			if s = (Script.running + Script.hidden).find { |val| val.name == script_name }
@@ -1332,7 +1339,7 @@ while msg = unique_get.strip
 		LNet.tune_channel($1)
 	elsif msg =~ /^untune\s+([A-z]+)$/i
 		LNet.untune_channel($1)
-	elsif msg =~ /^(spells|skills|info|locate|health|bounty)\s+([A-z\:]+)$/i
+	elsif msg =~ /^(spells|skills|mind|info|locate|health|bounty)\s+([A-z\:]+)$/i
 		type = $1.downcase
 		name = $2
 		if LNet.ignored?(name)
@@ -1435,14 +1442,14 @@ while msg = unique_get.strip
 	elsif msg =~ /^allow$/i
 		fix_type = { 'all' => 'everyone', 'friends' => 'only your friends', 'enemies' => 'everyone except your enemies', 'none' => 'no one', nil => 'no one' }
 		fix_action = { 'locate' => 'locate you', 'spells' => 'view your active spells', 'skills' => "view your #{if rand(100)==0; 'mad '; end}skills", 'info' => 'view your stats', 'health' => 'view your health', 'bounty' => 'view your bounties' }
-		[ 'locate', 'spells', 'skills', 'info', 'health', 'bounty' ].each { |action|
+		[ 'locate', 'spells', 'skills', 'mind', 'info', 'health', 'bounty' ].each { |action|
 			respond "You are allowing #{fix_type[LNet.options['permission'][action]]} to #{fix_action[action]}."
 		}
-	elsif msg =~ /^allow\s+(locate|spells|skills|info|health|bounty|all)\s+(all|friend|friends|non\-enemies|nonenemies|enemies|enemy|none)$/i
+	elsif msg =~ /^allow\s+(locate|spells|skills|info|mind|health|bounty|all)\s+(all|friend|friends|non\-enemies|nonenemies|enemies|enemy|none)$/i
 		action, group = $1, $2
 		fix_action = { 'locate' => 'locate you', 'spells' => 'view your active spells', 'skills' => "view your #{if rand(100)==0; 'mad '; end}skills", 'info' => 'view your stats', 'health' => 'view your health', 'bounty' => 'view your bounties' }
 		if action =~ /^all$/i
-			for action in [ 'locate', 'spells', 'skills', 'info', 'health', 'bounty' ]
+			for action in [ 'mind', 'locate', 'spells', 'skills', 'info', 'health', 'bounty' ]
 				if group =~ /^all$/i
 					LNet.options['permission'][action] = 'all'
 					echo "You are now allowing everyone to #{fix_action[action]}."
