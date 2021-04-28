@@ -76,7 +76,7 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname == "Wardrob"
         kill_script "invcountdown"
         sleep 2
@@ -89,6 +89,11 @@ loop {
         File.write(filename, "on")
         Script.start('invcountdown')
         system("scripts/levelup.pl STATUS \"Invoker has arrived\"") 
+    end
+    if line =~ /There is little point to that in the dark/
+        fput "search"
+        sleep 5
+        fput "go opening"
     end
     if line =~ /Joinme ([0-9]+)/
         kill_script "go2"

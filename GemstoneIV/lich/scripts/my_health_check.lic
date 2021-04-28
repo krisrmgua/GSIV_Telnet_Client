@@ -12,6 +12,7 @@ quit_health = proc {
   if Myname == "Pristeen" or Myname == "Hoedo"
     Script.run('sethunt', 'off')
     Script.run('mysaveloc')
+    Script.run('mysqlsave', '1')
   end
   system("scripts/levelup.pl STATUS \"#{Myname} HEALTH LOW -- ROOM NUM: #{Room.current.id.to_s}\"")
   echo "HEALTH LOW! ROOM NUM: #{Room.current.id.to_s}"

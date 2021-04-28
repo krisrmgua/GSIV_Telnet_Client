@@ -505,7 +505,6 @@ class LNet
 						LNet.send_data(attr={'type'=>type, 'to'=>name}, nil)
 					end
 				elsif type == 'mind'
-						echo "sending stats to #{XMLData.mind_value}..."
 						LNet.send_data(attr={'type'=>type, 'to'=>name}, "#{XMLData.name}: #{XMLData.mind_value}")
 				elsif type == 'info'
 					if LNet.allow?('info', name)

@@ -73,3 +73,6 @@ end
 Script.start('askinv')
 Script.start('log')
 Script.start('runthischeck')
+if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Wardrob|Hoedo|Noce|Piie|Hili|Bize/
+  Script.start('mysqlsave')
+end

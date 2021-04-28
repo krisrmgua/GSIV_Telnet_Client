@@ -1,6 +1,20 @@
+#kill_script "lnet"
+#sleep 3
+#kill_script "lnet"
+#sleep 1
+#Script.run('lnet', 'add friend Itchiy')
 
-if script.vars[1]
-   dname = script.vars[1]
-   dinfo = LNet.get_data(dname, 'status')
-   echo "#{dinfo}"
-end
+#Myname = Char.name
+#if Myname == "Hili"
+#  kill_script "go2"
+#  sleep 3
+#  kill_script "go2"
+#  sleep 1
+#  Script.run('go2', 'wgrave')
+
+
+kill_script "mysqlsave"
+sleep 3
+kill_script "mysqlsave"
+sleep 1
+Script.start('mysqlsave')

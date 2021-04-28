@@ -1,4 +1,4 @@
-names = ["Piie","Hoedo","Hili","Noce","Bize","Wiiz", "Aiss", "Clu", "Monker", "Trenus", "Sorci", "Woory", "Sluf", "Pristeen"]
+names = ["Piie","Hoedo","Hili","Noce","Bize","Wiiz", "Aiss", "Clu", "Monker", "Trenus", "Sorci", "Woory", "Sluf", "Pristeen", "Wardrob", "Itchiy"]
 if not script.vars[1]
     echo "YOU MUST PASS COMMAND"
 else
