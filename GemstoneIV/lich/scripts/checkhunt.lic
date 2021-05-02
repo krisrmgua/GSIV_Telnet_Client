@@ -53,12 +53,10 @@ loop {
         echo "Sleeping #{wtime}"
         sleep wtime
         fput "ask invo for spells"
-        if Room.current.id.to_s =~ /^228$|^288$/
-            fput "stand" if Myname == "Aiss"
-            sleep 3 if Myname == "Aiss"
-            fput "w"
-            fput "e"
-        end
+        fput "stand" if Myname == "Aiss"
+        sleep 3 if Myname == "Aiss"
+        fput "w"
+        fput "e"
         Script.start('randomtalk')
         Script.start('my_health_check')
         Script.run('wear')
@@ -73,6 +71,7 @@ loop {
         #sleep 4 if Myname == "Sluf"
         #sleep 2 if Myname == "Woory"
         Script.run('mygo2loc', "#{runame}")
+        fput "boost loot minor"
         fput "join #{runame}"
         Script.start('assist', "#{runame}")
         if Myname == "Trenus" or Myname == "Bize"

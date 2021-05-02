@@ -1,6 +1,8 @@
 #!/usr/bin/ruby -w
 require 'mysql2'
 
+#myran = rand(2)
+mybankloop = 0
 loop {
 Myname = Char.name
 #Myname = "Aiss"
@@ -18,13 +20,17 @@ mind = percentmind()
 results_mind = client.query("UPDATE characters SET mind=\"#{mind}\" WHERE name=\"#{Myname}\"")
 
 ###### SILVER ######
-fput "bank acc"
-line = matchtimeout 5, "in the amount of", "Total"
-if line =~ /in the amount of (\d+,\d+,\d+|\d+,\d+)/ or line =~ /Total: (\d+,\d+,\d+|\d+,\d+)/
-  money = $1
-  #money = money.gsub(/[\s,]/ ,"")
-  results_money = client.query("UPDATE characters SET silver=\"#{money}\" WHERE name=\"#{Myname}\"")
+if mybankloop > 10
+  fput "bank acc"
+  line = matchtimeout 5, "in the amount of", "Total"
+  if line =~ /in the amount of (\d+,\d+,\d+|\d+,\d+)/ or line =~ /Total: (\d+,\d+,\d+|\d+,\d+)/
+    money = $1
+    #money = money.gsub(/[\s,]/ ,"")
+    results_money = client.query("UPDATE characters SET silver=\"#{money}\" WHERE name=\"#{Myname}\"")
+  end
+  mybankloop = 0
 end
+mybankloop = mybankloop + 1
 
 ###### ROOM #######
 room = {
@@ -89,67 +95,21 @@ data = {
     'max_spirit' => XMLData.max_spirit,
     'stamina' => XMLData.stamina,
     'max_stamina' => XMLData.max_stamina,
+    'mana' => XMLData.mana,
+    'max_mana' => XMLData.max_mana,
+    'level' => XMLData.level,
 }
-
-wound_message = {
-        'head'      => [ '', 'minor bruises about the head', 'minor lacerations about the head and a possible mild concussion', 'severe head trauma and bleeding from the ears' ],
-        'neck'      => [ '', 'minor bruises on your neck', 'moderate bleeding from your neck', 'snapped bones and serious bleeding from the neck' ],
-        'chest'     => [ '', 'minor cuts and bruises on your chest', 'deep lacerations across your chest', 'deep gashes and serious bleeding from your chest' ],
-        'abdomen'   => [ '', 'minor cuts and bruises on your abdominal area', 'deep lacerations across your abdominal area', 'deep gashes and serious bleeding from your abdominal area' ],
-        'back'      => [ '', 'minor cuts and bruises on your back', 'deep lacerations across your back', 'deep gashes and serious bleeding from your back' ],
-        'rightEye'  => [ '', 'a bruised right eye', 'a swollen right eye', 'a blinded right eye' ],
-        'leftEye'   => [ '', 'a bruised left eye', 'a swollen left eye', 'a blinded left eye' ],
-        'rightLeg'  => [ '', 'some minor cuts and bruises on your right leg', 'a fractured and bleeding right leg', 'a completely severed right leg' ],
-        'leftLeg'   => [ '', 'some minor cuts and bruises on your left leg', 'a fractured and bleeding left leg', 'a completely severed left leg' ],
-        'rightArm'  => [ '', 'some minor cuts and bruises on your right arm', 'a fractured and bleeding right arm', 'a completely severed right arm' ],
-        'leftArm'   => [ '', 'some minor cuts and bruises on your left arm', 'a fractured and bleeding left arm', 'a completely severed left arm' ],
-        'rightHand' => [ '', 'some minor cuts and bruises on your right hand', 'a fractured and bleeding right hand', 'a completely severed right hand' ],
-        'leftHand'  => [ '', 'some minor cuts and bruises on your left hand', 'a fractured and bleeding left hand', 'a completely severed left hand' ],
-        'nsys'      => [ '', 'a strange case of muscle twitching', 'a case of sporadic convulsions', 'a case of uncontrollable convulsions' ],
-        'rightFoot' => [ '', 'missing message', 'missing message', 'missing message' ],
-        'leftFoot'  => [ '', 'missing message', 'missing message', 'missing message' ],
-}
-scar_message = {
-        'head'      => [ '', 'a scar across your face', 'several facial scars', 'old mutilation wounds about your head' ],
-        'neck'      => [ '', 'a scar across your neck', 'some old neck wounds', 'terrible scars from some serious neck injury' ],
-        'chest'     => [ '', 'an old battle scar across your chest', 'several painful-looking scars across your chest', 'terrible, permanent mutilation of your chest muscles' ],
-        'abdomen'   => [ '', 'an old battle scar across your abdominal area', 'several painful-looking scars across your abdominal area', 'terrible, permanent mutilation of your abdominal muscles' ],
-        'back'      => [ '', 'an old battle scar across your back', 'several painful-looking scars across your back', 'terrible, permanent mutilation of your back muscles' ],
-        'rightEye'  => [ '', 'a black-and-blue right eye', 'severe bruises and swelling around your right eye', 'a missing right eye' ],
-        'leftEye'   => [ '', 'a black-and-blue left eye', 'severe bruises and swelling around your left eye', 'a missing left eye' ],
-        'rightLeg'  => [ '', 'old battle scars on your right leg', 'a mangled right leg', 'a missing right leg' ],
-        'leftLeg'   => [ '', 'old battle scars on your left leg', 'a mangled left leg', 'a missing left leg' ],
-        'rightArm'  => [ '', 'old battle scars on your right arm', 'a mangled right arm', 'a missing right arm' ],
-        'leftArm'   => [ '', 'old battle scars on your left arm', 'a mangled left arm', 'a missing left arm' ],
-        'rightHand' => [ '', 'old battle scars on your right hand', 'a mangled right hand', 'a missing right hand' ],
-        'leftHand'  => [ '', 'old battle scars on your left hand', 'a mangled left hand', 'a missing left hand' ],
-        'nsys'      => [ '', 'developed slurred speech', 'constant muscle spasms', 'a very difficult time with muscle control' ],
-        'rightFoot' => [ '', 'missing message', 'missing message', 'missing message' ],
-        'leftFoot'  => [ '', 'missing message', 'missing message', 'missing message' ],
-}
-output = ""
-if data['injuries'].values.any? { |hash| (hash['wound'].to_i > 0) or (hash['scar'].to_i > 0) }
-        wound_array = data['injuries'].to_a.collect { |inj| wound_message[inj[0]][inj[1]['wound'].to_i] }.delete_if { |msg| msg.nil? or msg.empty? }
-        if wound_array.length == 1
-                output.concat "You have #{wound_array.first}.\n"
-        elsif wound_array.length > 1
-                output.concat "You have #{wound_array[0..-2].join(', ')}, and #{wound_array[-1]}.\n"
-        end
-        scar_array = data['injuries'].to_a.collect { |inj| scar_message[inj[0]][inj[1]['scar'].to_i] }.delete_if { |msg| msg.nil? or msg.empty? }
-        if scar_array.length == 1
-                output.concat "You have #{scar_array.first}.\n"
-        elsif scar_array.length > 1
-                output.concat "You have #{scar_array[0..-2].join(', ')}, and #{scar_array[-1]}.\n"
-        end
-else
-        output.concat "0"
+data["injuries"].each do |key, array|
+  #fput "#{array} and #{key} aslo #{data['injuries'][key]['scar']}"
+  inj = "#{data['injuries'][key]['wound']}"
+  scar = "#{data['injuries'][key]['scar']}"
+  injcom = "#{inj}|#{scar}"
+  results_inj = client.query("UPDATE characters SET #{key}=\"#{injcom}\" WHERE name=\"#{Myname}\"")
 end
-injuries = output
 health = "#{data['health']}/#{data['max_health']}\n"
 spirit = "#{data['spirit']}/#{data['max_spirit']}\n"
 results_health = client.query("UPDATE characters SET health=\"#{health}\" WHERE name=\"#{Myname}\"")
 results_spirit = client.query("UPDATE characters SET spirit=\"#{spirit}\" WHERE name=\"#{Myname}\"")
-results_injuries = client.query("UPDATE characters SET injuries=\"#{injuries}\" WHERE name=\"#{Myname}\"")
 
 ###### DEAD #######
 dead = checkdead
@@ -157,8 +117,9 @@ results_dead = client.query("UPDATE characters SET dead=\"#{dead}\" WHERE name=\
 
 
 ##### GET LEVEL #####
-dinfo = LNet.get_data(Myname, 'info')
-dlevel = dinfo["Level"]
+#dinfo = LNet.get_data(Myname, 'info')
+#dlevel = dinfo["Level"]
+dlevel = "#{data['level']}"
 dlevel = dlevel.to_i
 results_level = client.query("UPDATE characters SET level=\"#{dlevel}\" WHERE name=\"#{Myname}\"")
 
@@ -276,11 +237,18 @@ mypercent = Integer(((xpnCur) / exp_needed.to_f) * 100)
 mypercent = 100 - mypercent
 results_exp = client.query("UPDATE characters SET exp=\"#{mypercent}\" WHERE name=\"#{Myname}\"")
 
+### MANA ###
+mana = "#{data['mana']}/#{data['max_mana']}\n"
+results_health = client.query("UPDATE characters SET mana=\"#{mana}\" WHERE name=\"#{Myname}\"")
 
 ### SAVE LOCATION ####
+#if myran == 1
 roomnum = Room.current.id.to_s
 results_exp = client.query("UPDATE characters SET roomnum=\"#{roomnum}\" WHERE name=\"#{Myname}\"")
-
+    #myran = 0
+#else
+#    myran = 1
+#end
 ## UPDATEDATED MYSQLFIELD
 updated = Time.now.strftime('%Y-%m-%d %H:%M:%S')
 results_exp = client.query("UPDATE characters SET updated=\"#{updated}\" WHERE name=\"#{Myname}\"")
@@ -289,5 +257,5 @@ client&.close
 if script.vars[1]
     break
 end
-sleep 30;
+sleep 15;
 }

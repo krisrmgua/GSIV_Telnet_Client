@@ -12,9 +12,10 @@
 #  sleep 1
 #  Script.run('go2', 'wgrave')
 
-
-kill_script "mysqlsave"
+script = "mysqlsave"
+#script = "my_health_check"
+kill_script "#{script}"
 sleep 3
-kill_script "mysqlsave"
+kill_script "#{script}"
 sleep 1
-Script.start('mysqlsave')
+Script.start("#{script}")

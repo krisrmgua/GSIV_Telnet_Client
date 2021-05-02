@@ -16,7 +16,7 @@
 #fput "think to noce get bank"
 #fput "think to hili get bank"
 
-names = ["Piie","Hoedo","Hili","Noce","Bize","Wiiz", "Aiss", "Clu", "Monker", "Trenus", "Sorci", "Woory", "Sluf", "Pristeen"]
+names = ["Piie","Hoedo","Hili","Noce","Bize","Wiiz", "Aiss", "Clu", "Monker", "Trenus", "Sorci", "Woory", "Sluf", "Pristeen", "Wardrob"]
 
 names.each { |item|
   filename = "data/#{item}.bank"

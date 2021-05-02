@@ -6,14 +6,23 @@ quit_dead = proc {
   end
   system("scripts/levelup.pl STATUS \"#{Myname} DEAD\"")
   echo "YOUR DEAD! ROOM NUM: #{Room.current.id.to_s}"
+  kill_script "mysqlsave"
+  sleep 3
+  kill_script "mysqlsave"
+  sleep 1
+  Script.run('mysqlsave', '1')
   fput "quit"
 }
 quit_health = proc {
   if Myname == "Pristeen" or Myname == "Hoedo"
     Script.run('sethunt', 'off')
     Script.run('mysaveloc')
-    Script.run('mysqlsave', '1')
   end
+  kill_script "mysqlsave"
+  sleep 3
+  kill_script "mysqlsave"
+  sleep 1
+  Script.run('mysqlsave', '1')
   system("scripts/levelup.pl STATUS \"#{Myname} HEALTH LOW -- ROOM NUM: #{Room.current.id.to_s}\"")
   echo "HEALTH LOW! ROOM NUM: #{Room.current.id.to_s}"
   fput "quit"

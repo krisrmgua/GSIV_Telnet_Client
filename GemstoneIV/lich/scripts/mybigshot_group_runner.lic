@@ -1,4 +1,5 @@
 kill_script "assist_monker"
+herbsack = UserVars.herbsack
 Script.start('krisloop')
 Script.start('group_ajar')
 Script.start('my_health_check')
@@ -83,8 +84,9 @@ if Myname == "Pristeen"
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
-    $OOM = 25 
+    $OOM = 7 
     $MYFRIED = 1
+    $mindhunt = 50
 elsif Myname == "Sluf"
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
@@ -495,6 +497,7 @@ gohunt = proc {
       echo "Seting Hunt ON"
       Script.run('sethunt', 'on')
   end
+  fput "boost loot minor"
 }
 
 check_standing = proc {
@@ -569,7 +572,7 @@ ask_other_empty = proc {
     file_data = file.read
     file.close
     echo "Checking #{runame} Mind is Empty... its at #{file_data}"
-    if file_data.to_i <= 25
+    if file_data.to_i <= 50
         $checkmindother = true
     end
 }
@@ -634,7 +637,9 @@ attack_target = proc { |target|
         echo "Fleeing from target" if $debug
         break
       end
-      if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
+      if Wounds.lhand > 1 or Wounds.rhand > 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.abs < 1 and Wounds.larm < 1 and Wounds.rarm < 1 and Wounds.chest < 1 and Wounds.back < 1 and Wounds.rleg < 1 and Wounds.lleg < 1 and Wounds.nerves < 1
+         Script.run('useherbs', 'in my #{herbsack}')
+      elsif Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
         echo "Need Healing" if $debug
         $need_healing = true
         break
@@ -814,7 +819,9 @@ attack_target = proc { |target|
         echo "To Many Items" if $need_sale == true and $debug
         break if $need_sale == true
       end
-      if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease 
+      if Wounds.lhand > 1 or Wounds.rhand > 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.abs < 1 and Wounds.larm < 1 and Wounds.rarm < 1 and Wounds.chest < 1 and Wounds.back < 1 and Wounds.rleg < 1 and Wounds.lleg < 1 and Wounds.nerves < 1
+         Script.run('useherbs', 'in my #{herbsack}')
+      elsif Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease 
         echo "Need Healing" if $debug
         $need_healing = true
         break
@@ -891,7 +898,9 @@ loop {
   end
   Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
-  if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
+  if Wounds.lhand > 1 or Wounds.rhand > 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.abs < 1 and Wounds.larm < 1 and Wounds.rarm < 1 and Wounds.chest < 1 and Wounds.back < 1 and Wounds.rleg < 1 and Wounds.lleg < 1 and Wounds.nerves < 1
+     Script.run('useherbs', 'in my #{herbsack}')
+  elsif Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     echo "Need Healing" if $debug
     $need_healing = true
   end
