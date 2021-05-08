@@ -1,0 +1,17 @@
+screen -ls
+screen -S Wardrob
+screen -x Piie
+
+create new screen tab
+Ctrl+A + c
+
+switch between
+Ctrl+A + p  and Ctrl+A + n
+
+Ctrl+A + #    (only works for 0-9)
+Ctrl+A + '  then # {enter}   (works for all numbers)
+Ctrl+A + " menu of all screens
+
+
+rename screen:
+ctral+A + :sessionname Aiss
