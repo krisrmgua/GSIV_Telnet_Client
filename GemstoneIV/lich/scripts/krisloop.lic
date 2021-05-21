@@ -1,4 +1,5 @@
 @debug   = true;
+herbsack = UserVars.herbsack
 get_bless_woory = proc { 
     Script.run('go2', 'landing')
     fput "open my sheath"
@@ -76,7 +77,7 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "YOU HAVE EVERYTHING!", "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
     if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname == "Wardrob"
         kill_script "invcountdown"
         sleep 2
@@ -110,25 +111,39 @@ loop {
             Script.run('wear')
             fput "accept"
             if line =~ /cake/
-               fput "gobble cake"
-               fput "gobble cake"
-               fput "gobble cake"
+               fput "gobble my cake"
+               fput "gobble my cake"
+               fput "gobble my cake"
             elsif line =~ /muffin/
-               fput "gobble muffin"
-               fput "gobble muffin"
-               fput "gobble muffin"
+               fput "gobble my muffin"
+               fput "gobble my muffin"
+               fput "gobble my muffin"
             else
-               fput "gobble bread"
-               fput "gobble bread"
-               fput "gobble bread"
+               fput "gobble my bread"
+               fput "gobble my bread"
+               fput "gobble my bread"
             end
         elsif line =~ /(Aiss|Itchiy) offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/
             fput "accept"
-            fput "wear my kit"
-            fput "wear my sack"
-            fput "wear my sat"
-        elsif line =~ /^([A-Z,a-z]+) offers you (bundle of pigs)/
-            fput "say Wow"
+            fput "wear my #{herbsack}"
+        elsif line =~ /^(Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Bize) offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/ and Myname =~ /Aiss|Itchiy/
+            uname = $1
+            fput "accept"
+            fput "hands"
+            line2 = matchtimeout 5, "sack", "kit", "satchel"
+            if line2 =~ /sack/
+               dkit = "sack"
+            elsif line2 =~ /satchel/
+               dkit = "satchel"
+            elsif line2 =~ /kit/
+               dkit = "kit"
+            end
+            fput "remove my greatc"
+            fput "open my greatc"
+            fput "empty my greatc into my #{dkit}"
+            sleep 3
+            fput "wear my greatc"
+            fput "give #{uname}"
         elsif Myname =~ /Aiss|Itchiy/
             echo "SKIPPING ACCEPT"
         else
@@ -136,6 +151,14 @@ loop {
             fput "stow right"
         end
     end
+    #if line =~ /YOU HAVE EVERYTHING!/
+    #    kill_script "cherbset"
+    #    Script.run('go2', 'park')
+    #    loop {
+    #        echo "HERBSET COMPELTE"
+    #        sleep 5
+    #    }
+    #end
     if line =~ /air seems to thicken and hold you back/
         kill_script "go2"
     end
@@ -385,14 +408,14 @@ loop {
               Spell[1125].cast() if Spell[1125].affordable? 
               Script.run('1')
             end
-        elsif joiny == "pristeen2" and Myname =~ /Hoedo|Noce|Piie|Hili|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        elsif joiny == "pristeen2" and Myname =~ /Hoedo|Noce|Piie|Hili|Bize|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
             kill_script "randomtalk"
             kill_script "checkhunt"
             kill_script "assist"
             sleep 3
             kill_script "assist"
             if Myname =~ /Monker|Sluf|Woory|Sorci/
-                Script.run('go2', 'park3')
+                Script.run('go2', 'park')
             else
                 Script.run('go2', 'park')
             end

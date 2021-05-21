@@ -2,5 +2,6 @@ loop {
     if Room.current.id.to_s =~ /^288$/
         fput "ask inv for spells"
     end
+    Script.start('runmindcheck')
     sleep 60
 }

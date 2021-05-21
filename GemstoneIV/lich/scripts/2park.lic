@@ -1,1 +1,6 @@
-Script.run('go2', 'park')
+if script.vars[1]
+  waitfor "You feel the sting of a recent death slowly fade away"
+  Script.run('go2', 'park')
+else
+  Script.run('go2', 'park')
+end

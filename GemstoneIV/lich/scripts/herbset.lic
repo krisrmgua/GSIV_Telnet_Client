@@ -30,6 +30,10 @@ $cast_herb = nil
 check_cloak = proc { |dherb|
     $cast_herb = nil
     fput "open my #{$cloak}"
+    fput "get aca leaf from my cloak" if dherb =~ /acantha leaf/
+    fput "put aca leaf in my cloak" if dherb =~ /acantha leaf/
+    fput "get other aca leaf from my cloak" if dherb =~ /acantha leaf/
+    fput "put aca leaf in my cloak" if dherb =~ /acantha leaf/
     fput "look in my #{$cloak}"
     line = matchtimeout 3, "#{dherb}", "There is nothing"
     if dherb == "acantha leaf"
@@ -111,6 +115,12 @@ while $herbcount < arraylength
 end
 if $need_still
     echo "!!!!! YOU NEED MORE#{$need_still} !!!!!!"
+    fput "whimp"
 else
-    echo "!!! YOU HAVE EVERYTHING! !!!"
+    if script.vars[1]
+        fput "say Got it all!!!"
+        fput "cheer"
+    else
+        fput "say YOU HAVE EVERYTHING!"
+    end
 end

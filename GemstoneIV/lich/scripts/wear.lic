@@ -48,3 +48,5 @@ elsif Myname == "Sluf"
 elsif Myname == "Itchiy"
     fput "put my staff in my sheath"
 end
+fput "stow left"
+fput "stow right"

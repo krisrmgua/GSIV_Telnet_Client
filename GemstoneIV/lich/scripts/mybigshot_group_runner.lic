@@ -1,5 +1,4 @@
 kill_script "assist_monker"
-herbsack = UserVars.herbsack
 Script.start('krisloop')
 Script.start('group_ajar')
 Script.start('my_health_check')
@@ -27,9 +26,9 @@ $mindhunt = 25
 $hunt_start_time = DateTime.now
 $stop_hunt_time = 4000
 $make_fire = false
-$mysleeping = 200
+$mysleeping_main = 200
 if not script.vars[1]
-    $mysleeping = 200
+    $mysleeping = $mysleeping_main
 else
     $mysleeping = script.vars[1].to_i
 end
@@ -70,7 +69,7 @@ if Myname == "Pristeen"
     attack = "incant 302 channel"
     #attack = "incant 1700 channel"
     stance = "defensive"
-    flee_count = 9
+    flee_count = 6
     swings = 9
     skipwaitattack = 1
     hideme = 0
@@ -399,6 +398,7 @@ sell = proc {
     Script.run('waggle')
     if not $skipsale
         Script.run('mywiztable')
+        Script.run('myitchtable')
         Script.run('checkbank')
         Script.run('yawn')
     end
@@ -484,6 +484,7 @@ gohunt = proc {
       echo "Seting Hunt ON"
       Script.run('sethunt', 'on')
       sleep $mysleeping
+      $mysleeping = $mysleeping_main
       Script.start('randomtalk')
       Script.run('go2', "#{huntarea}")
       $hunt_start_time = DateTime.now
@@ -497,7 +498,8 @@ gohunt = proc {
       echo "Seting Hunt ON"
       Script.run('sethunt', 'on')
   end
-  fput "boost loot minor"
+  #fput "boost loot major"
+  fput "boost PASS EXPERIENCE"
 }
 
 check_standing = proc {
@@ -637,8 +639,14 @@ attack_target = proc { |target|
         echo "Fleeing from target" if $debug
         break
       end
-      if Wounds.lhand > 1 or Wounds.rhand > 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.abs < 1 and Wounds.larm < 1 and Wounds.rarm < 1 and Wounds.chest < 1 and Wounds.back < 1 and Wounds.rleg < 1 and Wounds.lleg < 1 and Wounds.nerves < 1
-         Script.run('useherbs', 'in my #{herbsack}')
+      if (Wounds.rhand > 1 and Wounds.lhand < 2 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2) or (Wounds.rhand < 2 and Wounds.lhand > 1 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2)
+         #Script.run('useherbs', "in my #{herbsack}")
+         fput "get my ep moss" if Myname !~ /Aiss/
+         fput "eat my ep moss" if Myname !~ /Aiss/
+         waitrt?
+         waitcastrt?
+         sleep 2
+         fput "put my moss in my #{herbsack}" if Myname !~ /Aiss/
       elsif Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
         echo "Need Healing" if $debug
         $need_healing = true
@@ -707,7 +715,7 @@ attack_target = proc { |target|
       waitcastrt?
       fput "stance #{stance}"
       if Myname == "Pristeen" 
-           fput "incant 110 #{target}"
+           #fput "incant 110 #{target}"
            waitrt?
            waitcastrt?
       end
@@ -770,6 +778,7 @@ attack_target = proc { |target|
           if dead
             go_defensive.call()
             Script.run('sloot') if not $skiploot
+            Script.run('rem2') if not $skiploot
             check_silver.call()
             sleep 1
             $numkilled = $numkilled + 1;
@@ -799,6 +808,7 @@ attack_target = proc { |target|
         go_defensive.call()
         $numkilled = $numkilled + 1;
         Script.run('sloot') if not $skiploot 
+        Script.run('rem2') if not $skiploot 
         check_silver.call()
         print_stats.call()
         hands_check.call()
@@ -819,8 +829,14 @@ attack_target = proc { |target|
         echo "To Many Items" if $need_sale == true and $debug
         break if $need_sale == true
       end
-      if Wounds.lhand > 1 or Wounds.rhand > 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.abs < 1 and Wounds.larm < 1 and Wounds.rarm < 1 and Wounds.chest < 1 and Wounds.back < 1 and Wounds.rleg < 1 and Wounds.lleg < 1 and Wounds.nerves < 1
-         Script.run('useherbs', 'in my #{herbsack}')
+      if (Wounds.rhand > 1 and Wounds.lhand < 2 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2) or (Wounds.rhand < 2 and Wounds.lhand > 1 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2)
+         #Script.run('useherbs', "in my #{herbsack}")
+         fput "get ep moss from my #{herbsack}" if Myname !~ /Aiss/
+         fput "eat my ep moss" if Myname !~ /Aiss/
+         waitrt?
+         waitcastrt?
+         sleep 2
+         fput "put my ep moss in my #{herbsack}" if Myname !~ /Aiss/
       elsif Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease 
         echo "Need Healing" if $debug
         $need_healing = true
@@ -898,8 +914,17 @@ loop {
   end
   Script.run('mysaveloc')
   echo "Current Room ID: #{Room.current.id.to_s}" if $debug
-  if Wounds.lhand > 1 or Wounds.rhand > 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.abs < 1 and Wounds.larm < 1 and Wounds.rarm < 1 and Wounds.chest < 1 and Wounds.back < 1 and Wounds.rleg < 1 and Wounds.lleg < 1 and Wounds.nerves < 1
-     Script.run('useherbs', 'in my #{herbsack}')
+  if (Wounds.rhand > 1 and Wounds.lhand < 2 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2) or (Wounds.rhand < 2 and Wounds.lhand > 1 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2)
+     #Script.run('useherbs', "in my #{herbsack}")
+     fput "get ep moss from my #{herbsack}" if Myname !~ /Aiss/
+     fput "eat my ep moss" if Myname !~ /Aiss/
+     waitrt?
+     waitcastrt?
+     sleep 2
+     fput "put my ep moss in my #{herbsack}" 
+     waitrt?
+     waitcastrt?
+     fput "put my ep moss in my #{herbsack}" 
   elsif Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
     echo "Need Healing" if $debug
     $need_healing = true

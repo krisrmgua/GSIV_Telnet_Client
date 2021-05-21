@@ -8,7 +8,7 @@ if Myname == "Aiss"
   #Script.start('taptoheal')
   Script.start('krisloop')
   Script.start('my_health_check')
-  Script.start('aiss')
+  #Script.start('aiss')
 #  Script.start('healbot')
 elsif Myname == "Wardrob"
   Script.start('autodeposit')
@@ -26,6 +26,7 @@ elsif Myname == "Itchiy"
   Script.start('krisloop')
   Script.start('my_health_check')
   Script.start('itchiy')
+  Script.start('csetbot')
 elsif Myname == "Hili"
   kill_script "krisloop"
   sleep 1
@@ -71,8 +72,10 @@ if Myname =~ /Piie|Noce|Bize|Hili/
   Script.start('checkhunt', "Hoedo")
 end
 Script.start('askinv')
-Script.start('log')
 Script.start('runthischeck')
+Script.start('log')
+Script.start('log')
+Script.start('myquit')
 if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Hili|Bize/
   Script.start('mysqlsave')
 end

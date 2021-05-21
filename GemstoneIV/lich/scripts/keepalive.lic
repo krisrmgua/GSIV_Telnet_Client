@@ -1,4 +1,20 @@
-while true
+Script.start('krisloop')
+while checkdead
     fput "l"
     sleep 60
 end
+Script.run('sheal')
+Script.start('waggle')
+waitfor "You feel the sting of a recent death slowly fade away, yet a lingering weakness remains."
+Script.run('rem')
+Script.run('go2', 'park')
+fput "ask inv for spells"
+Script.run('wear')
+Script.run('go2', 'landing')
+Script.run('myuse')
+Script.run('go2', 'park')
+fput "ask inv for spells"
+wait_until { percentmana > 99 }
+Script.run('poolparty')
+Script.run('sloot', 'sale')
+Script.start('start')

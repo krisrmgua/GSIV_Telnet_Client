@@ -1,0 +1,3 @@
+if Spell[350].known?
+    fput "BESEECH TELEPORT"
+end

@@ -293,6 +293,10 @@ elsif script.vars[1] =~ /^save/i
    if target =~ /^current$/i
       unless target_room = Map.current
          echo 'error: your current room was not found in the map database.'
+         fput "w"
+         fput "e"
+         fput "e"
+         fput "w"
          exit
       end
    else
@@ -1233,3 +1237,4 @@ loop {
 
 sleep 0.1
 echo "travel time: #{((Time.now.to_f - start_time) / 60.00).as_time}"
+fput "drag stop"

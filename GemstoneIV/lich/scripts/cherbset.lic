@@ -1,0 +1,75 @@
+herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas stem","ephlox moss","pothinir grass","cactacae spine","calamia fruit","torban leaf","haphip root","woth flower","sovyn clove"]
+empty_hands
+
+loop {
+    Script.run('go2', '477')
+    fput "open my cloak"
+    fput "open my backpack" 
+
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+
+    herbs.each { |herb|
+        fput "look in my backpack"
+        line = matchtimeout 2, "#{herb}"
+        if line =~ /#{herb}/
+            fput "look in my cloak"
+            line2 = matchtimeout 2, "#{herb}"
+            if line2 =~ /#{herb}/
+                if herb == "acantha leaf"
+                    if line2 =~ /some acantha leaf, some acantha leaf/ or line2 =~ /some acantha leaf and some acantha leaf/
+                        #fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                        fput "get #{herb} from my back" 
+                        #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                        fput "put #{herb} in bin"
+                    end
+                else
+                    #fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    fput "get #{herb} from my back" 
+                    #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    fput "put #{herb} in bin" 
+                end
+            end
+        end
+
+    }
+
+    Script.run('go2', '297')
+    fput "close my cloak"
+    sleep 3
+    Script.run('bundleall')
+    Script.run('go2', 'park')
+    Script.run('mytable')
+    if script.vars[1]
+        Script.run('herbset', '1')
+    else
+        Script.run('herbset')
+    end
+    Script.run('go2', '477')
+    wait_until { checkmana(120) }
+}

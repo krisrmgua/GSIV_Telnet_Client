@@ -101,7 +101,11 @@ elsif Myname == "Sorci"
     end
 elsif Myname == "Pristeen" or Myname == "Hoedo"
     if Spell[302].known? and Spell[302].affordable?
-        fput "incant 302 channel"
+        if Spell[304].affordable?
+            fput "incant 302 channel"
+        else
+            echo "Not Enough Mana"
+        end
     else
         fput "incant 1700 channel"
         echo "Out of Mana"

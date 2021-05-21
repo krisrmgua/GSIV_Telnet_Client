@@ -51,34 +51,54 @@ loop {
     end
     silcheck = silcheck + 1
     echo "Checking Health"
-    if Wounds.lhand > 1 or Wounds.rhand > 1 and Wounds.head < 1 and Wounds.neck < 1 and Wounds.abs < 1 and Wounds.larm < 1 and Wounds.rarm < 1 and Wounds.chest < 1 and Wounds.back < 1 and Wounds.rleg < 1 and Wounds.lleg < 1 and Wounds.nerves < 1
-       Script.run('useherbs', 'in my #{herbsack}')
+    if (Wounds.rhand > 1 and Wounds.lhand < 2 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2) or (Wounds.rhand < 2 and Wounds.lhand > 1 and Wounds.head < 2 and Wounds.neck < 2 and Wounds.abs < 2 and Wounds.larm < 2 and Wounds.rarm < 2 and Wounds.chest < 2 and Wounds.back < 2 and Wounds.rleg < 2 and Wounds.lleg < 2 and Wounds.nerves < 2)
+       #Script.run('useherbs', "in my #{herbsack}") if Myname !~ /Aiss/
+       fput "stow right" if Myname =~ /Sluf|Noce/
+       fput "get my ephlox moss" if Myname !~ /Aiss/
+       fput "eat my ephlox moss" if Myname !~ /Aiss/
+       waitrt?
+       waitcastrt?
+       sleep 3
+       fput "put my moss in my #{herbsack}" if Myname !~ /Aiss/
+       waitrt?
+       waitcastrt?
+       fput "put my moss in my #{herbsack}" if Myname !~ /Aiss/
+       echo "AWAY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+       Script.run('rem') if Myname !~ /Aiss|Sluf|Noce/
+       fput "cure right hand" if Myname == "Aiss" and checkmana(8)
     elsif Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or $silver
         echo "Im Hurt"
-        if Myname == "Hoedo" or Myname == "Noce" or Myname == "Piie" or Myname == "Hili" or Myname == "Bize"
-            #Script.run('go2', "wgrave")
-            Script.run('go2', "park")
-            Script.run('wear')
-            if Myname == "Hili"
-              Script.run('sheal')
-            else
-              Script.run('useherbs', "in my sack")
-              Script.run('useherbs', "in my kit")
-              if Wounds.nerves > 0
-                dkit = "kit"
-                dkit = "sack" if Myname == "Piie"
-                Script.run('useherbs', "in my #{dkit} --buy=on")
-              end
-            end
-            waitrt?
-            waitcastrt?
-            sleep 120 if $silver
-            Script.run('rem')
-            group_check.call()
+        if Myname == "Aiss"
+            Script.run('go2', 'pinefar')
+            Script.run('sheal')
         else
             LNet.send_message(attr={'type'=>'private', 'to'=>"#{Myname}"}, "join pristeen2")
-            sleep 10
         end
+        sleep 10
+        #if Myname == "Hoedo" or Myname == "Noce" or Myname == "Piie" or Myname == "Hili" or Myname == "Bize"
+        #    #Script.run('go2', "wgrave")
+        #    Script.run('go2', "park")
+        #    Script.run('wear')
+        #    if Myname == "Hili"
+        #      Script.run('sheal')
+        #    else
+        #      Script.run('useherbs', "in my sack")
+        #      Script.run('useherbs', "in my kit")
+        #      if Wounds.nerves > 0
+        #        dkit = "kit"
+        #        dkit = "sack" if Myname == "Piie"
+        #        Script.run('useherbs', "in my #{dkit} --buy=on")
+        #      end
+        #    end
+        #    waitrt?
+        #    waitcastrt?
+        #    sleep 120 if $silver
+        #    Script.run('rem')
+        #    group_check.call()
+        #else
+        #    LNet.send_message(attr={'type'=>'private', 'to'=>"#{Myname}"}, "join pristeen2")
+        #    sleep 10
+        #end
     end
     Script.run('mindsave')
     attack_check.call()
@@ -131,7 +151,8 @@ loop {
                Script.run('c')
                waitrt?
                waitcastrt?
-               Script.run('sloot')
+               Script.run('sloot') if Wounds.rhand < 1 and Wounds.lhand < 1 
+               Script.run('rem2')
            elsif Myname == "Heodo" or Myname == "Hili" or Myname == "Piie" or Myname == "Bize"
                sleep 1
                sleep 3 if Myname == "Wiiz"
@@ -165,7 +186,8 @@ loop {
            keepon = nil if $attack_check == "off"
        end
        #Script.run('sloot') if Myname =~ /Aiss|Clu|Monker/
-       Script.run('sloot') if Myname !~ /Clu/
+       Script.run('sloot') if Myname !~ /Clu/ and Wounds.rhand < 1 and Wounds.lhand < 1
+       Script.run('rem2') if Myname !~ /Clu/
        #Script.run('sloot') if Myname =~ /Wiiz/
        #Script.run('sloot') 
        fput "stance def"

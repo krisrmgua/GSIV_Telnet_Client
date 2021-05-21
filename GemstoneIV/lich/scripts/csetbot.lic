@@ -1,0 +1,154 @@
+herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas stem","ephlox moss","pothinir grass","cactacae spine","calamia fruit","torban leaf","haphip root","woth flower","sovyn clove"]
+empty_hands
+Myname = Char.name
+
+write_it = proc { |file_data2, file_data3|
+        if file_data2 =~ /^2/
+              filename = "data/Clu.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^3/
+              filename = "data/Monker.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^4/
+              filename = "data/Trenus.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^5/
+              filename = "data/Sorci.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^6/
+              filename = "data/Woory.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^7/
+              filename = "data/Sluf.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^8/
+              filename = "data/Pristeen.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^9/
+              filename = "data/Hoedo.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^10/
+              filename = "data/Noce.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^11/
+              filename = "data/Piie.herb"
+              File.write(filename, "#{file_data3}")
+        elsif file_data2 =~ /^13/
+              filename = "data/Bize.herb"
+              File.write(filename, "#{file_data3}")
+        end
+}
+
+loop {
+    Script.run('go2', '477')
+    fput "open my cloak"
+    fput "open my backpack" 
+
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+    Script.run('cherb', '0')
+    waitrt?
+    waitcastrt?
+
+    herbs.each { |herb|
+        fput "look in my backpack"
+        line = matchtimeout 2, "#{herb}"
+        if line =~ /#{herb}/
+            fput "look in my cloak"
+            line2 = matchtimeout 2, "#{herb}"
+            if line2 =~ /#{herb}/
+                if herb == "acantha leaf"
+                    if line2 =~ /some acantha leaf, some acantha leaf/ or line2 =~ /some acantha leaf and some acantha leaf/
+                        fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                        fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    end
+                else
+                    fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                end
+            end
+        end
+
+    }
+
+    Script.run('go2', '297')
+    fput "close my cloak"
+    sleep 3
+    Script.run('bundleall')
+    Script.run('go2', 'park')
+    Script.run('mytable')
+    Script.start('herbset', '1')
+    line = matchwait "You let out a cheer!", "Poor baby!"
+    if line =~ /You let out a cheer!/
+        Script.start('autoinvitefriends')
+        filename = "data/#{Myname}.herb"
+        file = File.open(filename)
+        file_data = file.read
+        file.close
+        write_it.call("#{file_data}", "1")
+        cloak_loop = 1
+        fput "open my cloak"
+        while cloak_loop == 1
+            fput "look in my cloak"
+            line = matchtimeout 5, "There is nothing in there", "In the cloak you see"
+            if line =~ /In the cloak you see/
+                sleep 20
+            elsif line =~ /There is nothing in there/
+                cloak_loop = 0
+            end
+        end
+        sleep 10
+        Script.run('sloot')
+        write_it.call("#{file_data}", "0")
+        w_this = 0
+        if file_data =~ /^2/
+            w_this = 3
+        elsif file_data =~ /^3/
+            w_this = 4
+        elsif file_data =~ /^4/
+            w_this = 5
+        elsif file_data =~ /^5/
+            w_this = 6
+        elsif file_data =~ /^6/
+            w_this = 7
+        elsif file_data =~ /^7/
+            w_this = 8
+        elsif file_data =~ /^8/
+            w_this = 9
+        elsif file_data =~ /^9/
+            w_this = 10
+        elsif file_data =~ /10/
+            w_this = 11
+        elsif file_data =~ /11/
+            w_this = 13
+        elsif file_data =~ /13/
+            w_this = 2
+        end
+        filename = "data/#{Myname}.herb"
+        File.write(filename, "#{w_this}")
+    end 
+    fput "out"
+    Script.run('go2', 'park')
+}

@@ -71,7 +71,8 @@ loop {
         #sleep 4 if Myname == "Sluf"
         #sleep 2 if Myname == "Woory"
         Script.run('mygo2loc', "#{runame}")
-        fput "boost loot minor"
+        #fput "boost loot major"
+        fput "boost PASS EXPERIENCE"
         fput "join #{runame}"
         Script.start('assist', "#{runame}")
         if Myname == "Trenus" or Myname == "Bize"
@@ -135,6 +136,7 @@ loop {
         fput "bank acc"
         Script.run('checkbank')
         Script.run('mywiztable')
+        Script.run('myitchtable')
        if Myname =~ /Monker|Trenus|Woory|Sorci/
             #Script.run('go2', 'park3')
             Script.run('go2', 'park')
@@ -149,11 +151,11 @@ loop {
             #Script.run('go2', 'wgrave')
             Script.run('go2', 'park')
         end
-        if Myname =~ /Trenus/
-            Script.run('go2', 'wgrave')
-            #Script.run('go2', 'park3')
-            Script.run('go2', 'park')
-        end
+        #if Myname =~ /Trenus/
+        #    Script.run('go2', 'wgrave')
+        #    #Script.run('go2', 'park3')
+        #    Script.run('go2', 'park')
+        #end
         sleep 3
         Script.run('waggle')
         Script.run('waggle_bard')
@@ -166,6 +168,9 @@ loop {
         #Script.run('rem') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
         #Script.run('go2', 'pinefar') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
         #Script.run('wear') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+
+    else
+        #echo "File_data is #{file_data} and last state is #{$last_state}" 
     end
     sleep 5
 }

@@ -1,7 +1,7 @@
+herbsack = UserVars.herbsack
 Script.run('useherbs', 'in bin')
 Script.run('useherbs', 'on bench')
 Script.run('useherbs', 'behind bench')
 Script.run('useherbs', 'under bench')
-Script.run('useherbs', 'in my kit')
-Script.run('useherbs', 'in my satchel')
-Script.run('useherbs', 'in my sack')
+Script.run('useherbs', 'in bar')
+Script.run('useherbs', "in my #{herbsack} --buy=on")

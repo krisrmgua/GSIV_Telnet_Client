@@ -1,0 +1,29 @@
+herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas stem","ephlox moss","pothinir grass","cactacae spine","calamia fruit","torban leaf","haphip root","woth flower","sovyn clove"]
+empty_hands
+
+    Script.run('go2', '477')
+    fput "open my cloak"
+    fput "open my backpack" 
+
+    herbs.each { |herb|
+        fput "look in my backpack"
+        line = matchtimeout 2, "#{herb}"
+        if line =~ /#{herb}/
+            fput "look in my cloak"
+            line2 = matchtimeout 2, "#{herb}"
+            if line2 =~ /#{herb}/
+                if herb == "acantha leaf"
+                    if line2 =~ /some acantha leaf, some acantha leaf/ or line2 =~ /some acantha leaf and some acantha leaf/
+                        fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                        fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    end
+                else
+                    fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                end
+            end
+        end
+
+    }
+
+    fput "close my cloak"

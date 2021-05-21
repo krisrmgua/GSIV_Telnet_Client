@@ -1,0 +1,23 @@
+Myname = Char.name
+herbsack = UserVars.herbsack
+exit if Myname == "Aiss"
+exit if Myname == "Hili"
+filename = "data/#{Myname}.herb"
+file = File.open(filename)
+file_data = file.read
+file.close
+
+if file_data =~ /1/
+    Script.run('mytable', 'itch')
+    sleep 1
+    gothere = 0
+    GameObj.pcs.find { |pcs| gothere = 1 if pcs.noun =~ /Itchiy/i }
+    if gothere == 1
+        Script.run('emptykit')
+        fput "remove my #{herbsack}"
+        sleep 1
+        fput "give itch my #{herbsack}"
+        sleep 10
+    end
+    Script.run('go2', "park")
+end
