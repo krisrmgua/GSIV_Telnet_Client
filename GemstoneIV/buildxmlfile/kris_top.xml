@@ -15,6 +15,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
         <highlight fg="479B95">(a|an|some) \w+?\s?\w+?\s?\w+\s(?:lockpick|statue)</highlight>
         <highlight fg="ffffff" bg="909814">a shard of \w+ soulstone|a (\w+?\s?\w+ coin)($| |,|\.)|a handful of silver flakes|a \w+?\s?\w+ figurine|a piece of \w+ glass|a \w+ piece of eight</highlight>
 	<highlight fg="B8AA44">some silver coins|You gather the remaining (\d+) coins|You manage to successfully place|You feel intense satisfaction at a task well done.</highlight>
+	<highlight fg="B8AA44">(Lichen mottles the surface of boulders forming the bluff, their surface sheared of snow by gusting winds blowing up from the gorge below|You are perched on the ledge of a dangerously steep crevice which juts out from the wall hanging over a dark abyss)</highlight>
 	<highlight fg="FFACDB">(?i)(^|\s|\")(healing|healers|healer|heal|empath)($|\s|,|\.)</highlight>
 	<highlight fg="F6931D">nods to|nods at|pokes you|taps you lightly on the shoulder|taps you</highlight>
 	<highlight fg="FF0000">the body of</highlight>
@@ -25,7 +26,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='9090ff'>^.*half-elven invoker garbed in colorful layered robes emerges from the porta.*$</highlight>
 	<highlight fg='FFF000'>^.*coins which you quickly pocket.$|.*heirloom that you are searching for.*|^You spy a.*$|(an|a) engraved \w+ token|The odd feeling of depression leaves you.|The feeling of weakness leaves you.  Your spirits are somewhat rejuvenated.|You have completed this portion of your Adventurer's Guild task|The leaden feeling lifts from your limbs.|You have no silver coins with you.|You feel weakened as a blood red haze forms around you|You sense that your soul has been bound to your body for|before sinking into their surface|appears to become incorporated into them|obvious signs of someone hiding|for a moment and then appears to become incorporated into it.|sinking into its surface.</highlight>
 	<highlight fg='B985F7'>an onyx jackal's head symbol set in red gold|vaalin and faenor turtle figure|an unadorned mithril relic|a two-headed serpent symbol wrapped around a crimson blazestar</highlight>
-	<highlight fg='B985F7'>(a|an) (cookie-shaped|shackle-hewn|bell-shaped|pie-shaped|dog-shaped|star-shaped|tree-shaped|wolf-inset|flame-shaped) (?:rook-etched|leaf-etched|black|yellow|blue|pink|iridescent|angel-marked|star-of-Tamzyrr|leaf-dotted|warcat-etched) (diamond|emerald|ruby|opal|pearl|sapphire)</highlight>
+	<highlight fg='B985F7'>(a|an) (cookie-shaped|shackle-hewn|bell-shaped|pie-shaped|dog-shaped|star-shaped|tree-shaped|wolf-inset|flame-shaped|sickle-shaped|hammer-cut|lamp-engraved) (?:rook-etched|leaf-etched|black|yellow|blue|pink|iridescent|angel-marked|star-of-Tamzyrr|leaf-dotted|warcat-etched|sickle-shaped|hammer-cut|lamp-engraved) (yellow diamond|alexandrite stone|black pearl|white pearl|diamond|emerald|ruby|opal|pearl|sapphire)</highlight>
         <highlight fg='D064FF'>(?i)^\[Merchant\]-GSIV|(?i)^\[Help\]-GSIV|(?i)^\[General\]-GSIV</highlight>
         <highlight fg='43EA25'>(?i)^\[Merchant\] |(?i)^\[Help\] |(?i)^\[General\] </highlight>
 	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>

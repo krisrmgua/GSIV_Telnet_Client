@@ -56,6 +56,8 @@ end
 if Myname == "Pristeen"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
+  filename = "data/#{Myname}.loc"
+  File.write(filename, "228")
 end
 if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   kill_script "checkhunt"

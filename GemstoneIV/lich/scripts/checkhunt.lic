@@ -30,7 +30,7 @@ loop {
         Script.run('useherbs', "on bench")
         Script.run('useherbs', "under bench")
         Script.run('useherbs', "--buy=on in my satchel") if Myname =~ /Wiiz/
-        Script.run('useherbs', "--buy=on in my sack") if Myname =~ /Piie|Hoedo/
+        Script.run('useherbs', "--buy=on in my sack") if Myname =~ /Piie/
         Script.run('useherbs', "--buy=on in my kit")
         Script.run('poolparty')
         Script.run('sloot', 'sell')
@@ -89,8 +89,11 @@ loop {
         $last_state = "off"
         kill_script "randomtalk"
         kill_script "assist"
-        sleep 3
+        sleep 2
         kill_script "assist"
+        sleep 2
+        kill_script "assist"
+        echo "killed assist?"
         if Myname =~ /Monker|Sluf|Woory|Sorci/
             #Script.run('go2', 'park3')
             Script.run('go2', 'park')
@@ -100,9 +103,12 @@ loop {
         else
             Script.run('go2', 'park')
         end
+        echo "GO2 FINISHED"
         kill_script "assist"
         Script.start('runmindcheck')
+        echo "SLEEPING Random time"
         wtime = rand(1..90)
+        echo "DONE SLEEPING"
         fput "ask invo for spells"
         echo "Sleeping #{wtime}"
         sleep wtime

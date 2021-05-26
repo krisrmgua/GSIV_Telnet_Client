@@ -2,45 +2,61 @@ herbs =["acantha leaf","ambrominas leaf","basal moss","wolifrew lichen","aloeas 
 empty_hands
 Myname = Char.name
 
-write_it = proc { |file_data2, file_data3|
+#write_it = proc { |file_data2, file_data3|
+def write_it (file_data2, file_data3)
+        rname = "none"
         if file_data2 =~ /^2/
+              rname = "Clu"
               filename = "data/Clu.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^3/
+              rname = "Monker"
               filename = "data/Monker.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^4/
+              rname = "Trenus"
               filename = "data/Trenus.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^5/
+              rname = "Sorci"
               filename = "data/Sorci.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^6/
+              rname = "Woory"
               filename = "data/Woory.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^7/
+              rname = "Sluf"
               filename = "data/Sluf.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^8/
+              rname = "Pristeen"
               filename = "data/Pristeen.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^9/
+              rname = "Hoedo"
               filename = "data/Hoedo.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^10/
+              rname = "Noce"
               filename = "data/Noce.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^11/
+              rname = "Piie"
               filename = "data/Piie.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^13/
+              rname = "Bize"
               filename = "data/Bize.herb"
               File.write(filename, "#{file_data3}")
         end
-}
+        return rname
+#}
+end
 
 loop {
     Script.run('go2', '477')
+    wait_until { checkmana(120) }
     fput "open my cloak"
     fput "open my backpack" 
 
@@ -81,12 +97,20 @@ loop {
             if line2 =~ /#{herb}/
                 if herb == "acantha leaf"
                     if line2 =~ /some acantha leaf, some acantha leaf/ or line2 =~ /some acantha leaf and some acantha leaf/
-                        fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                        fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                        #fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                        fput "get #{herb} from my back" if herb !~ /spine|fruit|ephlox moss/
+                        #fput "get #{herb} from my back" 
+                        #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                        fput "put #{herb} in bin" if herb !~ /spine|fruit|ephlox moss/
+                        #fput "put #{herb} in bin" 
                     end
                 else
-                    fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                    fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    #fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    fput "get #{herb} from my back" if herb !~ /spine|fruit|ephlox moss/
+                    #fput "get #{herb} from my back"
+                    #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
+                    fput "put #{herb} in bin" if herb !~ /spine|fruit|ephlox moss/
+                    #fput "put #{herb} in bin"
                 end
             end
         end
@@ -107,10 +131,12 @@ loop {
         file = File.open(filename)
         file_data = file.read
         file.close
-        write_it.call("#{file_data}", "1")
+        #rname = write_it.call("#{file_data}", "1")
+        rname = write_it("#{file_data}", "1")
         cloak_loop = 1
         fput "open my cloak"
         while cloak_loop == 1
+            respond "Waiting on #{rname}"
             fput "look in my cloak"
             line = matchtimeout 5, "There is nothing in there", "In the cloak you see"
             if line =~ /In the cloak you see/
@@ -121,7 +147,8 @@ loop {
         end
         sleep 10
         Script.run('sloot')
-        write_it.call("#{file_data}", "0")
+        #rname = write_it.call("#{file_data}", "0")
+        rname = write_it("#{file_data}", "0")
         w_this = 0
         if file_data =~ /^2/
             w_this = 3

@@ -9,3 +9,4 @@ Script.run('useherbs', "--buy=on in my satchel") if Myname =~ /Wiiz/
 Script.run('useherbs', "--buy=on in my sack") if Myname =~ /Piie|Hoedo/
 Script.run('useherbs', "--buy=on in my kit")
 Script.start('start')
+Script.run('go2', 'park')

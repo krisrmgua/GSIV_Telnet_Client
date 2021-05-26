@@ -78,18 +78,22 @@ def new_healed(target)
 end
 loop {
     line = matchtimeout 10, "YOU HAVE EVERYTHING!", "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
-    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname == "Wardrob"
-        kill_script "invcountdown"
-        sleep 2
-        kill_script "invcountdown"
-        filename = "data/Pristeen.invoker"
-        File.write(filename, "on")
-        filename = "data/Hoedo.invoker"
-        File.write(filename, "on")
-        filename = "data/Itchiy.invoker"
-        File.write(filename, "on")
-        Script.start('invcountdown')
-        #system("scripts/levelup.pl STATUS \"Invoker has arrived\"") 
+    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname =~ /Wardrob|Pristeen/
+        if Myname == "Pristeen"
+            Script.start('mybigshot_group_runner')
+        else
+            kill_script "invcountdown"
+            sleep 2
+            kill_script "invcountdown"
+            filename = "data/Pristeen.invoker"
+            File.write(filename, "on")
+            filename = "data/Hoedo.invoker"
+            File.write(filename, "on")
+            filename = "data/Itchiy.invoker"
+            File.write(filename, "on")
+            Script.start('invcountdown')
+            #system("scripts/levelup.pl STATUS \"Invoker has arrived\"") 
+        end
     end
     if line =~ /There is little point to that in the dark/
         fput "search"
@@ -107,13 +111,21 @@ loop {
     end
     if line =~ /^([A-Z,a-z]+) offers you/
         uname = $1
-        if line =~ /^([A-Z,a-z]+) offers you (some manna bread|a pumpkin spice muffin with maple cream frosting|a dense seed-encrusted honey cake|pumpkin spice muffin|a disk of black olive-laden bread|brownie)/
+        if line =~ /^([A-Z,a-z]+) offers you (some manna bread|sugar-dusted travel biscuit|a boysenberry crumb bar|a pumpkin spice muffin with maple cream frosting|a dense seed-encrusted honey cake|pumpkin spice muffin|a disk of black olive-laden bread|brownie)/
             Script.run('wear')
             fput "accept"
             if line =~ /cake/
                fput "gobble my cake"
                fput "gobble my cake"
                fput "gobble my cake"
+            elsif line =~ /bar/
+               fput "gobble my bar"
+               fput "gobble my bar"
+               fput "gobble my bar"
+            elsif line =~ /biscuit/
+               fput "gobble my biscuit"
+               fput "gobble my biscuit"
+               fput "gobble my biscuit"
             elsif line =~ /muffin/
                fput "gobble my muffin"
                fput "gobble my muffin"
@@ -123,11 +135,12 @@ loop {
                fput "gobble my bread"
                fput "gobble my bread"
             end
-        elsif line =~ /(Aiss|Itchiy) offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/
+        elsif line =~ /(Aiss|Itchiy) offers you a (leaf-tooled survival kit|leather steel-buckled kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/
             fput "accept"
             fput "wear my #{herbsack}"
-        elsif line =~ /^(Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Bize) offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/ and Myname =~ /Aiss|Itchiy/
-            uname = $1
+        elsif line =~ /^(Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Bize) offers you a (leaf-tooled survival kit|leather steel-buckled kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/ and Myname =~ /Aiss|Itchiy/
+            #uname = $1
+            echo "GOT #{uname}"
             fput "accept"
             fput "hands"
             line2 = matchtimeout 5, "sack", "kit", "satchel"
@@ -138,11 +151,13 @@ loop {
             elsif line2 =~ /kit/
                dkit = "kit"
             end
-            fput "remove my greatc"
-            fput "open my greatc"
-            fput "empty my greatc into my #{dkit}"
+            thiscloak = "cloak"
+            thiscloak = "greatc" if Myname =~ /Aiss/
+            fput "remove my #{thiscloak}"
+            fput "open my #{thiscloak}"
+            fput "empty my #{thiscloak} into my #{dkit}"
             sleep 3
-            fput "wear my greatc"
+            fput "wear my #{thiscloak}"
             fput "give #{uname}"
         elsif Myname =~ /Aiss|Itchiy/
             echo "SKIPPING ACCEPT"
