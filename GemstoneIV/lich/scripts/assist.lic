@@ -108,6 +108,7 @@ loop {
     #if line =~ /Pristeen channels|Pristeen gestures|Hoedo channels|Hoedo gestures/
        keepon = true
        fput "target wraith" if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen/
+       fput "target glacei" if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen/
        while keepon
            if Myname == "Sorci" or Myname == "Trenus"
                sleep 1

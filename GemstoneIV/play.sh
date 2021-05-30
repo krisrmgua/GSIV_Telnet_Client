@@ -40,6 +40,8 @@ echo -e "\t23:\tGemii (26)"
 echo -e "\t24:\tGemb (28)"
 echo -e " "
 echo -e "\t25:\tWiiz ()"
+echo -e "\t33:\tChedr ()"
+echo -e "\t34:\tCurii ()"
 echo -e " "
 echo -e "\t26:\tOguo (2)"
 echo -e "\t27:\tClergi (2)"
@@ -184,6 +186,14 @@ elif [ $num -eq 32 ]
 then
     character=Honkmonk
     port=8032
+elif [ $num -eq 33 ]
+then
+    character=Chedr
+    port=8033
+elif [ $num -eq 34 ]
+then
+    character=Curii
+    port=8034
 else
     echo "BAD INPUT"
     exit

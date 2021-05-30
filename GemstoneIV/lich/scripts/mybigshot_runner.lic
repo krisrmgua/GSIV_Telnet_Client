@@ -374,6 +374,59 @@ elsif Myname == "Hudem"
     skinsheath = ""
     encumbrance = 35
     active_scripts = [""]
+elsif Myname == "Chedr"
+    fleemobs = ["nothing"]
+    rest = "landing"
+    rest2 = "park"
+    #mobs = ["giant ant"]
+    #huntarea = "ants"
+    #roomboundry = ["7534","292"]
+    mobs = ["skeleton","phantom","lesser ghoul","goblin"]
+    huntarea = "4141"
+    roomboundry = ["4142", "4140", "7172", "7184"]
+    attack = "incant 302 channel"
+    stance = "offensive"
+    flee_count = 9
+    swings = 9
+    skipwaitattack = 1
+    hideme = 0
+    shield = ""
+    weapon = "staff"
+    sheath = "sheath"
+    backpack = "pack"
+    cloak = "cloak"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
+elsif Myname == "Curii"
+    rest = "landing"
+    rest2 = "park"
+    #huntarea = "ants"
+    #mobs = ["giant ant"]
+    #fleemobs = ["nothing"]
+    #roomboundry = ["7534","292"]
+    mobs = ["skeleton","phantom","lesser ghoul","goblin"]
+    huntarea = "4141"
+    roomboundry = ["4142", "4140", "7172", "7184"]
+    fleemobs = ["nothing"]
+    attack = "incant 1700 channel"
+    stance = "offensive"
+    flee_count = 20
+    swings = 20
+    skipwaitattack = 1
+    hideme = 0
+    shield = ""
+    weapon = "runestaff"
+    sheath = "sheath"
+    backpack = "pack"
+    cloak = "cloak"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
 elsif Myname == "Hoedo"
     mobs = ["giant ant"]
     fleemobs = ["nothing"]
@@ -1150,7 +1203,7 @@ loop {
     openlook.call()
     putawayweapon.call()
     if $need_healing
-      if Myname !~ /Aiss|Itchiy/
+      if Myname !~ /Aiss|Itchiy|Curii/
           Script.run('askheal')
           Script.run('useherbs', "in bin")
           Script.run('useherbs', "on bench")

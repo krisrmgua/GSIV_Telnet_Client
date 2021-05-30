@@ -91,6 +91,10 @@ loop {
             File.write(filename, "on")
             filename = "data/Itchiy.invoker"
             File.write(filename, "on")
+            filename = "data/Chedr.invoker"
+            File.write(filename, "on")
+            filename = "data/Curii.invoker"
+            File.write(filename, "on")
             Script.start('invcountdown')
             #system("scripts/levelup.pl STATUS \"Invoker has arrived\"") 
         end
@@ -451,7 +455,7 @@ loop {
             Script.run('useherbs', "under bench")
             Script.run('useherbs', "--buy=on in my kit")
             if Myname =~ /Monker|Trenus|Woory|Sorci/
-                Script.run('go2', 'park3')
+                Script.run('go2', 'park')
             else
                 Script.run('go2', 'park')
             end

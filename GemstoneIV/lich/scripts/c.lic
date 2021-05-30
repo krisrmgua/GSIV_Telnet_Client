@@ -79,6 +79,18 @@ elsif Myname == "Hili"
             echo "You do not currently have a target"
         end
     end
+elsif Myname == "Curii"
+    if Spell[1115].known? and Spell[1115].affordable?
+        #fput "incant 1106 channel"
+        #fput "incant 1101 channel"
+        fput "incant 1115 channel"
+    else
+        if Spell[1106].known? and Spell[1106].affordable?
+            fput "incant 1106 channel"
+        elsif Spell[1700].known? and Spell[1700].affordable?
+            fput "incant 1700 channel"
+        end
+    end
 elsif Myname == "Aiss"
     if Spell[1115].known? and Spell[1115].affordable?
         #fput "incant 1106 channel"
@@ -99,7 +111,7 @@ elsif Myname == "Sorci"
         echo "Out of Mana"
         echo "You do not currently have a target"
     end
-elsif Myname == "Pristeen" or Myname == "Hoedo"
+elsif Myname == "Pristeen" or Myname == "Hoedo" or Myname == "Chedr"
     if Spell[302].known? and Spell[302].affordable?
         if Spell[304].affordable?
             fput "incant 302 channel"

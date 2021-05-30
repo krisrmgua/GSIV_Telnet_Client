@@ -1,9 +1,13 @@
 Myname = Char.name
 if Myname == "Clu"
     fput "wear my shortbow"
+elsif Myname == "Chedr"
+    fput "put my staff in my sheath"
 elsif Myname == "Wardrob"
     fput "wear my shield"
     fput "put my broadsword in my sheath"
+elsif Myname == "Curii"
+    fput "put my runestaff in my sheath"
 elsif Myname == "Trenus"
     fput "wear my aegis"
 elsif Myname == "Sorci"

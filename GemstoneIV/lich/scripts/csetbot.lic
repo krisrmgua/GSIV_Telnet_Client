@@ -135,6 +135,7 @@ loop {
         rname = write_it("#{file_data}", "1")
         cloak_loop = 1
         fput "open my cloak"
+        fput "say Waiting on #{rname}"
         while cloak_loop == 1
             respond "Waiting on #{rname}"
             fput "look in my cloak"

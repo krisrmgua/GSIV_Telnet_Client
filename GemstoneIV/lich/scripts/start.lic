@@ -10,6 +10,10 @@ if Myname == "Aiss"
   Script.start('my_health_check')
   #Script.start('aiss')
 #  Script.start('healbot')
+elsif Myname == "Curii"
+  Script.start('autoinvitefriends')
+  Script.start('taptoheal')
+  Script.start('krisloop')
 elsif Myname == "Wardrob"
   Script.start('autodeposit')
   Script.start('krisloop')
@@ -25,7 +29,7 @@ elsif Myname == "Itchiy"
   Script.start('autoinvitefriends')
   Script.start('krisloop')
   Script.start('my_health_check')
-  Script.start('itchiy')
+  #Script.start('itchiy')
   Script.start('csetbot')
 elsif Myname == "Hili"
   kill_script "krisloop"

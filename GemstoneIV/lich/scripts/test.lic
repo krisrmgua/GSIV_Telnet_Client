@@ -12,4 +12,6 @@
 #  sleep 1
 #  Script.run('go2', 'wgrave')
 
-echo checkmana()
+#echo checkmana()
+sleep 300
+Script.start('mybigshot')

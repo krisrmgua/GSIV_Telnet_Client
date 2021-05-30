@@ -24,7 +24,7 @@ $lookwait = true
 $MYFRIED = 99
 $mindhunt = 25
 $hunt_start_time = DateTime.now
-$stop_hunt_time = 4000
+$stop_hunt_time = 750
 $make_fire = false
 $mysleeping_main = 200
 if not script.vars[1]
@@ -60,8 +60,12 @@ if Myname == "Pristeen"
     ##roomboundry = ["2761", "2746"]
     ##fleemobs = ["tomb spider"]
     mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth"]
-    huntarea = "2744"
-    roomboundry = ["2746", "2709"]
+    huntarea = "2729"
+    #huntarea = "2744"
+    roomboundry = ["2730", "2728"]
+    #roomboundry = ["2746", "2709"]
+    flee_count = 16
+    #flee_count = 6
     fleemobs = ["tomb spider"]
     rest = "landing"
     rest2 = "park"
@@ -85,7 +89,7 @@ if Myname == "Pristeen"
     active_scripts = [""]
     $OOM = 7 
     $MYFRIED = 1
-    $mindhunt = 50
+    $mindhunt = 25
 elsif Myname == "Sluf"
     mobs = ["moaning spirit","night hound"]
     fleemobs = ["tomb spider"]
@@ -138,9 +142,14 @@ elsif Myname == "Hoedo"
     ###fleemobs = ["tomb spider"]
     ###huntarea = "7319"
     ###roomboundry = ["7318","7324"]
-    mobs = ["ghostly pooka"]
-    huntarea = "4540"
-    roomboundry = ["4541","4537","7325","7429"]
+    #####mobs = ["ghostly pooka"]
+    #####huntarea = "4540"
+    #####roomboundry = ["4541","4537","7325","7429"]
+    mobs = ["spectral miner", "ghostly pooka", "spectral miner"]
+    ##huntarea = "7393"
+    huntarea = "7417"
+    ##roomboundry = ["7328"]
+    roomboundry = ["7418", "7416", "7420", "7419"]
     fleemobs = ["tomb spider"]
     rest = "landing"
     rest2 = "park"
@@ -148,7 +157,7 @@ elsif Myname == "Hoedo"
     #attack = "incant 1700 channel"
     attack = "incant 302 channel"
     stance = "defensive"
-    flee_count = 3
+    flee_count = 23
     swings = 9
     skipwaitattack = 1
     hideme = 0
@@ -607,6 +616,8 @@ ask_other_fried = proc {
 print_stats = proc {
     echo "Number of Hunts: #{$numhunts}"
     echo "Number of Kills: #{$numkilled}"
+    hunttime = ((DateTime.now - $hunt_start_time) * 24 * 3600).to_i
+    echo "Time Hunting: #{hunttime} / #{$stop_hunt_time}"
 }
 
 save_attack = proc { |dstate|
