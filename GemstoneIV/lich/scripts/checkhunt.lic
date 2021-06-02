@@ -21,7 +21,7 @@ loop {
         kill_script "assist"
         Script.run('go2', 'landing')
         Script.run('wear')
-        if Myname == "Aiss" or Myname == "Hili"
+        if Myname =~ /Aiss|Hili/
             Script.run('sheal')
         else
             Script.run('askheal')
@@ -115,7 +115,7 @@ loop {
         Script.run('wear')
         Script.run('go2', 'landing')
         kill_script "assist"
-        if Myname == "Aiss" or Myname == "Hili"
+        if Myname =~ /Aiss|Hili/
             Script.run('sheal')
         else
             Script.run('askheal')
@@ -140,8 +140,11 @@ loop {
         Script.run('sloot', 'sell')
         Script.run('bank')
         fput "bank acc"
+        echo "RUNNING CHECK BANK"
         Script.run('checkbank')
+        echo "RUNNING MY WIZ TABLE"
         Script.run('mywiztable')
+        echo "RUNNING MY ITCH TABLE"
         Script.run('myitchtable')
        if Myname =~ /Monker|Trenus|Woory|Sorci/
             #Script.run('go2', 'park3')

@@ -19,7 +19,7 @@ if Wounds.abdomen > 0 or Wounds.head > 0 or Wounds.neck > 0 or Wounds.chest > 0 
         elsif mynum == 2
             fput "say Anyone healing please?"
         elsif mynum == 3
-            fput "say I am in need of healing if an empath has time"
+            fput "say Any healing?"
         elsif mynum == 4
             fput "say Any empaths working?"
         elsif mynum == 5

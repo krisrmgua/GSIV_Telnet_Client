@@ -13,5 +13,6 @@
 #  Script.run('go2', 'wgrave')
 
 #echo checkmana()
-sleep 300
-Script.start('mybigshot')
+#sleep 600
+#Script.start('mybigshot')
+echo GameObj.loot

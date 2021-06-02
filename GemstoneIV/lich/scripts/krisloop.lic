@@ -77,9 +77,16 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "YOU HAVE EVERYTHING!", "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
-    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname =~ /Wardrob|Pristeen/
-        if Myname == "Pristeen"
+    line = matchtimeout 10, "The bronze gate appears to be closed", "seem to have that much in the account", "YOU HAVE EVERYTHING!", "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
+    if line =~ /seem to have that much in the account/
+       system("scripts/levelup.pl STATUS \"#{Myname} out of money?\"") 
+    end
+    if line =~ /The bronze gate appears to be closed/ and Myname !~ /Hoedo|Pristeen|Trenus|Monker|Chedr|Sluf|Sorci/
+        filename = "data/Gateor.gate"
+        File.write(filename, "on")
+    end
+    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname =~ /Wardrob|Hoedo|Pristeen/
+        if Myname =~ /Pristeen|Hoedo/
             Script.start('mybigshot_group_runner')
         else
             kill_script "invcountdown"

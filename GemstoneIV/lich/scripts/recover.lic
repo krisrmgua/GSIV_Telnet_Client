@@ -8,6 +8,10 @@ if not script.vars[1]
 else
   Script.run('go2', script.vars[1])
 end
-fput "kneel"
-fput "recover item"
+if not checknpcs
+  fput "kneel"
+  fput "recover item"
+else
+  echo "BAD GUY HERE HEADING BACK TRY AGAIN!!!"
+end
 Script.run('go2', 'landing')

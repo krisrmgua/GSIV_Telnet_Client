@@ -385,13 +385,40 @@ elsif Myname == "Chedr"
     huntarea = "4141"
     roomboundry = ["4142", "4140", "7172", "7184"]
     attack = "incant 302 channel"
-    stance = "offensive"
+    stance = "defensive"
     flee_count = 9
-    swings = 9
+    swings = 1
     skipwaitattack = 1
     hideme = 0
     shield = ""
     weapon = "staff"
+    sheath = "sheath"
+    backpack = "pack"
+    cloak = "cloak"
+    herbsack = "sack"
+    skinknife = ""
+    skinsheath = ""
+    encumbrance = 35
+    active_scripts = [""]
+elsif Myname == "Gateor"
+    rest = "landing"
+    rest2 = "park"
+    huntarea = "ants"
+    mobs = ["giant ant"]
+    fleemobs = ["nothing"]
+    roomboundry = ["7534","292"]
+    ####mobs = ["skeleton","phantom","lesser ghoul","goblin"]
+    ####huntarea = "4141"
+    ####roomboundry = ["4142", "4140", "7172", "7184"]
+    ####fleemobs = ["nothing"]
+    attack = "incant 1700 channel"
+    stance = "defensive"
+    flee_count = 20
+    swings = 1
+    skipwaitattack = 1
+    hideme = 0
+    shield = ""
+    weapon = "runestaff"
     sheath = "sheath"
     backpack = "pack"
     cloak = "cloak"
@@ -407,14 +434,19 @@ elsif Myname == "Curii"
     #mobs = ["giant ant"]
     #fleemobs = ["nothing"]
     #roomboundry = ["7534","292"]
-    mobs = ["skeleton","phantom","lesser ghoul","goblin"]
-    huntarea = "4141"
-    roomboundry = ["4142", "4140", "7172", "7184"]
-    fleemobs = ["nothing"]
-    attack = "incant 1700 channel"
-    stance = "offensive"
+    ##mobs = ["skeleton","phantom","lesser ghoul","goblin"]
+    ##huntarea = "4141"
+    ##roomboundry = ["4142", "4140", "7172", "7184"]
+    ##fleemobs = ["nothing"]
+    mobs = ["death dirge"]
+    fleemobs = ["greater spider"]
+    huntarea = "7252"
+    roomboundry = ["7198","7196","7260"]
+    #attack = "incant 1700 channel"
+    attack = "incant 1106 channel"
+    stance = "defensive"
     flee_count = 20
-    swings = 20
+    swings = 1
     skipwaitattack = 1
     hideme = 0
     shield = ""
@@ -902,6 +934,8 @@ attack_target = proc { |target|
   if line =~ /tries to bite you/ or line=~ /charges at you|thrusts with/ or line=~/tries to ensnare/ or line=~ /claws at you/ or line =~ /hurls a/ or line=~ /tries to ensnare you/ or line =~ /slashes with a .* you!/ or line=~ /swings a .* at you!/ or line=~ /stomps at you/ or line =~ /A \w+ attacks you!/ or line =~ /A \w+ \w+ attacks you!/ or skipwaitattack == 1
     loop = 0
     while loop < swings
+      target2 = find_target.call()
+      break if target2 == "0"
       check_flee_count.call()
       echo "Fleeing" if $need_flee == true and $debug
       break if $need_flee == true
@@ -1191,6 +1225,8 @@ loop {
     while target != "0" and not $need_flee and not $need_rest and not $need_sale and not $need_healing and not $need_bless
       attack_target.call(target)
       target = find_target.call()
+      check_flee_count.call()
+      $need_flee = check_flee_target.call()
     end
   end
   check_standing.call()

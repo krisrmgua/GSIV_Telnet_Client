@@ -27,6 +27,7 @@ unless Char.maxhealth >= 80
     exit
 end
 
+Myname = Char.name
 settings = CharSettings.to_hash
 settings['leave-wounds']     ||= 0
 settings['leave-scars']      ||= 1
@@ -286,9 +287,13 @@ heal_down = proc {
 heal_target = proc { |target, imprint = false|
     kill_script "my_health_check"
     target = target.downcase.strip
-    fput "say ::#{target} just a moment" if target !~ /^sluf$|^pristeen$|^woory$|^sorci$|^trenus$|^monker$|^aiss$|^wiiz$|^clu$/
     $dolink = false
-    linking(target)
+    if Myname !~ /Curii/
+        fput "say ::#{target} just a moment" if target !~ /^sluf$|^pristeen$|^woory$|^sorci$|^trenus$|^monker$|^aiss$|^wiiz$|^clu$/
+        linking(target)
+    else
+        $dolink = true
+    end
     cast_trolls_blood.call()
     if $dolink
         get_target_injuries.call(target, imprint).each { |injury|

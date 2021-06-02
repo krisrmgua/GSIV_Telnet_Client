@@ -146,10 +146,10 @@ elsif Myname == "Hoedo"
     #####huntarea = "4540"
     #####roomboundry = ["4541","4537","7325","7429"]
     mobs = ["spectral miner", "ghostly pooka", "spectral miner"]
-    ##huntarea = "7393"
-    huntarea = "7417"
-    ##roomboundry = ["7328"]
-    roomboundry = ["7418", "7416", "7420", "7419"]
+    huntarea = "7393"
+    ###############huntarea = "7417"
+    roomboundry = ["7328"]
+    ###############roomboundry = ["7418", "7416", "7420", "7419"]
     fleemobs = ["tomb spider"]
     rest = "landing"
     rest2 = "park"
@@ -157,7 +157,7 @@ elsif Myname == "Hoedo"
     #attack = "incant 1700 channel"
     attack = "incant 302 channel"
     stance = "defensive"
-    flee_count = 23
+    flee_count = 4
     swings = 9
     skipwaitattack = 1
     hideme = 0
@@ -336,6 +336,7 @@ go2rest = proc {
         Script.run('go2', "landing")
     end
     fput "ask invo for spells"
+    sleep 20
 }
 
 putawayweapon = proc {
@@ -479,6 +480,9 @@ check_flee_count = proc {
    if not npcs.size or npcs.size > flee_count
      go_defensive.call()
      $need_flee = true
+     if Myname =~ /Hoedo/ and npcs.size > flee_count
+         $need_rest = true
+     end
    end
    GameObj.loot.each { |i| $need_flee = true if i.noun =~ /cloud|breath|windy vortex/ }
 }

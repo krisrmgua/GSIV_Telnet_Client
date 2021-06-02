@@ -1,0 +1,13 @@
+Myname = Char.name
+filename = "data/#{Myname}.gate"
+loop {
+    file = File.open(filename)
+    file_data = file.read
+    file.close
+    if file_data == "on"
+        Script.run('go2', "wgrave")
+        Script.run('go2', "park")
+        File.write(filename, "off")
+    end
+    sleep 5
+}

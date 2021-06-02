@@ -98,18 +98,18 @@ loop {
                 if herb == "acantha leaf"
                     if line2 =~ /some acantha leaf, some acantha leaf/ or line2 =~ /some acantha leaf and some acantha leaf/
                         #fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                        fput "get #{herb} from my back" if herb !~ /spine|fruit|ephlox moss/
+                        fput "get #{herb} from my back" if herb !~ /spine/
                         #fput "get #{herb} from my back" 
                         #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                        fput "put #{herb} in bin" if herb !~ /spine|fruit|ephlox moss/
+                        fput "put #{herb} in bin" if herb !~ /spine/
                         #fput "put #{herb} in bin" 
                     end
                 else
                     #fput "get #{herb} from my back" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                    fput "get #{herb} from my back" if herb !~ /spine|fruit|ephlox moss/
+                    fput "get #{herb} from my back" if herb !~ /spine/
                     #fput "get #{herb} from my back"
                     #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                    fput "put #{herb} in bin" if herb !~ /spine|fruit|ephlox moss/
+                    fput "put #{herb} in bin" if herb !~ /spine/
                     #fput "put #{herb} in bin"
                 end
             end

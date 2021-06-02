@@ -18,6 +18,9 @@ elsif Myname == "Wardrob"
   Script.start('autodeposit')
   Script.start('krisloop')
   Script.start('keepalive')
+elsif Myname == "Gateor"
+  Script.start('krisloop')
+  Script.start('gatewatch')
 elsif Myname == "Gemii"
   Script.start('krisloop')
 elsif Myname == "Gemb"
