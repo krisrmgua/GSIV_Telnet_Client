@@ -24,6 +24,7 @@ loop {
         if Myname =~ /Aiss|Hili/
             Script.run('sheal')
         else
+            Script.run('myhealtable')
             Script.run('askheal')
         end
         Script.run('useherbs', "in bin")
@@ -118,6 +119,7 @@ loop {
         if Myname =~ /Aiss|Hili/
             Script.run('sheal')
         else
+            Script.run('myhealtable')
             Script.run('askheal')
         end
         Script.run('useherbs', "in bin")

@@ -6,6 +6,14 @@ Script.run('getexp', 'Trenus')
 sleep 1
 Script.run('getexp', 'Sorci')
 Script.run('getexp', 'Monker')
-sleep 1
+sleep 2
 Script.run('getexp', 'Clu')
 Script.run('getexp', 'Aiss')
+sleep 1
+Script.run('getexp', 'Hoedo')
+Script.run('getexp', 'Noce')
+sleep 2
+Script.run('getexp', 'Hili')
+Script.run('getexp', 'Piie')
+sleep 1
+Script.run('getexp', 'Bize')

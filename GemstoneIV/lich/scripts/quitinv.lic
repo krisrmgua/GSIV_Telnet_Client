@@ -1,0 +1,8 @@
+loop {
+    line = matchtimeout 10, "half-elven invoker garbed in colorful layered robes emerges from the portal"
+    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/
+        fput "ask inv for spells"
+        sleep 5
+        fput "quit"
+    end
+}

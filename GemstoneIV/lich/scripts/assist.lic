@@ -72,7 +72,8 @@ loop {
             Script.run('go2', 'pinefar')
             Script.run('sheal')
         else
-            LNet.send_message(attr={'type'=>'private', 'to'=>"#{Myname}"}, "join pristeen2")
+            #LNet.send_message(attr={'type'=>'private', 'to'=>"#{Myname}"}, "join pristeen2")
+            fput "fly"
         end
         sleep 10
         #if Myname == "Hoedo" or Myname == "Noce" or Myname == "Piie" or Myname == "Hili" or Myname == "Bize"
@@ -152,7 +153,8 @@ loop {
                Script.run('c')
                waitrt?
                waitcastrt?
-               Script.run('sloot') if Wounds.rhand < 1 and Wounds.lhand < 1 
+               Script.run('sloot')
+               #Script.run('sloot') if Wounds.rhand < 1 and Wounds.lhand < 1 
                Script.run('rem2')
            elsif Myname == "Heodo" or Myname == "Hili" or Myname == "Piie" or Myname == "Bize"
                sleep 1
@@ -187,7 +189,17 @@ loop {
            keepon = nil if $attack_check == "off"
        end
        #Script.run('sloot') if Myname =~ /Aiss|Clu|Monker/
-       Script.run('sloot') if Myname !~ /Clu/ and Wounds.rhand < 1 and Wounds.lhand < 1
+       if Myname =~ /Hoedo|Noce|Piie|Hili|Bize/
+           fput "group"
+           line = matchtimeout 2, "Wiiz is following you", "Wiiz is also a member of your group"
+           if line =~ /Wiiz is following you|Wiiz is also a member of your group/
+               echo "Wiiz Here Skipping Loot"
+           else
+               Script.run('sloot') if Wounds.rhand < 1 and Wounds.lhand < 1
+           end
+       else
+           Script.run('sloot') if Myname !~ /Clu/ and Wounds.rhand < 1 and Wounds.lhand < 1
+       end
        Script.run('rem2') if Myname !~ /Clu/
        #Script.run('sloot') if Myname =~ /Wiiz/
        #Script.run('sloot') 

@@ -77,7 +77,56 @@ def new_healed(target)
   Script.run('heal_list')
 end
 loop {
-    line = matchtimeout 10, "The bronze gate appears to be closed", "seem to have that much in the account", "YOU HAVE EVERYTHING!", "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
+    line = matchtimeout 10, "and you madly dig at it with your fingernails", "You turn your eyes to the sky and gaze upward enviously", "The bronze gate appears to be closed", "seem to have that much in the account", "YOU HAVE EVERYTHING!", "There is little point to that in the dark", "half-elven invoker garbed in colorful layered robes emerges from the portal", "Ramiell tried to join your group", "offers you some manna bread", "air seems to thicken and hold you back", "First Elanith Secured Bank", "energy rushes forth from your fingertips and into", "Joinme", "You sense your empathic link with", "Use the RECOVER ITEM", "Focused", "Quitall", "Private", "YOU HAVE BEEN IDLE TOO LONG", "KEYBOARD", "keyboard", "Keyboard", "AFK", "waiting for you to", "REPORT", "Get exp", "thinks, \"Quitmana", "thinks, \"Buffem", "thinks, \"I am now level", "but your attack has no effect", "You are now level", "thinks\, \"RUEMPTY", "thinks\, \"WhereRUnow", "thinks\, \"Wiiz", "thinks\, \"Aiss", "think\, \"Join", "thinks\, \"Join", "thinks\, \"Getsoc", "thinks\, \"Get bank", "thinks\, \"Hunt", "colors", "Colors", "COLORS", "hues", "Hues", "HUES", "blurs", "Blurs", "BLURS", "guards", "Guards", "GUARDS", "your current room was not found", "Click ACCEPT", "whispers", "whispers, \"RUFULL", "whispers, \"Bless", "whispers, \"Breadme", "but it has no effect", "golvern battle axe returns to normal"
+    if line =~ /and you madly dig at it with your fingernails/
+            Script.run('mystop')
+            Script.start('lostweaponbuy')
+    end
+    if line =~ /You turn your eyes to the sky and gaze upward enviously/
+            kill_script "randomtalk"
+            kill_script "checkhunt"
+            kill_script "assist"
+            sleep 3
+            kill_script "assist"
+            if Myname =~ /Monker|Sluf|Woory|Sorci/
+                Script.run('go2', 'park')
+            else
+                Script.run('go2', 'park')
+            end
+            kill_script "assist"
+            wtime = rand(1..20)
+            sleep wtime
+            Script.start('runmindcheck')
+            Script.run('wear')
+            Script.run('go2', 'landing')
+            kill_script "assist"
+            if Myname == "Aiss"
+                Script.run('sheal')
+            else
+                Script.run('myhealtable')
+                Script.run('askheal')
+            end
+            Script.run('useherbs', "in bin")
+            Script.run('useherbs', "on bench")
+            Script.run('useherbs', "under bench")
+            Script.run('useherbs', "--buy=on in my kit")
+            if Myname =~ /Monker|Trenus|Woory|Sorci/
+                Script.run('go2', 'park')
+            else
+                Script.run('go2', 'park')
+            end
+            Script.run('poolparty')
+            #Script.run('poolparty', 'deposit')
+            Script.run('sloot', 'sell')
+            Script.run('bank')
+            Script.run('waggle')
+            if Myname == "Aiss"
+                #Script.start('castany', '1')
+            end
+            fput "med" if Myname == "Aiss"
+            Script.start('checkhunt', 'Hoedo') if Myname =~ /Noce|Hili|Piie|Bize/
+            Script.start('checkhunt', "Pristeen") if Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+    end
     if line =~ /seem to have that much in the account/
        system("scripts/levelup.pl STATUS \"#{Myname} out of money?\"") 
     end
@@ -122,7 +171,7 @@ loop {
     end
     if line =~ /^([A-Z,a-z]+) offers you/
         uname = $1
-        if line =~ /^([A-Z,a-z]+) offers you (some manna bread|sugar-dusted travel biscuit|a boysenberry crumb bar|a pumpkin spice muffin with maple cream frosting|a dense seed-encrusted honey cake|pumpkin spice muffin|a disk of black olive-laden bread|brownie)/
+        if line =~ /^([A-Z,a-z]+) offers you (a|some) (manna bread|glazed chocolate donut|sugar-dusted travel biscuit|boysenberry crumb bar|pumpkin spice muffin with maple cream frosting|dense seed-encrusted honey cake|pumpkin spice muffin|disk of black olive-laden bread|brownie)/
             Script.run('wear')
             fput "accept"
             if line =~ /cake/
@@ -137,6 +186,10 @@ loop {
                fput "gobble my biscuit"
                fput "gobble my biscuit"
                fput "gobble my biscuit"
+            elsif line =~ /donut/
+               fput "gobble my donut"
+               fput "gobble my donut"
+               fput "gobble my donut"
             elsif line =~ /muffin/
                fput "gobble my muffin"
                fput "gobble my muffin"
@@ -307,7 +360,7 @@ loop {
        end
     end
     if line =~ /Keyboard|AFK|waiting for you to|^(?!.*audible).*REPORT.*$/i
-        if line !~ /\[help\]|\[Help\]|\[OOC\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]|Rheteger|The guard/
+        if line !~ /\[help\]|\[Help\]|\[OOC\]|\[merchant\]|\[Merchant\]|\[General\]|\[general\]|Rheteger|The guard|Tafkap/
           line.gsub! /"/, ' '
           system("scripts/levelup.pl STATUS \"(#{Myname}) ALERT: #{line}\"") 
         end

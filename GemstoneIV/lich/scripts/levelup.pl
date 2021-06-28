@@ -6,7 +6,7 @@ use Email::Send::SMTP::Gmail;
 my ($mail,$error)=Email::Send::SMTP::Gmail->new( -smtp=>'smtp.gmail.com',
                                                  -login=>'krisrmgua@gmail.com',
                                                  #-login=>'krissimmons@gmail.com',
-                                                 -pass=>'ysbkeylgvfpzuqmq',
+                                                 -pass=>'sqyqwgxabvaxatqp',
                                                  #-pass=>'Kas@+072578+++',
                                                  -port=>587);
                                                 # -verbose=>1,

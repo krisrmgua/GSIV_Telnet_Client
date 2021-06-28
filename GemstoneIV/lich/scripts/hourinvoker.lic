@@ -1,0 +1,10 @@
+loop {
+fput "time"
+line = matchtimeout 3, "the elven time standard"
+if line =~ /It is \d+:(\d+) by the elven time standard/
+    if $1 == "53"
+
+    end
+end
+sleep 55
+}

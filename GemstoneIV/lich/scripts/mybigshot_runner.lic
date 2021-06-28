@@ -381,12 +381,25 @@ elsif Myname == "Chedr"
     #mobs = ["giant ant"]
     #huntarea = "ants"
     #roomboundry = ["7534","292"]
-    mobs = ["skeleton","phantom","lesser ghoul","goblin"]
-    huntarea = "4141"
-    roomboundry = ["4142", "4140", "7172", "7184"]
+    ###mobs = ["skeleton","phantom","lesser ghoul","goblin"]
+    ###huntarea = "4141"
+    ###roomboundry = ["4142", "4140", "7172", "7184"]
+    #mobs = ["lesser mummy"]
+    #fleemobs = ["greater spider"]
+    #huntarea = "4144"
+    #roomboundry = ["4171","4143"]
+    ########mobs = ["death dirge","hobgoblin", "greater ghoul"]
+    ##mobs = ["death dirge"]
+    ##fleemobs = ["greater spider"]
+    ##huntarea = "7252"
+    ##roomboundry = ["7198","7196","7260"]
+    mobs = ["wraith"]
+    fleemobs = ["tomb spider"]
+    huntarea = "4175"
+    roomboundry = ["4195","4187","4181"]
     attack = "incant 302 channel"
     stance = "defensive"
-    flee_count = 9
+    flee_count = 1
     swings = 1
     skipwaitattack = 1
     hideme = 0
@@ -439,7 +452,7 @@ elsif Myname == "Curii"
     ##roomboundry = ["4142", "4140", "7172", "7184"]
     ##fleemobs = ["nothing"]
     mobs = ["death dirge"]
-    fleemobs = ["greater spider"]
+    fleemobs = ["greater spider", "revenant"]
     huntarea = "7252"
     roomboundry = ["7198","7196","7260"]
     #attack = "incant 1700 channel"
@@ -863,6 +876,12 @@ gohunt = proc {
   Myname = Char.name
   set_invoker.call('off')
   fput "ask invo for spells"
+  if Myname == "Curii"
+      Script.run('go2', '4140')
+      fput "go gate"
+      sleep 15
+      fput "go gate" if Room.current.id.to_s =~ /4140/
+  end
   Script.run('go2', "#{huntarea}")
   Script.run('mysaveloc')
 }
@@ -938,9 +957,11 @@ attack_target = proc { |target|
       break if target2 == "0"
       check_flee_count.call()
       echo "Fleeing" if $need_flee == true and $debug
+      echo "kris 1"
       break if $need_flee == true
       if check_flee_target.call()
         echo "Fleeing from target" if $debug
+        echo "kris 2"
         break
       end
       if Wounds.head > 1 or Wounds.neck > 1 or Wounds.abs > 1 or Wounds.lhand > 1 or Wounds.rhand > 1 or Wounds.larm > 1 or Wounds.rarm > 1 or Wounds.chest > 1 or Wounds.back > 1 or Wounds.rleg > 1 or Wounds.lleg > 1 or Wounds.nerves > 0 or percenthealth <= 70 or checkpoison or checkdisease
@@ -980,6 +1001,7 @@ attack_target = proc { |target|
       check_standing.call()
       check_flee_count.call()
       echo "Fleeing" if $need_flee == true and $debug
+      echo "kris 3"
       break if $need_flee == true
       if $CMAN and not CMAN_EXE
         if checkstamina 30
@@ -1155,6 +1177,7 @@ attack_target = proc { |target|
       end
       check_flee_count.call()
       echo "Fleeing" if $need_flee == true and $debug
+      echo "kris 4"
       break if $need_flee == true
     end
     go_defensive.call()
@@ -1226,7 +1249,11 @@ loop {
       attack_target.call(target)
       target = find_target.call()
       check_flee_count.call()
-      $need_flee = check_flee_target.call()
+      if $need_flee == false
+          $need_flee = check_flee_target.call()
+      end
+      break if $need_flee == true
+      echo "kris 9 $need_flee"
     end
   end
   check_standing.call()

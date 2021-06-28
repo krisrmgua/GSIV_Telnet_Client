@@ -17,7 +17,18 @@ waggle_it = proc { |target|
   end
 }
 
-if Spell[401].known? or Spell[101].known?
+if Myname =~ /Curii/
+        target = script.vars[1] 
+        Script.run('waggle', "--cast-list=101 --start-at=60 --stop-at=120 #{target}")
+        fput "prepare 103"
+        sleep 1
+        fput "cast #{target}"
+        sleep 4
+        fput "prepare 202"
+        sleep 1
+        fput "cast #{target}"
+else
+  if Spell[401].known? or Spell[101].known?
     waggle_it.call('Clu')
     waggle_it.call('Woory')
     waggle_it.call('Pristeen')
@@ -34,4 +45,5 @@ if Spell[401].known? or Spell[101].known?
     waggle_it.call('Bize')
     waggle_it.call('Hili')
     waggle_it.call('Wiiz')
+  end
 end

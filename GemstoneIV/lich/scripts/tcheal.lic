@@ -1,4 +1,5 @@
 Myname = Char.name
+Script.start('krisloop')
 Script.run('go2', 'landing')
 Script.run('wear')
 Script.run('askheal')

@@ -59,7 +59,7 @@ if Myname == "Pristeen"
     ##huntarea = "2760"
     ##roomboundry = ["2761", "2746"]
     ##fleemobs = ["tomb spider"]
-    mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth"]
+    mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth", "(?:a |spindly |afflicted |apt |barbed |flashy |blurry |flashy |dazzling |canny |enraged |ethereal |flickering |flinty |frenzied |ghostly |gleaming |glittering |gory |hardy |huge |indistinct |keen |slimy |luminous |muculent |nebulous |oozing |pestilent |putrid |radiant |raging |ready |robust |rune-covered |scintillating |shadowy |shifting |shimmering |shining |sickly-green |slimy |slime |sparkling |spiny |stalwart |stately |stout |tattooed |tenebrous |tough |twinkling |wavering |wispy ) sabre-tooth tiger"]
     huntarea = "2729"
     #huntarea = "2744"
     roomboundry = ["2730", "2728"]
@@ -134,7 +134,7 @@ elsif Myname == "Hoedo"
     #fleemobs = ["tomb spider"]
     #huntarea = "8470"
     #roomboundry = ["8469","8495"]
-    #mobs = ["(?:a |afflicted |apt |barbed |flashy |blurry |flashy |dazzling |canny |enraged |ethereal |flickering |flinty |frenzied |ghostly |gleaming |glittering |gory |hardy |huge |indistinct |keen |luminous |muculent |nebulous |oozing |pestilent |putrid |radiant |raging |ready |robust |rune-covered |scintillating |shadowy |shifting |shimmering |shining |sickly-green |slimy |slime |sparkling |spiny |stalwart |stately |stout |tattooed |tenebrous |tough |twinkling |wavering |wispy )zombie", "zombie"]
+    #mobs = ["(?:a |spindly |afflicted |apt |barbed |flashy |blurry |flashy |dazzling |canny |enraged |ethereal |flickering |flinty |frenzied |ghostly |gleaming |glittering |gory |hardy |huge |indistinct |keen |slimy |luminous |muculent |nebulous |oozing |pestilent |putrid |radiant |raging |ready |robust |rune-covered |scintillating |shadowy |shifting |shimmering |shining |sickly-green |slimy |slime |sparkling |spiny |stalwart |stately |stout |tattooed |tenebrous |tough |twinkling |wavering |wispy )zombie", "zombie"]
     #fleemobs = ["tomb spider"]
     #huntarea = "7874"
     #roomboundry = ["7873"]
@@ -145,10 +145,11 @@ elsif Myname == "Hoedo"
     #####mobs = ["ghostly pooka"]
     #####huntarea = "4540"
     #####roomboundry = ["4541","4537","7325","7429"]
-    mobs = ["spectral miner", "ghostly pooka", "spectral miner"]
-    huntarea = "7393"
+    #mobs = ["spectral miner", "ghostly pooka", "spectral miner"]
+    mobs = ["(?:a |spindly |afflicted |apt |barbed |flashy |blurry |flashy |dazzling |canny |enraged |ethereal |flickering |flinty |frenzied |ghostly |gleaming |glittering |gory |hardy |huge |indistinct |keen |slimy |luminous |muculent |nebulous |oozing |pestilent |putrid |radiant |raging |ready |robust |rune-covered |scintillating |shadowy |shifting |shimmering |shining |sickly-green |slimy |slime |sparkling |spiny |stalwart |stately |stout |tattooed |tenebrous |tough |twinkling |wavering |wispy )spectral miner", "spectral miner", "ghostly pooka"]
+    huntarea = "7421"
     ###############huntarea = "7417"
-    roomboundry = ["7328"]
+    roomboundry = ["7420"]
     ###############roomboundry = ["7418", "7416", "7420", "7419"]
     fleemobs = ["tomb spider"]
     rest = "landing"
@@ -175,6 +176,7 @@ elsif Myname == "Hoedo"
     #$mindhunt = 89
     $MYFRIED = 99
     $mindhunt = 25
+    $stop_hunt_time = 1500
 else
     exit
 end
@@ -792,7 +794,18 @@ attack_target = proc { |target|
           dead = GameObj.dead
           if dead
             go_defensive.call()
-            Script.run('sloot') if not $skiploot
+            if Myname =~ /Hoedo/
+                fput "group"
+                line = matchtimeout 2, "Wiiz is following you", "Wiiz is also a member of your group"
+                if line =~ /Wiiz is following you|Wiiz is also a member of your group/
+                    echo "Wiiz Here Skipping Loot"
+                else
+                    Script.run('sloot') if not $skiploot
+                end
+            else
+                Script.run('sloot') if not $skiploot
+            end
+            #Script.run('sloot') if not $skiploot
             Script.run('rem2') if not $skiploot
             check_silver.call()
             sleep 1
@@ -965,7 +978,7 @@ loop {
     end
     save_attack.call("off")
     echo "Sleeping 9" if verytmp == "1" and $need_rest != true
-    sleep 9 if verytmp == "1" and $need_rest != true
+    sleep 9 if verytmp == "1" and $need_rest != true and Myname !~ /Hoedo/
   end
   check_standing.call()
   if $need_healing or $need_bless or $need_rest or $need_sale
@@ -978,6 +991,7 @@ loop {
     putawayweapon.call()
     if $need_healing
       if Myname != "Aiss"
+          Script.run('myhealtable')
           Script.run('askheal')
           Script.run('useherbs', "in bin")
           Script.run('useherbs', "on bench")
@@ -995,6 +1009,7 @@ loop {
         Script.run('useherbs', "--buy=on in my #{herbsack}")
       end
     else
+        Script.run('myhealtable')
         Script.run('askheal')
         Script.run('useherbs', "in bin")
         Script.run('useherbs', "on bench")

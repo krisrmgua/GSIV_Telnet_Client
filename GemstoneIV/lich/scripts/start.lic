@@ -75,7 +75,7 @@ if Myname == "Hoedo"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
 end
-if Myname =~ /Piie|Noce|Bize|Hili/
+if Myname =~ /Piie|Noce|Bize|Hili|Wiiz/
   kill_script "checkhunt"
   sleep 1
   Script.start('checkhunt', "Hoedo")

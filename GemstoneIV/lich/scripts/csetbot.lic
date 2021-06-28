@@ -55,8 +55,9 @@ def write_it (file_data2, file_data3)
 end
 
 loop {
-    Script.run('go2', '477')
+    Script.run('go2', 'park')
     wait_until { checkmana(120) }
+    Script.run('go2', '290')
     fput "open my cloak"
     fput "open my backpack" 
 
@@ -87,7 +88,7 @@ loop {
     Script.run('cherb', '0')
     waitrt?
     waitcastrt?
-
+    Script.run('go2', '14627')
     herbs.each { |herb|
         fput "look in my backpack"
         line = matchtimeout 2, "#{herb}"
@@ -101,7 +102,7 @@ loop {
                         fput "get #{herb} from my back" if herb !~ /spine/
                         #fput "get #{herb} from my back" 
                         #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                        fput "put #{herb} in bin" if herb !~ /spine/
+                        fput "put #{herb} in waste" if herb !~ /spine/
                         #fput "put #{herb} in bin" 
                     end
                 else
@@ -109,7 +110,7 @@ loop {
                     fput "get #{herb} from my back" if herb !~ /spine/
                     #fput "get #{herb} from my back"
                     #fput "put #{herb} in bin" if herb !~ /spine|fruit|pothinir grass|ephlox moss/
-                    fput "put #{herb} in bin" if herb !~ /spine/
+                    fput "put #{herb} in waste" if herb !~ /spine/
                     #fput "put #{herb} in bin"
                 end
             end
@@ -117,7 +118,7 @@ loop {
 
     }
 
-    Script.run('go2', '297')
+    Script.run('go2', '290')
     fput "close my cloak"
     sleep 3
     Script.run('bundleall')

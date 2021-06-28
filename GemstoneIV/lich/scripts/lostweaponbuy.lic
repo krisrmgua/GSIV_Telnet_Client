@@ -1,0 +1,25 @@
+Script.run('go2', 'landing')
+Script.run('askheal')
+Script.run('myuse')
+Script.run('bank', '200')
+Myname = Char.name
+if Myname =~ /Noce/
+    Script.run('go2', '402')
+    fput "order 2"
+    fput "buy"
+    Script.run('go2', '3782')
+    fput "order 1"
+    fput "buy"
+elsif Myname =~ /Piie|Hili|Bize/
+    Script.run('go2', '401')
+    fput "order 4"
+    fput "buy"
+else
+    loop {
+       echo "NO WEAPON BUY FOR THIS CHARECTER IN LOSTWEAPON SCRIPT"
+       sleep 5
+    }
+end
+Script.run('wear')
+Script.run('bank')
+Script.run('start')
