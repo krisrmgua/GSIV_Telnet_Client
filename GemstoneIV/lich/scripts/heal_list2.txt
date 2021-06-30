@@ -1,4 +1,3 @@
-Picalo
 Hours
 Wiiz
 Trenus
@@ -8,3 +7,4 @@ Bize
 Piie
 Noce
 Bize
+Chedr

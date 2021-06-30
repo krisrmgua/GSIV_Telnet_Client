@@ -1,0 +1,19 @@
+count = 0
+loop {
+  if Room.current.id.to_s == "7393"
+    count = count + 1
+    if count == 5
+      kill_script "go2"
+      sleep 1
+      kill_script "go2"
+      sleep 1
+      fput "kneel"
+      fput "go hole"
+      Script.run('go2', 'park')
+      count = 0
+    end
+  else
+    count = 0
+  end
+  sleep 4
+}

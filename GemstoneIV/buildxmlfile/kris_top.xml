@@ -30,6 +30,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
         <highlight fg='D064FF'>(?i)^\[Merchant\]-GSIV|(?i)^\[Help\]-GSIV|(?i)^\[General\]-GSIV</highlight>
         <highlight fg='43EA25'>(?i)^\[Merchant\] |(?i)^\[Help\] |(?i)^\[General\] </highlight>
 	<highlight fg='748A9B'>([A-Z][a-z]+ disk)</highlight>
+	<highlight fg='000000' bg='FFB3A5'>a squat jar of pallid grey salve</highlight>
 	<highlight fg='555555'>^\[.*?\](?:>|&gt;).*$</highlight>
 	<highlight fg='555555'>\([0-9][0-9]\:[0-9][0-9]\:[0-9][0-9]\)$</highlight>
 	<highlight fg='90FF8B'>^\[Private(?:To)?\]|^\[Focused(?:to)?\]|Also here:</highlight>
@@ -37,7 +38,7 @@ Kris Font on xterm in mac is set to Hack Nerd Font - Regulart - 12
 	<highlight fg='008000'>^\[code\]</highlight>
 	<highlight fg='FF0000'>GameMaster|GameHost</highlight>
 	<highlight fg='FF0000' bg='FFE800'>.*Use the RECOVER ITEM.*</highlight>
-	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?!.*audible)(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).*AFK.*$</highlight>
+	<highlight fg='FF0000' bg='FFE800'>^(?i).*keyboard.*$|^(?!.*audible)(?i).*REPORT.*$|^(?i).*waiting for you to.*$|^(?i).* AFK .*$</highlight>
 	<highlight fg='00FFFF' bg='282828'>\[healbot.*$|\[mybigshot_runner.*\]|\[assist.*\]|\[healbot.*$|\[mybigshot_group_runner.*\]</highlight>
 	<highlight fg='00A2FF'>(?i)(acantha leaf tea|acantha leaf|yabathilium fruit|Iceberry Tart|grey mushroom potion|green mushroom potion|tincture of acantha|Olak\'s Ol'style ale|sassafras tea|Bloody Krolvin)</highlight>
 	<highlight fg='00FFFF'>(?i)(Tundra Grass|Mama Dwarf's\'|Elk Horn Potion|Semak's Smooth\'|Leaftoe\'s Lichen Tart|Orc\'s Head\'|Dabbings Family Tart|Lost Dogwater|bubbling brown ale|chunky black ale|rusty red ale|thick foggy ale|tincture of ambrominas|tincture of basal|tincture of rose-marrow|tincture of wolifrew|ambrominas leaf|basal moss|wolifrew lichen|rose-marrow potion|sweetfern tea|gingko nut tea|feverfew tea|red lichen tea)</highlight>

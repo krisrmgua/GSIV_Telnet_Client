@@ -14,6 +14,7 @@ elsif Myname == "Curii"
   Script.start('autoinvitefriends')
   Script.start('taptoheal')
   Script.start('krisloop')
+  Script.start('healtable')
 elsif Myname == "Wardrob"
   Script.start('autodeposit')
   Script.start('krisloop')
@@ -71,6 +72,9 @@ if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   sleep 1
   Script.start('checkhunt', "Pristeen")
 end
+if Myname =~ /Piie|Noce|Bize|Hili|Hoedo/
+  Script.start('roomchecker')
+end
 if Myname == "Hoedo"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
@@ -83,6 +87,7 @@ end
 Script.start('askinv')
 Script.start('runthischeck')
 Script.start('log')
+sleep 1
 Script.start('log')
 Script.start('myquit')
 if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Hili|Bize/

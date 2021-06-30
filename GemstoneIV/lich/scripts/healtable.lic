@@ -1,4 +1,5 @@
 Myname = Char.name
+Script.run('autoinvitefriends')
 Script.run('mytable')
 
 heal_em = proc { |target|

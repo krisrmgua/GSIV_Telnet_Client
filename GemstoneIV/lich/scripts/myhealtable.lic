@@ -2,7 +2,7 @@ Myname = Char.name
 exit if Myname == "Aiss"
 exit if Myname == "Hili"
 Script.run('mytable', 'curii')
-sleep 1
+sleep 5
 gothere = 0
 GameObj.pcs.find { |pcs| gothere = 1 if pcs.noun =~ /Curii/i }
 #GameObj.pcs.each {|s| gothere = true if s.noun =~ /^Sluf$|^Pristeen$|^Hoedo$|^Honkmonk$|^Woory$|^Sorci$|^Trenus$|^Monker$|^Aiss$|^Wiiz$|^Clu$|^Noce$|^Bize$|^Piie$|^Hili$/}

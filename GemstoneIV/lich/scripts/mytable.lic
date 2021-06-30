@@ -5,6 +5,21 @@ if Room.current.id.to_s == "228" or Room.current.id.to_s == "288" or Room.curren
     fput "go #{who} table"
     sleep 1
     fput "go #{who} table"
+    line = matchtimeout 2, "You just asked for"
+    if line =~ /You just asked for/
+      if Room.current.id.to_s == "3743"
+        sleep 60
+        fput "go #{who} table"
+        sleep 1
+        fput "go #{who} table"
+      end
+      if Room.current.id.to_s == "3743"
+        sleep 60
+        fput "go #{who} table"
+        sleep 1
+        fput "go #{who} table"
+      end
+    end
   else
       fput "go table"
   end
