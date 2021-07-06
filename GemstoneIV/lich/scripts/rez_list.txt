@@ -1,6 +1,4 @@
 Piie
-Bize
-Piie
 Monker
 Piie
 Sorci
@@ -8,3 +6,5 @@ Woory
 Aiss
 Aiss
 Piie
+Sorci
+Curii

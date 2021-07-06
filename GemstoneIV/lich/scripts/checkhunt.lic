@@ -40,11 +40,11 @@ loop {
         Script.run('checkbank')
         Script.run('go2', 'park')
         Script.start('runmindcheck')
-        Script.run('rem') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
+        Script.run('rem') if Myname =~ /Noce|Bize|Hoedo|Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
         fput "tell fam to stay" if Myname =~ /Trenus/
         #Script.run('go2', 'pinefar') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
         #Script.run('wear') if Myname =~ /Wiiz|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
-    elsif file_data == "on" and Myname =~ /Wiiz|Hili|Noce|Piie|Bize|Hoedo|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
+    elsif file_data == "on" and Myname =~ /Wiiz|Hili|Noce|Hoedo|Piie|Bize|Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/ and $last_state != "on"
         $last_state = "on"
         kill_script "runmindcheck"
         kill_script "mybigshot_runner"
@@ -158,7 +158,7 @@ loop {
             Script.run('go2', 'park')
         end
         if Myname =~ /Hoedo|Noce|Piie|Hili|Bize|Wiiz/
-            sleep 40 if Myname == "Hoedo"
+            #sleep 40 if Myname == "Hoedo"
             #Script.run('go2', 'wgrave')
             Script.run('go2', 'park')
         end

@@ -1,2 +1,16 @@
+Myname = Char.name
 $myspell = "130"
-Spell[$myspell].cast() if Spell[$myspell].affordable?
+if Spell[$myspell].affordable?
+    filename = "data/#{Myname}.fog"
+    touch=`touch /root/GSIV_Telnet_Client/GemstoneIV/lich/#{filename}`
+    data=File.read(filename)
+    echo "Last Ran #{data}"
+    Spell[$myspell].cast() if Spell[$myspell].affordable?
+    #line = matchtimeout 3, "Nothing happens"
+    #if line =~ /Your surroundings blur for a moment/
+        date=`date | awk {'print \$4'}`    
+        File.write(filename, "#{date}")
+    #else
+    #    echo "You must wait 4 hours from #{data}"
+    #end
+end

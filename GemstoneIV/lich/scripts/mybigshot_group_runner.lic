@@ -24,7 +24,7 @@ $lookwait = true
 $MYFRIED = 99
 $mindhunt = 25
 $hunt_start_time = DateTime.now
-$stop_hunt_time = 750
+$stop_hunt_time = 600
 $make_fire = false
 $mysleeping_main = 200
 if not script.vars[1]
@@ -59,10 +59,11 @@ if Myname == "Pristeen"
     ##huntarea = "2760"
     ##roomboundry = ["2761", "2746"]
     ##fleemobs = ["tomb spider"]
-    mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth", "(?:a |spindly |afflicted |apt |barbed |flashy |blurry |flashy |dazzling |canny |enraged |ethereal |flickering |flinty |frenzied |ghostly |gleaming |glittering |gory |hardy |huge |indistinct |keen |slimy |luminous |muculent |nebulous |oozing |pestilent |putrid |radiant |raging |ready |robust |rune-covered |scintillating |shadowy |shifting |shimmering |shining |sickly-green |slimy |slime |sparkling |spiny |stalwart |stately |stout |tattooed |tenebrous |tough |twinkling |wavering |wispy ) sabre-tooth tiger"]
+    mobs = ["frozen corpse", "major glacei", "minor glacei", "ice wraith", "polar bear", "sabre-tooth tiger", "wooly mammoth", "a (spindly |afflicted |apt |barbed |flashy |blurry |flashy |dazzling |canny |enraged |ethereal |flickering |flinty |frenzied |ghostly |gleaming |glittering |gory |hardy |huge |indistinct |keen |slimy |luminous |muculent |nebulous |oozing |pestilent |putrid |radiant |raging |ready |robust |rune-covered |scintillating |shadowy |shifting |shimmering |shining |sickly-green |slimy |slime |sparkling |spiny |stalwart |stately |stout |tattooed |tenebrous |tough |twinkling |wavering |wispy ) sabre-tooth tiger"]
     huntarea = "2729"
     #huntarea = "2744"
-    roomboundry = ["2730", "2728"]
+    roomboundry = ["2730","2731","2727"]
+    ############roomboundry = ["2730", "2728"]
     #roomboundry = ["2746", "2709"]
     flee_count = 16
     #flee_count = 6
@@ -500,6 +501,12 @@ gohunt = proc {
       Script.run('sethunt', 'on')
       sleep $mysleeping
       $mysleeping = $mysleeping_main
+      Script.run('wear')
+      Script.run('go2', "pinefar")
+      Script.run('s')
+      Script.run('makefire')
+      Script.run('rem')
+      sleep 360
       Script.start('randomtalk')
       Script.run('go2', "#{huntarea}")
       $hunt_start_time = DateTime.now
@@ -1142,6 +1149,7 @@ loop {
     ####Script.run('rem') if Myname == "Pristeen"
     ####Script.start("assist_monker") if Myname == "Pristeen"
     #while checkmind(2)
+    #sleep 400 if Myname == "Pristeen"
     while percentmind() > $mindhunt
       echo "Mind Still to High" if $debug
       display_watch_current()

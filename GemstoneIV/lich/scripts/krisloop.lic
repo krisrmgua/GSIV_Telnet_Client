@@ -124,7 +124,7 @@ loop {
                 #Script.start('castany', '1')
             end
             fput "med" if Myname == "Aiss"
-            Script.start('checkhunt', 'Hoedo') if Myname =~ /Noce|Hili|Piie|Bize/
+            Script.start('checkhunt', 'Pristeen') if Myname =~ /Noce|Hoedo|Hili|Piie|Bize/
             Script.start('checkhunt', "Pristeen") if Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
     end
     if line =~ /seem to have that much in the account/
@@ -134,8 +134,8 @@ loop {
         filename = "data/Gateor.gate"
         File.write(filename, "on")
     end
-    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname =~ /Wardrob|Hoedo|Pristeen/
-        if Myname =~ /Pristeen|Hoedo/
+    if line =~ /half-elven invoker garbed in colorful layered robes emerges from the portal/ and Myname =~ /Wardrob|Pristeen/
+        if Myname =~ /Pristeen/
             Script.start('mybigshot_group_runner')
         else
             kill_script "invcountdown"
@@ -202,7 +202,7 @@ loop {
         elsif line =~ /(Aiss|Itchiy) offers you a (leaf-tooled survival kit|leather steel-buckled kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/
             fput "accept"
             fput "wear my #{herbsack}"
-        elsif line =~ /^(Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Bize) offers you a (leaf-tooled survival kit|leather steel-buckled kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/ and Myname =~ /Aiss|Itchiy/
+        elsif line =~ /^(Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Bize) offers you a (leather steel-buckled kit|leaf-tooled survival kit|leather steel-buckled kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/ and Myname =~ /Aiss|Itchiy/
             #uname = $1
             echo "GOT #{uname}"
             fput "accept"
@@ -528,7 +528,7 @@ loop {
                 #Script.start('castany', '1') 
             end
             fput "med" if Myname == "Aiss"
-            Script.start('checkhunt', 'Hoedo') if Myname =~ /Noce|Hili|Piie|Bize/ 
+            Script.start('checkhunt', 'Pristeen') if Myname =~ /Noce|Hoedo|Hili|Piie|Bize/ 
             Script.start('checkhunt', "Pristeen") if Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
         elsif joiny == "pristeen3" and Myname =~ /Monker|Sluf|Woory|Sorci|Trenus|Clu|Aiss/
             kill_script "assist"

@@ -18,4 +18,6 @@ if gothere == 1
     end
 end
 gothere = 0
+fput "out"
+sleep 1
 Script.run('go2', "landing")

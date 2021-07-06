@@ -7,7 +7,7 @@ $attack_check = "off"
 herbsack = UserVars.herbsack
 
 check_silver = proc {
-    fput "silver"
+    fput "silver" if Room.current.id.to_s !~ /^2777$/
     line = matchtimeout 2, "coins with you"
     if line =~ /You have (.*) coins with you/
         coins = $1
@@ -108,10 +108,10 @@ loop {
     #line = matchtimeout 3, "Pristeen channels", "Pristeen gestures", "Hoedo channels", "Hoedo gestures"
     #if line =~ /Pristeen channels|Pristeen gestures|Hoedo channels|Hoedo gestures/
        keepon = true
-       fput "target wraith" if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen/
-       fput "target glacei" if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen/
+       fput "target wraith" if Myname =~ /Aiss|Clu|Monker|Trenus|Hoedo|Sorci|Woory|Sluf|Pristeen/
+       fput "target glacei" if Myname =~ /Aiss|Clu|Monker|Trenus|Sorci|Hoedo|Woory|Sluf|Pristeen/
        while keepon
-           if Myname == "Sorci" or Myname == "Trenus"
+           if Myname == "Sorci" or Myname == "Trenus" or Myname == "Hoedo"
                sleep 1
                Script.run('c')
                line = matchtimeout 3, "You do not"
@@ -172,10 +172,10 @@ loop {
                    waitrt?
                    waitcastrt?
                    fput "swap" if Myname == "Noce"
-                   fput "whisper hoedo bless me" if Myname == "Noce"
+                   fput "whisper pristeen bless me" if Myname == "Noce"
                    sleep 5 if Myname == "Noce"
                    fput "swap" if Myname == "Noce"
-                   fput "whisper hoedo bless me"
+                   fput "whisper pristeen bless me"
                end
                if line =~ /You do no|You currently/
                    keepon = nil

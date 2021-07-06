@@ -19,5 +19,7 @@ if file_data =~ /1/
         fput "give itch my #{herbsack}"
         sleep 10
     end
+    fput "out"
+    sleep 1
     Script.run('go2', "park")
 end

@@ -73,16 +73,20 @@ if Myname =~ /Aiss|Trenus|Sorci|Clu|Monker|Woory|Sluf/
   Script.start('checkhunt', "Pristeen")
 end
 if Myname =~ /Piie|Noce|Bize|Hili|Hoedo/
-  Script.start('roomchecker')
+  #Script.start('roomchecker')
 end
 if Myname == "Hoedo"
   Script.run('sethunt', 'off')
   Script.run('mysaveloc')
+  kill_script "checkhunt"
+  sleep 1
+  Script.start('checkhunt', "Pristeen")
 end
 if Myname =~ /Piie|Noce|Bize|Hili|Wiiz/
   kill_script "checkhunt"
   sleep 1
-  Script.start('checkhunt', "Hoedo")
+  #Script.start('checkhunt', "Hoedo")
+  Script.start('checkhunt', "Pristeen")
 end
 Script.start('askinv')
 Script.start('runthischeck')

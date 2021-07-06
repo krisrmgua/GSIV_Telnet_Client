@@ -1,6 +1,6 @@
 loop {
 line = matchtimeout 10, "offers you"
-if line =~ /(Aiss|Itchiy|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Bize|Hili) offers you a (leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/
+if line =~ /(Aiss|Itchiy|Clu|Monker|Trenus|Sorci|Woory|Sluf|Pristeen|Hoedo|Noce|Piie|Bize|Hili) offers you a (leather steel-buckled kit|leaf-tooled survival kit|bloodstained leather survival kit|silver-threaded indigo survival kit|large sack|square ombre first aid kit|a square ombre first aid kit dyed in varying verdant hues)/
     uname = $1
     fput "accept"
     fput "hands"

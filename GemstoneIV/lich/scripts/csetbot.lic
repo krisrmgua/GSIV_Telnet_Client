@@ -34,18 +34,10 @@ def write_it (file_data2, file_data3)
               filename = "data/Pristeen.herb"
               File.write(filename, "#{file_data3}")
         elsif file_data2 =~ /^9/
-              rname = "Hoedo"
-              filename = "data/Hoedo.herb"
-              File.write(filename, "#{file_data3}")
-        elsif file_data2 =~ /^10/
               rname = "Noce"
               filename = "data/Noce.herb"
               File.write(filename, "#{file_data3}")
-        elsif file_data2 =~ /^11/
-              rname = "Piie"
-              filename = "data/Piie.herb"
-              File.write(filename, "#{file_data3}")
-        elsif file_data2 =~ /^13/
+        elsif file_data2 =~ /^10/
               rname = "Bize"
               filename = "data/Bize.herb"
               File.write(filename, "#{file_data3}")
@@ -137,6 +129,7 @@ loop {
         cloak_loop = 1
         fput "open my cloak"
         fput "say Waiting on #{rname}"
+        #fput "quit"
         while cloak_loop == 1
             respond "Waiting on #{rname}"
             fput "look in my cloak"
@@ -169,10 +162,6 @@ loop {
         elsif file_data =~ /^9/
             w_this = 10
         elsif file_data =~ /10/
-            w_this = 11
-        elsif file_data =~ /11/
-            w_this = 13
-        elsif file_data =~ /13/
             w_this = 2
         end
         filename = "data/#{Myname}.herb"

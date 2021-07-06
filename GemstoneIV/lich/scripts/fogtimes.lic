@@ -1,0 +1,29 @@
+    name="Pristeen"
+    filename = "data/#{name}.fog"
+    touch=`touch /root/GSIV_Telnet_Client/GemstoneIV/lich/#{filename}`
+    data=File.read(filename)
+    echo "#{name}: #{data}"
+
+    name="Clu"
+    filename = "data/#{name}.fog"
+    touch=`touch /root/GSIV_Telnet_Client/GemstoneIV/lich/#{filename}`
+    data=File.read(filename)
+    echo "#{name}: #{data}"
+
+    name="Aiss"
+    filename = "data/#{name}.fog"
+    touch=`touch /root/GSIV_Telnet_Client/GemstoneIV/lich/#{filename}`
+    data=File.read(filename)
+    echo "#{name}: #{data}"
+
+    name="Sluf"
+    filename = "data/#{name}.fog"
+    touch=`touch /root/GSIV_Telnet_Client/GemstoneIV/lich/#{filename}`
+    data=File.read(filename)
+    echo "#{name}: #{data}"
+
+    name="Hoedo"
+    filename = "data/#{name}.fog"
+    touch=`touch /root/GSIV_Telnet_Client/GemstoneIV/lich/#{filename}`
+    data=File.read(filename)
+    echo "#{name}: #{data}"
